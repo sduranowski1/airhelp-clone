@@ -1,0 +1,44 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class FormData extends Model
+{
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'form_data';
+
+    use HasFactory;
+
+    protected $fillable = [
+        // Define the fillable attributes for mass assignment
+        'input1',
+        'input1a',
+        'input1b',
+        'input1c',
+        'input2',
+        'input3',
+        'input3a',
+        'input4',
+        'input4a',
+        'input4b',
+        'input6',
+        'input6a',
+        'input6b',
+        'input8',
+        'input8a',
+        'input8b',
+        'input8c',
+        'input8d',
+        'input8e',
+        'input8f',
+        'input9',
+        // Add other fields as needed
+    ];
+}

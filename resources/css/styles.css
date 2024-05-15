@@ -1,0 +1,506 @@
+body {
+    overflow-x: hidden;
+}
+
+footer {
+    background: #F4FFF199;
+}
+
+.card {
+    border: none;
+    position: relative;
+
+}
+
+.hoverix {
+    transition: background-color 0.3s ease; /* Add transition for smooth effect */
+    position: relative; /* Required for absolute positioning of child elements */
+
+}
+
+.list-hidden {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.hoverix:hover {
+    background-color: #4F914A; /* Change background color on hover */
+    color: white;
+
+}
+
+.card:hover .list-hidden {
+    max-height: 100px;
+}
+
+.image-container {
+    position: relative;
+}
+
+.image-wrapper {
+    position: relative;
+    display: inline-block; /* Ensure it only wraps the image */
+}
+
+.image-wrapper_2 {
+    position: relative;
+    display: inline-block; /* Ensure it only wraps the image */
+}
+
+.image-wrapper_3 {
+    position: relative;
+    display: inline-block; /* Ensure it only wraps the image */
+}
+
+.plane-image {
+    display: block;
+    width: 100%; /* Ensure the image scales properly */
+    transition: opacity 0.3s ease-in-out;
+}
+
+.image-wrapper::after {
+    content: '';
+    background-image: url('media/plane_clock_white.png'); /* Hover image */
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.image-wrapper_2::after {
+    content: '';
+    background-image: url('media/canceled_plane_white.png'); /* Hover image */
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.image-wrapper_3::after {
+    content: '';
+    background-image: url('media/plane_swap_white.png'); /* Hover image */
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.image-container:hover .plane-image {
+    opacity: 0;
+}
+
+.image-container:hover .image-wrapper::after {
+    opacity: 1;
+}
+
+.image-container:hover .image-wrapper_2::after {
+    opacity: 1;
+}
+
+.image-container:hover .image-wrapper_3::after {
+    opacity: 1;
+}
+
+
+
+/* Home Page */
+.h-screen2 {
+    height: 75vh;
+}
+
+.container-custom {
+    text-align: left;
+    background: #F4FFF199;
+}
+
+.heading-custom {
+    font-size: 100px;
+    font-weight: 500;
+    line-height: 110px;
+    text-align: left;
+    color: #4F914A;
+}
+
+.info-text-custom {
+    gap: 0px;
+    opacity: 50%;
+    font-size: 25px;
+    font-weight: 500;
+    line-height: 30px;
+    text-align: left;
+    color: #4F914A;
+}
+
+.container {
+    display: flex;
+}
+
+.card {
+    flex: 1;
+    margin-right: 20px; /* Adjust as needed for spacing between cards */
+}
+
+.lapping {
+    position: relative;
+    width: 100%;
+    height: 100px; /* Adjust as needed */
+}
+
+.overlapping {
+    position: absolute;
+    top: -50px; /* Adjust the overlap position */
+    left: 0;
+    width: 100%;
+    height: 50px; /* Adjust as needed */
+    z-index: 9999; /* Ensure it's on top of other content */
+}
+
+.overlap_shadow {
+    box-shadow: 0px 0px 20px 0px #4848481A;
+}
+
+.why {
+    font-size: 15px;
+    font-weight: 700;
+    text-align: center;
+    color: #00462D;
+
+}
+
+.we_do {
+    font-size: 25px;
+    font-weight: 700;
+    text-align: center;
+
+}
+
+.our_com {
+    font-size: 18.5px;
+    font-weight: 400;
+
+    text-align: center;
+
+}
+
+.custom-hr {
+    width: 1577.06px;
+    height: 1px;
+    top: 1663px;
+    left: -2683.03px;
+    gap: 0px;
+    border: 1px 0px 0px 0px;
+    opacity: 0px;
+    background: #004730;
+}
+
+.vert-hr {
+    border-left: 1px solid black;
+    height: 200px;
+
+}
+
+.greenText {
+    color: #4F914A;
+}
+
+.darkGreenText {
+    color: #004730;
+}
+
+.column {
+    display: inline-block;
+    width: 50%; /* Adjust as needed */
+    vertical-align: top; /* Aligns columns from the top */
+    /* Add any additional styling for columns here */
+
+}
+
+/* Testiomonials */
+.testimonial-group h2 {
+    text-align: center;
+    margin-bottom: 50px;
+}
+/*.testimonial-group .slider-wraapper {*/
+/*    border-radius: 16px;*/
+/*    box-shadow: #959da533 0px 8px 24px;*/
+/*    padding: 30px 25px;*/
+/*    border: 1px solid gray;*/
+/*}*/
+/*.testimonial-group .slider-wraapper h5 {*/
+/*    font-size: 20px;*/
+/*    text-align: end;*/
+/*}*/
+.testimonial-group .mySwiper {
+    padding-bottom: 90px;
+}
+.testimonial-group .mySwiper .swiper-button-next:after,
+.testimonial-group .mySwiper .swiper-button-prev:after {
+    font-size: 25px;
+    line-height: 1;
+}
+.swiper-button-next,
+.swiper-button-prev {
+    bottom: -7px;
+    top: auto;
+    color: gray;
+}
+.testimonial-group .mySwiper .swiper-button-next {
+    right: 40%;
+}
+.testimonial-group .mySwiper .swiper-button-prev {
+    left: 40%;
+}
+
+@media only screen and (max-width: 991.98px) {
+    .testimonial-group .mySwiper .swiper-button-next {
+        right: 20%;
+    }
+    .testimonial-group .mySwiper .swiper-button-prev {
+        left: 20%;
+    }
+}
+
+
+/* Progress Bar */
+.outer {
+    height: 100vh;
+    min-width: 20vw;
+    flex: 1;
+    position: absolute;
+}
+
+.progress {
+    --gap: 20px;
+    --line-height: 20px;
+    --bullet-radius: 5px;
+    --line-thick: 2px;
+    --strip-color: #333;
+    --next-color: #666;
+    --current-color: #333;
+    --prev-color: #333;
+
+    display: inline-flex;
+    height: 50%;
+    padding: 5vh 10%;
+    background: transparent;
+    margin-left: 100px
+}
+
+.progress > div {
+    display: flex;
+    flex-direction: column;
+    color: var(--prev-color);
+}
+
+.progress > div.left {
+    padding-right: var(--gap);
+    text-align: right;
+}
+
+.progress > div.left div:last-of-type:after {
+    display: none;
+}
+
+.progress > div.left div:after {
+    content: "";
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 2px;
+    position: absolute;
+    right: calc(var(--gap) * -1);
+    top: calc(var(--line-height) / 2);
+    height: 101%;
+    width: 1px;
+    transform: translateX(50%);
+}
+
+.progress > div.right {
+    padding-left: var(--gap);
+}
+
+.progress > div.right div.prev:after {
+    transition: none;
+}
+
+.progress > div.right div.current {
+    color: var(--current-color);
+    font-weight: bold;
+}
+
+.progress > div.right div.current:before {
+    background: var(--current-color);
+    padding: calc(var(--bullet-radius) * 2);
+    transition: all 0.2s 0.15s cubic-bezier(0.175, 0.885, 0.32, 2);
+}
+
+.progress > div.right div.current:after {
+    height: 0%;
+    transition: height 0.2s ease-out;
+}
+
+.progress > div.right div.current ~ div {
+    color: var(--next-color);
+}
+
+.progress > div.right div.current ~ div:before {
+    background: var(--next-color);
+    padding: calc(var(--bullet-radius) * 0.5);
+}
+
+.progress > div.right div.current ~ div:after {
+    height: 0%;
+    transition: none;
+}
+
+.progress > div.right div:before {
+    content: "";
+    /*background: var(--strip-color);*/
+    padding: var(--bullet-radius);
+    border-radius: 50%;
+    position: absolute;
+    left: calc(var(--gap) * -1);
+    top: calc(var(--line-height) / 2);
+    transform: translateX(-50%) translateY(-50%);
+    transition: padding 0.2s ease;
+}
+
+.progress > div.right div:after {
+    content: "";
+    background: var(--strip-color);
+    border-radius: 2px;
+    position: absolute;
+    left: calc(var(--gap) * -1);
+    top: calc(var(--line-height) / 2);
+    height: 101%;
+    width: var(--line-thick);
+    transform: translateX(-50%);
+    transition: height 0.2s ease;
+}
+
+.progress > div > div {
+    flex: 1;
+    position: relative;
+    line-height: var(--line-height);
+    cursor: default;
+    min-height: 30px;
+}
+
+.progress > div > div:last-of-type {
+    flex: 0;
+}
+
+.progress.dark {
+    background: #333;
+}
+
+.progress.dark > div {
+    color: #ccc;
+}
+
+.progress.dark > div.left div:after {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.progress.dark > div.right div.current {
+    color: white;
+}
+
+.progress.dark > div.right div.current:before {
+    background: white;
+}
+
+.progress.dark > div.right div:before {
+    background: #666;
+}
+
+.progress.dark > div.right div:after {
+    background: #666;
+}
+
+.done.current {
+    color: #62af0b !important;
+}
+
+.done.current:before {
+    background: #62af0b !important;
+}
+
+.dark .done.current {
+    color: lightgreen !important;
+}
+
+.dark .done.current:before {
+    background: lightgreen !important;
+}
+
+
+/* Date picker */
+.date-picker {
+    width: calc(100% - 8px); /* Adjust the width as needed */
+}
+
+/* */
+
+
+/* Admin */
+/* resources/css/app.css */
+.grid-cols-24 {
+    display: grid;
+    grid-template-columns: repeat(24, 1fr);
+}
+
+.grid div {
+    border-bottom: 1px solid #ddd;
+    padding: 8px;
+}
+
+.grid .font-bold {
+    background-color: #f7fafc;
+    border-bottom: 2px solid #ddd;
+}
+
+.grid div:nth-child(-n+24) {
+    border-top: 1px solid #ddd;
+}
+
+.grid div:nth-child(24n+1),
+.grid div:nth-child(24n+2),
+.grid div:nth-child(24n+3),
+.grid div:nth-child(24n+4),
+.grid div:nth-child(24n+5),
+.grid div:nth-child(24n+6),
+.grid div:nth-child(24n+7),
+.grid div:nth-child(24n+8),
+.grid div:nth-child(24n+9),
+.grid div:nth-child(24n+10),
+.grid div:nth-child(24n+11),
+.grid div:nth-child(24n+12),
+.grid div:nth-child(24n+13),
+.grid div:nth-child(24n+14),
+.grid div:nth-child(24n+15),
+.grid div:nth-child(24n+16),
+.grid div:nth-child(24n+17),
+.grid div:nth-child(24n+18),
+.grid div:nth-child(24n+19),
+.grid div:nth-child(24n+20),
+.grid div:nth-child(24n+21),
+.grid div:nth-child(24n+22),
+.grid div:nth-child(24n+23),
+.grid div:nth-child(24n+24) {
+    border-right: 1px solid #ddd;
+}
