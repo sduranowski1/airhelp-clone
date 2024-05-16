@@ -4,8 +4,9 @@ import AdminDashboard from "@/Layouts/Sidebar.jsx";
 import Authenticated from "@/Layouts/AuthenticatedLayout";
 import AdminNav from "@/Layouts/AdminNav.jsx";
 import FormDataTable from "@/Partials/FormDataTable.jsx";
+import UserDataTable from "@/Partials/UserDataTable.jsx";
 
-export default function UserTable({ auth, formData }) {
+export default function UserTable({ auth, userData }) {
     return (
         <AdminDashboard
             user={auth.user}
@@ -21,7 +22,7 @@ export default function UserTable({ auth, formData }) {
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         {/*<div className="p-6 text-gray-900">You're logged in din din!</div>*/}
-                        {/*<FormDataTable formData={formData} />*/}
+                        <UserDataTable userData={userData} />
                     </div>
                 </div>
             </div>

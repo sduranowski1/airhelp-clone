@@ -46,7 +46,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', AdminMiddleware::class])->prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
     // Add more admin routes here
-    Route::get('/users', [UserController::class, 'index'])->name('admin.users');
+    Route::get('/users', [AdminController::class, 'users'])->name('admin.users');
 });
 
 require __DIR__.'/auth.php';

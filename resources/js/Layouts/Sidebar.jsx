@@ -48,16 +48,16 @@ function AdminDashboard({ pageTitle, children}) {
                     </Link>
                 </div>
 
-                {/* Nav Items */}
-                <div className="m-3 text-white">
-                    <Link className="text-white" href={route('admin.dashboard')}
-                          active={route().current('admin.dashboard')}>
-                        Dodatkowi Pasażerowie
-                    </Link>
-                </div>
+                {/*/!* Nav Items *!/*/}
+                {/*<div className="m-3 text-white">*/}
+                {/*    <Link className="text-white" href={route('admin.dashboard')}*/}
+                {/*          active={route().current('admin.dashboard')}>*/}
+                {/*        Dodatkowi Pasażerowie*/}
+                {/*    </Link>*/}
+                {/*</div>*/}
 
                 <div className="m-3 text-white">
-                    <Link className="text-white" href={route('admin.dashboard')}
+                    <Link className="text-white" href={route('admin.users')}
                           active={route().current('admin.dashboard')}>
                         Użytkownicy
                     </Link>
