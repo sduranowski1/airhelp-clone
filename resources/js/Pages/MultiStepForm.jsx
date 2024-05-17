@@ -65,16 +65,16 @@ const Step1 = ({ formData, handleInputChange }) => {
 
     return (
         <div>
-            <div className="container">
+            <div className="container ">
                 <div className="card p-5" style={{ backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F" }}>
                     <label htmlFor="input1" className="block text-gray-700 text-sm font-bold mb-2">Dzień dobry!
                         Sprawdźmy, czy linia lotnicza jest Ci winna odszkodowanie. Podaj miejsce docelowe podróży.</label>
-                    <div className="flex">
+                    <div className="flex flex-col md:flex-row">
                             <FontAwesomeIcon icon={faPlaneDeparture} className="icon p-2" />
                         <input placeholder="e.g. New York or JFK" type="text" id="input1" name="input1"
                                value={formData.input1}
                                onChange={handleInputChange1}
-                               className="flex-1 mr-2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+                               className="flex-1 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
                             <FontAwesomeIcon icon={faPlaneArrival} className="icon p-2" />
                         <input placeholder="e.g. London or LHR" type="text" id="input1a" name="input1a" value={formData.input1a}
                                onChange={handleInputChange2}
@@ -969,13 +969,15 @@ const MultiStepForm = () => {
                         </div>
                     </div>
                 </div>
-                <div className="bg-white min-h-screen h-full rounded-b-xl"
-                     style={{marginLeft: "30%", boxShadow: "2px 2px 20px 0px #0000001F"}}>
-                    <div className="d-flex justify-content-end align-items-center mb-4 mr-5">
-                        {/*<h5 className="p-5 m-0">Pomagamy w egzekwowaniu praw konsumenta</h5>*/}
-                        <label htmlFor="input9" className="block text-gray-700 text-sm font-bold mb-2 m-5">Pomagamy w
-                            egzekwowaniu praw konsumenta</label>
-                        <FontAwesomeIcon icon={faWallet} size="2x"/>
+                <div className="bg-white min-h-screen h-full rounded-b-xl multi-form">
+                    <div className="d-flex align-items-center">
+                        <div className="container justify-content-end  m-5 mb-4 mr-5">
+                            {/*<h5 className="p-5 m-0">Pomagamy w egzekwowaniu praw konsumenta</h5>*/}
+                            <label htmlFor="input9" className="block text-gray-700 text-sm font-bold mr-5 mb-2 hide-help ">Pomagamy w
+                                egzekwowaniu praw konsumenta</label>
+                            <FontAwesomeIcon icon={faWallet} size="2x"/>
+                        </div>
+
                     </div>
                     <div className="d-flex align-items-center mb-4 ml-5">
                         <img className="w-20 mr-3" src="media/employee.png"/>

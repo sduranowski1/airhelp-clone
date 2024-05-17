@@ -145,6 +145,7 @@ footer {
     line-height: 30px;
     text-align: left;
     color: #4F914A;
+    width: 60%;
 }
 
 @media (max-width: 768px) {
@@ -154,6 +155,7 @@ footer {
 
     .info-text-custom {
         font-size: 1.25rem;
+        width: 100%;
     }
 }
 
@@ -484,6 +486,27 @@ footer {
 
 .dark .done.current:before {
     background: lightgreen !important;
+}
+
+.multi-form {
+    margin-left: 30%;
+    box-shadow: 2px 2px 20px 0px #0000001F;
+}
+
+@media (max-width: 768px) {
+    .multi-form {
+        margin-left: 0%;
+    }
+    .progress {
+        display: none;
+    }
+    .hide-help {
+        display: none;
+    }
+    .outer {
+        width: 0%;
+        min-width: 0%;
+    }
 }
 
 
