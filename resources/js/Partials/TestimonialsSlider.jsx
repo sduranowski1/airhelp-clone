@@ -33,6 +33,16 @@ function TestimonialsSlider() {
             onSwiper={(swiper) => console.log(swiper)}
             onSlideChange={() => console.log('slide change')}
             className="swiper-container"
+            breakpoints={{
+                0: {
+                    // width: 768,
+                    slidesPerView: 1,
+                },
+                768: {
+                    // width: 768,
+                    slidesPerView: 4,
+                },
+            }}
         >
             <SwiperSlide>
                     {/* Slide 1 */}

@@ -1,4 +1,4 @@
-body {
+html, body {
     overflow-x: hidden;
 }
 
@@ -147,13 +147,34 @@ footer {
     color: #4F914A;
 }
 
+@media (max-width: 768px) {
+    .heading-custom {
+        font-size: 2rem;
+    }
+
+    .info-text-custom {
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .heading-custom {
+        font-size: 3rem;
+        margin-left: 1rem;
+    }
+
+    .info-text-custom {
+        margin-left: 1rem;
+    }
+}
+
 .container {
     display: flex;
 }
 
 .card {
     flex: 1;
-    margin-right: 20px; /* Adjust as needed for spacing between cards */
+    /*margin-right: 20px; !* Adjust as needed for spacing between cards *!*/
 }
 
 .lapping {
@@ -173,6 +194,12 @@ footer {
 
 .overlap_shadow {
     box-shadow: 0px 0px 20px 0px #4848481A;
+}
+
+@media (min-width: 768px) {
+    .lapping-space {
+        display: none;
+    }
 }
 
 .why {
@@ -213,6 +240,17 @@ footer {
     border-left: 1px solid black;
     height: 200px;
 
+}
+
+@media (max-width: 1024px) {
+    .custom-hr {
+        display: none;
+    }
+
+    .vert-hr {
+        display: none;
+
+    }
 }
 
 .greenText {

@@ -32,17 +32,19 @@ const HomeContent = () => {
     return (
         <div>
             <div className="sm:px-6 lg:px-8 container-custom relative" style={{
-                    backgroundImage: 'url("media/home_hero.png")',
-                    backgroundRepeat: 'no-repeat',
-                    backgroundPosition: 'bottom right',
-                    backgroundSize: '50%',
-                }}>
-                <div className="flex flex-col justify-center items-start h-screen2">
-                    <div className="heading-custom relative z-20">
-                        Masz odwołany bądź opóźniony lot ?
-                    </div>
-                    <div className="info-text-custom relative z-20">
-                        Bez względu na cenę biletu nawet do 600eur odszkodowania przysługuje za każdego pasażera!
+                backgroundImage: 'url("media/home_hero.png")',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'bottom right',
+                backgroundSize: '50%',
+            }}>
+                <div className="row">
+                    <div className="flex flex-col justify-center items-start h-screen2">
+                        <div className="heading-custom">
+                            Masz odwołany bądź opóźniony lot ?
+                        </div>
+                        <div className="info-text-custom">
+                            Bez względu na cenę biletu nawet do 600eur odszkodowania przysługuje za każdego pasażera!
+                        </div>
                     </div>
                 </div>
 
@@ -50,8 +52,8 @@ const HomeContent = () => {
                     {/* Content */}
                 </div>
 
-                <div className="p-6 text-gray-900 flex items-center relative z-20">
-                    <div className="mb-5 mr-4 w-80">
+                <div className="p-6 text-gray-900 flex flex-col md:flex-row items-center md:items-start relative z-20">
+                    <div className="mb-5 md:mb-0 md:mr-4 w-full md:w-80">
                         <input
                             type="text"
                             id="input1"
@@ -61,7 +63,7 @@ const HomeContent = () => {
                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         />
                     </div>
-                    <div className="mb-5 mr-4 w-80">
+                    <div className="mb-5 md:mb-0 md:mr-4 w-full md:w-80">
                         <input
                             type="text"
                             id="input2"
@@ -71,43 +73,58 @@ const HomeContent = () => {
                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         />
                     </div>
-                    <div
-                        className="mb-5  w-80 bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                        style={{backgroundColor: "#4F914A"}}
-                    >
-                        <Link href={route('multistep.index')} className="text-white">
-                            Sprawdź odszkodowanie
-                        </Link>
+                    <div className="w-full md:w-80 mb-5">
+                        <div
+                            className="bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                            style={{backgroundColor: "#4F914A"}}>
+                            <Link href={route('multistep.index')} className="text-white text-center block">
+                                Sprawdź odszkodowanie
+                            </Link>
+                        </div>
                     </div>
                 </div>
 
             </div>
-            <div className="container lapping">
-                <div className="overlapping">
-                    <div className="card  overlap_shadow p-4">
-                        <div className="we_do">BeSmartAir DBA O PRAWA PASAŻERÓW LOTNICZYCH
+            <div className="flex justify-center p-4">
+                <div className="container lapping">
+                    <div className="overlapping">
+                        <div className="card overlap_shadow p-4">
+                            <div className="we_do mb-4">BeSmartAir DBA O PRAWA PASAŻERÓW LOTNICZYCH</div>
+                            <ul className="flex flex-col md:flex-row justify-between uppercase space-y-4 md:space-y-0">
+                                <li className="flex items-center">
+                                    <img className="w-10" src="media/flags/euro.png"/>
+                                    <strong className="ml-2">Europejskie</strong>
+                                </li>
+                                <li className="flex items-center">
+                                    <img className="w-10" src="media/flags/convention.png"/>
+                                    <strong className="ml-2">Konwencja montrealska</strong>
+                                </li>
+                                <li className="flex items-center">
+                                    <img className="w-10" src="media/flags/tunisia.png"/>
+                                    <strong className="ml-2">Przepisy Tureckie</strong>
+                                </li>
+                                <li className="flex items-center">
+                                    <img className="w-10" src="media/flags/brazil.png"/>
+                                    <strong className="ml-2">Przepisy Brazylijskie</strong>
+                                </li>
+                            </ul>
                         </div>
-                        <ul className="flex flex-row justify-content-between uppercase">
-                            <li className="flex flex-row"><img className="w-10" src="media/flags/euro.png"/><strong className="mt-2">Europejskie </strong>
-                            </li>
-                            <li className="flex flex-row"><img className="w-10"
-                                                               src="media/flags/convention.png"/><strong className="mt-2">Konwencja
-                                montrealska</strong>
-                            </li>
-                            <li className="flex flex-row"><img className="w-10" src="media/flags/tunisia.png"/><strong className="mt-2">Przepisy
-                                Tureckie</strong>
-                            </li>
-                            <li className="flex flex-row"><img className="w-10" src="media/flags/brazil.png"/><strong className="mt-2">Przepisy
-                                Brazylijskie</strong>
-                            </li>
-                        </ul>
                     </div>
                 </div>
+            </div>
+            <div className="lapping-space text-center m-5">
+                <h2>‎ </h2>
+            </div>
+            <div className="lapping-space text-center m-5">
+                <h2>‎ </h2>
+            </div>
+            <div className="lapping-space text-center m-5">
+                <h2>‎ </h2>
             </div>
             <div className="header text-center m-5">
                 <h2>DLACZEGO WYBRAĆ POMOC BeSmartAir?</h2>
             </div>
-            <div className="container">
+            <div className="container flex flex-col md:flex-row">
                 <div className="card bg-transparent pt-5 p-4">
                     <h5>DOCHODZENIE ODSZKODOWANIA LOTNICZEGO NA WŁASNĄ RĘKĘ</h5>
                     <ul className="mt-3">
@@ -165,8 +182,8 @@ const HomeContent = () => {
                     realizacji naszych usług jest dla nas priorytetem.
                 </div>
             </div>
-            <div className="container mb-5">
-                <div className="card p-4 hoverix image-container">
+            <div className="container mb-5 flex flex-col md:flex-row">
+                <div className="card p-4 hoverix image-container m-2">
                     <div className="image-wrapper">
                         <img src="media/plane_clock.png" alt="plane clock" className="plane-image"/>
                     </div>
@@ -177,7 +194,7 @@ const HomeContent = () => {
                         </li>
                     </ul>
                 </div>
-                <div className="card p-4 hoverix image-container">
+                <div className="card p-4 hoverix image-container  m-2">
                     <div className="image-wrapper_2">
                         <img src="media/canceled_plane.png" alt="plane clock" className="plane-image"/>
                     </div>
@@ -188,7 +205,7 @@ const HomeContent = () => {
                         </li>
                     </ul>
                 </div>
-                <div className="card p-4 hoverix image-container">
+                <div className="card p-4 hoverix image-container  m-2">
                     <div className="image-wrapper_3">
                         <img src="media/plane_swap.png" alt="plane clock" className="plane-image"/>
                     </div>
@@ -199,7 +216,7 @@ const HomeContent = () => {
                         </li>
                     </ul>
                 </div>
-                <div className="card p-4 hoverix image-container">
+                <div className="card p-4 hoverix image-container m-2 mb-5">
                     <div className="image-wrapper_3">
                         <img src="media/plane_swap.png" alt="plane clock" className="plane-image"/>
                     </div>
@@ -212,7 +229,7 @@ const HomeContent = () => {
                 </div>
             </div>
             <div className="row bg-white">
-                <div className="container mt-5">
+                <div className="container mt-5  flex flex-col md:flex-row">
                     <div className="card mt-5">
                         <h2 className="darkGreenText">Pobierzemy nasze wynagrodzenie jedynie, gdy otrzymasz należne
                             odszkodowanie</h2>
@@ -221,13 +238,13 @@ const HomeContent = () => {
                         </div>
 
                     </div>
-                    <div className="card">
+                    <div className="card mt-5 mb-5">
                         <img
                             src={"media/wallet.png"}/>
                     </div>
                 </div>
                 <div className="container custom-hr mt-5 mb-5"/>
-                <div className="container">
+                <div className="container  flex flex-col md:flex-row mt-5 mb-5">
                     <div className="card">
                         <h2 className="darkGreenText">Pasażerowie nie są świadomi jak dużym problemem są opóźnione i
                             odwołane loty w globalnej skali. BeSmartAir zadba o Twoje prawa dążąc do uzyskania
@@ -243,7 +260,7 @@ const HomeContent = () => {
                     </div>
                     <div className="vert-hr m-5"/>
                     <div className="card">
-                        <div className="row">
+                        <div className="container mt-5 mb-5">
                             <div className="column">
                                 <h3 className="greenText font-weight-bold">195 000</h3>
                                 <div className="greenText font-weight-bold">Odwołanych lotów lotniczych</div>
@@ -269,7 +286,7 @@ const HomeContent = () => {
             <div className="header text-center m-5">
                 <h2>What Our Clients Say</h2>
             </div>
-                <TestimonialsSlider/>
+            <TestimonialsSlider/>
 
         </div>
 
@@ -285,7 +302,7 @@ export default function Home({auth}) {
         <>
             {auth.user ? (
                 <AuthenticatedLayout user={auth.user}>
-                    {/*<AuthenticatedLayout user={auth.user} header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Home</h2>}>*/}
+                {/*<AuthenticatedLayout user={auth.user} header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Home</h2>}>*/}
                     <Head title="Home"/>
                     <HomeContent/>
                     <Footer/>
