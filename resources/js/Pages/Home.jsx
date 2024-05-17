@@ -6,6 +6,7 @@ import {useState} from "react";
 import "/resources/css/styles.css"
 import TestimonialsSlider from "@/Partials/TestimonialsSlider.jsx";
 import Footer from "@/Layouts/Footer.jsx";
+import "/resources/css/build-issue.css"
 
 // Common content component
 // Common content component
