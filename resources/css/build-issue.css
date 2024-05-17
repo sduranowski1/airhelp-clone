@@ -15,7 +15,7 @@
 
 .image-wrapper::after {
     content: '';
-    background-image: url('http://138.68.158.146/build/assets/media/plane_clock_white.png'); /* Hover image */
+    background-image: url('http://138.68.158.146/media/plane_clock_white.png'); /* Hover image */
     background-size: cover;
     background-position: center;
     position: absolute;
@@ -29,7 +29,7 @@
 
 .image-wrapper_2::after {
     content: '';
-    background-image: url('http://138.68.158.146/build/assets/media/canceled_plane_white.png'); /* Hover image */
+    background-image: url('http://138.68.158.146/media/canceled_plane_white.png'); /* Hover image */
     background-size: cover;
     background-position: center;
     position: absolute;
@@ -43,7 +43,7 @@
 
 .image-wrapper_3::after {
     content: '';
-    background-image: url('http://138.68.158.146/build/assets/media/plane_swap_white.png'); /* Hover image */
+    background-image: url('http://138.68.158.146/media/plane_swap_white.png'); /* Hover image */
     background-size: cover;
     background-position: center;
     position: absolute;
