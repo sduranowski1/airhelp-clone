@@ -793,7 +793,7 @@ const Step9 = ({formData, handleInputChange}) => (
 const Step10 = ({ formData, handleInputChange }) => {
     const [signature, setSignature] = useState(null); // State to store the captured signature
 
-    // Reference to the signature pad
+    // Reference to the signature pad yo
     const signatureRef = useRef(null);
 
     // Function to clear the signature pad
