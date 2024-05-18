@@ -34,7 +34,7 @@ Route::get('/success', function () {
 })->name('success');
 
 
-Route::get('/dashboard',  [AdminController::class, 'index'])
+Route::get('/dashboard',  [DashboardController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 

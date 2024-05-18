@@ -16,7 +16,7 @@ class DashboardController extends Controller
         Log::info('dashFormData:', ['dashFormData' => $dashFormData]);
 
         return Inertia::render('Dashboard', [
-            'auth' => Auth::user(),
+//            'auth' => Auth::user(),
             'dashFormData' => $dashFormData
         ]);
     }
