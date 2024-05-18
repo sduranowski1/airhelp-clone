@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\MultiStepFormController;
 use App\Http\Controllers\ProfileController;
@@ -33,9 +34,9 @@ Route::get('/success', function () {
 })->name('success');
 
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard',  [AdminController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -47,6 +48,7 @@ Route::middleware(['auth', AdminMiddleware::class])->prefix('admin')->group(func
     Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
     // Add more admin routes here
     Route::get('/users', [AdminController::class, 'users'])->name('admin.users');
+    Route::get('/discounts', [AdminController::class, 'discounts'])->name('admin.discounts');
 });
 
 require __DIR__.'/auth.php';

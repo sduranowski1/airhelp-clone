@@ -18,6 +18,7 @@ class FormData extends Model
 
     protected $fillable = [
         // Define the fillable attributes for mass assignment
+        'user_id',
         'input1',
         'input1a',
         'input1b',
@@ -41,4 +42,10 @@ class FormData extends Model
         'input9',
         // Add other fields as needed
     ];
+
+    // Define the relationship with the User model
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

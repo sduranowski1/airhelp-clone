@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Discount;
 use App\Models\FormData;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -19,5 +20,11 @@ class AdminController extends Controller
     {
         $userData = User::all(); // Fetch all data from form_data table
         return Inertia::render('Admin/UserTable',['userData' => $userData]);
+    }
+
+    public function discounts()
+    {
+        $discountData = Discount::all(); // Fetch all data from form_data table
+        return Inertia::render('Admin/DiscountTable',['discountData' => $discountData]);
     }
 }

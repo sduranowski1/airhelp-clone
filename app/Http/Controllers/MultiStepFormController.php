@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\FormData;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class MultiStepFormController extends Controller
@@ -17,8 +18,8 @@ class MultiStepFormController extends Controller
     {
         // Validate form data
         $validatedData = $request->validate([
-            'input1' => 'required|string|max:255',
-            'input1a' => 'required|string|max:255',
+//            'input1' => 'required|string|max:255',
+//            'input1a' => 'required|string|max:255',
 ////            'input1b' => 'required|string|max:255',
 ////            'input1c' => 'required|string|max:255',
             'input2' => 'required|string|max:255',
@@ -43,8 +44,9 @@ class MultiStepFormController extends Controller
 
         // Create a new FormData instance and save it to the database
         $formData = new FormData();
-        $formData->input1 = $validatedData['input1'];
-        $formData->input1a = $validatedData['input1a'];
+        $formData->user_id = Auth::id();
+//        $formData->input1 = $validatedData['input1'];
+//        $formData->input1a = $validatedData['input1a'];
 ////        $formData->input1b = $validatedData['input1b'];
 ////        $formData->input1c = $validatedData['input1c'];
         $formData->input2 = $validatedData['input2'];

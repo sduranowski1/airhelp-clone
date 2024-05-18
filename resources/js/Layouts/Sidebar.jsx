@@ -64,7 +64,7 @@ function AdminDashboard({ pageTitle, children}) {
                 </div>
 
                 <div className="m-3 text-white">
-                    <Link className="text-white" href={route('admin.dashboard')}
+                    <Link className="text-white" href={route('admin.discounts')}
                           active={route().current('admin.dashboard')}>
                         Zniżki
                     </Link>

@@ -2,9 +2,12 @@
 import React from 'react';
 
 const FormDataTable = ({ formData }) => {
-    if (!Array.isArray(formData) || formData.length === 0) {
-        return <div>No data available</div>;
-    }
+    // console.log('formData in FormDataTable:', formData); // Add this line for debugging
+    //
+    // if (!Array.isArray(formData) || formData.length === 0) {
+    //     return <div>No data available</div>;
+    // }
+
 
     return (
         <div className="p-6 text-gray-900 overflow-x-auto">
