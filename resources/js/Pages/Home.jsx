@@ -217,7 +217,7 @@ const HomeContent = () => {
                         </li>
                     </ul>
                 </div>
-                <div className="card p-4 hoverix image-container m-2 mb-5">
+                <div className="card p-4 hoverix image-container m-2">
                     <div className="image-wrapper_3">
                         <img src="media/plane_swap.png" alt="plane clock" className="plane-image"/>
                     </div>

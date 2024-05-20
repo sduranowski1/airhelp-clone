@@ -7,9 +7,9 @@ import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
 import SignatureCanvas from "react-signature-canvas/src";
 import ApplicationLogo from "@/Components/ApplicationLogo.jsx";
-import {Link} from "@inertiajs/react";
+import {Link, useForm} from "@inertiajs/react";
 
-const Step1 = ({ formData, handleInputChange }) => {
+const Step1 = ({ formData, handleInputChange, checkboxes, handleCheckboxChange }) => {
     const [airportData, setAirportData] = useState([]); // State to store airport data
     const [input1Suggestions, setInput1Suggestions] = useState([]); // Suggestions for input1
     const [input2Suggestions, setInput2Suggestions] = useState([]); // Suggestions for input2
@@ -20,7 +20,7 @@ const Step1 = ({ formData, handleInputChange }) => {
                 method: 'GET',
                 url: 'https://flight-radar1.p.rapidapi.com/airports/list',
                 headers: {
-                    'X-RapidAPI-Key': '235f019031msh31119753b88d6a1p197b4bjsn51625ba4c2e9',
+                    'X-RapidAPI-Key': '95f3c48580mshc872ed236159d39p1d474ejsn14aa0564e966',
                     'X-RapidAPI-Host': 'flight-radar1.p.rapidapi.com'
                 }
             };
@@ -63,6 +63,18 @@ const Step1 = ({ formData, handleInputChange }) => {
     const [yesChecked, setYesChecked] = useState(false);
     const [noChecked, setNoChecked] = useState(false);
 
+    // Define validation function for Step1
+    const validate = (formData) => {
+        // Check if input1 is filled out
+        if (!formData.input1) {
+            // Display error message or highlight the missing field
+            console.log("Please fill out input1");
+            return false;
+        }
+        // Validation passed
+        return true;
+    };
+
     return (
         <div>
             <div className="container ">
@@ -104,44 +116,38 @@ const Step1 = ({ formData, handleInputChange }) => {
                 }}>
                     <label htmlFor="input12" className="block text-gray-700 text-sm font-bold mb-2 ">Czy Twój lot
                         obejmował przesiadkę?:</label>
-                    <ul className="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                        <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                    <ul className="w-100 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                             <div className="flex items-center ps-3">
                                 <input
                                     id="yes-checkbox"
                                     type="checkbox"
-                                    checked={yesChecked}
-                                    onChange={() => {
-                                        setYesChecked(!yesChecked);
-                                        if (noChecked) setNoChecked(false);
-                                    }}
+                                    checked={formData.input1b}
+                                    onChange={() => handleCheckboxChange('input1b', 'input1c')} // Pass label name
                                     className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                 />
                                 <label
                                     htmlFor="yes-checkbox"
                                     className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                                 >
-                                    Tak
+                                    Dynamiczna Lista Lotów
                                 </label>
                             </div>
                         </li>
-                        <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                             <div className="flex items-center ps-3">
                                 <input
                                     id="no-checkbox"
                                     type="checkbox"
-                                    checked={noChecked}
-                                    onChange={() => {
-                                        setNoChecked(!noChecked);
-                                        if (yesChecked) setYesChecked(false);
-                                    }}
+                                    checked={formData.input1c}
+                                    onChange={() => handleCheckboxChange('input1c', 'input1b')} // Pass label name
                                     className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                 />
                                 <label
                                     htmlFor="no-checkbox"
                                     className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                                 >
-                                    Nie
+                                    Nie mogę znaleść swojego lotu
                                 </label>
                             </div>
                         </li>
@@ -168,10 +174,10 @@ const Step2 = ({formData, handleInputChange}) => (
             }}>
                 <label htmlFor="input2" className="block text-gray-700 text-sm font-bold mb-2">Podaj date wylotu</label>
                 <div className="flex">
-                    <FontAwesomeIcon icon={faCalendarDays} className="icon p-2" />
+                    <FontAwesomeIcon icon={faCalendarDays} className="icon p-2"/>
                     <DatePicker
                         selected={formData.input2}
-                        onChange={date => handleInputChange({ target: { name: 'input2', value: date } })}
+                        onChange={date => handleInputChange({target: {name: 'input2', value: date}})}
                         dateFormat="MM/dd/yyyy" // You can customize the date format
                         placeholderText="Wybierz date"
                         className="date-picker flex-1 mr-2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -182,12 +188,15 @@ const Step2 = ({formData, handleInputChange}) => (
     </div>
 );
 
-const Step3 = ({ formData, handleInputChange, checkboxes, handleCheckboxChange }) => {
+const Step3 = ({formData, handleInputChange, checkboxes, handleCheckboxChange}) => {
+
+
     return (
         <div>
             <div className="container">
-                <div className="card p-5" style={{ backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F" }}>
-                    <label htmlFor="input12" className="block text-gray-700 text-sm font-bold mb-2">Następnie wybierz swój lot z listy:</label>
+                <div className="card p-5" style={{backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"}}>
+                    <label htmlFor="input12" className="block text-gray-700 text-sm font-bold mb-2">Następnie wybierz
+                        swój lot z listy:</label>
                     <ul className="w-100 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                         <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                             <div className="flex items-center ps-3">
@@ -195,7 +204,7 @@ const Step3 = ({ formData, handleInputChange, checkboxes, handleCheckboxChange }
                                     id="yes-checkbox"
                                     type="checkbox"
                                     checked={formData.input3}
-                                    onChange={() => handleCheckboxChange('input3', 'Dynamiczna Lista Lotów')} // Pass label name
+                                    onChange={() => handleCheckboxChange('input3', 'input3a')} // Pass label name
                                     className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                 />
                                 <label
@@ -212,7 +221,7 @@ const Step3 = ({ formData, handleInputChange, checkboxes, handleCheckboxChange }
                                     id="no-checkbox"
                                     type="checkbox"
                                     checked={formData.input3a}
-                                    onChange={() => handleCheckboxChange('input3a', 'Nie mogę znaleść swojego lotu')} // Pass label name
+                                    onChange={() => handleCheckboxChange('input3a', 'input3')} // Pass label name
                                     className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                 />
                                 <label
@@ -268,7 +277,7 @@ const Step4 = ({formData, handleInputChange}) => (
     </div>
 );
 
-const Step5 = ({formData, handleInputChange}) => {
+const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange}) => {
     const [input5, setInput5] = useState(false);
     const [input5a, setInput5a] = useState(false);
     const [input5b, setInput5b] = useState(false);
@@ -295,11 +304,8 @@ const Step5 = ({formData, handleInputChange}) => {
                             <input
                                 id="input5"
                                 type="checkbox"
-                                checked={input5}
-                                onChange={() => {
-                                    setInput5(!input5);
-                                    // You can add logic here if needed
-                                }}
+                                checked={formData.input5}
+                                onChange={() => handleCheckboxChange('input5', 'input5a', 'input5b')}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
                             <label
@@ -315,11 +321,8 @@ const Step5 = ({formData, handleInputChange}) => {
                             <input
                                 id="input5a"
                                 type="checkbox"
-                                checked={input5a}
-                                onChange={() => {
-                                    setInput5a(!input5a);
-                                    // You can add logic here if needed
-                                }}
+                                checked={formData.input5a}
+                                onChange={() => handleCheckboxChange('input5a', 'input5', 'input5b')}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
                             <label
@@ -335,11 +338,8 @@ const Step5 = ({formData, handleInputChange}) => {
                             <input
                                 id="input5b"
                                 type="checkbox"
-                                checked={input5b}
-                                onChange={() => {
-                                    setInput5b(!input5b);
-                                    // You can add logic here if needed
-                                }}
+                                checked={formData.input5b}
+                                onChange={() => handleCheckboxChange('input5b', 'input5', 'input5a')}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
                             <label
@@ -364,13 +364,9 @@ const Step5 = ({formData, handleInputChange}) => {
                         <div className="flex items-center ps-3">
                             <input
                                 id="input5b"
-                                name="input5b" value={formData.input5b}
                                 type="checkbox"
-                                checked={input5c}
-                                onChange={() => {
-                                    setInput5c(!input5c);
-                                    // You can add logic here if needed
-                                }}
+                                checked={formData.input5c}
+                                onChange={() => handleCheckboxChange('input5c', 'input5d', 'input5e', 'input5f', 'input5g', 'input5h')}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
                             <label
@@ -386,11 +382,8 @@ const Step5 = ({formData, handleInputChange}) => {
                             <input
                                 id="input5d"
                                 type="checkbox"
-                                checked={input5d}
-                                onChange={() => {
-                                    setInput5d(!input5d);
-                                    // You can add logic here if needed
-                                }}
+                                checked={formData.input5d}
+                                onChange={() => handleCheckboxChange('input5d', 'input5c', 'input5e', 'input5f', 'input5g', 'input5h')}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
                             <label
@@ -406,11 +399,8 @@ const Step5 = ({formData, handleInputChange}) => {
                             <input
                                 id="input5e"
                                 type="checkbox"
-                                checked={input5e}
-                                onChange={() => {
-                                    setInput5e(!input5e);
-                                    // You can add logic here if needed
-                                }}
+                                checked={formData.input5e}
+                                onChange={() => handleCheckboxChange('input5e', 'input5d', 'input5c', 'input5f', 'input5g', 'input5h')}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
                             <label
@@ -426,11 +416,8 @@ const Step5 = ({formData, handleInputChange}) => {
                             <input
                                 id="input5f"
                                 type="checkbox"
-                                checked={input5f}
-                                onChange={() => {
-                                    setInput5f(!input5f);
-                                    // You can add logic here if needed
-                                }}
+                                checked={formData.input5f}
+                                onChange={() => handleCheckboxChange('input5f', 'input5d', 'input5e', 'input5c', 'input5g', 'input5h')}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
                             <label
@@ -446,11 +433,8 @@ const Step5 = ({formData, handleInputChange}) => {
                             <input
                                 id="input5g"
                                 type="checkbox"
-                                checked={input5g}
-                                onChange={() => {
-                                    setInput5g(!input5g);
-                                    // You can add logic here if needed
-                                }}
+                                checked={formData.input5g}
+                                onChange={() => handleCheckboxChange('input5g', 'input5d', 'input5e', 'input5f', 'input5c', 'input5h')}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
                             <label
@@ -466,11 +450,8 @@ const Step5 = ({formData, handleInputChange}) => {
                             <input
                                 id="input5h"
                                 type="checkbox"
-                                checked={input5h}
-                                onChange={() => {
-                                    setInput5h(!input5h);
-                                    // You can add logic here if needed
-                                }}
+                                checked={formData.input5h}
+                                onChange={() => handleCheckboxChange('input5h', 'input5d', 'input5e', 'input5f', 'input5g', 'input5c')}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
                             <label
@@ -498,11 +479,8 @@ const Step5 = ({formData, handleInputChange}) => {
                                 id="yes-checkbox"
                                 type="checkbox"
 
-                                checked={yesChecked}
-                                onChange={() => {
-                                    setYesChecked(!yesChecked);
-                                    if (noChecked) setNoChecked(false);
-                                }}
+                                checked={formData.input5i}
+                                onChange={() => handleCheckboxChange('input5i', 'input5j')}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
                             <label
@@ -518,11 +496,8 @@ const Step5 = ({formData, handleInputChange}) => {
                             <input
                                 id="no-checkbox"
                                 type="checkbox"
-                                checked={noChecked}
-                                onChange={() => {
-                                    setNoChecked(!noChecked);
-                                    if (yesChecked) setYesChecked(false);
-                                }}
+                                checked={formData.input5j}
+                                onChange={() => handleCheckboxChange('input5j', 'input5i')}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
                             <label
@@ -541,7 +516,7 @@ const Step5 = ({formData, handleInputChange}) => {
 };
 
 
-const Step6 = ({formData, handleInputChange}) => {
+const Step6 = ({formData, handleInputChange, checkboxes, handleCheckboxChange}) => {
     const [input6c, setInput6c] = useState(false);
     const [input6d, setInput6d] = useState(false);
     const [input6e, setInput6e] = useState(false);
@@ -581,11 +556,8 @@ const Step6 = ({formData, handleInputChange}) => {
                                 <input
                                     id="input6c"
                                     type="checkbox"
-                                    checked={input6c}
-                                    onChange={() => {
-                                        setInput6c(!input6c);
-                                        // You can add logic here if needed
-                                    }}
+                                    checked={formData.input6c}
+                                    onChange={() => handleCheckboxChange('input6c', 'input6d', 'input6e')}
                                     className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                 />
                                 <label
@@ -601,11 +573,8 @@ const Step6 = ({formData, handleInputChange}) => {
                                 <input
                                     id="input6d"
                                     type="checkbox"
-                                    checked={input6d}
-                                    onChange={() => {
-                                        setInput6d(!input6d);
-                                        // You can add logic here if needed
-                                    }}
+                                    checked={formData.input6d}
+                                    onChange={() => handleCheckboxChange('input6d', 'input6c', 'input6e')}
                                     className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                 />
                                 <label
@@ -621,11 +590,8 @@ const Step6 = ({formData, handleInputChange}) => {
                                 <input
                                     id="input6e"
                                     type="checkbox"
-                                    checked={input6e}
-                                    onChange={() => {
-                                        setInput6e(!input6e);
-                                        // You can add logic here if needed
-                                    }}
+                                    checked={formData.input6e}
+                                    onChange={() => handleCheckboxChange('input6e', 'input6d', 'input6c')}
                                     className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                 />
                                 <label
@@ -644,7 +610,7 @@ const Step6 = ({formData, handleInputChange}) => {
         ;
 };
 
-const Step7 = ({formData, handleInputChange}) => {
+const Step7 = ({formData, handleInputChange, checkboxes, handleCheckboxChange}) => {
     const [yesChecked, setYesChecked] = useState(false);
     const [noChecked, setNoChecked] = useState(false);
 
@@ -673,11 +639,8 @@ const Step7 = ({formData, handleInputChange}) => {
                                     id="yes-checkbox"
                                     type="checkbox"
 
-                                    checked={yesChecked}
-                                    onChange={() => {
-                                        setYesChecked(!yesChecked);
-                                        if (noChecked) setNoChecked(false);
-                                    }}
+                                    checked={formData.input7a}
+                                    onChange={() => handleCheckboxChange('input7a', 'input7b')}
                                     className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                 />
                                 <label
@@ -693,11 +656,8 @@ const Step7 = ({formData, handleInputChange}) => {
                                 <input
                                     id="no-checkbox"
                                     type="checkbox"
-                                    checked={noChecked}
-                                    onChange={() => {
-                                        setNoChecked(!noChecked);
-                                        if (yesChecked) setYesChecked(false);
-                                    }}
+                                    checked={formData.input7b}
+                                    onChange={() => handleCheckboxChange('input7b', 'input7a')}
                                     className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                 />
                                 <label
@@ -860,7 +820,7 @@ const Step10 = ({ formData, handleInputChange }) => {
 
 const MultiStepForm = () => {
     const [step, setStep] = useState(1);
-    const [formData, setFormData] = useState({
+    const { data, setData, post } = useForm({
         input1: '',
         input1a: '',
         input1b: '',
@@ -872,13 +832,24 @@ const MultiStepForm = () => {
         input4a: '',
         input4b: '',
         input5: '',
+        input5a: '',
+        input5b: '',
+        input5c: '',
+        input5d: '',
+        input5e: '',
+        input5f: '',
+        input5g: '',
+        input5h: '',
+        input5i: '',
+        input5j: '',
         input6: '',
         input6a: '',
         input6b: '',
-        input6c: false,
-        input6d: false,
-        input6e: false,
-        input7: '',
+        input6c: '',
+        input6d: '',
+        input6e: '',
+        input7a: '',
+        input7b: '',
         input7c: '',
         input7d: '',
         input7e: '',
@@ -897,73 +868,81 @@ const MultiStepForm = () => {
     const steps = [Step1, Step2, Step3, Step4, Step5, Step6, Step7, Step8, Step9, Step10]; // Add other steps here
     const totalSteps = steps.length;
 
-    const [checkboxes, setCheckboxes] = useState({
-        input3: false,
-        input3a: false,
-    });
-
     const handleInputChange = (e) => {
-        if (e && e.target && e.target.name) {
-            const { name, type, value } = e.target;
-            setFormData({
-                ...formData,
-                [name]: value,
-            });
-        }
+        const { name, value } = e.target;
+        setData(name, value);
     };
 
-    const handleCheckboxChange = (checkboxName, label) => {
-        setFormData(prevFormData => ({
-            ...prevFormData,
-            [checkboxName]: !prevFormData[checkboxName], // Toggle the checkbox value
-            [`${checkboxName}Label`]: !prevFormData[checkboxName] ? label : '', // Set the label if the checkbox is checked
-            // Update input3 and input3a based on checkboxName
-            input3: checkboxName === 'input3' ? !prevFormData[checkboxName] ? label : '' : prevFormData.input3,
-            input3a: checkboxName === 'input3a' ? !prevFormData[checkboxName] ? label : '' : prevFormData.input3a,
-        }));
+
+    const handleCheckboxChange = (inputName1, inputName2, inputName3, inputName4, inputName5, inputName6, inputName7, inputName8, inputName9, inputName10) => {
+        setData((prevState) => {
+            const newState = {
+                ...prevState,
+                [inputName1]: !prevState[inputName1],
+                [inputName2]: false,
+                [inputName3]: false,
+                [inputName4]: false,
+                [inputName5]: false,
+                [inputName6]: false,
+                [inputName7]: false,
+                [inputName8]: false,
+                [inputName9]: false,
+                [inputName10]: false
+            };
+            return newState;
+        });
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        try {
-            const response = await axios.post('/multi-step-form/submit', formData);
-            console.log('Form submitted successfully!', response.data);
-            // Redirect or do something else upon success
-        } catch (error) {
-            console.error('Error submitting form:', error);
-            // Handle errors if needed
-        }
+        post(route('form.submit'), {
+            onSuccess: () => {
+                console.log('Form submitted successfully!');
+                Inertia.visit(route('form.success'));
+            },
+            onError: (errors) => {
+                console.error('Error submitting form:', errors);
+                // Handle errors here (e.g., display error messages)
+            },
+        });
     };
 
     const nextStep = () => {
+        // Get the component for the current step
+        const CurrentStepComponent = steps[step - 1];
+
+        // Perform validation specific to the current step
+        if (CurrentStepComponent.validate && !CurrentStepComponent.validate(formData)) {
+            // Validation failed, don't proceed to the next step
+            // You can display an error message or highlight the missing fields here
+            console.log("Validation failed for Step " + step);
+            return;
+        }
         setStep(step + 1);
     };
 
-    const prevStep = () => {
-        setStep(step - 1);
-    };
+    const prevStep = () => setStep(step - 1);
 
+    const CurrentStepComponent = steps[step - 1];
 
     return (
-        // <div className="py-12">
         <div>
-            <div className="bg-neutral-100" style={{backgroundImage: "url('media/side-img.png')", backgroundPosition: "0% 300px", backgroundRepeat: "no-repeat", backgroundSize: "20%"}}>
-                <div className="outer min-h-screen">
-                    <div className="mt-5 ml-5" style={{width: "200px"}}>
+            <div className="bg-neutral-100">
+                <div className="outer min-h-screen" style={{ backgroundImage: "url('media/side-img-crpd.png')", backgroundPosition: "left bottom", backgroundRepeat: "no-repeat", backgroundSize: "100%" }}>
+                    <div className="mt-5 ml-5" style={{ width: "200px" }}>
                         <Link href="/">
-                            <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800"/>
+                            <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800" />
                         </Link>
                     </div>
                     <div className="progress">
                         <div className="left">
-                            {Array.from({length: totalSteps}).map((_, index) => (
+                            {Array.from({ length: totalSteps }).map((_, index) => (
                                 <div key={index}>{index === 0 ? 'Start' : ''}</div>
                             ))}
                         </div>
                         <div className="right">
-                            {Array.from({length: totalSteps}).map((_, index) => (
-                                <div key={index}
-                                     className={step === index + 1 ? 'current' : step > index + 1 ? 'done' : ''}>{index + 1}</div>
+                            {Array.from({ length: totalSteps }).map((_, index) => (
+                                <div key={index} className={step === index + 1 ? 'current' : step > index + 1 ? 'done' : ''}>{index + 1}</div>
                             ))}
                             <div>Done</div>
                         </div>
@@ -972,59 +951,40 @@ const MultiStepForm = () => {
                 <div className="bg-white min-h-screen h-full rounded-b-xl multi-form">
                     <div className="d-flex align-items-center">
                         <div className="container justify-content-end  m-5 mb-4 mr-5">
-                            {/*<h5 className="p-5 m-0">Pomagamy w egzekwowaniu praw konsumenta</h5>*/}
-                            <label htmlFor="input9" className="block text-gray-700 text-sm font-bold mr-5 mb-2 hide-help ">Pomagamy w
-                                egzekwowaniu praw konsumenta</label>
-                            <FontAwesomeIcon icon={faWallet} size="2x"/>
+                            <label htmlFor="input9" className="block text-gray-700 text-sm font-bold mr-5 mb-2 hide-help ">Pomagamy w egzekwowaniu praw konsumenta</label>
                         </div>
-
                     </div>
                     <div className="d-flex align-items-center mb-4 ml-5">
-                        <img className="w-20 mr-3" src="media/employee.png"/>
+                        <img className="w-20 mr-3" src="media/employee.png" />
                         <div className="flex flex-col justify-center items-start mb-4">
-                            {/*<h5 className="p-5 m-0">Pomagamy w egzekwowaniu praw konsumenta</h5>*/}
                             <h5 htmlFor="input9" className="mb-2 ml-3">‎ </h5>
                             <h5 htmlFor="input9" className="mb-2 ml-3">Albert Konrad</h5>
-                            <label htmlFor="input9" className="block text-gray-900 text-sm font-bold mb-2 ml-3">Asystenci
-                                BeSmart</label>
+                            <label htmlFor="input9" className="block text-gray-900 text-sm font-bold mb-2 ml-3">Asystenci BeSmart</label>
                         </div>
                     </div>
                     <div className="p-6 text-gray-900">
-                        {step === 1 &&
-                            <Step1 formData={formData} handleInputChange={handleInputChange} checkboxes={checkboxes}
-                                   handleCheckboxChange={handleCheckboxChange}/>}
-                        {step === 2 && <Step2 formData={formData} handleInputChange={handleInputChange}/>}
-                        {step === 3 &&
-                            <Step3 formData={formData} handleInputChange={handleInputChange} checkboxes={checkboxes}
-                                   handleCheckboxChange={handleCheckboxChange}/>}
-                        {step === 4 && <Step4 formData={formData} handleInputChange={handleInputChange}/>}
-                        {step === 5 && <Step5 formData={formData} handleInputChange={handleInputChange}/>}
-                        {step === 6 && <Step6 formData={formData} handleInputChange={handleInputChange}/>}
-                        {step === 7 && <Step7 formData={formData} handleInputChange={handleInputChange}/>}
-                        {step === 8 && <Step8 formData={formData} handleInputChange={handleInputChange}/>}
-                        {step === 9 && <Step9 formData={formData} handleInputChange={handleInputChange}/>}
-                        {step === 10 && <Step10 formData={formData} handleInputChange={handleInputChange}/>}
-                        {/* Render remaining steps similarly */}
+                        <CurrentStepComponent formData={data} handleInputChange={handleInputChange} handleCheckboxChange={handleCheckboxChange} />
                         <div className="mt-4">
-                            {step > 1 && <button onClick={prevStep}
-                                                 className="mr-2 bg-transparent hover:bg-gray-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                                                 style={{color: "#4F914A"}}>Previous</button>}
-                            {step < 10 ? (
-                                <button onClick={nextStep}
-                                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                                        style={{backgroundColor: "#4F914A"}}>Next</button>
+                            {step > 1 && (
+                                <button onClick={prevStep} className="mr-2 bg-transparent hover:bg-gray-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" style={{ color: "#4F914A" }}>
+                                    Previous
+                                </button>
+                            )}
+                            {step < totalSteps ? (
+                                <button onClick={nextStep} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" style={{ backgroundColor: "#4F914A" }}>
+                                    Next
+                                </button>
                             ) : (
-                                <button onClick={handleSubmit}
-                                        className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Submit</button>
+                                <button onClick={handleSubmit} className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                                    Submit
+                                </button>
                             )}
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     );
 };
 
 export default MultiStepForm;
-

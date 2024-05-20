@@ -135,6 +135,7 @@ footer {
     line-height: 110px;
     text-align: left;
     color: #4F914A;
+    width: 50%;
 }
 
 .info-text-custom {
@@ -145,17 +146,18 @@ footer {
     line-height: 30px;
     text-align: left;
     color: #4F914A;
-    width: 60%;
+    width: 50%;
 }
 
 @media (max-width: 768px) {
     .heading-custom {
         font-size: 2rem;
+        width: 90%;
     }
 
     .info-text-custom {
         font-size: 1.25rem;
-        width: 100%;
+        width: 90%;
     }
 }
 
@@ -319,10 +321,11 @@ footer {
 
 /* Progress Bar */
 .outer {
+    position: fixed;
     height: 100vh;
     min-width: 20vw;
     flex: 1;
-    position: absolute;
+    /*position: absolute;*/
 }
 
 .progress {

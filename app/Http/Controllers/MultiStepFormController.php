@@ -20,16 +20,33 @@ class MultiStepFormController extends Controller
         $validatedData = $request->validate([
 //            'input1' => 'required|string|max:255',
 //            'input1a' => 'required|string|max:255',
-////            'input1b' => 'required|string|max:255',
-////            'input1c' => 'required|string|max:255',
-            'input2' => 'required|string|max:255',
-            'input3' => 'string|max:255',
-            'input3a' => 'string|max:255',
+            'input1b' => 'required|max:255',
+            'input1c' => 'required|max:255',
+//            'input2' => 'required|string|max:255',
+            'input3' => 'max:255',
+            'input3a' => 'max:255',
 //            'input4' => 'required|string|max:255',
 //            'input4a' => 'required|string|max:255',
 //            'input4b' => 'required|string|max:255',
+            'input5' => 'required|max:255',
+            'input5a' => 'required|max:255',
+            'input5b' => 'required|max:255',
+            'input5c' => 'required|max:255',
+            'input5d' => 'required|max:255',
+            'input5e' => 'required|max:255',
+            'input5f' => 'required|max:255',
+            'input5g' => 'required|max:255',
+            'input5h' => 'required|max:255',
+            'input5i' => 'required|max:255',
+            'input5j' => 'required|max:255',
 //            'input6' => 'required|string|max:255',
 //            'input6a' => 'required|string|max:255',
+//            'input6b' => 'required|string|max:255',
+            'input6c' => 'required|max:255',
+            'input6d' => 'required|max:255',
+            'input6e' => 'required|max:255',
+            'input7a' => 'required|max:255',
+            'input7b' => 'required|max:255',
 //            'input6b' => 'required|string|max:255',
 //            'input8' => 'required|string|max:255',
 //            'input8a' => 'required|string|max:255',
@@ -47,17 +64,33 @@ class MultiStepFormController extends Controller
         $formData->user_id = Auth::id();
 //        $formData->input1 = $validatedData['input1'];
 //        $formData->input1a = $validatedData['input1a'];
-////        $formData->input1b = $validatedData['input1b'];
-////        $formData->input1c = $validatedData['input1c'];
-        $formData->input2 = $validatedData['input2'];
+        $formData->input1b = $validatedData['input1b'];
+        $formData->input1c = $validatedData['input1c'];
+//        $formData->input2 = $validatedData['input2'];
         $formData->input3 = $validatedData['input3'];
         $formData->input3a = $validatedData['input3a'];
 //        $formData->input4 = $validatedData['input4'];
 //        $formData->input4a = $validatedData['input4a'];
 //        $formData->input4b = $validatedData['input4b'];
+        $formData->input5 = $validatedData['input5'];
+        $formData->input5a = $validatedData['input5a'];
+        $formData->input5b = $validatedData['input5b'];
+        $formData->input5c = $validatedData['input5c'];
+        $formData->input5d = $validatedData['input5d'];
+        $formData->input5e = $validatedData['input5e'];
+        $formData->input5f = $validatedData['input5f'];
+        $formData->input5g = $validatedData['input5g'];
+        $formData->input5h = $validatedData['input5h'];
+        $formData->input5i = $validatedData['input5i'];
+        $formData->input5j = $validatedData['input5j'];
 //        $formData->input6 = $validatedData['input6'];
 //        $formData->input6a = $validatedData['input6a'];
 //        $formData->input6b = $validatedData['input6b'];
+        $formData->input6c = $validatedData['input6c'];
+        $formData->input6d = $validatedData['input6d'];
+        $formData->input6e = $validatedData['input6e'];
+        $formData->input7a = $validatedData['input7a'];
+        $formData->input7b = $validatedData['input7b'];
 //        $formData->input8 = $validatedData['input8'];
 //        $formData->input8a = $validatedData['input8a'];
 //        $formData->input8b = $validatedData['input8b'];
@@ -69,8 +102,8 @@ class MultiStepFormController extends Controller
         // Assign other form fields as needed
         $formData->save();
 
-        // Redirect back to the form page with a success message
-        return redirect('/multi-step-form')->with('success', 'Form submitted successfully.');
+        // Redirect to the success page
+        return redirect()->route('form.success')->with('success', 'Form submitted successfully.');
     }
 
 }

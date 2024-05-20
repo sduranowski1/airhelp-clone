@@ -1,12 +1,12 @@
-import {Head, Link} from '@inertiajs/react';
-import Guest from "@/Layouts/GuestLayout.jsx";
-import Standard from "@/Layouts/StandardLayout.jsx";
+import { Head, usePage } from '@inertiajs/react';
+import Guest from "@/Layouts/GuestLayout";
+import Standard from "@/Layouts/StandardLayout";
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import {useState} from "react";
 
 // Common content component
-// Common content component
 const SuccessContent = () => {
+    const { props } = usePage();
+    const { success } = props;
 
     return (
         <div className="py-12">
@@ -14,6 +14,7 @@ const SuccessContent = () => {
                 <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div className="p-6 text-gray-900">
                         <h2>Form Submitted Successfully!</h2>
+                        {success && <p>{success}</p>}
                         {/* Add additional content for success page */}
                     </div>
                 </div>
@@ -22,7 +23,7 @@ const SuccessContent = () => {
     );
 };
 
-export default function Success({auth}) {
+export default function Success({ auth }) {
     return (
         <>
             {auth.user ? (

@@ -26,12 +26,12 @@ Route::get('/multi-step-form', [MultiStepFormController::class, 'index'])->name(
 Route::get('/form-data', [FormController::class, 'index'])->name('form-data.index');
 
 // Define route to handle form submission
-Route::post('/multi-step-form/submit', [MultiStepFormController::class, 'submit']);
-Route::post('/multi-step-form/submit', [MultiStepFormController::class, 'store']);
+Route::post('/multi-step-form/submit', [MultiStepFormController::class, 'submit'])->name('form.submit');
+//Route::post('/multi-step-form/submit', [MultiStepFormController::class, 'store']);
 
 Route::get('/success', function () {
     return Inertia::render('Success');
-})->name('success');
+})->name('form.success');
 
 
 Route::get('/dashboard',  [DashboardController::class, 'index'])
