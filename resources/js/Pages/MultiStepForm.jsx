@@ -130,7 +130,7 @@ const Step1 = ({ formData, handleInputChange, checkboxes, handleCheckboxChange }
                                     htmlFor="yes-checkbox"
                                     className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                                 >
-                                    Dynamiczna Lista Lotów
+                                    Tak
                                 </label>
                             </div>
                         </li>
@@ -147,7 +147,7 @@ const Step1 = ({ formData, handleInputChange, checkboxes, handleCheckboxChange }
                                     htmlFor="no-checkbox"
                                     className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                                 >
-                                    Nie mogę znaleść swojego lotu
+                                    Nie
                                 </label>
                             </div>
                         </li>
@@ -165,6 +165,7 @@ const Step1 = ({ formData, handleInputChange, checkboxes, handleCheckboxChange }
         </div>
     );
 };
+
 
 const Step2 = ({formData, handleInputChange}) => (
     <div>
@@ -820,6 +821,7 @@ const Step10 = ({ formData, handleInputChange }) => {
 
 const MultiStepForm = () => {
     const [step, setStep] = useState(1);
+    const [step1Valid, setStep1Valid] = useState(true); // State to track Step 1 validation
     const { data, setData, post } = useForm({
         input1: '',
         input1a: '',
@@ -908,22 +910,207 @@ const MultiStepForm = () => {
     };
 
     const nextStep = () => {
-        // Get the component for the current step
-        const CurrentStepComponent = steps[step - 1];
-
-        // Perform validation specific to the current step
-        if (CurrentStepComponent.validate && !CurrentStepComponent.validate(formData)) {
-            // Validation failed, don't proceed to the next step
-            // You can display an error message or highlight the missing fields here
-            console.log("Validation failed for Step " + step);
-            return;
-        }
+        const currentStepValidation = validateStep(step);
+        if (!currentStepValidation) return;
         setStep(step + 1);
     };
 
     const prevStep = () => setStep(step - 1);
 
-    const CurrentStepComponent = steps[step - 1];
+    const validateStep = (stepNumber) => {
+        // Implement validation logic for each step
+        switch (stepNumber) {
+            case 1:
+                if (!data.input1 || !data.input1a) {
+                    console.log("Please fill out input1 and input1a");
+                    setStep1Valid(false); // Set Step 1 validation status to false
+                    return false;
+                }
+
+                // Check if either input1b or input1c is selected, but not both
+                if ((data.input1b && data.input1c) || (!data.input1b && !data.input1c)) {
+                    console.log("Please select either input1b or input1c");
+                    setStep1Valid(false); // Set Step 1 validation status to false
+                    return false;
+                }
+
+                setStep1Valid(true); // Set Step 1 validation status to true if validation passes
+                break;
+            // Add validation for other steps as needed
+            case 2:
+                if (!data.input2) {
+                    console.log("Please fill out input2");
+                    setStep1Valid(false); // Set Step 1 validation status to false
+                    return false;
+                } else {
+                    setStep1Valid(true); // Set Step 1 validation status to true if validation passes
+                }
+                break;
+            // Add validation for other steps as needed
+            case 3:
+                // Check if either input1b or input1c is selected, but not both
+                if ((data.input3 && data.input3a) || (!data.input3 && !data.input3)) {
+                    console.log("Please select either input1b or input1c");
+                    setStep1Valid(false); // Set Step 1 validation status to false
+                    return false;
+                } else {
+                    setStep1Valid(true); // Set Step 1 validation status to true if validation passes
+                }
+                break;
+            case 4:
+                // Check if either input1b or input1c is selected, but not both
+                if (!data.input4 || !data.input4a || !data.input4b) {
+                    console.log("Please fill out input1 and input1a");
+                    setStep1Valid(false); // Set Step 1 validation status to false
+                    return false;
+                } else {
+                    setStep1Valid(true); // Set Step 1 validation status to true if validation passes
+                }
+                break;
+            case 5:
+                // Check if either input1b or input1c is selected, but not both
+                if ((data.input5 && data.input5a && data.input5b) || (!data.input5 && !data.input5a && !data.input5b)) {
+                    console.log("Please select either input1b or input1c");
+                    setStep1Valid(false); // Set Step 1 validation status to false
+                    return false;
+                }
+
+                // Check if either input1b or input1c is selected, but not both
+                if ((data.input5c && data.input5d && data.input5e && data.input5f && data.input5g && data.input5h) || (!data.input5c && !data.input5d && !data.input5e && !data.input5f && !data.input5g && !data.input5h))  {
+                    console.log("Please select either input1b or input1c");
+                    setStep1Valid(false); // Set Step 1 validation status to false
+                    return false;
+                }
+
+                // Check if either input1b or input1c is selected, but not both
+                if ((data.input5i && data.input5j) || (!data.input5i && !data.input5j)) {
+                    console.log("Please select either input1b or input1c");
+                    setStep1Valid(false); // Set Step 1 validation status to false
+                    return false;
+                }
+
+                setStep1Valid(true); // Set Step 1 validation status to true if validation passes
+                break;
+            // Add validation for other steps as needed
+            case 6:
+                // Check if either input1b or input1c is selected, but not both
+                if (!data.input6 || !data.input6a || !data.input6b) {
+                    console.log("Please fill out input1 and input1a");
+                    setStep1Valid(false); // Set Step 1 validation status to false
+                    return false;
+                }
+
+                // Check if either input1b or input1c is selected, but not both
+                if ((data.input6c && data.input6d && data.input6e) || (!data.input6c && !data.input6d && !data.input6e)) {
+                    console.log("Please select either input1b or input1c");
+                    setStep1Valid(false); // Set Step 1 validation status to false
+                    return false;
+                }
+
+                setStep1Valid(true); // Set Step 1 validation status to true if validation passes
+                break;
+
+            // Add validation for other steps as needed
+            case 7:
+                // Check if either input1b or input1c is selected, but not both
+                if ((data.input7a && data.input7b) || (!data.input7a && !data.input7b)) {
+                    console.log("Please select either input1b or input1c");
+                    setStep1Valid(false); // Set Step 1 validation status to false
+                    return false;
+                }
+
+                // Check if either input1b or input1c is selected, but not both
+                if (!data.input7c || !data.input7d || !data.input7e) {
+                    console.log("Please fill out input1 and input1a");
+                    setStep1Valid(false); // Set Step 1 validation status to false
+                    return false;
+                }
+
+                setStep1Valid(true); // Set Step 1 validation status to true if validation passes
+                break;
+            case 8:
+                // Check if either input1b or input1c is selected, but not both
+                if (!data.input8 || !data.input8a || !data.input8b || !data.input8c || !data.input8d || !data.input8e || !data.input8f ) {
+                    console.log("Please fill out input1 and input1a");
+                    setStep1Valid(false); // Set Step 1 validation status to false
+                    return false;
+                } else {
+                    setStep1Valid(true); // Set Step 1 validation status to true if validation passes
+                }
+                break;
+            case 9:
+                // Check if either input1b or input1c is selected, but not both
+                if (!data.input9 ) {
+                    console.log("Please fill out input1 and input1a");
+                    setStep1Valid(false); // Set Step 1 validation status to false
+                    return false;
+                } else {
+                    setStep1Valid(true); // Set Step 1 validation status to true if validation passes
+                }
+                break;
+            default:
+                break;
+
+        }
+        return true;
+    };
+
+    const renderStep = (stepNumber) => {
+        const CurrentStepComponent = steps[stepNumber - 1];
+        return (
+            <div className="container" style={{flexWrap: "wrap"}}>
+                <CurrentStepComponent formData={data} handleInputChange={handleInputChange} handleCheckboxChange={handleCheckboxChange} />
+                {stepNumber === 1 && !step1Valid && (
+                    <p className="text-red-500">Wypełnij brakujące pola</p>
+                )}
+                {stepNumber === 2 && !step1Valid && (
+                    <p className="text-red-500">
+                        Wypełnij brakujące pola
+                    </p>
+                )}
+                {stepNumber === 3 && !step1Valid && (
+                    <p className="text-red-500">
+                        Wypełnij brakujące pola
+                    </p>
+                )}
+                {stepNumber === 4 && !step1Valid && (
+                    <p className="text-red-500">
+                        Wypełnij brakujące pola
+                    </p>
+                )}
+                {stepNumber === 5 && !step1Valid && (
+                    <p className="text-red-500">
+                        Wypełnij brakujące pola
+                    </p>
+                )}
+                {stepNumber === 6 && !step1Valid && (
+                    <p className="text-red-500">
+                        Wypełnij brakujące pola
+                    </p>
+                )}
+                {stepNumber === 7 && !step1Valid && (
+                    <p className="text-red-500">
+                        Wypełnij brakujące pola
+                    </p>
+                )}
+                {stepNumber === 8 && !step1Valid && (
+                    <p className="text-red-500">
+                        Wypełnij brakujące pola
+                    </p>
+                )}
+                {stepNumber === 9 && !step1Valid && (
+                    <p className="text-red-500">
+                        Wypełnij brakujące pola
+                    </p>
+                )}
+                {stepNumber === 10 && !step1Valid && (
+                    <p className="text-red-500">
+                        Wypełnij brakujące pola
+                    </p>
+                )}
+            </div>
+        );
+    };
 
     return (
         <div>
@@ -963,7 +1150,7 @@ const MultiStepForm = () => {
                         </div>
                     </div>
                     <div className="p-6 text-gray-900">
-                        <CurrentStepComponent formData={data} handleInputChange={handleInputChange} handleCheckboxChange={handleCheckboxChange} />
+                        {renderStep(step)}
                         <div className="mt-4">
                             {step > 1 && (
                                 <button onClick={prevStep} className="mr-2 bg-transparent hover:bg-gray-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" style={{ color: "#4F914A" }}>
