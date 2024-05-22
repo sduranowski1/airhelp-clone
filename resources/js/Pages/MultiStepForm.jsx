@@ -8,11 +8,14 @@ import 'react-datepicker/dist/react-datepicker.css';
 import SignatureCanvas from "react-signature-canvas/src";
 import ApplicationLogo from "@/Components/ApplicationLogo.jsx";
 import {Link, useForm} from "@inertiajs/react";
+import { format } from 'date-fns';
 
 const Step1 = ({ formData, handleInputChange, checkboxes, handleCheckboxChange }) => {
     const [airportData, setAirportData] = useState([]); // State to store airport data
     const [input1Suggestions, setInput1Suggestions] = useState([]); // Suggestions for input1
     const [input2Suggestions, setInput2Suggestions] = useState([]); // Suggestions for input2
+
+    const [filteredFlights, setFilteredFlights] = useState([]);
 
     useEffect(() => {
         async function fetchAirportData() {
@@ -20,7 +23,7 @@ const Step1 = ({ formData, handleInputChange, checkboxes, handleCheckboxChange }
                 method: 'GET',
                 url: 'https://flight-radar1.p.rapidapi.com/airports/list',
                 headers: {
-                    'X-RapidAPI-Key': '95f3c48580mshc872ed236159d39p1d474ejsn14aa0564e966',
+                    // 'X-RapidAPI-Key': '95f3c48580mshc872ed236159d39p1d474ejsn14aa0564e966',
                     'X-RapidAPI-Host': 'flight-radar1.p.rapidapi.com'
                 }
             };
@@ -35,6 +38,17 @@ const Step1 = ({ formData, handleInputChange, checkboxes, handleCheckboxChange }
 
         fetchAirportData();
     }, []);
+
+    useEffect(() => {
+        if (formData.input1 && formData.input1a) {
+            const filtered = sampleFlight.filter(flight => {
+                const departureAirport = flight.departure.airport;
+                const arrivalAirport = flight.arrival.airport;
+
+                return departureAirport && departureAirport.iata === formData.input1 && arrivalAirport && arrivalAirport.iata === formData.input1a;
+            });            setFilteredFlights(filtered);
+        }
+    }, [formData.input1, formData.input1a]);
 
     const handleInputChange1 = (event) => {
         const value = event.target.value.toUpperCase();
@@ -166,8 +180,126 @@ const Step1 = ({ formData, handleInputChange, checkboxes, handleCheckboxChange }
     );
 };
 
+// const Step1 = ({ flights }) => {
+//     const [departureIata, setDepartureIata] = useState('');
+//     const [arrivalIata, setArrivalIata] = useState('');
+//     const [departureDate, setDepartureDate] = useState(null);
+//     const [filteredFlights, setFilteredFlights] = useState([]);
+//     const [isFiltered, setIsFiltered] = useState(false);
+//
+//     const handleFilter = () => {
+//         if (departureIata && arrivalIata && departureDate) {
+//             const year = departureDate.getFullYear();
+//             const month = String(departureDate.getMonth() + 1).padStart(2, '0');
+//             const day = String(departureDate.getDate()).padStart(2, '0');
+//
+//             const formattedDepartureDate = `${year}-${month}-${day}`;
+//             console.log('Filtering with values:', {
+//                 departureIata,
+//                 arrivalIata,
+//                 formattedDepartureDate
+//             });
+//
+//             const filtered = flights.filter(flight => {
+//                 const depIata = flight.airline.iata;
+//                 const arrIata = flight.arrival.airport.iata;
+//                 const depDate = new Date(flight.departure.scheduledTime.utc).toISOString().split('T')[0];
+//
+//                 console.log(`Checking flight: ${flight.number}`, {
+//                     depIata,
+//                     arrIata,
+//                     depDate,
+//                     match: depIata === departureIata && arrIata === arrivalIata && depDate === formattedDepartureDate
+//                 });
+//
+//                 return depIata === departureIata && arrIata === arrivalIata && depDate === formattedDepartureDate;
+//             });
+//             setFilteredFlights(filtered);
+//             setIsFiltered(true);
+//         } else {
+//             setFilteredFlights([]);
+//             setIsFiltered(true);
+//         }
+//     };
+//
+//     const handleInputChange = (e) => {
+//         const { name, value } = e.target;
+//         if (name === 'departureIata') {
+//             setDepartureIata(value);
+//         } else if (name === 'arrivalIata') {
+//             setArrivalIata(value);
+//         }
+//     };
+//
+//     return (
+//         <div>
+//             <div className="container">
+//                 <div className="card p-5" style={{ backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F" }}>
+//                     <label htmlFor="departureIata" className="block text-gray-700 text-sm font-bold mb-2">Departure IATA Code:</label>
+//                     <input
+//                         type="text"
+//                         name="departureIata"
+//                         value={departureIata}
+//                         onChange={handleInputChange}
+//                         className="input"
+//                     />
+//
+//                     <label htmlFor="arrivalIata" className="block text-gray-700 text-sm font-bold mb-2">Arrival IATA Code:</label>
+//                     <input
+//                         type="text"
+//                         name="arrivalIata"
+//                         value={arrivalIata}
+//                         onChange={handleInputChange}
+//                         className="input"
+//                     />
+//
+//                     <label htmlFor="departureDate" className="block text-gray-700 text-sm font-bold mb-2">Departure Date:</label>
+//                     <DatePicker
+//                         selected={departureDate}
+//                         onChange={date => setDepartureDate(date)}
+//                         dateFormat="yyyy-MM-dd"
+//                         placeholderText="Select date"
+//                         className="input"
+//                     />
+//
+//                     <button onClick={handleFilter} className="mt-4 bg-blue-500 text-white py-2 px-4 rounded">
+//                         Filter Flights
+//                     </button>
+//
+//                     {isFiltered && filteredFlights.length === 0 ? (
+//                         <p className="mt-4">No flights found</p>
+//                     ) : (
+//                         <div className="results mt-4">
+//                             {filteredFlights.map((flight, index) => (
+//                                 <div key={index} className="flight border p-3 mb-3 rounded">
+//                                     <p><strong>Flight Number:</strong> {flight.number}</p>
+//                                     <p><strong>Airline:</strong> {flight.airline.name}</p>
+//                                     <p><strong>Status:</strong> {flight.status}</p>
+//                                     <p><strong>Departure:</strong> {flight.departure.scheduledTime.local}</p>
+//                                     <p><strong>Arrival:</strong> {flight.arrival.airport.name} ({flight.arrival.airport.iata})</p>
+//                                 </div>
+//                             ))}
+//                         </div>
+//                     )}
+//                 </div>
+//             </div>
+//         </div>
+//     );
+// };
 
-const Step2 = ({formData, handleInputChange}) => (
+
+const Step2 = ({ formData, handleInputChange, flights }) => {
+    const [filteredFlights, setFilteredFlights] = useState([]);
+
+    useEffect(() => {
+        if (formData.input2) {
+            const filtered = sampleFlight.filter(flight => flight.departure.scheduledTime.local.split(' ')[0] === formData.input2.toISOString().split('T')[0]);
+            setFilteredFlights(filtered);
+        }
+    }, [formData.input2]);
+
+
+    return (
     <div>
         <div className="container">
             <div className="card p-5" style={{
@@ -188,48 +320,81 @@ const Step2 = ({formData, handleInputChange}) => (
         </div>
     </div>
 );
+};
+const Step3 = ({ formData, handleInputChange, checkboxes, handleCheckboxChange, flights }) => {
 
-const Step3 = ({formData, handleInputChange, checkboxes, handleCheckboxChange}) => {
+    // Filter flights based on formData
+    const [filteredFlights, setFilteredFlights] = useState([]); // State to store filtered flights
 
+    const handleSubmit = (event) => {
+        event.preventDefault(); // Prevent default form submission behavior
+
+        // Filter flights based on formData
+        const filtered = flights.filter(flight => {
+            const departureAirport = flight.departure.airport;
+            const arrivalAirport = flight.arrival.airport;
+            const departureDate = new Date(flight.departure.scheduledTime.utc).toISOString().split('T')[0];
+
+            return departureAirport && departureAirport.iata === formData.input1 &&
+                arrivalAirport && arrivalAirport.iata === formData.input1a &&
+                departureDate === formData.input2;
+        });
+
+        setFilteredFlights(filtered); // Update state with filtered flights
+    };
 
     return (
         <div>
             <div className="container">
+                <form onSubmit={handleSubmit}>
+                    <button type="submit">Filter Flights</button>
+                </form>
                 <div className="card p-5" style={{backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"}}>
-                    <label htmlFor="input12" className="block text-gray-700 text-sm font-bold mb-2">Następnie wybierz
-                        swój lot z listy:</label>
-                    <ul className="w-100 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-                            <div className="flex items-center ps-3">
-                                <input
-                                    id="yes-checkbox"
-                                    type="checkbox"
-                                    checked={formData.input3}
-                                    onChange={() => handleCheckboxChange('input3', 'input3a')} // Pass label name
-                                    className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                                />
-                                <label
-                                    htmlFor="yes-checkbox"
-                                    className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                                >
-                                    Dynamiczna Lista Lotów
-                                </label>
-                            </div>
-                        </li>
+                    <label htmlFor="input12" className="block text-gray-700 text-sm font-bold mb-2">
+                        Następnie wybierz swój lot z listy:
+                    </label>
+                    {filteredFlights.length === 0 ? (
+                        <p>No flights found</p>
+                    ) : (
+                        <ul className="w-full">
+                            {filteredFlights.map((flight, index) => (
+                                <li key={index}
+                                    className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                    {/* Render flight details here */}
+                                    <div className="flex items-center ps-3">
+                                        <input
+                                            id={`checkbox-${index}`}
+                                            type="checkbox"
+                                            checked={formData[`input3-${index}`]}
+                                            onChange={() => handleCheckboxChange(`input3-${index}`)}
+                                            className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                                        />
+                                        <div
+                                            className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                                            <p><strong>Departure Time:</strong> {flight.departure.revisedTime.local}</p>
+                                            <p><strong>Airline:</strong> {flight.airline.name}</p>
+                                            <p><strong>Flight Number:</strong> {flight.number}</p>
+                                        </div>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                    <ul className="w-full">
                         <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                             <div className="flex items-center ps-3">
                                 <input
                                     id="no-checkbox"
                                     type="checkbox"
                                     checked={formData.input3a}
-                                    onChange={() => handleCheckboxChange('input3a', 'input3')} // Pass label name
+                                    onChange={() => handleCheckboxChange('input3a', 'input3')}
                                     className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                 />
                                 <label
                                     htmlFor="no-checkbox"
                                     className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                                 >
-                                    Nie mogę znaleść swojego lotu
+                                    Nie mogę znaleźć swojego lotu
                                 </label>
                             </div>
                         </li>
@@ -239,7 +404,6 @@ const Step3 = ({formData, handleInputChange, checkboxes, handleCheckboxChange}) 
         </div>
     );
 };
-
 
 
 const Step4 = ({formData, handleInputChange}) => (
@@ -817,7 +981,83 @@ const Step10 = ({ formData, handleInputChange }) => {
     );
 };
 
-            // Define remaining steps similarly
+const sampleFlight = [
+    {
+        departure: {
+            scheduledTime: {
+                utc: "2024-05-21 12:10Z",
+                local: "2024-05-21 08:10-04:00"
+            },
+            revisedTime: {
+                utc: "2024-05-21 18:45Z",
+                local: "2024-05-21 14:45-04:00"
+            },
+            terminal: "1",
+            gate: "D28",
+            quality: ["Basic", "Live"]
+        },
+        arrival: {
+            airport: {
+                icao: "CYQG",
+                iata: "YQG",
+                name: "Windsor"
+            },
+            quality: []
+        },
+        number: "AC 2353",
+        status: "Delayed",
+        codeshareStatus: "IsOperator",
+        isCargo: false,
+        airline: {
+            name: "Air Canada",
+            iata: "AC",
+            icao: "ACA"
+        }
+    },
+    {
+        departure: {
+            scheduledTime: {
+                utc: "2024-05-21 12:30Z",
+                local: "2024-05-21 08:30-04:00"
+            },
+            revisedTime: {
+                utc: "2024-05-21 14:20Z",
+                local: "2024-05-21 10:20-04:00"
+            },
+            runwayTime: {
+                utc: "2024-05-21 14:32Z",
+                local: "2024-05-21 10:32-04:00"
+            },
+            terminal: "1",
+            gate: "D7",
+            quality: ["Basic", "Live"]
+        },
+        arrival: {
+            airport: {
+                icao: "CYXU",
+                iata: "YXU",
+                name: "London"
+            },
+            quality: []
+        },
+        number: "AC 8251",
+        callSign: "ACA8251",
+        status: "Departed",
+        codeshareStatus: "IsOperator",
+        isCargo: false,
+        aircraft: {
+            reg: "C-GGFP",
+            modeS: "C05512",
+            model: "De Havilland Canada DHC-8-400 Dash 8Q"
+        },
+        airline: {
+            name: "Air Canada",
+            iata: "AC",
+            icao: "ACA"
+        }
+    },
+    // Add other flight records here
+];
 
 const MultiStepForm = () => {
     const [step, setStep] = useState(1);
@@ -867,12 +1107,15 @@ const MultiStepForm = () => {
         // Define other form fields here
     });
 
+
+
     const steps = [Step1, Step2, Step3, Step4, Step5, Step6, Step7, Step8, Step9, Step10]; // Add other steps here
     const totalSteps = steps.length;
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setData(name, value);
+
     };
 
 
@@ -1059,7 +1302,7 @@ const MultiStepForm = () => {
         const CurrentStepComponent = steps[stepNumber - 1];
         return (
             <div className="container" style={{flexWrap: "wrap"}}>
-                <CurrentStepComponent formData={data} handleInputChange={handleInputChange} handleCheckboxChange={handleCheckboxChange} />
+                <CurrentStepComponent formData={data} handleInputChange={handleInputChange} handleCheckboxChange={handleCheckboxChange} flights={sampleFlight} />
                 {stepNumber === 1 && !step1Valid && (
                     <p className="text-red-500">Wypełnij brakujące pola</p>
                 )}
