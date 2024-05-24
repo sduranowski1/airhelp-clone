@@ -1,5 +1,6 @@
 // resources/js/Partials/FormDataTable.jsx
-import React from 'react';
+import React, {useState} from 'react';
+import Modal from "@/Components/Modal.jsx";
 
 const DashFormDataTable = ({ dashFormData }) => {
     // console.log('formData in FormDataTable:', formData); // Add this line for debugging
@@ -7,6 +8,18 @@ const DashFormDataTable = ({ dashFormData }) => {
     // if (!Array.isArray(formData) || formData.length === 0) {
     //     return <div>No data available</div>;
     // }
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedImage, setSelectedImage] = useState('');
+
+    const openModal = (imageSrc) => {
+        setSelectedImage(imageSrc);
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+        setSelectedImage('');
+    };
 
 
     return (
@@ -37,9 +50,10 @@ const DashFormDataTable = ({ dashFormData }) => {
                     <th className="py-2 px-4 border-b border-gray-300">Input8e</th>
                     <th className="py-2 px-4 border-b border-gray-300">Input8f</th>
                     <th className="py-2 px-4 border-b border-gray-300">Input9</th>
+                    <th className="py-2 px-4 border-b border-gray-300">Status</th>
+                    <th className="py-2 px-4 border-b border-gray-300">Signature</th>
                     <th className="py-2 px-4 border-b border-gray-300">Created At</th>
                     <th className="py-2 px-4 border-b border-gray-300">Updated At</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Status</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -67,12 +81,22 @@ const DashFormDataTable = ({ dashFormData }) => {
                         <td className="py-2 px-4 border-b border-gray-300">{dash.input8e}</td>
                         <td className="py-2 px-4 border-b border-gray-300">{dash.input8f}</td>
                         <td className="py-2 px-4 border-b border-gray-300">{dash.input9}</td>
+                        <td className="py-2 px-4 border-b border-gray-300">{dash.status}</td>
+                        <td className="py-2 px-4 border-b border-gray-300 cursor-pointer">
+                            <img src={`/${dash.signature}`} alt="Signature" className="w-16 h-auto" onClick={() => openModal(`/${dash.signature}`)}
+                            />
+                        </td>
                         <td className="py-2 px-4 border-b border-gray-300">{dash.created_at}</td>
                         <td className="py-2 px-4 border-b border-gray-300">{dash.updated_at}</td>
                     </tr>
                 ))}
                 </tbody>
             </table>
+            <Modal show={isModalOpen} onClose={closeModal} maxWidth="2xl" closeable>
+                <div className="p-4">
+                    <img src={selectedImage} alt="Signature" className="max-w-full h-auto" />
+                </div>
+            </Modal>
         </div>
     );
 };

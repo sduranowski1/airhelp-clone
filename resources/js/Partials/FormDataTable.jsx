@@ -1,5 +1,7 @@
 // resources/js/Partials/FormDataTable.jsx
-import React from 'react';
+import React, {useState} from 'react';
+import Modal from "@/Components/Modal.jsx";
+
 
 const FormDataTable = ({ formData }) => {
     // console.log('formData in FormDataTable:', formData); // Add this line for debugging
@@ -7,6 +9,23 @@ const FormDataTable = ({ formData }) => {
     // if (!Array.isArray(formData) || formData.length === 0) {
     //     return <div>No data available</div>;
     // }
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedImage, setSelectedImage] = useState('');
+
+    const openModal = (imageSrc) => {
+        setSelectedImage(imageSrc);
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+        setSelectedImage('');
+    };
+
+    const handleStatusChange = (e) => {
+        setStatus(e.target.value);
+        // You can add logic here to update the status in your application state or perform other actions
+    };
 
 
     return (
@@ -36,6 +55,8 @@ const FormDataTable = ({ formData }) => {
                     <th className="py-2 px-4 border-b border-gray-300">Input8e</th>
                     <th className="py-2 px-4 border-b border-gray-300">Input8f</th>
                     <th className="py-2 px-4 border-b border-gray-300">Input9</th>
+                    <th className="py-2 px-4 border-b border-gray-300">Signature</th>
+                    <th className="py-2 px-4 border-b border-gray-300">Status</th>
                     <th className="py-2 px-4 border-b border-gray-300">Created At</th>
                     <th className="py-2 px-4 border-b border-gray-300">Updated At</th>
                 </tr>
@@ -65,12 +86,29 @@ const FormDataTable = ({ formData }) => {
                         <td className="py-2 px-4 border-b border-gray-300">{row.input8e}</td>
                         <td className="py-2 px-4 border-b border-gray-300">{row.input8f}</td>
                         <td className="py-2 px-4 border-b border-gray-300">{row.input9}</td>
+                        <td className="py-2 px-4 border-b border-gray-300 cursor-pointer">
+                            <img src={`/${row.signature}`} alt="Signature" className="w-16 h-auto"
+                                 onClick={() => openModal(`/${row.signature}`)}
+                            />
+                        </td>
+                        <td className="py-2 px-4 border-b border-gray-300">
+                            <select value={row.status} onChange={(e) => handleStatusChange(e, row.id)}>
+                                <option value="Oczekuje">Oczekuje</option>
+                                <option value="Odrzucone">Odrzucone</option>
+                                <option value="Zatwierdzone">Zatwierdzone</option>
+                            </select>
+                        </td>
                         <td className="py-2 px-4 border-b border-gray-300">{row.created_at}</td>
                         <td className="py-2 px-4 border-b border-gray-300">{row.updated_at}</td>
                     </tr>
                 ))}
                 </tbody>
             </table>
+            <Modal show={isModalOpen} onClose={closeModal} maxWidth="2xl" closeable>
+                <div className="p-4">
+                    <img src={selectedImage} alt="Signature" className="max-w-full h-auto" />
+                </div>
+            </Modal>
         </div>
     );
 };

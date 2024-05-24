@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\FormData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class MultiStepFormController extends Controller
@@ -18,8 +20,6 @@ class MultiStepFormController extends Controller
     {
         // Validate form data
         $validatedData = $request->validate([
-            'input1' => 'required|string|max:255',
-            'input1a' => 'required|string|max:255',
             'input1b' => 'required|max:255',
             'input1c' => 'required|max:255',
             'input2' => 'required|string|max:255',
@@ -56,14 +56,31 @@ class MultiStepFormController extends Controller
             'input8e' => 'required|string|max:255',
             'input8f' => 'required|string|max:255',
             'input9' => 'required|string|max:255',
-            // Add validation rules for other fields
+            'signature' => 'required|string', // Add validation for signature
         ]);
+
+        // Decode the base64 signature image
+        $signatureData = $validatedData['signature'];
+        list($type, $data) = explode(';', $signatureData);
+        list(, $data) = explode(',', $data);
+        $data = base64_decode($data);
+
+        // Define the signature path
+        $signaturePath = 'media/signatures/' . uniqid() . '.png';
+        $fullSignaturePath = public_path($signaturePath);
+
+        // Ensure the directory exists
+        if (!File::exists(public_path('media/signatures'))) {
+            File::makeDirectory(public_path('media/signatures'), 0755, true);
+        }
+
+        // Save the signature image to the public/media/signatures directory
+        file_put_contents($fullSignaturePath, $data);
 
         // Create a new FormData instance and save it to the database
         $formData = new FormData();
         $formData->user_id = Auth::id();
-        $formData->input1 = $validatedData['input1'];
-        $formData->input1a = $validatedData['input1a'];
+        $formData->status = 'Oczekuje'; // Set default status
         $formData->input1b = $validatedData['input1b'];
         $formData->input1c = $validatedData['input1c'];
         $formData->input2 = $validatedData['input2'];
@@ -99,12 +116,13 @@ class MultiStepFormController extends Controller
         $formData->input8e = $validatedData['input8e'];
         $formData->input8f = $validatedData['input8f'];
         $formData->input9 = $validatedData['input9'];
+        // Save the signature path in the database
+        $formData->signature = $signaturePath;
         // Assign other form fields as needed
         $formData->save();
 
         // Redirect to the success page
         return redirect()->route('form.success')->with('success', 'Form submitted successfully.');
     }
-
 }
 

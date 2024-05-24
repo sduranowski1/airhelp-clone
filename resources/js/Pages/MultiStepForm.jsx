@@ -9,6 +9,10 @@ import SignatureCanvas from "react-signature-canvas/src";
 import ApplicationLogo from "@/Components/ApplicationLogo.jsx";
 import {Link, useForm} from "@inertiajs/react";
 import { format } from 'date-fns';
+import SignaturePad from 'react-signature-canvas'; // Assuming you're using this library
+
+
+import airlinesData from './airlinesData'; // Importing the airlines data
 
 const Step1 = ({ formData, handleInputChange, checkboxes, handleCheckboxChange }) => {
     const [airportData, setAirportData] = useState([]); // State to store airport data
@@ -321,92 +325,319 @@ const Step2 = ({ formData, handleInputChange, flights }) => {
     </div>
 );
 };
-const Step3 = ({ formData, handleInputChange, checkboxes, handleCheckboxChange, flights }) => {
 
-    // Filter flights based on formData
-    const [filteredFlights, setFilteredFlights] = useState([]); // State to store filtered flights
 
-    const handleSubmit = (event) => {
-        event.preventDefault(); // Prevent default form submission behavior
 
-        // Filter flights based on formData
-        const filtered = flights.filter(flight => {
-            const departureAirport = flight.departure.airport;
-            const arrivalAirport = flight.arrival.airport;
-            const departureDate = new Date(flight.departure.scheduledTime.utc).toISOString().split('T')[0];
+// const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, flights }) => {
+//     const [departureIata, setDepartureIata] = useState('');
+//     const [arrivalIata, setArrivalIata] = useState('');
+//     const [departureDate, setDepartureDate] = useState(null);
+//     const [filteredFlights, setFilteredFlights] = useState([]);
+//     const [isFiltered, setIsFiltered] = useState(false);
+//     const [airportData, setAirportData] = useState([]);
+//     const [input1Suggestions, setInput1Suggestions] = useState([]);
+//     const [input2Suggestions, setInput2Suggestions] = useState([]);
+//
+//     useEffect(() => {
+//         async function fetchAirportData() {
+//             const options = {
+//                 method: 'GET',
+//                 url: 'https://flight-radar1.p.rapidapi.com/airports/list',
+//                 headers: {
+//                     'X-RapidAPI-Host': 'flight-radar1.p.rapidapi.com'
+//                 }
+//             };
+//
+//             try {
+//                 const response = await axios.request(options);
+//                 setAirportData(response.data.rows);
+//             } catch (error) {
+//                 console.error(error);
+//             }
+//         }
+//
+//         fetchAirportData();
+//     }, []);
+//
+//     const handleInputChange1 = (event) => {
+//         const { name, value } = event.target;
+//         const suggestions = airportData.filter(airport => airport.name.toUpperCase().startsWith(value.toUpperCase())).slice(0, 5);
+//         setInput1Suggestions(suggestions);
+//
+//         if (name === 'departureIata') {
+//             setDepartureIata(value);
+//         } else if (name === 'arrivalIata') {
+//             setArrivalIata(value);
+//         } else if (name === 'input1') {
+//         setDepartureDate(value);
+//     }
+//
+//         handleInputChange(event); // Call the parent's input change handler
+//     };
+//
+//     const handleInputChange2 = (event) => {
+//         const { name, value } = event.target;
+//         const suggestions = airportData.filter(airport => airport.name.toUpperCase().startsWith(value.toUpperCase())).slice(0, 5);
+//         setInput2Suggestions(suggestions);
+//
+//         if (name === 'departureIata') {
+//             setDepartureIata(value);
+//         } else if (name === 'arrivalIata') {
+//             setArrivalIata(value);
+//         } else if (name === 'input1a') {
+//             setDepartureDate(value);
+//         }
+//
+//         handleInputChange(event); // Call the parent's input change handler
+//     };
+//
+//     const handleSuggestionClick1 = (name) => {
+//         setInput1Suggestions([]);
+//         handleInputChange({ target: { name: 'input1', value: name } });
+//     };
+//
+//     const handleSuggestionClick2 = (name) => {
+//         setInput2Suggestions([]);
+//         handleInputChange({ target: { name: 'input1a', value: name } });
+//     };
+//
+//     const handleFilter = () => {
+//         if (departureIata && arrivalIata && departureDate) {
+//             const year = departureDate.getFullYear();
+//             const month = String(departureDate.getMonth() + 1).padStart(2, '0');
+//             const day = String(departureDate.getDate()).padStart(2, '0');
+//
+//             const formattedDepartureDate = `${year}-${month}-${day}`;
+//             console.log('Filtering with values:', {
+//                 departureIata,
+//                 arrivalIata,
+//                 formattedDepartureDate
+//             });
+//
+//             const filtered = flights.filter(flight => {
+//                 const depIata = flight.airline.iata;
+//                 const arrIata = flight.arrival.airport.iata;
+//                 const depDate = new Date(flight.departure.scheduledTime.utc).toISOString().split('T')[0];
+//
+//                 console.log(`Checking flight: ${flight.number}`, {
+//                     depIata,
+//                     arrIata,
+//                     depDate,
+//                     match: depIata === departureIata && arrIata === arrivalIata && depDate === formattedDepartureDate
+//                 });
+//
+//                 return depIata === departureIata && arrIata === arrivalIata && depDate === formattedDepartureDate;
+//             });
+//             setFilteredFlights(filtered);
+//             setIsFiltered(true);
+//         } else {
+//             setFilteredFlights([]);
+//             setIsFiltered(true);
+//         }
+//     };
+//
+//     const handleInputChange3 = (e) => {
+//         const { name, value } = e.target;
+//         if (name === 'departureIata') {
+//             setDepartureIata(value);
+//         } else if (name === 'arrivalIata') {
+//             setArrivalIata(value);
+//         } else if (name === 'input2') {
+//             setDepartureDate(value);
+//         }
+//         handleInputChange(e); // Call the parent's input change handler
+//     };
+//
+//     return (
+//         <div>
+//             <div className="container">
+//                 <div className="card p-5" style={{ backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F" }}>
+//                     <label htmlFor="input1" className="block text-gray-700 text-sm font-bold mb-2">
+//                         Dzień dobry! Sprawdźmy, czy linia lotnicza jest Ci winna odszkodowanie. Podaj miejsce docelowe podróży.
+//                     </label>
+//                     <div className="flex flex-col md:flex-row">
+//                         <FontAwesomeIcon icon={faPlaneDeparture} className="icon p-2" />
+//                         <input
+//                             placeholder="e.g. New York or JFK"
+//                             type="text"
+//                             id="input1"
+//                             name="departureIata"
+//                             value={departureIata}
+//                             onChange={handleInputChange1}
+//                             className="flex-1 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+//                         />
+//                         <FontAwesomeIcon icon={faCalendarDays} className="icon p-2" />
+//                         <DatePicker
+//                             selected={departureDate}
+//                             onChange={date => handleInputChange3({ target: { name: 'input2', value: date } })}
+//                             dateFormat="MM/dd/yyyy"
+//                             placeholderText="Wybierz date"
+//                             className="date-picker flex-1 mr-2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+//                         />
+//                     </div>
+//                     <div className="suggestions">
+//                         <ul>
+//                             {input1Suggestions.map(airport => (
+//                                 <li key={airport.code} onClick={() => handleSuggestionClick1(airport.name)}>
+//                                     {airport.name}
+//                                 </li>
+//                             ))}
+//                         </ul>
+//                         <ul>
+//                             {input2Suggestions.map(airport => (
+//                                 <li key={airport.code} onClick={() => handleSuggestionClick2(airport.name)}>
+//                                     {airport.name}
+//                                 </li>
+//                             ))}
+//                         </ul>
+//                     </div>
+//                 </div>
+//             </div>
+//             <div className="container mt-5">
+//                 <div className="card p-5" style={{ backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F" }}>
+//                     <label htmlFor="input12" className="block text-gray-700 text-sm font-bold mb-2">
+//                         Czy Twój lot obejmował przesiadkę?:
+//                     </label>
+//                     <ul className="w-100 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+//                         <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+//                             <div className="flex items-center ps-3">
+//                                 <input
+//                                     id="yes-checkbox"
+//                                     type="checkbox"
+//                                     checked={formData.input1b}
+//                                     onChange={() => handleCheckboxChange('input1b', 'input1c')}
+//                                     className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+//                                 />
+//                                 <label htmlFor="yes-checkbox" className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+//                                     Tak
+//                                 </label>
+//                             </div>
+//                         </li>
+//                         <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+//                             <div className="flex items-center ps-3">
+//                                 <input
+//                                     id="no-checkbox"
+//                                     type="checkbox"
+//                                     checked={formData.input1c}
+//                                     onChange={() => handleCheckboxChange('input1c', 'input1b')}
+//                                     className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+//                                 />
+//                                 <label htmlFor="no-checkbox" className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+//                                     Nie
+//                                 </label>
+//                             </div>
+//                         </li>
+//                     </ul>
+//                 </div>
+//             </div>
+//             <div className="container mt-5">
+//                 <div className="card p-5" style={{ backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F" }}>
+//                     <label htmlFor="input2" className="block text-gray-700 text-sm font-bold mb-2">
+//                         Podaj date wylotu
+//                     </label>
+//                     <div className="flex">
+//
+//                         <FontAwesomeIcon icon={faPlaneArrival} className="icon p-2" />
+//                         <input
+//                             placeholder="e.g. London or LHR"
+//                             type="text"
+//                             id="input1a"
+//                             name="arrivalIata"
+//                             value={arrivalIata}
+//                             onChange={handleInputChange2}
+//                             className="flex-1 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+//                         />
+//                     </div>
+//                 </div>
+//             </div>
+//
+//             <div className="container mt-5">
+//                 <div className="card p-5" style={{ backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F" }}>
+//                     <label htmlFor="input12" className="block text-gray-700 text-sm font-bold mb-2">
+//                         Następnie wybierz swój lot z listy:
+//                     </label>
+//
+//                     <button onClick={handleFilter} className="mt-4 bg-blue-500 text-white py-2 px-4 rounded">
+//                         Filter Flights
+//                     </button>
+//
+//                     {isFiltered && filteredFlights.length === 0 ? (
+//                         <p className="mt-4">No flights found</p>
+//                     ) : (
+//                         <ul className="w-full">
+//                             {filteredFlights.map((flight, index) => (
+//                                 <li key={index} className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+//                                     <div className="flex items-center ps-3">
+//                                         <input
+//                                             id={`checkbox-${index}`}
+//                                             type="checkbox"
+//                                             // checked={formData[`input3-${index}`]}
+//                                             // onChange={() => handleCheckboxChange(`input3-${index}`)}
+//                                             checked={formData.input3}
+//                                             onChange={() => handleCheckboxChange('input3', 'input3a')}
+//                                             className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+//                                         />
+//                                         <div className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+//                                             <p><strong>Departure Time:</strong> {flight.departure.revisedTime.local}</p>
+//                                             <p><strong>Airline:</strong> {flight.airline.name}</p>
+//                                             <p><strong>Flight Number:</strong> {flight.number}</p>
+//                                         </div>
+//                                     </div>
+//                                 </li>
+//                             ))}
+//                         </ul>
+//                     )}
+//
+//                     <ul className="w-full">
+//                         <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+//                             <div className="flex items-center ps-3">
+//                                 <input
+//                                     id="no-checkbox"
+//                                     type="checkbox"
+//                                     checked={formData.input3a}
+//                                     onChange={() => handleCheckboxChange('input3a', 'input3')}
+//                                     className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+//                                 />
+//                                 <label htmlFor="no-checkbox" className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+//                                     Nie mogę znaleźć swojego lotu
+//                                 </label>
+//                             </div>
+//                         </li>
+//                     </ul>
+//                 </div>
+//             </div>
+//         </div>
+//     );
+// };
 
-            return departureAirport && departureAirport.iata === formData.input1 &&
-                arrivalAirport && arrivalAirport.iata === formData.input1a &&
-                departureDate === formData.input2;
-        });
 
-        setFilteredFlights(filtered); // Update state with filtered flights
+const Step4 = ({ formData, handleInputChange }) => {
+    const [inputText, setInputText] = useState('');
+    const [suggestions, setSuggestions] = useState([]);
+
+    const handleLocalInputChange = (e) => {
+        const { value } = e.target;
+        setInputText(value);
+        handleInputChange(e); // Call the parent's handleInputChange
+        // Filter airlines based on input text
+        const filteredAirlines = airlinesData.filter((airline) =>
+            airline.name.toLowerCase().includes(value.toLowerCase())
+        );
+        // Limit suggestions to 5
+        setSuggestions(filteredAirlines.slice(0, 5));
+    };
+
+    // Function to handle suggestion selection
+    // Function to handle suggestion selection
+    const handleSuggestionClick = (suggestion) => {
+        const event = { target: { name: 'input4', value: suggestion.name } };
+        handleInputChange(event); // Update input value using global function
+        setInputText(suggestion.name); // Update local state
+        setSuggestions([]); // Clear suggestions
     };
 
     return (
-        <div>
-            <div className="container">
-                <form onSubmit={handleSubmit}>
-                    <button type="submit">Filter Flights</button>
-                </form>
-                <div className="card p-5" style={{backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"}}>
-                    <label htmlFor="input12" className="block text-gray-700 text-sm font-bold mb-2">
-                        Następnie wybierz swój lot z listy:
-                    </label>
-                    {filteredFlights.length === 0 ? (
-                        <p>No flights found</p>
-                    ) : (
-                        <ul className="w-full">
-                            {filteredFlights.map((flight, index) => (
-                                <li key={index}
-                                    className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-                                    {/* Render flight details here */}
-                                    <div className="flex items-center ps-3">
-                                        <input
-                                            id={`checkbox-${index}`}
-                                            type="checkbox"
-                                            checked={formData[`input3-${index}`]}
-                                            onChange={() => handleCheckboxChange(`input3-${index}`)}
-                                            className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                                        />
-                                        <div
-                                            className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-                                            <p><strong>Departure Time:</strong> {flight.departure.revisedTime.local}</p>
-                                            <p><strong>Airline:</strong> {flight.airline.name}</p>
-                                            <p><strong>Flight Number:</strong> {flight.number}</p>
-                                        </div>
-                                    </div>
-                                </li>
-                            ))}
-                        </ul>
-                    )}
-                    <ul className="w-full">
-                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-                            <div className="flex items-center ps-3">
-                                <input
-                                    id="no-checkbox"
-                                    type="checkbox"
-                                    checked={formData.input3a}
-                                    onChange={() => handleCheckboxChange('input3a', 'input3')}
-                                    className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                                />
-                                <label
-                                    htmlFor="no-checkbox"
-                                    className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                                >
-                                    Nie mogę znaleźć swojego lotu
-                                </label>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    );
-};
 
-
-const Step4 = ({formData, handleInputChange}) => (
     <div>
         <div className="container">
             <div className="card p-5" style={{
@@ -416,10 +647,16 @@ const Step4 = ({formData, handleInputChange}) => (
                     jeszcze tylko kilku informacji dotyczących lotu, aby sprawdzić, czy kwalifikuje się on do
                     odszkodowania.</label>
                 <input type="text" placeholder="Np. British Airways" id="input4" name="input4" value={formData.input4}
-                       onChange={handleInputChange}
+                       onChange={handleLocalInputChange}
                        className="mb-3 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+                {/* Display suggestions */}
+                <ul>
+                    {suggestions.map((airline) => (
+                        <li key={airline.id} onClick={() => handleSuggestionClick(airline)}>{airline.name}</li>
+                    ))}
+                </ul>
                 <div className="flex items-center">
-                    <input
+                <input
                         type="text"
                         id="input4a"
                         name="input4a"
@@ -440,7 +677,7 @@ const Step4 = ({formData, handleInputChange}) => (
             </div>
         </div>
     </div>
-);
+);};
 
 const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange}) => {
     const [input5, setInput5] = useState(false);
@@ -456,12 +693,12 @@ const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange}) 
     const [noChecked, setNoChecked] = useState(false);
 
     return (
-    <div>
-        <div className="container">
-            <div className="card p-5" style={{
-                backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"
-            }}>
-            <label htmlFor="input5" className="block text-gray-700 text-sm font-bold mb-2">Teraz przejdźmy do samego
+        <div>
+            <div className="container">
+                <div className="card p-5" style={{
+                    backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"
+                }}>
+                    <label htmlFor="input5" className="block text-gray-700 text-sm font-bold mb-2">Teraz przejdźmy do samego
                     zakłócenia. Co dokładnie się wydarzyło?</label>
                 <ul className="w-100 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                     <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
@@ -916,9 +1153,6 @@ const Step9 = ({formData, handleInputChange}) => (
 );
 
 const Step10 = ({ formData, handleInputChange }) => {
-    const [signature, setSignature] = useState(null); // State to store the captured signature
-
-    // Reference to the signature pad yo
     const signatureRef = useRef(null);
 
     // Function to clear the signature pad
@@ -935,9 +1169,10 @@ const Step10 = ({ formData, handleInputChange }) => {
 
         // Get the signature data as an image URL
         const signatureData = signatureRef.current.toDataURL();
+        handleInputChange({ target: { name: 'signature', value: signatureData } });
 
-        // Set the captured signature in state
-        setSignature(signatureData);
+        // // Set the captured signature in state
+        // setSignature(signatureData);
 
         // You can now handle saving the signature data here, such as sending it to a server or saving it locally
         // Example:
@@ -959,20 +1194,21 @@ const Step10 = ({ formData, handleInputChange }) => {
                         Aby uzyskać pieniądze, które Ci się należą, złóż podpis poniżej.</label>
                     {/* Signature Pad */}
                     <div>
-                        <SignatureCanvas
-                            ref={signatureRef}
-                            canvasProps={{ width: 400, height: 200, className: 'sigCanvas' }}
-                        />
+                        {/*<SignatureCanvas*/}
+                        {/*    ref={signatureRef}*/}
+                        {/*    canvasProps={{ width: 400, height: 200, className: 'sigCanvas' }}*/}
+                        {/*/>*/}
                     </div>
                     {/* End Signature Pad */}
                     <div>
+                        <SignaturePad ref={signatureRef} />
                         <button className="bg-white rounded-sm mr-2" onClick={clearSignature}>Clear</button>
                         <button className="bg-white rounded-sm mr-2" onClick={saveSignature}>Save</button>
                     </div>
-                    {/* Display the saved signature */}
-                    {signature && (
-                        <img src={signature} alt="Saved Signature" />
-                    )}
+                    {/*/!* Display the saved signature *!/*/}
+                    {/*{signature && (*/}
+                    {/*    <img src={signature} alt="Saved Signature" />*/}
+                    {/*)}*/}
                     <input type="text" id="input10" name="input10" value={formData.input10} onChange={handleInputChange}
                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
                 </div>
@@ -1104,12 +1340,13 @@ const MultiStepForm = () => {
         input8f: '',
         input9: '',
         input10: '',
+        signature: '', // Add the signature field
         // Define other form fields here
     });
 
 
 
-    const steps = [Step1, Step2, Step3, Step4, Step5, Step6, Step7, Step8, Step9, Step10]; // Add other steps here
+    const steps = [Step3, Step4, Step5, Step6, Step7, Step8, Step9, Step10]; // Add other steps here
     const totalSteps = steps.length;
 
     const handleInputChange = (e) => {
@@ -1164,12 +1401,12 @@ const MultiStepForm = () => {
         // Implement validation logic for each step
         switch (stepNumber) {
             case 1:
-                if (!data.input1 || !data.input1a) {
-                    console.log("Please fill out input1 and input1a");
-                    setStep1Valid(false); // Set Step 1 validation status to false
-                    return false;
-                }
-
+            //     if (!data.input1 || !data.input1a) {
+            //         console.log("Please fill out input1 and input1a");
+            //         setStep1Valid(false); // Set Step 1 validation status to false
+            //         return false;
+            //     }
+            //
                 // Check if either input1b or input1c is selected, but not both
                 if ((data.input1b && data.input1c) || (!data.input1b && !data.input1c)) {
                     console.log("Please select either input1b or input1c");
@@ -1177,22 +1414,14 @@ const MultiStepForm = () => {
                     return false;
                 }
 
-                setStep1Valid(true); // Set Step 1 validation status to true if validation passes
-                break;
-            // Add validation for other steps as needed
-            case 2:
                 if (!data.input2) {
                     console.log("Please fill out input2");
                     setStep1Valid(false); // Set Step 1 validation status to false
                     return false;
-                } else {
-                    setStep1Valid(true); // Set Step 1 validation status to true if validation passes
                 }
-                break;
-            // Add validation for other steps as needed
-            case 3:
+
                 // Check if either input1b or input1c is selected, but not both
-                if ((data.input3 && data.input3a) || (!data.input3 && !data.input3)) {
+                if ((data.input3 && data.input3a) || (!data.input3a && !data.input3)) {
                     console.log("Please select either input1b or input1c");
                     setStep1Valid(false); // Set Step 1 validation status to false
                     return false;
@@ -1200,7 +1429,17 @@ const MultiStepForm = () => {
                     setStep1Valid(true); // Set Step 1 validation status to true if validation passes
                 }
                 break;
-            case 4:
+            // Add validation for other steps as needed
+            case 2:
+                // if (!data.input2) {
+                //     console.log("Please fill out input2");
+                //     setStep1Valid(false); // Set Step 1 validation status to false
+                //     return false;
+                // } else {
+                //     setStep1Valid(true); // Set Step 1 validation status to true if validation passes
+                // }
+                // break;
+
                 // Check if either input1b or input1c is selected, but not both
                 if (!data.input4 || !data.input4a || !data.input4b) {
                     console.log("Please fill out input1 and input1a");
@@ -1210,7 +1449,8 @@ const MultiStepForm = () => {
                     setStep1Valid(true); // Set Step 1 validation status to true if validation passes
                 }
                 break;
-            case 5:
+            // Add validation for other steps as needed
+            case 3:
                 // Check if either input1b or input1c is selected, but not both
                 if ((data.input5 && data.input5a && data.input5b) || (!data.input5 && !data.input5a && !data.input5b)) {
                     console.log("Please select either input1b or input1c");
@@ -1235,7 +1475,7 @@ const MultiStepForm = () => {
                 setStep1Valid(true); // Set Step 1 validation status to true if validation passes
                 break;
             // Add validation for other steps as needed
-            case 6:
+            case 4:
                 // Check if either input1b or input1c is selected, but not both
                 if (!data.input6 || !data.input6a || !data.input6b) {
                     console.log("Please fill out input1 and input1a");
@@ -1252,9 +1492,7 @@ const MultiStepForm = () => {
 
                 setStep1Valid(true); // Set Step 1 validation status to true if validation passes
                 break;
-
-            // Add validation for other steps as needed
-            case 7:
+            case 5:
                 // Check if either input1b or input1c is selected, but not both
                 if ((data.input7a && data.input7b) || (!data.input7a && !data.input7b)) {
                     console.log("Please select either input1b or input1c");
@@ -1271,7 +1509,7 @@ const MultiStepForm = () => {
 
                 setStep1Valid(true); // Set Step 1 validation status to true if validation passes
                 break;
-            case 8:
+            case 6:
                 // Check if either input1b or input1c is selected, but not both
                 if (!data.input8 || !data.input8a || !data.input8b || !data.input8c || !data.input8d || !data.input8e || !data.input8f ) {
                     console.log("Please fill out input1 and input1a");
@@ -1281,7 +1519,9 @@ const MultiStepForm = () => {
                     setStep1Valid(true); // Set Step 1 validation status to true if validation passes
                 }
                 break;
-            case 9:
+
+            // Add validation for other steps as needed
+            case 7:
                 // Check if either input1b or input1c is selected, but not both
                 if (!data.input9 ) {
                     console.log("Please fill out input1 and input1a");
@@ -1291,6 +1531,10 @@ const MultiStepForm = () => {
                     setStep1Valid(true); // Set Step 1 validation status to true if validation passes
                 }
                 break;
+            case 8:
+
+            case 9:
+
             default:
                 break;
 
