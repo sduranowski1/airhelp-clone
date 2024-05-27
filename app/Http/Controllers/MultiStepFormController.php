@@ -22,7 +22,7 @@ class MultiStepFormController extends Controller
         $validatedData = $request->validate([
             'input1b' => 'required|max:255',
             'input1c' => 'required|max:255',
-            'input2' => 'required|string|max:255',
+//            'input2' => 'required|string|max:255',
             'input3' => 'max:255',
             'input3a' => 'max:255',
             'input4' => 'required|string|max:255',
@@ -47,6 +47,8 @@ class MultiStepFormController extends Controller
             'input6e' => 'required|max:255',
             'input7a' => 'required|max:255',
             'input7b' => 'required|max:255',
+            'input7c' => 'required|max:255',
+
             'input6b' => 'required|string|max:255',
             'input8' => 'required|string|max:255',
             'input8a' => 'required|string|max:255',
@@ -83,7 +85,7 @@ class MultiStepFormController extends Controller
         $formData->status = 'Oczekuje'; // Set default status
         $formData->input1b = $validatedData['input1b'];
         $formData->input1c = $validatedData['input1c'];
-        $formData->input2 = $validatedData['input2'];
+//        $formData->input2 = $validatedData['input2'];
         $formData->input3 = $validatedData['input3'];
         $formData->input3a = $validatedData['input3a'];
         $formData->input4 = $validatedData['input4'];
@@ -108,6 +110,7 @@ class MultiStepFormController extends Controller
         $formData->input6e = $validatedData['input6e'];
         $formData->input7a = $validatedData['input7a'];
         $formData->input7b = $validatedData['input7b'];
+        $formData->input7c = $validatedData['input7c'];
         $formData->input8 = $validatedData['input8'];
         $formData->input8a = $validatedData['input8a'];
         $formData->input8b = $validatedData['input8b'];

@@ -141,7 +141,7 @@ const Step1 = ({ formData, handleInputChange, checkboxes, handleCheckboxChange }
                                     id="yes-checkbox"
                                     type="checkbox"
                                     checked={formData.input1b}
-                                    onChange={() => handleCheckboxChange('input1b', 'input1c')} // Pass label name
+                                    onChange={() => handleCheckboxChange('input1b', 'Tak')} // Pass label name
                                     className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                 />
                                 <label
@@ -158,7 +158,7 @@ const Step1 = ({ formData, handleInputChange, checkboxes, handleCheckboxChange }
                                     id="no-checkbox"
                                     type="checkbox"
                                     checked={formData.input1c}
-                                    onChange={() => handleCheckboxChange('input1c', 'input1b')} // Pass label name
+                                    onChange={() => handleCheckboxChange('input1c', 'Nie')} // Pass label name
                                     className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                 />
                                 <label
@@ -328,6 +328,293 @@ const Step2 = ({ formData, handleInputChange, flights }) => {
 
 
 
+const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, flights, setData}) => {
+    const [allFlights, setAllFlights] = useState([]);
+    const [arrivalCode, setArrivalCode] = useState('');
+    const [airportCode, setAirportCode] = useState('');
+    const [fromLocal, setFromLocal] = useState('');
+    const [toLocal, setToLocal] = useState('');
+    const [filteredFlights, setFilteredFlights] = useState([]);
+    const [input1Suggestions, setInput1Suggestions] = useState([]);
+    const [input2Suggestions, setInput2Suggestions] = useState([]);
+    const [isFiltered, setIsFiltered] = useState(false);
+
+
+    const searchFlights = async () => {
+        const airportCodeValue = airportCode.trim().toUpperCase();
+        if (!airportCodeValue) {
+            alert('Please enter an airport code.');
+            return;
+        }
+
+        if (!fromLocal) {
+            alert('Please enter a valid From Local time.');
+            return;
+        }
+
+        const toLocalDate = new Date(new Date(fromLocal).getTime() + 4 * 60 * 60 * 1000).toISOString().replace("T", " ");
+
+        const options = {
+            method: 'GET',
+            url: `https://aerodatabox.p.rapidapi.com/flights/airports/iata/${airportCodeValue}/${fromLocal}/${toLocalDate}`,
+            params: {
+                withLeg: 'true',
+                withCancelled: 'true',
+                withCodeshared: 'true',
+                withCargo: 'true',
+                withPrivate: 'true',
+                withLocation: 'false'
+            },
+            headers: {
+                'X-RapidAPI-Key': 'c770c27e49msh2b1fbc013e048b6p1d2e15jsn4ce13446ed89',
+                'X-RapidAPI-Host': 'aerodatabox.p.rapidapi.com'
+            }
+        };
+
+        try {
+            const response = await axios.request(options);
+            setAllFlights(response.data.departures);
+            console.log("All Flights:", response.data.departures); // Log all fetched flights
+        } catch (error) {
+            console.error(error);
+            alert('An error occurred while fetching flight data. Please try again later.');
+        }
+    };
+
+    const filterArrivals = () => {
+        const arrivalCodeValue = arrivalCode.trim().toUpperCase();
+        if (!arrivalCodeValue) {
+            alert('Please enter an arrival IATA code.');
+            return;
+        }
+
+        console.log("Filtering flights to:", arrivalCodeValue); // Log the arrival IATA code being filtered
+        const filteredFlights = allFlights.filter(flight => flight.arrival && flight.arrival.airport && flight.arrival.airport.iata === arrivalCodeValue);
+        console.log("Filtered Flights:", filteredFlights); // Log the filtered flights
+
+        setFilteredFlights(filteredFlights);
+    };
+
+    const handleCheckboxChangeDynamic = (group, inputName, index) => {
+        setData((prevState) => {
+            const newState = { ...prevState };
+            // Toggle the state of the clicked checkbox
+            newState[inputName] = index;
+            // Define the checkbox groups
+            const checkboxGroups = {
+                group1: ['input1b', 'input1c'],
+                group2: ['input3', 'input3a'],
+                // Add more groups here if needed
+            };
+            // Get the relevant group of checkboxes
+            const otherInputNames = checkboxGroups[group];
+            // Set other checkboxes in the group to false
+            otherInputNames.forEach((name) => {
+                if (name !== inputName) {
+                    newState[name] = false;
+                }
+            });
+            return newState;
+        });
+    };
+
+    return (
+        <div>
+            <div className="container">
+                <div className="card p-5" style={{backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"}}>
+                    <label htmlFor="input1" className="block text-gray-700 text-sm font-bold mb-2">
+                        Dzień dobry! Sprawdźmy, czy linia lotnicza jest Ci winna odszkodowanie. Podaj miejsce docelowe
+                        podróży.
+                    </label>
+                    <div className="flex flex-col md:flex-row">
+                        <FontAwesomeIcon icon={faPlaneDeparture} className="icon p-2"/>
+                        <input
+                            placeholder="e.g. New York or JFK"
+                            type="text"
+                            id="input1"
+                            name="departureIata"
+                            value={airportCode}
+                            onChange={e => setAirportCode(e.target.value)}
+                            className="flex-1 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        />
+                        <FontAwesomeIcon icon={faCalendarDays} className="icon p-2"/>
+                        <input type="datetime-local" value={fromLocal}
+                               onChange={e => setFromLocal(e.target.value)}
+                               placeholder="Enter From Local Time"
+                               className="flex-1 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        />
+
+                    </div>
+                    <div className="suggestions">
+                        <ul>
+                            {input1Suggestions.map(airport => (
+                                <li key={airport.code} onClick={() => handleSuggestionClick1(airport.name)}>
+                                    {airport.name}
+                                </li>
+                            ))}
+                        </ul>
+                        <ul>
+                            {input2Suggestions.map(airport => (
+                                <li key={airport.code} onClick={() => handleSuggestionClick2(airport.name)}>
+                                    {airport.name}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                    <button onClick={searchFlights} className="mt-4 bg-blue-500 text-white py-2 px-4 rounded">Search</button>
+                </div>
+            </div>
+
+            {/*<h1>Flight Search</h1>*/}
+            {/*<input type="text" value={airportCode} onChange={e => setAirportCode(e.target.value)} placeholder="Enter IATA Airport Code" />*/}
+            {/*<input type="datetime-local" value={fromLocal} onChange={e => setFromLocal(e.target.value)} placeholder="Enter From Local Time" />*/}
+            {/*<button onClick={searchFlights}>Search</button>*/}
+            {/*<br /><br />*/}
+            <div className="container mt-5">
+                <div className="card p-5" style={{backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"}}>
+                    <label htmlFor="input12" className="block text-gray-700 text-sm font-bold mb-2">
+                        Czy Twój lot obejmował przesiadkę?:
+                    </label>
+                    <ul className="w-100 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                            <div className="flex items-center ps-3">
+                                <input
+                                    id="yes-checkbox"
+                                    type="checkbox"
+                                    checked={formData.input1b}
+                                    onChange={() => handleCheckboxChangeDynamic('group1', 'input1b', 'Tak')}
+                                    className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                                />
+                                <label htmlFor="yes-checkbox"
+                                       className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                                    Tak
+                                </label>
+                            </div>
+                        </li>
+                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                            <div className="flex items-center ps-3">
+                                <input
+                                    id="no-checkbox"
+                                    type="checkbox"
+                                    checked={formData.input1c}
+                                    onChange={() => handleCheckboxChangeDynamic('group1',  'input1c','Nie')}
+                                    className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                                />
+                                <label htmlFor="no-checkbox"
+                                       className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                                    Nie
+                                </label>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div className="container mt-5">
+                <div className="card p-5" style={{backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"}}>
+                    <label htmlFor="input2" className="block text-gray-700 text-sm font-bold mb-2">
+                        Podaj date wylotu
+                    </label>
+                    <div className="flex">
+
+                        <FontAwesomeIcon icon={faPlaneArrival} className="icon p-2"/>
+                        <input
+                            placeholder="e.g. London or LHR"
+                            type="text"
+                            id="input1a"
+                            name="arrivalIata"
+                            value={arrivalCode}
+                            onChange={e => setArrivalCode(e.target.value)}
+                            className="flex-1 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        />
+                    </div>
+                    {/*<button onClick={filterArrivals}>Filter Arrivals</button>*/}
+
+                </div>
+
+            </div>
+            <div className="container mt-5">
+                <div className="card p-5" style={{backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"}}>
+                    <label htmlFor="input12" className="block text-gray-700 text-sm font-bold mb-2">
+                        Następnie wybierz swój lot z listy:
+                    </label>
+
+                    <button onClick={filterArrivals} className="mt-4 bg-blue-500 text-white py-2 px-4 rounded">
+                        Filter Flights
+                    </button>
+
+                    {isFiltered && filteredFlights.length === 0 ? (
+                        <p className="mt-4">No flights found</p>
+                    ) : (
+                        <ul className="w-full">
+                            {filteredFlights.map((flight, index) => {
+                                const flightDetails = `
+            Departure Time: ${flight.departure.scheduledTime.local},
+            Airline: ${flight.airline.name},
+            Flight Number: ${flight.number}
+        `;
+                                return (
+                                    <li key={index}
+                                        className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <div className="flex items-center ps-3">
+                                            <input
+                                                id={`checkbox-${index}`}
+                                                type="checkbox"
+                                                checked={formData.input3 === flightDetails} // Check if the current flight details match the value in formData.input3
+                                                onChange={() => handleCheckboxChangeDynamic('group2', 'input3', flightDetails, true)}
+                                                className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                                            />
+                                            <div
+                                                className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                                                <p><strong>Departure
+                                                    Time:</strong> {flight.departure.scheduledTime.local}</p>
+                                                <p><strong>Airline:</strong> {flight.airline.name}</p>
+                                                <p><strong>Flight Number:</strong> {flight.number}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    )}
+
+                    <ul className="w-full">
+                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                            <div className="flex items-center ps-3">
+                                <input
+                                    id="no-checkbox"
+                                    type="checkbox"
+                                    checked={formData.input3a}
+                                    // onChange={() => handleCheckboxChangeDynamic('group2', 'input3', 'Nie mogę znaleźć swojego lotu')}
+
+                                    onChange={() => handleCheckboxChangeDynamic('group2', 'input3a', 'Nie mogę znaleźć swojego lotu')}
+                                    className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                                />
+                                <label htmlFor="no-checkbox"
+                                       className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                                    Nie mogę znaleźć swojego lotu
+                                </label>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            {/*<input type="text" value={arrivalCode} onChange={e => setArrivalCode(e.target.value)}*/}
+            {/*       placeholder="Enter Arrival IATA Code"/>*/}
+            {/*<button onClick={filterArrivals}>Filter Arrivals</button>*/}
+            {/*<ul>*/}
+            {/*    {filteredFlights.map((flight, index) => (*/}
+            {/*        <li key={index}>*/}
+            {/*            Scheduled Time: {flight.departure.scheduledTime.local} - Airline Name: {flight.airline.name} -*/}
+            {/*            Flight Number: {flight.number}*/}
+            {/*        </li>*/}
+            {/*    ))}*/}
+            {/*</ul>*/}
+        </div>
+    );
+};
+
+
 // const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, flights }) => {
 //     const [departureIata, setDepartureIata] = useState('');
 //     const [arrivalIata, setArrivalIata] = useState('');
@@ -451,12 +738,13 @@ const Step2 = ({ formData, handleInputChange, flights }) => {
 //     return (
 //         <div>
 //             <div className="container">
-//                 <div className="card p-5" style={{ backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F" }}>
+//                 <div className="card p-5" style={{backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"}}>
 //                     <label htmlFor="input1" className="block text-gray-700 text-sm font-bold mb-2">
-//                         Dzień dobry! Sprawdźmy, czy linia lotnicza jest Ci winna odszkodowanie. Podaj miejsce docelowe podróży.
+//                         Dzień dobry! Sprawdźmy, czy linia lotnicza jest Ci winna odszkodowanie. Podaj miejsce docelowe
+//                         podróży.
 //                     </label>
 //                     <div className="flex flex-col md:flex-row">
-//                         <FontAwesomeIcon icon={faPlaneDeparture} className="icon p-2" />
+//                         <FontAwesomeIcon icon={faPlaneDeparture} className="icon p-2"/>
 //                         <input
 //                             placeholder="e.g. New York or JFK"
 //                             type="text"
@@ -466,10 +754,10 @@ const Step2 = ({ formData, handleInputChange, flights }) => {
 //                             onChange={handleInputChange1}
 //                             className="flex-1 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
 //                         />
-//                         <FontAwesomeIcon icon={faCalendarDays} className="icon p-2" />
+//                         <FontAwesomeIcon icon={faCalendarDays} className="icon p-2"/>
 //                         <DatePicker
 //                             selected={departureDate}
-//                             onChange={date => handleInputChange3({ target: { name: 'input2', value: date } })}
+//                             onChange={date => handleInputChange3({target: {name: 'input2', value: date}})}
 //                             dateFormat="MM/dd/yyyy"
 //                             placeholderText="Wybierz date"
 //                             className="date-picker flex-1 mr-2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -491,6 +779,7 @@ const Step2 = ({ formData, handleInputChange, flights }) => {
 //                             ))}
 //                         </ul>
 //                     </div>
+//                     <button onClick={searchFlights}>Search</button>
 //                 </div>
 //             </div>
 //             <div className="container mt-5">
@@ -636,6 +925,8 @@ const Step4 = ({ formData, handleInputChange }) => {
         setSuggestions([]); // Clear suggestions
     };
 
+
+
     return (
 
     <div>
@@ -679,7 +970,7 @@ const Step4 = ({ formData, handleInputChange }) => {
     </div>
 );};
 
-const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange}) => {
+const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, setData}) => {
     const [input5, setInput5] = useState(false);
     const [input5a, setInput5a] = useState(false);
     const [input5b, setInput5b] = useState(false);
@@ -691,6 +982,30 @@ const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange}) 
     const [input5h, setInput5h] = useState(false);
     const [yesChecked, setYesChecked] = useState(false);
     const [noChecked, setNoChecked] = useState(false);
+
+    const handleCheckboxChangeDynamic = (group, inputName, index) => {
+        setData((prevState) => {
+            const newState = { ...prevState };
+            // Toggle the state of the clicked checkbox
+            newState[inputName] = index;
+            // Define the checkbox groups
+            const checkboxGroups = {
+                group1: ['input5', 'input5a', 'input5b'],
+                group2: ['input5c', 'input5d', 'input5e', 'input5f', 'input5g', 'input5h'],
+                group3: ['input5i', 'input5j']
+                // Add more groups here if needed
+            };
+            // Get the relevant group of checkboxes
+            const otherInputNames = checkboxGroups[group];
+            // Set other checkboxes in the group to false
+            otherInputNames.forEach((name) => {
+                if (name !== inputName) {
+                    newState[name] = false;
+                }
+            });
+            return newState;
+        });
+    };
 
     return (
         <div>
@@ -707,7 +1022,7 @@ const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange}) 
                                 id="input5"
                                 type="checkbox"
                                 checked={formData.input5}
-                                onChange={() => handleCheckboxChange('input5', 'input5a', 'input5b')}
+                                onChange={() => handleCheckboxChangeDynamic('group1', 'input5','Mój lot został opóźniony')}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
                             <label
@@ -724,7 +1039,7 @@ const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange}) 
                                 id="input5a"
                                 type="checkbox"
                                 checked={formData.input5a}
-                                onChange={() => handleCheckboxChange('input5a', 'input5', 'input5b')}
+                                onChange={() => handleCheckboxChangeDynamic('group1', 'input5a', 'Mój lot został odwołany')}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
                             <label
@@ -741,7 +1056,7 @@ const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange}) 
                                 id="input5b"
                                 type="checkbox"
                                 checked={formData.input5b}
-                                onChange={() => handleCheckboxChange('input5b', 'input5', 'input5a')}
+                                onChange={() => handleCheckboxChangeDynamic('group1', 'input5b','Odmówiono mi wejścia na pokład')}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
                             <label
@@ -768,7 +1083,7 @@ const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange}) 
                                 id="input5b"
                                 type="checkbox"
                                 checked={formData.input5c}
-                                onChange={() => handleCheckboxChange('input5c', 'input5d', 'input5e', 'input5f', 'input5g', 'input5h')}
+                                onChange={() => handleCheckboxChangeDynamic('group2', 'input5c','0-1 godz')}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
                             <label
@@ -785,7 +1100,7 @@ const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange}) 
                                 id="input5d"
                                 type="checkbox"
                                 checked={formData.input5d}
-                                onChange={() => handleCheckboxChange('input5d', 'input5c', 'input5e', 'input5f', 'input5g', 'input5h')}
+                                onChange={() => handleCheckboxChangeDynamic('group2', 'input5d', '1-2 godz')}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
                             <label
@@ -802,7 +1117,7 @@ const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange}) 
                                 id="input5e"
                                 type="checkbox"
                                 checked={formData.input5e}
-                                onChange={() => handleCheckboxChange('input5e', 'input5d', 'input5c', 'input5f', 'input5g', 'input5h')}
+                                onChange={() => handleCheckboxChangeDynamic('group2', 'input5e','2-3 godz')}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
                             <label
@@ -819,7 +1134,7 @@ const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange}) 
                                 id="input5f"
                                 type="checkbox"
                                 checked={formData.input5f}
-                                onChange={() => handleCheckboxChange('input5f', 'input5d', 'input5e', 'input5c', 'input5g', 'input5h')}
+                                onChange={() => handleCheckboxChangeDynamic('group2', 'input5f','3-4 godz')}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
                             <label
@@ -836,7 +1151,7 @@ const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange}) 
                                 id="input5g"
                                 type="checkbox"
                                 checked={formData.input5g}
-                                onChange={() => handleCheckboxChange('input5g', 'input5d', 'input5e', 'input5f', 'input5c', 'input5h')}
+                                onChange={() => handleCheckboxChangeDynamic('group2', 'input5g','Ponad 4 godziny')}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
                             <label
@@ -853,7 +1168,7 @@ const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange}) 
                                 id="input5h"
                                 type="checkbox"
                                 checked={formData.input5h}
-                                onChange={() => handleCheckboxChange('input5h', 'input5d', 'input5e', 'input5f', 'input5g', 'input5c')}
+                                onChange={() => handleCheckboxChangeDynamic('group2', 'input5h','Nie dotarłem (-am) na miejsce')}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
                             <label
@@ -882,7 +1197,7 @@ const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange}) 
                                 type="checkbox"
 
                                 checked={formData.input5i}
-                                onChange={() => handleCheckboxChange('input5i', 'input5j')}
+                                onChange={() => handleCheckboxChangeDynamic('group3', 'input5i','Tak')}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
                             <label
@@ -899,7 +1214,7 @@ const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange}) 
                                 id="no-checkbox"
                                 type="checkbox"
                                 checked={formData.input5j}
-                                onChange={() => handleCheckboxChange('input5j', 'input5i')}
+                                onChange={() => handleCheckboxChangeDynamic('group3', 'input5j','Nie')}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
                             <label
@@ -918,10 +1233,32 @@ const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange}) 
 };
 
 
-const Step6 = ({formData, handleInputChange, checkboxes, handleCheckboxChange}) => {
+const Step6 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, setData}) => {
     const [input6c, setInput6c] = useState(false);
     const [input6d, setInput6d] = useState(false);
     const [input6e, setInput6e] = useState(false);
+
+    const handleCheckboxChangeDynamic = (group, inputName, index) => {
+        setData((prevState) => {
+            const newState = { ...prevState };
+            // Toggle the state of the clicked checkbox
+            newState[inputName] = index;
+            // Define the checkbox groups
+            const checkboxGroups = {
+                group1: ['input6c', 'input6d', 'input6e']
+                // Add more groups here if needed
+            };
+            // Get the relevant group of checkboxes
+            const otherInputNames = checkboxGroups[group];
+            // Set other checkboxes in the group to false
+            otherInputNames.forEach((name) => {
+                if (name !== inputName) {
+                    newState[name] = false;
+                }
+            });
+            return newState;
+        });
+    };
 
     return (
         <div>
@@ -959,7 +1296,7 @@ const Step6 = ({formData, handleInputChange, checkboxes, handleCheckboxChange}) 
                                     id="input6c"
                                     type="checkbox"
                                     checked={formData.input6c}
-                                    onChange={() => handleCheckboxChange('input6c', 'input6d', 'input6e')}
+                                    onChange={() => handleCheckboxChangeDynamic('group1', 'input6c', 'Zaznacz wszystkie zgody')}
                                     className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                 />
                                 <label
@@ -976,7 +1313,7 @@ const Step6 = ({formData, handleInputChange, checkboxes, handleCheckboxChange}) 
                                     id="input6d"
                                     type="checkbox"
                                     checked={formData.input6d}
-                                    onChange={() => handleCheckboxChange('input6d', 'input6c', 'input6e')}
+                                    onChange={() => handleCheckboxChangeDynamic('group1', 'input6d','Zgoda 1')}
                                     className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                 />
                                 <label
@@ -993,7 +1330,7 @@ const Step6 = ({formData, handleInputChange, checkboxes, handleCheckboxChange}) 
                                     id="input6e"
                                     type="checkbox"
                                     checked={formData.input6e}
-                                    onChange={() => handleCheckboxChange('input6e', 'input6d', 'input6c')}
+                                    onChange={() => handleCheckboxChangeDynamic('group1', 'input6e','Zgoda 2')}
                                     className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                 />
                                 <label
@@ -1012,9 +1349,31 @@ const Step6 = ({formData, handleInputChange, checkboxes, handleCheckboxChange}) 
         ;
 };
 
-const Step7 = ({formData, handleInputChange, checkboxes, handleCheckboxChange}) => {
+const Step7 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, setData}) => {
     const [yesChecked, setYesChecked] = useState(false);
     const [noChecked, setNoChecked] = useState(false);
+
+    const handleCheckboxChangeDynamic = (group, inputName, index) => {
+        setData((prevState) => {
+            const newState = { ...prevState };
+            // Toggle the state of the clicked checkbox
+            newState[inputName] = index;
+            // Define the checkbox groups
+            const checkboxGroups = {
+                group1: ['input7a', 'input7b']
+                // Add more groups here if needed
+            };
+            // Get the relevant group of checkboxes
+            const otherInputNames = checkboxGroups[group];
+            // Set other checkboxes in the group to false
+            otherInputNames.forEach((name) => {
+                if (name !== inputName) {
+                    newState[name] = false;
+                }
+            });
+            return newState;
+        });
+    };
 
     return (
         <div>
@@ -1042,7 +1401,7 @@ const Step7 = ({formData, handleInputChange, checkboxes, handleCheckboxChange}) 
                                     type="checkbox"
 
                                     checked={formData.input7a}
-                                    onChange={() => handleCheckboxChange('input7a', 'input7b')}
+                                    onChange={() => handleCheckboxChangeDynamic('group1', 'input7a','Tak, ktoś ze mną podróżował')}
                                     className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                 />
                                 <label
@@ -1059,7 +1418,7 @@ const Step7 = ({formData, handleInputChange, checkboxes, handleCheckboxChange}) 
                                     id="no-checkbox"
                                     type="checkbox"
                                     checked={formData.input7b}
-                                    onChange={() => handleCheckboxChange('input7b', 'input7a')}
+                                    onChange={() => handleCheckboxChangeDynamic('group1', 'input7b','Nie, nikt ze mną nie podróżował')}
                                     className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                 />
                                 <label
@@ -1077,16 +1436,16 @@ const Step7 = ({formData, handleInputChange, checkboxes, handleCheckboxChange}) 
             <div className="card p-5" style={{
                 backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"
             }}>
-                <label htmlFor="input7c" className="block text-gray-700 text-sm font-bold mb-2">Pasażer 2</label>
-                <input type="text" id="input7c" placeholder="Imię" name="input7c" value={formData.input7c}
+                <label htmlFor="input7c" className="block text-gray-700 text-sm font-bold mb-2">Pełne imiona pozostałych pasażerów</label>
+                <textarea id="input7c" placeholder="Imię Nazwisko, ..." name="input7c" value={formData.input7c}
                        onChange={handleInputChange}
                        className="mb-2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
-                <input type="text" id="input7d" placeholder="Nazwisko" name="input7d" value={formData.input7d}
-                       onChange={handleInputChange}
-                       className="mb-2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
-                <input type="text" id="input7e" placeholder="Adres Email" name="input7e" value={formData.input7e}
-                       onChange={handleInputChange}
-                       className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+                {/*<input type="text" id="input7d" placeholder="Nazwisko" name="input7d" value={formData.input7d}*/}
+                {/*       onChange={handleInputChange}*/}
+                {/*       className="mb-2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>*/}
+                {/*<input type="text" id="input7e" placeholder="Adres Email" name="input7e" value={formData.input7e}*/}
+                {/*       onChange={handleInputChange}*/}
+                {/*       className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>*/}
 
             </div>
         </div>
@@ -1356,7 +1715,7 @@ const MultiStepForm = () => {
     };
 
 
-    const handleCheckboxChange = (inputName1, inputName2, inputName3, inputName4, inputName5, inputName6, inputName7, inputName8, inputName9, inputName10) => {
+    const handleCheckboxChange = (inputName1, inputName2, inputName3, inputName4, inputName5, inputName6, inputName7, inputName8, inputName9, inputName10, text = '') => {
         setData((prevState) => {
             const newState = {
                 ...prevState,
@@ -1369,11 +1728,39 @@ const MultiStepForm = () => {
                 [inputName7]: false,
                 [inputName8]: false,
                 [inputName9]: false,
-                [inputName10]: false
+                [inputName10]: false,
+                text: text
             };
+
+            // Only set the text if the checkbox is being checked
+            if (!prevState[inputName1]) {
+                newState.text = text;
+            } else {
+                newState.text = ''; // Clear text if the checkbox is being unchecked
+            }
+
             return newState;
         });
     };
+
+
+
+    // const handleCheckboxChange = (inputName, index) => {
+    //     setData((prevState) => {
+    //         // Create a new state object
+    //         const newState = { ...prevState };
+    //         // Toggle the state of the clicked checkbox
+    //         newState[inputName] = index;
+    //         // Set other checkboxes to false
+    //         const otherInputNames = ['input1', 'input2', 'input3', 'input4', 'input5', 'input6', 'input7', 'input8', 'input9', 'input10'];
+    //         otherInputNames.forEach((name) => {
+    //             if (name !== inputName) {
+    //                 newState[name] = false;
+    //             }
+    //         });
+    //         return newState;
+    //     });
+    // };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -1414,11 +1801,11 @@ const MultiStepForm = () => {
                     return false;
                 }
 
-                if (!data.input2) {
-                    console.log("Please fill out input2");
-                    setStep1Valid(false); // Set Step 1 validation status to false
-                    return false;
-                }
+                // if (!data.input2) {
+                //     console.log("Please fill out input2");
+                //     setStep1Valid(false); // Set Step 1 validation status to false
+                //     return false;
+                // }
 
                 // Check if either input1b or input1c is selected, but not both
                 if ((data.input3 && data.input3a) || (!data.input3a && !data.input3)) {
@@ -1546,7 +1933,7 @@ const MultiStepForm = () => {
         const CurrentStepComponent = steps[stepNumber - 1];
         return (
             <div className="container" style={{flexWrap: "wrap"}}>
-                <CurrentStepComponent formData={data} handleInputChange={handleInputChange} handleCheckboxChange={handleCheckboxChange} flights={sampleFlight} />
+                <CurrentStepComponent formData={data} handleInputChange={handleInputChange} handleCheckboxChange={handleCheckboxChange} flights={sampleFlight} setData={setData} />
                 {stepNumber === 1 && !step1Valid && (
                     <p className="text-red-500">Wypełnij brakujące pola</p>
                 )}
