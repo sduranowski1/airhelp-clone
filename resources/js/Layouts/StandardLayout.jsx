@@ -24,7 +24,7 @@ export default function Standard({ user, header, children }) {
 
                             <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                 <NavLink href={route('home')} active={route().current('home')}>
-                                    Home
+                                    Strona główna
                                 </NavLink>
                             </div>
 
@@ -55,7 +55,7 @@ export default function Standard({ user, header, children }) {
                                                 type="button"
                                                 className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
                                             >
-                                                {/*{user.name}*/}Log In / Register
+                                                {/*{user.name}*/}Zaloguj / Rejestracja
 
                                                 <svg
                                                     className="ms-2 -me-0.5 h-4 w-4"
@@ -74,8 +74,8 @@ export default function Standard({ user, header, children }) {
                                     </Dropdown.Trigger>
 
                                     <Dropdown.Content>
-                                        <Dropdown.Link href={route('login')}>Log In</Dropdown.Link>
-                                        <Dropdown.Link href={route('register')}>Register</Dropdown.Link>
+                                        <Dropdown.Link href={route('login')}>Zaloguj</Dropdown.Link>
+                                        <Dropdown.Link href={route('register')}>Rejestracja</Dropdown.Link>
                                         {/*<Dropdown.Link href={route('logout')} method="post" as="button">*/}
                                         {/*    Log Out*/}
                                         {/*</Dropdown.Link>*/}
@@ -113,7 +113,7 @@ export default function Standard({ user, header, children }) {
                 <div className={(showingNavigationDropdown ? 'block' : 'hidden') + ' sm:hidden'}>
 
                     <ResponsiveNavLink href={route('home')} active={route().current('home')}>
-                        Home
+                        Strona główna
                     </ResponsiveNavLink>
 
                     <div className="pt-4 pb-1 border-t border-gray-200">
@@ -123,9 +123,9 @@ export default function Standard({ user, header, children }) {
                         </div>
 
                         <div className="mt-3 space-y-1">
-                            <ResponsiveNavLink href={route('login')}>Log In</ResponsiveNavLink>
+                            <ResponsiveNavLink href={route('login')}>Zaloguj</ResponsiveNavLink>
                             <ResponsiveNavLink href={route('register')}>
-                                Register
+                                Rejestracja
                             </ResponsiveNavLink>
                         </div>
                     </div>

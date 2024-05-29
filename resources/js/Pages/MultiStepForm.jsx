@@ -2,7 +2,7 @@ import {useEffect, useRef, useState} from 'react';
 import "/resources/css/styles.css";
 import axios from 'axios';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCalendarDays, faPlaneArrival, faPlaneDeparture, faWallet} from '@fortawesome/free-solid-svg-icons';
+import {faCalendarDays, faPencil, faPlaneArrival, faPlaneDeparture, faWallet} from '@fortawesome/free-solid-svg-icons';
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
 import SignatureCanvas from "react-signature-canvas/src";
@@ -13,6 +13,7 @@ import SignaturePad from 'react-signature-canvas'; // Assuming you're using this
 
 
 import airlinesData from './airlinesData'; // Importing the airlines data
+import airportsData from './airports.js';
 
 const Step1 = ({ formData, handleInputChange, checkboxes, handleCheckboxChange }) => {
     const [airportData, setAirportData] = useState([]); // State to store airport data
@@ -339,6 +340,13 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
     const [input2Suggestions, setInput2Suggestions] = useState([]);
     const [isFiltered, setIsFiltered] = useState(false);
 
+    const [inputText, setInputText] = useState('');
+    const [departureSuggestions, setDepartureSuggestions] = useState([]);
+    const [arrivalSuggestions, setArrivalSuggestions] = useState([]);
+    const [isVisible, setIsVisible] = useState(false);
+
+
+
 
     const searchFlights = async () => {
         const airportCodeValue = airportCode.trim().toUpperCase();
@@ -352,7 +360,7 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
             return;
         }
 
-        const toLocalDate = new Date(new Date(fromLocal).getTime() + 4 * 60 * 60 * 1000).toISOString().replace("T", " ");
+        const toLocalDate = new Date(new Date(fromLocal).getTime() + 12 * 60 * 60 * 1000).toISOString().replace("T", " ");
 
         const options = {
             method: 'GET',
@@ -375,6 +383,8 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
             const response = await axios.request(options);
             setAllFlights(response.data.departures);
             console.log("All Flights:", response.data.departures); // Log all fetched flights
+
+            setIsVisible(true);
         } catch (error) {
             console.error(error);
             alert('An error occurred while fetching flight data. Please try again later.');
@@ -393,6 +403,9 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
         console.log("Filtered Flights:", filteredFlights); // Log the filtered flights
 
         setFilteredFlights(filteredFlights);
+
+        // Set isFiltered based on whether filteredFlights is empty or not
+        setIsFiltered(filteredFlights.length === 0 || filteredFlights.length === undefined);
     };
 
     const handleCheckboxChangeDynamic = (group, inputName, index) => {
@@ -418,6 +431,66 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
         });
     };
 
+    const handleLocalInputChange = (e) => {
+        const { value } = e.target;
+        setInputText(value);
+        handleInputChange(e); // Call the parent's handleInputChange
+        // Filter airlines based on input text
+        const filteredAirlines = airlinesData.filter((airline) =>
+            airline.name.toLowerCase().includes(value.toLowerCase())
+        );
+        // Limit suggestions to 5
+        setSuggestions(filteredAirlines.slice(0, 5));
+    };
+
+    // Function to handle suggestion selection
+    const handleAirportCodeChange = (e) => {
+        const { name, value } = e.target;
+        if (name === 'departureIata') {
+            setAirportCode(value);
+            setData((prevState) => ({ ...prevState, input1: value })); // Update formData.input1
+
+            handleInputChange(e);
+
+            const filteredAirports = airportsData.filter((airport) =>
+                airport.name.toLowerCase().includes(value.toLowerCase()) ||
+                airport.city.toLowerCase().includes(value.toLowerCase()) ||
+                airport.iata_code.toLowerCase().includes(value.toLowerCase())
+            );
+            setDepartureSuggestions(filteredAirports.slice(0, 5));
+        } else if (name === 'arrivalIata') {
+            setArrivalCode(value);
+            setData((prevState) => ({ ...prevState, input1a: value })); // Update formData.input1a
+
+            handleInputChange(e);
+
+            const filteredAirports = airportsData.filter((airport) =>
+                airport.name.toLowerCase().includes(value.toLowerCase()) ||
+                airport.city.toLowerCase().includes(value.toLowerCase()) ||
+                airport.iata_code.toLowerCase().includes(value.toLowerCase())
+            );
+            setArrivalSuggestions(filteredAirports.slice(0, 5));
+        }
+    };
+
+    const handleSuggestionClick = (suggestion, type) => {
+        if (type === 'departure') {
+            setAirportCode(suggestion.iata_code);
+            setData((prevState) => ({ ...prevState, input1: suggestion.iata_code })); // Update formData.input1
+
+            setDepartureSuggestions([]);
+            const event = { target: { name: 'departureIata', value: suggestion.iata_code } };
+            handleInputChange(event);
+        } else if (type === 'arrival') {
+            setArrivalCode(suggestion.iata_code);
+            setData((prevState) => ({ ...prevState, input1a: suggestion.iata_code })); // Update formData.input1a
+
+            setArrivalSuggestions([]);
+            const event = { target: { name: 'arrivalIata', value: suggestion.iata_code } };
+            handleInputChange(event);
+        }
+    };
+
     return (
         <div>
             <div className="container">
@@ -433,10 +506,22 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
                             type="text"
                             id="input1"
                             name="departureIata"
-                            value={airportCode}
-                            onChange={e => setAirportCode(e.target.value)}
+                            value={airportCode}                            onChange={handleAirportCodeChange}
                             className="flex-1 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         />
+                        {departureSuggestions.length > 0 && (
+                            <ul className="absolute bg-white border border-gray-300 w-full mt-5 max-h-40 overflow-y-auto z-10">
+                                {departureSuggestions.map((airport) => (
+                                    <li
+                                        key={airport.iata_code}
+                                        onClick={() => handleSuggestionClick(airport, 'departure')}
+                                        className="p-2 hover:bg-gray-200 cursor-pointer"
+                                    >
+                                        {airport.name} ({airport.iata_code})
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
                         <FontAwesomeIcon icon={faCalendarDays} className="icon p-2"/>
                         <input type="datetime-local" value={fromLocal}
                                onChange={e => setFromLocal(e.target.value)}
@@ -445,23 +530,8 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
                         />
 
                     </div>
-                    <div className="suggestions">
-                        <ul>
-                            {input1Suggestions.map(airport => (
-                                <li key={airport.code} onClick={() => handleSuggestionClick1(airport.name)}>
-                                    {airport.name}
-                                </li>
-                            ))}
-                        </ul>
-                        <ul>
-                            {input2Suggestions.map(airport => (
-                                <li key={airport.code} onClick={() => handleSuggestionClick2(airport.name)}>
-                                    {airport.name}
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                    <button onClick={searchFlights} className="mt-4 bg-blue-500 text-white py-2 px-4 rounded">Search</button>
+
+                    <button onClick={searchFlights} className="mt-4 bg-blue-500 text-white py-2 px-4 rounded">Wyślij żądanie</button>
                 </div>
             </div>
 
@@ -470,6 +540,7 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
             {/*<input type="datetime-local" value={fromLocal} onChange={e => setFromLocal(e.target.value)} placeholder="Enter From Local Time" />*/}
             {/*<button onClick={searchFlights}>Search</button>*/}
             {/*<br /><br />*/}
+            {isVisible && (
             <div className="container mt-5">
                 <div className="card p-5" style={{backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"}}>
                     <label htmlFor="input12" className="block text-gray-700 text-sm font-bold mb-2">
@@ -509,6 +580,8 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
                     </ul>
                 </div>
             </div>
+            )}
+            {isVisible && (
             <div className="container mt-5">
                 <div className="card p-5" style={{backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"}}>
                     <label htmlFor="input2" className="block text-gray-700 text-sm font-bold mb-2">
@@ -523,15 +596,30 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
                             id="input1a"
                             name="arrivalIata"
                             value={arrivalCode}
-                            onChange={e => setArrivalCode(e.target.value)}
+                            onChange={handleAirportCodeChange}
                             className="flex-1 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         />
+                        {arrivalSuggestions.length > 0 && (
+                            <ul className="absolute bg-white border border-gray-300 w-full mt-5 max-h-40 overflow-y-auto z-10">
+                                {arrivalSuggestions.map((airport) => (
+                                    <li
+                                        key={airport.iata_code}
+                                        onClick={() => handleSuggestionClick(airport, 'arrival')}
+                                        className="p-2 hover:bg-gray-200 cursor-pointer"
+                                    >
+                                        {airport.name} ({airport.iata_code})
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
                     </div>
                     {/*<button onClick={filterArrivals}>Filter Arrivals</button>*/}
 
                 </div>
 
             </div>
+                )}
+            {isVisible && (
             <div className="container mt-5">
                 <div className="card p-5" style={{backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"}}>
                     <label htmlFor="input12" className="block text-gray-700 text-sm font-bold mb-2">
@@ -539,7 +627,7 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
                     </label>
 
                     <button onClick={filterArrivals} className="mt-4 bg-blue-500 text-white py-2 px-4 rounded">
-                        Filter Flights
+                        Filtruj
                     </button>
 
                     {isFiltered && filteredFlights.length === 0 ? (
@@ -548,9 +636,11 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
                         <ul className="w-full">
                             {filteredFlights.map((flight, index) => {
                                 const flightDetails = `
-            Departure Time: ${flight.departure.scheduledTime.local},
-            Airline: ${flight.airline.name},
-            Flight Number: ${flight.number}
+            Wylot: ${airportCode},
+            Przylot: ${arrivalCode},
+            Czas wylotu: ${flight.departure.scheduledTime.local},
+            Linia lotnicza: ${flight.airline.name},
+            Numer lotu: ${flight.number}
         `;
                                 return (
                                     <li key={index}
@@ -565,10 +655,9 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
                                             />
                                             <div
                                                 className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-                                                <p><strong>Departure
-                                                    Time:</strong> {flight.departure.scheduledTime.local}</p>
-                                                <p><strong>Airline:</strong> {flight.airline.name}</p>
-                                                <p><strong>Flight Number:</strong> {flight.number}</p>
+                                                <p><strong>Czas odlotu :</strong> {flight.departure.scheduledTime.local}</p>
+                                                <p><strong>Linia lotnicza:</strong> {flight.airline.name}</p>
+                                                <p><strong>Nr lotu:</strong> {flight.number}</p>
                                             </div>
                                         </div>
                                     </li>
@@ -598,6 +687,7 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
                     </ul>
                 </div>
             </div>
+            )}
 
             {/*<input type="text" value={arrivalCode} onChange={e => setArrivalCode(e.target.value)}*/}
             {/*       placeholder="Enter Arrival IATA Code"/>*/}
@@ -961,7 +1051,7 @@ const Step4 = ({ formData, handleInputChange }) => {
                         selected={formData.input4b}
                         onChange={date => handleInputChange({target: {name: 'input4b', value: date}})}
                         dateFormat="MM/dd/yyyy" // You can customize the date format
-                        placeholderText="Pick date"
+                        placeholderText="Wybierz date"
                         className="date-picker flex-1 mr-2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     />
                 </div>
@@ -1511,7 +1601,8 @@ const Step9 = ({formData, handleInputChange}) => (
     </div>
 );
 
-const Step10 = ({ formData, handleInputChange }) => {
+const Step10 = ({ formData, handleInputChange, setData }) => {
+    const [discountValidation, setDiscountValidation] = useState(null);
     const signatureRef = useRef(null);
 
     // Function to clear the signature pad
@@ -1544,12 +1635,34 @@ const Step10 = ({ formData, handleInputChange }) => {
         //   });
     };
 
+    const validateDiscountCode = () => {
+        axios.post(route('multistep.validateDiscount'), { input10: formData.input10 }) // Changed to input10
+            .then(response => {
+                setDiscountValidation(response.data);
+                if (!response.data.valid) {
+                    setData('input10', ''); // Clear the input if the code is invalid
+                }
+            })
+            .catch(error => {
+                console.error('Error validating discount code:', error);
+                setDiscountValidation({ valid: false, message: 'Error validating discount code' });
+                setData('input10', ''); // Clear the input if there is an error
+            });
+    };
+
+    const handleDiscountCodeChange = (e) => {
+        const code = e.target.value;
+        validateDiscountCode(code);
+    };
+
     return (
         <div>
             <div className="container">
-                <div className="card p-5" style={{ backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F" }}>
-                    <label htmlFor="input10" className="block text-gray-700 text-sm font-bold mb-2">Dobre wieści! Wygląda na
-                        to, że możliwe jest uzyskanie do 600 € na osobę na podstawie europejskiego rozporządzenia WE 261.
+                <div className="card p-5" style={{backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"}}>
+                    <label htmlFor="input10" className="block text-gray-700 text-sm font-bold mb-2">Dobre wieści!
+                        Wygląda na
+                        to, że możliwe jest uzyskanie do 600 € na osobę na podstawie europejskiego rozporządzenia WE
+                        261.
                         Aby uzyskać pieniądze, które Ci się należą, złóż podpis poniżej.</label>
                     {/* Signature Pad */}
                     <div>
@@ -1559,100 +1672,38 @@ const Step10 = ({ formData, handleInputChange }) => {
                         {/*/>*/}
                     </div>
                     {/* End Signature Pad */}
+                    <input type="text" placeholder="Podaj kod rabatowy"
+                           id="input10" name="input10" value={formData.input10} onChange={handleInputChange}
+                           onBlur={handleDiscountCodeChange}
+                           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+                    <button onClick={handleDiscountCodeChange} className="btn btn-primary mt-2">Sprawdź kod
+                    </button>
+                    {discountValidation && (
+                        <p className={discountValidation.valid ? 'text-green-500' : 'text-red-500'}>
+                            {discountValidation.message}
+                        </p>
+                    )}
                     <div>
-                        <SignaturePad ref={signatureRef} />
-                        <button className="bg-white rounded-sm mr-2" onClick={clearSignature}>Clear</button>
-                        <button className="bg-white rounded-sm mr-2" onClick={saveSignature}>Save</button>
+                        <div className="signature-container mt-3">
+                            <SignaturePad ref={signatureRef}/>
+                            <div className="pen-icon">
+                                <FontAwesomeIcon icon={faPencil}/>
+                            </div>
+                        </div>
+                        <button className="bg-white rounded-sm mr-2" onClick={clearSignature}>Od nowa</button>
+                        <button className="bg-white rounded-sm mr-2" onClick={saveSignature}>Zapisz</button>
                     </div>
                     {/*/!* Display the saved signature *!/*/}
                     {/*{signature && (*/}
                     {/*    <img src={signature} alt="Saved Signature" />*/}
                     {/*)}*/}
-                    <input type="text" id="input10" name="input10" value={formData.input10} onChange={handleInputChange}
-                           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+
                 </div>
             </div>
         </div>
     );
 };
 
-const sampleFlight = [
-    {
-        departure: {
-            scheduledTime: {
-                utc: "2024-05-21 12:10Z",
-                local: "2024-05-21 08:10-04:00"
-            },
-            revisedTime: {
-                utc: "2024-05-21 18:45Z",
-                local: "2024-05-21 14:45-04:00"
-            },
-            terminal: "1",
-            gate: "D28",
-            quality: ["Basic", "Live"]
-        },
-        arrival: {
-            airport: {
-                icao: "CYQG",
-                iata: "YQG",
-                name: "Windsor"
-            },
-            quality: []
-        },
-        number: "AC 2353",
-        status: "Delayed",
-        codeshareStatus: "IsOperator",
-        isCargo: false,
-        airline: {
-            name: "Air Canada",
-            iata: "AC",
-            icao: "ACA"
-        }
-    },
-    {
-        departure: {
-            scheduledTime: {
-                utc: "2024-05-21 12:30Z",
-                local: "2024-05-21 08:30-04:00"
-            },
-            revisedTime: {
-                utc: "2024-05-21 14:20Z",
-                local: "2024-05-21 10:20-04:00"
-            },
-            runwayTime: {
-                utc: "2024-05-21 14:32Z",
-                local: "2024-05-21 10:32-04:00"
-            },
-            terminal: "1",
-            gate: "D7",
-            quality: ["Basic", "Live"]
-        },
-        arrival: {
-            airport: {
-                icao: "CYXU",
-                iata: "YXU",
-                name: "London"
-            },
-            quality: []
-        },
-        number: "AC 8251",
-        callSign: "ACA8251",
-        status: "Departed",
-        codeshareStatus: "IsOperator",
-        isCargo: false,
-        aircraft: {
-            reg: "C-GGFP",
-            modeS: "C05512",
-            model: "De Havilland Canada DHC-8-400 Dash 8Q"
-        },
-        airline: {
-            name: "Air Canada",
-            iata: "AC",
-            icao: "ACA"
-        }
-    },
-    // Add other flight records here
-];
 
 const MultiStepForm = () => {
     const [step, setStep] = useState(1);
@@ -1887,12 +1938,12 @@ const MultiStepForm = () => {
                     return false;
                 }
 
-                // Check if either input1b or input1c is selected, but not both
-                if (!data.input7c || !data.input7d || !data.input7e) {
-                    console.log("Please fill out input1 and input1a");
-                    setStep1Valid(false); // Set Step 1 validation status to false
-                    return false;
-                }
+                // // Check if either input1b or input1c is selected, but not both
+                // if (!data.input7c) {
+                //     console.log("Please fill out input1 and input1a");
+                //     setStep1Valid(false); // Set Step 1 validation status to false
+                //     return false;
+                // }
 
                 setStep1Valid(true); // Set Step 1 validation status to true if validation passes
                 break;
@@ -1933,7 +1984,7 @@ const MultiStepForm = () => {
         const CurrentStepComponent = steps[stepNumber - 1];
         return (
             <div className="container" style={{flexWrap: "wrap"}}>
-                <CurrentStepComponent formData={data} handleInputChange={handleInputChange} handleCheckboxChange={handleCheckboxChange} flights={sampleFlight} setData={setData} />
+                <CurrentStepComponent formData={data} handleInputChange={handleInputChange} handleCheckboxChange={handleCheckboxChange} setData={setData} />
                 {stepNumber === 1 && !step1Valid && (
                     <p className="text-red-500">Wypełnij brakujące pola</p>
                 )}
@@ -2005,7 +2056,7 @@ const MultiStepForm = () => {
                             {Array.from({ length: totalSteps }).map((_, index) => (
                                 <div key={index} className={step === index + 1 ? 'current' : step > index + 1 ? 'done' : ''}>{index + 1}</div>
                             ))}
-                            <div>Done</div>
+                            <div>Koniec</div>
                         </div>
                     </div>
                 </div>
@@ -2028,16 +2079,16 @@ const MultiStepForm = () => {
                         <div className="mt-4">
                             {step > 1 && (
                                 <button onClick={prevStep} className="mr-2 bg-transparent hover:bg-gray-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" style={{ color: "#4F914A" }}>
-                                    Previous
+                                    Poprzedni
                                 </button>
                             )}
                             {step < totalSteps ? (
                                 <button onClick={nextStep} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" style={{ backgroundColor: "#4F914A" }}>
-                                    Next
+                                    Następny
                                 </button>
                             ) : (
                                 <button onClick={handleSubmit} className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                                    Submit
+                                    Wyślij
                                 </button>
                             )}
                         </div>

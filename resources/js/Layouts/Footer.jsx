@@ -3,6 +3,9 @@ import ApplicationLogo from "@/Components/ApplicationLogo.jsx";
 import {Link} from "@inertiajs/react";
 
 function Footer() {
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+
     return (
         <footer className="footer mt-auto py-3">
             <div className="container text-center">

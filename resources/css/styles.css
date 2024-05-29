@@ -121,7 +121,7 @@ footer {
 
 /* Home Page */
 .h-screen2 {
-    height: 75vh;
+    height: 80vh;
 }
 
 .container-custom {
@@ -152,7 +152,7 @@ footer {
 @media (max-width: 768px) {
     .heading-custom {
         font-size: 2rem;
-        width: 90%;
+        width: 100%;
     }
 
     .info-text-custom {
@@ -193,7 +193,7 @@ footer {
     left: 0;
     width: 100%;
     height: 50px; /* Adjust as needed */
-    z-index: 9999; /* Ensure it's on top of other content */
+    z-index: 10; /* Ensure it's on top of other content */
 }
 
 .overlap_shadow {
@@ -569,4 +569,60 @@ footer {
 .grid div:nth-child(24n+23),
 .grid div:nth-child(24n+24) {
     border-right: 1px solid #ddd;
+}
+
+.invisible {
+    display: none;
+}
+
+.suggestions-drop {
+    z-index: 9999;
+}
+
+.signature-container {
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    height: 200px; /* Adjust according to your preference */
+}
+
+.pen-icon {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ccc;
+}
+
+.pen-icon i {
+    font-size: 48px; /* Adjust according to your preference */
+}
+
+.placeholder-text {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px; /* Adjust according to your preference */
+}
+
+.signature-pad canvas {
+    border: 1px solid #888;
+    border-radius: 5px;
+}
+
+
+/* Circle around the icon */
+.pen-icon:before {
+    content: "";
+    display: block;
+    width: 80px; /* Adjust according to your preference */
+    height: 80px; /* Adjust according to your preference */
+    border: 2px solid #ccc; /* Adjust color and thickness */
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
 }

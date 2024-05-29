@@ -20,6 +20,8 @@ class MultiStepFormController extends Controller
     {
         // Validate form data
         $validatedData = $request->validate([
+            'input1' => 'max:255',
+            'input1a' => 'max:255',
             'input1b' => 'required|max:255',
             'input1c' => 'required|max:255',
 //            'input2' => 'required|string|max:255',
@@ -47,7 +49,7 @@ class MultiStepFormController extends Controller
             'input6e' => 'required|max:255',
             'input7a' => 'required|max:255',
             'input7b' => 'required|max:255',
-            'input7c' => 'required|max:255',
+            'input7c' => 'max:255',
 
             'input6b' => 'required|string|max:255',
             'input8' => 'required|string|max:255',
@@ -58,6 +60,7 @@ class MultiStepFormController extends Controller
             'input8e' => 'required|string|max:255',
             'input8f' => 'required|string|max:255',
             'input9' => 'required|string|max:255',
+            'input10' => 'string|max:255',
             'signature' => 'required|string', // Add validation for signature
         ]);
 
@@ -83,6 +86,8 @@ class MultiStepFormController extends Controller
         $formData = new FormData();
         $formData->user_id = Auth::id();
         $formData->status = 'Oczekuje'; // Set default status
+        $formData->input1 = $validatedData['input1'];
+        $formData->input1a = $validatedData['input1a'];
         $formData->input1b = $validatedData['input1b'];
         $formData->input1c = $validatedData['input1c'];
 //        $formData->input2 = $validatedData['input2'];
@@ -119,6 +124,7 @@ class MultiStepFormController extends Controller
         $formData->input8e = $validatedData['input8e'];
         $formData->input8f = $validatedData['input8f'];
         $formData->input9 = $validatedData['input9'];
+        $formData->input10 = $validatedData['input10'];
         // Save the signature path in the database
         $formData->signature = $signaturePath;
         // Assign other form fields as needed

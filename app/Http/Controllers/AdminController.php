@@ -51,6 +51,18 @@ class AdminController extends Controller
         // Optionally, return a response or redirect
     }
 
+    public function updateStatus(Request $request, $id)
+    {
+        $status = $request->input('status');
+
+        // Update status in the database
+        $row = FormData::findOrFail($id);
+        $row->status = $status;
+        $row->save();
+
+        return response()->json(['message' => 'Status updated successfully']);
+    }
+
     public function users()
     {
         $userData = User::all(); // Fetch all data from form_data table
@@ -61,5 +73,44 @@ class AdminController extends Controller
     {
         $discountData = Discount::all(); // Fetch all data from form_data table
         return Inertia::render('Admin/DiscountTable',['discountData' => $discountData]);
+    }
+
+    public function createDiscount()
+    {
+        return Inertia::render('Admin/DiscountCreate');
+    }
+
+    public function storeDiscount(Request $request)
+    {
+        $request->validate([
+            'code' => 'required|unique:discounts|max:255',
+            'description' => 'required',
+            'end_date' => 'required|date',
+        ]);
+
+        Discount::create($request->all());
+
+        return redirect()->route('admin.discounts');
+    }
+
+    public function editDiscount($id)
+    {
+        $discount = Discount::findOrFail($id);
+        return Inertia('Admin/DiscountEdit', ['discount' => $discount]);
+    }
+
+    public function updateDiscount(Request $request, $id)
+    {
+        $discount = Discount::findOrFail($id);
+        $discount->update($request->all());
+        return redirect()->route('admin.discounts');
+    }
+
+    public function deleteDiscount($id)
+    {
+        $discount = Discount::findOrFail($id);
+        $discount->delete();
+
+        return response()->json(['success' => 'Discount deleted successfully']);
     }
 }

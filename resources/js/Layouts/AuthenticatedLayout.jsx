@@ -24,20 +24,20 @@ export default function Authenticated({ user, header, children }) {
 
                             <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                 <NavLink href={route('home')} active={route().current('home')}>
-                                    Home
+                                    Strona Główna
                                 </NavLink>
                             </div>
 
                             <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                 <NavLink href={route('dashboard')} active={route().current('dashboard')}>
-                                    Dashboard
+                                    Panel klienta
                                 </NavLink>
                             </div>
                             {user.role_id === 1 && ( // Render only if user is admin
                                 <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                     <NavLink href={route('admin.dashboard')}
                                              active={route().current('admin.dashboard')}>
-                                        Admin
+                                        Panel CRM
                                     </NavLink>
                                 </div>
                             )}
@@ -71,9 +71,9 @@ export default function Authenticated({ user, header, children }) {
                                     </Dropdown.Trigger>
 
                                     <Dropdown.Content>
-                                        <Dropdown.Link href={route('profile.edit')}>Profile</Dropdown.Link>
+                                        <Dropdown.Link href={route('profile.edit')}>Profil</Dropdown.Link>
                                         <Dropdown.Link href={route('logout')} method="post" as="button">
-                                            Log Out
+                                            Wyloguj
                                         </Dropdown.Link>
                                     </Dropdown.Content>
                                 </Dropdown>
@@ -110,20 +110,20 @@ export default function Authenticated({ user, header, children }) {
 
                     <div className="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink href={route('home')} active={route().current('home')}>
-                            Home
+                            Strona główna
                         </ResponsiveNavLink>
                     </div>
 
                     <div className="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
-                            Dashboard
+                            Panel klienta
                         </ResponsiveNavLink>
                     </div>
                     {user.role_id === 1 && ( // Render only if user is admin
                         <div className="pt-2 pb-3 space-y-1">
                             <ResponsiveNavLink href={route('admin.dashboard')}
                                                active={route().current('admin.dashboard')}>
-                                Admin
+                                Panel CRM
                             </ResponsiveNavLink>
                         </div>
                     )}
@@ -135,9 +135,9 @@ export default function Authenticated({ user, header, children }) {
                         </div>
 
                         <div className="mt-3 space-y-1">
-                            <ResponsiveNavLink href={route('profile.edit')}>Profile</ResponsiveNavLink>
+                            <ResponsiveNavLink href={route('profile.edit')}>Profil</ResponsiveNavLink>
                             <ResponsiveNavLink method="post" href={route('logout')} as="button">
-                                Log Out
+                                Wyloguj
                             </ResponsiveNavLink>
                         </div>
                     </div>

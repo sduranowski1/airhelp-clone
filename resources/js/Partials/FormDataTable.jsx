@@ -1,6 +1,7 @@
 // resources/js/Partials/FormDataTable.jsx
 import React, {useState} from 'react';
 import Modal from "@/Components/Modal.jsx";
+import {Inertia} from "@inertiajs/inertia";
 
 
 const FormDataTable = ({ formData }) => {
@@ -11,9 +12,14 @@ const FormDataTable = ({ formData }) => {
     // }
     const sortedFormData = [...formData].sort((a, b) => b.id - a.id);
 
+    const [statusMap, setStatusMap] = useState({});
+
+
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedImage, setSelectedImage] = useState('');
+    const [selectedStatus, setSelectedStatus] = useState('');
+
 
     const openModal = (imageSrc) => {
         setSelectedImage(imageSrc);
@@ -25,9 +31,22 @@ const FormDataTable = ({ formData }) => {
         setSelectedImage('');
     };
 
-    const handleStatusChange = (e) => {
-        setStatus(e.target.value);
-        // You can add logic here to update the status in your application state or perform other actions
+    const handleStatusChange = (e, id) => {
+        const newStatus = e.target.value;
+        setSelectedStatus(newStatus); // Update the local state first
+
+        // Send the update request to the backend
+        axios.put(route('admin.update-status', { id }), { status: newStatus })
+            .then(() => {
+                setTimeout(function(){
+                    window.location.reload(1);
+                }, 1000);
+                // Handle success if needed
+            })
+            .catch((error) => {
+                console.error('Error updating status:', error);
+                // Handle error if needed
+            });
     };
 
 
@@ -39,8 +58,9 @@ const FormDataTable = ({ formData }) => {
                     <th className="py-2 px-4 border-b border-gray-300">ID</th>
                     <th className="py-2 px-4 border-b border-gray-300">Status</th>
                     <th className="py-2 px-4 border-b border-gray-300">Podpis</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Odlot</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Przylot</th>
+                    <th className="py-2 px-4 border-b border-gray-300">Kod rabatowy</th>
+                    {/*<th className="py-2 px-4 border-b border-gray-300">Odlot</th>*/}
+                    {/*<th className="py-2 px-4 border-b border-gray-300">Przylot</th>*/}
                     <th className="py-2 px-4 border-b border-gray-300">Czy Twój lot obejmował przesiadkę?</th>
                     <th className="py-2 px-4 border-b border-gray-300"></th>
                     {/*<th className="py-2 px-4 border-b border-gray-300">Input2</th>*/}
@@ -69,10 +89,14 @@ const FormDataTable = ({ formData }) => {
                     <th className="py-2 px-4 border-b border-gray-300">Imię pasażera</th>
                     <th className="py-2 px-4 border-b border-gray-300">Nazwisko</th>
                     <th className="py-2 px-4 border-b border-gray-300">Email</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Aby ruszyć z Twoją sprawą, potrzebuję kilku informacji.</th>
+                    <th className="py-2 px-4 border-b border-gray-300">Aby ruszyć z Twoją sprawą, potrzebuję kilku
+                        informacji.
+                    </th>
                     <td className="py-2 px-4 border-b border-gray-300"></td>
                     <td className="py-2 px-4 border-b border-gray-300"></td>
-                    <th className="py-2 px-4 border-b border-gray-300">Możesz złożyć wniosek w imieniu wszystkich osób wymienionych w Twojej rezerwacji. Czy ktoś z Tobą podróżował?</th>
+                    <th className="py-2 px-4 border-b border-gray-300">Możesz złożyć wniosek w imieniu wszystkich osób
+                        wymienionych w Twojej rezerwacji. Czy ktoś z Tobą podróżował?
+                    </th>
                     <td className="py-2 px-4 border-b border-gray-300"></td>
                     <th className="py-2 px-4 border-b border-gray-300">Pozostali pasażerowie</th>
                     <th className="py-2 px-4 border-b border-gray-300">Adres</th>
@@ -91,8 +115,19 @@ const FormDataTable = ({ formData }) => {
                 {sortedFormData.map((row) => (
                     <tr key={row.id} className="hover:bg-gray-100">
                         <td className="py-2 px-4 border-b border-gray-300">{row.id}</td>
+                        {/*<td className="py-2 px-4 border-b border-gray-300">{row.status}</td>*/}
+                        {/*<td className="py-2 px-4 border-b border-gray-300">*/}
+                        {/*    <select value={row.status} onChange={(e) => handleStatusChange(e, row.id)}>*/}
+                        {/*        <option value="Oczekuje">Oczekuje</option>*/}
+                        {/*        <option value="Odrzucone">Odrzucone</option>*/}
+                        {/*        <option value="Zatwierdzone">Zatwierdzone</option>*/}
+                        {/*    </select>*/}
+                        {/*</td>*/}
                         <td className="py-2 px-4 border-b border-gray-300">
-                            <select value={row.status} onChange={(e) => handleStatusChange(e, row.id)}>
+                            <select
+                                value={statusMap[row.id] || row.status} // Use status from state if available
+                                onChange={(e) => handleStatusChange(e, row.id)}
+                            >
                                 <option value="Oczekuje">Oczekuje</option>
                                 <option value="Odrzucone">Odrzucone</option>
                                 <option value="Zatwierdzone">Zatwierdzone</option>
@@ -103,9 +138,11 @@ const FormDataTable = ({ formData }) => {
                                  onClick={() => openModal(`/${row.signature}`)}
                             />
                         </td>
+                        <td className="py-2 px-4 border-b border-gray-300">{row.input10}</td>
 
-                        <td className="py-2 px-4 border-b border-gray-300">{row.input1}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{row.input1a}</td>
+
+                        {/*<td className="py-2 px-4 border-b border-gray-300">{row.input1}</td>*/}
+                        {/*<td className="py-2 px-4 border-b border-gray-300">{row.input1a}</td>*/}
                         <td className="py-2 px-4 border-b border-gray-300">{row.input1b}</td>
                         <td className="py-2 px-4 border-b border-gray-300">{row.input1c}</td>
                         {/*<td className="py-2 px-4 border-b border-gray-300">{row.input2}</td>*/}
@@ -142,7 +179,6 @@ const FormDataTable = ({ formData }) => {
                         <td className="py-2 px-4 border-b border-gray-300">{row.input8e}</td>
                         <td className="py-2 px-4 border-b border-gray-300">{row.input8f}</td>
                         <td className="py-2 px-4 border-b border-gray-300">{row.input9}</td>
-
                         <td className="py-2 px-4 border-b border-gray-300">{row.created_at}</td>
                         <td className="py-2 px-4 border-b border-gray-300">{row.updated_at}</td>
                     </tr>
@@ -151,7 +187,7 @@ const FormDataTable = ({ formData }) => {
             </table>
             <Modal show={isModalOpen} onClose={closeModal} maxWidth="2xl" closeable>
                 <div className="p-4">
-                <img src={selectedImage} alt="Signature" className="max-w-full h-auto"/>
+                    <img src={selectedImage} alt="Signature" className="max-w-full h-auto"/>
                 </div>
             </Modal>
         </div>

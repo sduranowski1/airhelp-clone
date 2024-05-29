@@ -21,18 +21,22 @@ function AdminDashboard({ pageTitle, children}) {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+
     return (
         <div id="wrapper">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
             {/* Include stylesheet links */}
             <link href="/css/sb-admin-2.min.css" rel="stylesheet"/>
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+            <link rel="stylesheet"
+                  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
 
             {/* Sidebar */}
             <ul className={`navbar-nav bg-gradient-primary sidebar sidebar-dark accordion ${sidebarToggled ? 'toggled' : ''}`}>
                 {/* Sidebar - Brand */}
                 <a className="sidebar-brand d-flex align-items-center justify-content-center"
-                   href="{{ route('admin.dashboard', ['locale' => app()->getLocale()]) }}">
+                   href="/">
                     <div className="sidebar-brand-icon rotate-n-15">
                         <i className="fa-solid fa-user-tie"></i>
                     </div>
@@ -103,6 +107,9 @@ function AdminDashboard({ pageTitle, children}) {
             {/* End of Content Wrapper */}
             {/* Bootstrap core JavaScript */}
             {/* Include your script imports here */}
+            <div className="d-none">
+                <meta name="csrf-token" content={csrfToken}/>
+            </div>
             <script>
                 {/* Include your script here */}
             </script>
@@ -115,10 +122,11 @@ function AdminDashboard({ pageTitle, children}) {
 const htmlString = ReactDOMServer.renderToString(
     <html lang="en">
     <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
         {/* Include stylesheet links */}
-        <link href="/css/sb-admin-2.min.css" rel="stylesheet" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+        <link href="/css/sb-admin-2.min.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
     </head>
     <body id="page-top">
     <div id="app">

@@ -33,8 +33,8 @@ const DashFormDataTable = ({ dashFormData }) => {
                     <th className="py-2 px-4 border-b border-gray-300">ID</th>
                     <th className="py-2 px-4 border-b border-gray-300">Status</th>
                     <th className="py-2 px-4 border-b border-gray-300">Podpis</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Odlot</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Przylot</th>
+                    {/*<th className="py-2 px-4 border-b border-gray-300">Odlot</th>*/}
+                    {/*<th className="py-2 px-4 border-b border-gray-300">Przylot</th>*/}
                     <th className="py-2 px-4 border-b border-gray-300">Czy Twój lot obejmował przesiadkę?</th>
                     <th className="py-2 px-4 border-b border-gray-300"></th>
                     {/*<th className="py-2 px-4 border-b border-gray-300">Input2</th>*/}
@@ -81,7 +81,7 @@ const DashFormDataTable = ({ dashFormData }) => {
                     <th className="py-2 px-4 border-b border-gray-300">Kraj</th>
                     <th className="py-2 px-4 border-b border-gray-300">Nr telefonu</th>
                     <th className="py-2 px-4 border-b border-gray-300">Nr rezerwacji</th>
-
+                    <th className="py-2 px-4 border-b border-gray-300">Kod rabatowy</th>
                     <th className="py-2 px-4 border-b border-gray-300">Zaaplikowano</th>
                     {/*<th className="py-2 px-4 border-b border-gray-300">Updated At</th>*/}
                 </tr>
@@ -96,8 +96,8 @@ const DashFormDataTable = ({ dashFormData }) => {
                                  onClick={() => openModal(`/${dash.signature}`)}
                             />
                         </td>
-                        <td className="py-2 px-4 border-b border-gray-300">{dash.input1}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{dash.input1a}</td>
+                        {/*<td className="py-2 px-4 border-b border-gray-300">{dash.input1}</td>*/}
+                        {/*<td className="py-2 px-4 border-b border-gray-300">{dash.input1a}</td>*/}
                         <td className="py-2 px-4 border-b border-gray-300">{dash.input1b}</td>
                         <td className="py-2 px-4 border-b border-gray-300">{dash.input1c}</td>
                         {/*<td className="py-2 px-4 border-b border-gray-300">{dash.input2}</td>*/}
@@ -134,6 +134,7 @@ const DashFormDataTable = ({ dashFormData }) => {
                         <td className="py-2 px-4 border-b border-gray-300">{dash.input8e}</td>
                         <td className="py-2 px-4 border-b border-gray-300">{dash.input8f}</td>
                         <td className="py-2 px-4 border-b border-gray-300">{dash.input9}</td>
+                        <td className="py-2 px-4 border-b border-gray-300">{dash.input10}</td>
                         <td className="py-2 px-4 border-b border-gray-300">{dash.created_at}</td>
                         {/*<td className="py-2 px-4 border-b border-gray-300">{dash.updated_at}</td>*/}
                     </tr>

@@ -7,6 +7,9 @@ import "/resources/css/styles.css"
 import TestimonialsSlider from "@/Partials/TestimonialsSlider.jsx";
 import Footer from "@/Layouts/Footer.jsx";
 import "/resources/css/build-issue.css"
+import airportsData from "@/Pages/airports.js";
+import { Inertia } from '@inertiajs/inertia';
+
 
 // Common content component
 // Common content component
@@ -14,77 +17,181 @@ const HomeContent = () => {
     const [input1, setInput1] = useState('');
     const [input2, setInput2] = useState('');
 
-    const handleInputChange1 = (e) => {
-        setInput1(e.target.value);
+    const [arrivalCode, setArrivalCode] = useState('');
+    const [airportCode, setAirportCode] = useState('');
+    const [departureSuggestions, setDepartureSuggestions] = useState([]);
+    const [arrivalSuggestions, setArrivalSuggestions] = useState([]);
+    const [errors, setErrors] = useState({ departureIata: '', arrivalIata: '' });
+
+    const handleAirportCodeChange = (e) => {
+        const { name, value } = e.target;
+        setErrors({ ...errors, [name]: '' });
+
+        if (name === 'departureIata') {
+            setAirportCode(value);
+            handleInputChange(e);
+
+            const filteredAirports = airportsData.filter((airport) =>
+                airport.name.toLowerCase().includes(value.toLowerCase()) ||
+                airport.city.toLowerCase().includes(value.toLowerCase()) ||
+                airport.iata_code.toLowerCase().includes(value.toLowerCase())
+            );
+            setDepartureSuggestions(filteredAirports.slice(0, 5));
+        } else if (name === 'arrivalIata') {
+            setArrivalCode(value);
+            handleInputChange(e);
+
+            const filteredAirports = airportsData.filter((airport) =>
+                airport.name.toLowerCase().includes(value.toLowerCase()) ||
+                airport.city.toLowerCase().includes(value.toLowerCase()) ||
+                airport.iata_code.toLowerCase().includes(value.toLowerCase())
+            );
+            setArrivalSuggestions(filteredAirports.slice(0, 5));
+        }
     };
 
-    const handleInputChange2 = (e) => {
-        setInput2(e.target.value);
+    const handleSuggestionClick = (suggestion, type) => {
+        if (type === 'departure') {
+            setAirportCode(suggestion.iata_code);
+            setDepartureSuggestions([]);
+            const event = { target: { name: 'departureIata', value: suggestion.iata_code } };
+            handleInputChange(event);
+        } else if (type === 'arrival') {
+            setArrivalCode(suggestion.iata_code);
+            setArrivalSuggestions([]);
+            const event = { target: { name: 'arrivalIata', value: suggestion.iata_code } };
+            handleInputChange(event);
+        }
     };
 
-    const handleSubmit = () => {
-        // Handle form submission here
-        console.log('Input 1:', input1);
-        console.log('Input 2:', input2);
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        let valid = true;
+        let newErrors = { departureIata: '', arrivalIata: '' };
+
+        if (airportCode.trim() === '') {
+            newErrors.departureIata = 'Pole nie może być puste';
+            valid = false;
+        }
+
+        if (arrivalCode.trim() === '') {
+            newErrors.arrivalIata = 'Pole nie może być puste';
+            valid = false;
+        }
+
+        setErrors(newErrors);
+
+        if (valid) {
+            Inertia.visit('/multi-step-form');
+        }
+    };
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        // setData(name, value);
+
     };
 
 
 
     return (
         <div>
-            <div className="sm:px-6 lg:px-8 container-custom relative" style={{
-                backgroundImage: 'url("media/home_hero.png")',
-                backgroundRepeat: 'no-repeat',
-                backgroundPosition: 'bottom right',
-                backgroundSize: '50%',
-            }}>
-                <div className="row">
-                    <div className="flex flex-col justify-center items-start h-screen2">
-                        <div className="heading-custom">
-                            Masz odwołany bądź opóźniony lot ?
-                        </div>
-                        <div className="info-text-custom">
-                            Bez względu na cenę biletu nawet do 600eur odszkodowania przysługuje za każdego pasażera!
-                        </div>
-                    </div>
-                </div>
+            <div>
+                <div className="sm:px-6 lg:px-8 container-custom relative" style={{
+                    backgroundImage: 'url("media/home_hero.png")',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'bottom right',
+                    backgroundSize: '50%',
+                }}>
+                    <div className="row">
+                        <div className="container">
+                            <div className="flex flex-col  items-start h-screen2">
 
-                <div className="image-container absolute top-0 right-0 w-1/2 h-full z-10">
-                    {/* Content */}
-                </div>
+                                <div className="heading-custom">
+                                    Masz odwołany bądź opóźniony lot ?
+                                </div>
 
-                <div className="p-6 text-gray-900 flex flex-col md:flex-row items-center md:items-start relative z-20">
-                    <div className="mb-5 md:mb-0 md:mr-4 w-full md:w-80">
-                        <input
-                            type="text"
-                            id="input1"
-                            placeholder="Zweryfikuj status wniosku"
-                            value={input1}
-                            onChange={handleInputChange1}
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        />
+                                <div className="info-text-custom">
+                                    Bez względu na cenę biletu nawet do 600eur odszkodowania przysługuje za każdego
+                                    pasażera!
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div className="mb-5 md:mb-0 md:mr-4 w-full md:w-80">
-                        <input
-                            type="text"
-                            id="input2"
-                            placeholder="Zweryfikuj status wniosku"
-                            value={input2}
-                            onChange={handleInputChange2}
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        />
+
+                    <div className="image-container absolute top-0 right-0 w-1/2 h-full z-10">
+                        {/* Content */}
                     </div>
-                    <div className="w-full md:w-80 mb-5">
-                        <div
-                            className="bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                            style={{backgroundColor: "#4F914A"}}>
-                            <Link href={route('multistep.index')} className="text-white text-center block">
+
+                    <form onSubmit={handleSubmit}
+                          className="p-6 text-gray-900 flex flex-col md:flex-row items-center md:items-start relative z-20">
+                        <div className="relative mb-5 md:mb-0 md:mr-4 w-full md:w-80">
+                            <input
+                                type="text"
+                                id="input1"
+                                placeholder="Lotnisko wylotu"
+                                name="departureIata"
+                                value={airportCode}
+                                onChange={handleAirportCodeChange}
+                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            />
+                            {errors.departureIata && (
+                                <p className="text-red-500 text-xs italic">{errors.departureIata}</p>
+                            )}
+                            {departureSuggestions.length > 0 && (
+                                <ul className="absolute bg-white border border-gray-300 w-full mt-1 max-h-40 overflow-y-auto z-10">
+                                    {departureSuggestions.map((airport) => (
+                                        <li
+                                            key={airport.iata_code}
+                                            onClick={() => handleSuggestionClick(airport, 'departure')}
+                                            className="p-2 hover:bg-gray-200 cursor-pointer"
+                                        >
+                                            {airport.name} ({airport.iata_code})
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}
+                        </div>
+                        <div className="relative mb-5 md:mb-0 md:mr-4 w-full md:w-80">
+                            <input
+                                type="text"
+                                id="input2"
+                                placeholder="Lotnisko przylotu"
+                                name="arrivalIata"
+                                value={arrivalCode}
+                                onChange={handleAirportCodeChange}
+                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            />
+                            {errors.arrivalIata && (
+                                <p className="text-red-500 text-xs italic">{errors.arrivalIata}</p>
+                            )}
+                            {arrivalSuggestions.length > 0 && (
+                                <ul className="absolute bg-white border border-gray-300 w-full mt-1 max-h-40 overflow-y-auto z-10">
+                                    {arrivalSuggestions.map((airport) => (
+                                        <li
+                                            key={airport.iata_code}
+                                            onClick={() => handleSuggestionClick(airport, 'arrival')}
+                                            className="p-2 hover:bg-gray-200 cursor-pointer"
+                                        >
+                                            {airport.name} ({airport.iata_code})
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}
+                        </div>
+
+                        <div className="w-full md:w-80 mb-5">
+                            <button
+                                type="submit"
+                                className="bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                style={{backgroundColor: "#4F914A"}}>
+                            <span className="text-white text-center block">
                                 Sprawdź odszkodowanie
-                            </Link>
+                            </span>
+                            </button>
                         </div>
-                    </div>
+                    </form>
                 </div>
-
             </div>
             <div className="flex justify-center p-4">
                 <div className="container lapping">
@@ -285,7 +392,7 @@ const HomeContent = () => {
                 </div>
             </div>
             <div className="header text-center m-5">
-                <h2>What Our Clients Say</h2>
+                <h2>Co mówią o nas klienci</h2>
             </div>
             <TestimonialsSlider/>
 
