@@ -39,8 +39,21 @@ export default defineConfig({
                 '.js': 'jsx',
             },
             include: [
-                // Include the specific file or directory if necessary
-                'node_modules/react-signature-canvas/**',
+                'react-signature-canvas',
+            ],
+        },
+    },
+    build: {
+        rollupOptions: {
+            plugins: [
+                {
+                    name: 'load-jsx',
+                    transform(code, id) {
+                        if (id.includes('node_modules/react-signature-canvas')) {
+                            return require('esbuild').transformSync(code, { loader: 'jsx' });
+                        }
+                    },
+                },
             ],
         },
     },
