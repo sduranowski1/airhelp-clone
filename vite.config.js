@@ -2,8 +2,6 @@ import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import react from '@vitejs/plugin-react';
 // import ziggy from 'ziggy-js'
-import { createRequire } from 'module';
-import path from 'path';
 
 export default defineConfig({
     plugins: [
@@ -12,23 +10,23 @@ export default defineConfig({
             refresh: true,
         }),
         react(),
-        // // Workaround
-        // {
-        //     name: 'load+transform-js-files-as-jsx',
-        //     async transform(code, id) {
-        //         if (!id.match(/src\/.*\.js$/)) {
-        //             return null;
-        //         }
-        //
-        //         // Use the exposed transform from vite, instead of directly
-        //         // transforming with esbuild
-        //         return transformWithEsbuild(code, id, {
-        //             loader: 'jsx',
-        //             jsx: 'automatic', // 👈 this is important
-        //         });
-        //     },
-        // },
-        // // End workaround
+        // Workaround
+        {
+            name: 'load+transform-js-files-as-jsx',
+            async transform(code, id) {
+                if (!id.match(/src\/.*\.js$/)) {
+                    return null;
+                }
+
+                // Use the exposed transform from vite, instead of directly
+                // transforming with esbuild
+                return transformWithEsbuild(code, id, {
+                    loader: 'jsx',
+                    jsx: 'automatic', // 👈 this is important
+                });
+            },
+        },
+        // End workaround
 
     ],
 
@@ -38,28 +36,6 @@ export default defineConfig({
             loader: {
                 '.js': 'jsx',
             },
-            include: [
-                'react-signature-canvas',
-            ],
-        },
-    },
-    build: {
-        rollupOptions: {
-            plugins: [
-                {
-                    name: 'load-jsx',
-                    transform(code, id) {
-                        if (id.includes('node_modules/react-signature-canvas')) {
-                            return require('esbuild').transformSync(code, { loader: 'jsx' });
-                        }
-                    },
-                },
-            ],
-        },
-    },
-    resolve: {
-        alias: {
-            '@': path.resolve(__dirname, 'resources/js'),
         },
     },
 
