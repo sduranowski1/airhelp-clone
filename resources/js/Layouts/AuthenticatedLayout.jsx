@@ -29,6 +29,24 @@ export default function Authenticated({ user, header, children }) {
                             </div>
 
                             <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <NavLink href={route('multistep.index')} active={route().current('multistep')}>
+                                    Sprawdź odszkodowanie
+                                </NavLink>
+                            </div>
+
+                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <NavLink href="/" active={route().current('prawa')}>
+                                    Poznaj swoje prawa
+                                </NavLink>
+                            </div>
+
+                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <NavLink href="/" active={route().current('o-nas')}>
+                                    O nas
+                                </NavLink>
+                            </div>
+
+                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                 <NavLink href={route('dashboard')} active={route().current('dashboard')}>
                                     Panel klienta
                                 </NavLink>
@@ -115,33 +133,54 @@ export default function Authenticated({ user, header, children }) {
                     </div>
 
                     <div className="pt-2 pb-3 space-y-1">
-                        <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
-                            Panel klienta
+                        <ResponsiveNavLink href={route('multistep.index')} active={route().current('multistep')}>
+                            Sprawdź odszkodowanie
                         </ResponsiveNavLink>
                     </div>
-                    {user.role_id === 1 && ( // Render only if user is admin
-                        <div className="pt-2 pb-3 space-y-1">
-                            <ResponsiveNavLink href={route('admin.dashboard')}
-                                               active={route().current('admin.dashboard')}>
-                                Panel CRM
+
+                    <div className="pt-2 pb-3 space-y-1">
+
+                        <ResponsiveNavLink href='/' active={route().current('prawa')}>
+                            Poznaj swoje prawa
+                        </ResponsiveNavLink>
+                    </div>
+
+                    <div className="pt-2 pb-3 space-y-1">
+
+                        <ResponsiveNavLink href='/' active={route().current('o-nas')}>
+                            O nas
+                        </ResponsiveNavLink>
+                    </div>
+
+
+                    <div className="pt-2 pb-3 space-y-1">
+                            <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
+                                Panel klienta
                             </ResponsiveNavLink>
                         </div>
-                    )}
+                        {user.role_id === 1 && ( // Render only if user is admin
+                            <div className="pt-2 pb-3 space-y-1">
+                                <ResponsiveNavLink href={route('admin.dashboard')}
+                                                   active={route().current('admin.dashboard')}>
+                                    Panel CRM
+                                </ResponsiveNavLink>
+                            </div>
+                        )}
 
-                    <div className="pt-4 pb-1 border-t border-gray-200">
-                        <div className="px-4">
-                            <div className="font-medium text-base text-gray-800">{user.name}</div>
-                            <div className="font-medium text-sm text-gray-500">{user.email}</div>
-                        </div>
+                        <div className="pt-4 pb-1 border-t border-gray-200">
+                            <div className="px-4">
+                                <div className="font-medium text-base text-gray-800">{user.name}</div>
+                                <div className="font-medium text-sm text-gray-500">{user.email}</div>
+                            </div>
 
-                        <div className="mt-3 space-y-1">
-                            <ResponsiveNavLink href={route('profile.edit')}>Profil</ResponsiveNavLink>
-                            <ResponsiveNavLink method="post" href={route('logout')} as="button">
-                                Wyloguj
-                            </ResponsiveNavLink>
+                            <div className="mt-3 space-y-1">
+                                <ResponsiveNavLink href={route('profile.edit')}>Profil</ResponsiveNavLink>
+                                <ResponsiveNavLink method="post" href={route('logout')} as="button">
+                                    Wyloguj
+                                </ResponsiveNavLink>
+                            </div>
                         </div>
                     </div>
-                </div>
             </nav>
 
             {header && (

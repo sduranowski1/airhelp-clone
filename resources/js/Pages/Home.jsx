@@ -9,6 +9,7 @@ import Footer from "@/Layouts/Footer.jsx";
 import "/resources/css/build-issue.css"
 import airportsData from "@/Pages/airports.js";
 import { Inertia } from '@inertiajs/inertia';
+// import route from 'ziggy-js';
 
 
 // Common content component
@@ -81,8 +82,20 @@ const HomeContent = () => {
 
         setErrors(newErrors);
 
+        // if (valid) {
+        //     Inertia.visit(route('multistep.iatas', {
+        //         input1: airportCode,
+        //         input1a: arrivalCode,
+        //     }));
+        // }
+
         if (valid) {
-            Inertia.visit('/multi-step-form');
+            const url = route('multistep.index', {
+                input1: airportCode,
+                input1a: arrivalCode,
+            });
+            console.log('Navigating to:', url); // Debug URL
+            Inertia.visit(url);
         }
     };
 
@@ -155,7 +168,7 @@ const HomeContent = () => {
                         <div className="relative mb-5 md:mb-0 md:mr-4 w-full md:w-80">
                             <input
                                 type="text"
-                                id="input2"
+                                id="input1a"
                                 placeholder="Lotnisko przylotu"
                                 name="arrivalIata"
                                 value={arrivalCode}
@@ -201,7 +214,13 @@ const HomeContent = () => {
                             <ul className="flex flex-col md:flex-row justify-between uppercase space-y-4 md:space-y-0">
                                 <li className="flex items-center">
                                     <img className="w-10" src="media/flags/euro.png"/>
-                                    <strong className="ml-2">Europejskie</strong>
+                                    <strong className="ml-2">Europejskie Rozporządzenie we261</strong>
+                                </li>
+
+
+                                <li className="flex items-center">
+                                    <img className="w-10" src="media/flags/brazil.png"/>
+                                    <strong className="ml-2">Przepisy Brazylijskie</strong>
                                 </li>
                                 <li className="flex items-center">
                                     <img className="w-10" src="media/flags/convention.png"/>
@@ -210,10 +229,6 @@ const HomeContent = () => {
                                 <li className="flex items-center">
                                     <img className="w-10" src="media/flags/tunisia.png"/>
                                     <strong className="ml-2">Przepisy Tureckie</strong>
-                                </li>
-                                <li className="flex items-center">
-                                    <img className="w-10" src="media/flags/brazil.png"/>
-                                    <strong className="ml-2">Przepisy Brazylijskie</strong>
                                 </li>
                             </ul>
                         </div>
@@ -234,48 +249,33 @@ const HomeContent = () => {
             </div>
             <div className="container flex flex-col md:flex-row">
                 <div className="card bg-transparent pt-5 p-4">
-                    <h5>DOCHODZENIE ODSZKODOWANIA LOTNICZEGO NA WŁASNĄ RĘKĘ</h5>
+                    <h5>WNIOSEK PRZY POMOCY BeSmartAir </h5>
                     <ul className="mt-3">
-                        <li><strong>Biurokracja:</strong> <p>Nieoczywiste informacje odnośnie dokumentacji niezbędnej do
-                            złożenia wniosku.</p>
+                        <li><strong>Łatwa procedura:</strong> <p>Zajmujemy się Twoją sprawą od złożenia wniosku, aż do wypłaty odszkodowania. </p>
                         </li>
-                        <li><strong>Biurokracja:</strong> <p>Nieoczywiste informacje odnośnie dokumentacji niezbędnej do
-                            złożenia wniosku.</p>
+                        <li><strong>Pełna obsługa:</strong> <p> W Twoim imieniu składamy wszelkie niezbędne dokumenty.</p>
                         </li>
-                        <li><strong>Biurokracja:</strong> <p>Nieoczywiste informacje odnośnie dokumentacji niezbędnej do
-                            złożenia wniosku.</p>
+                        <li><strong>Sprawne działanie:</strong> <p> Po przesłaniu nam dokumentów online zajmujemy się całą resztą.</p>
                         </li>
-                        <li><strong>Biurokracja:</strong> <p>Nieoczywiste informacje odnośnie dokumentacji niezbędnej do
-                            złożenia wniosku.</p>
+                        <li><strong>Stałe monitorowanie statusu:</strong> <p>Cały czas jesteśmy w kontakcie i do Twojej dyspozycji informując o postępie sprawy. </p>
                         </li>
-                        <li><strong>Biurokracja:</strong> <p>Nieoczywiste informacje odnośnie dokumentacji niezbędnej do
-                            złożenia wniosku.</p>
+                        <li><strong>Brak kosztów za złożenie wniosku:</strong> <p>Brak kosztów za złożenie wniosku Wszelkie koszty obsługi prawnej są po naszej stronie, pobieramy opłatę tylko, gdy odszkodowanie zostanie wypłacone.  </p>
                         </li>
-                        <li><strong>Biurokracja:</strong> <p>Nieoczywiste informacje odnośnie dokumentacji niezbędnej do
-                            złożenia wniosku.</p>
-                        </li>
+
                     </ul>
                 </div>
                 <div className="card overlap_shadow pt-5 p-4">
                     <h5>DOCHODZENIE ODSZKODOWANIA LOTNICZEGO NA WŁASNĄ RĘKĘ</h5>
                     <ul className="mt-3">
-                        <li><strong>Biurokracja:</strong> <p>Nieoczywiste informacje odnośnie dokumentacji niezbędnej do
-                            złożenia wniosku.</p>
+                        <li><strong>Biurokracja:</strong> <p>Nieoczywiste informacje odnośnie dokumentacji niezbędnej do złożenia wniosku.</p>
                         </li>
-                        <li><strong>Biurokracja:</strong> <p>Nieoczywiste informacje odnośnie dokumentacji niezbędnej do
-                            złożenia wniosku.</p>
+                        <li><strong>Czas:</strong> <p>Dochodzenie swoich praw wymaga dużej cierpliwości podczas kontaktu z biurami obsługi klienta linii lotniczych oraz cały proces może trwać miesiącami. </p>
                         </li>
-                        <li><strong>Biurokracja:</strong> <p>Nieoczywiste informacje odnośnie dokumentacji niezbędnej do
-                            złożenia wniosku.</p>
+                        <li><strong>Stres:</strong> <p>Samodzielne przeprowadzenie całego procesu łącznie z negocjacjami z liniami lotniczymi.</p>
                         </li>
-                        <li><strong>Biurokracja:</strong> <p>Nieoczywiste informacje odnośnie dokumentacji niezbędnej do
-                            złożenia wniosku.</p>
+                        <li><strong>Ryzyko:</strong> <p>W sytuacji skierowania Twojego wniosku na drogę sądową musisz liczyć się kosztami bez względu na ostateczny wynik sprawy.</p>
                         </li>
-                        <li><strong>Biurokracja:</strong> <p>Nieoczywiste informacje odnośnie dokumentacji niezbędnej do
-                            złożenia wniosku.</p>
-                        </li>
-                        <li><strong>Biurokracja:</strong> <p>Nieoczywiste informacje odnośnie dokumentacji niezbędnej do
-                            złożenia wniosku.</p>
+                        <li><strong>Utrudniony kontakt z liniami lotniczymi:</strong> <p>Nie zawsze a wręcz bardzo rzadko linie lotnicze informują klientów o przebiegu spray i jej statusie. </p>
                         </li>
                     </ul>
                 </div>
@@ -295,10 +295,11 @@ const HomeContent = () => {
                     <div className="image-wrapper">
                         <img src="media/plane_clock.png" alt="plane clock" className="plane-image"/>
                     </div>
-                    <h5 className="font-weight-bold">DOCHODZENIE ODSZKODOWANIA LOTNICZEGO NA WŁASNĄ RĘKĘ</h5>
+                    <h5 className="font-weight-bold">Odwołany lot</h5>
                     <ul className="list-hidden">
-                        <li><strong>Biurokracja:</strong> Nieoczywiste informacje odnośnie dokumentacji niezbędnej do
-                            złożenia wniosku.
+                        <li>Twój lot został odwołany z krótkim wyprzedzeniem? Poza zwrotem pieniedzy przysługuje Tobie
+                            odszkodowanie w wysokosci do 600 eur.
+
                         </li>
                     </ul>
                 </div>
@@ -306,10 +307,13 @@ const HomeContent = () => {
                     <div className="image-wrapper_2">
                         <img src="media/canceled_plane.png" alt="plane clock" className="plane-image"/>
                     </div>
-                    <h5 className="font-weight-bold">DOCHODZENIE ODSZKODOWANIA LOTNICZEGO NA WŁASNĄ RĘKĘ</h5>
+                    <h5 className="font-weight-bold">Opóźniony lot</h5>
                     <ul className="list-hidden">
-                        <li><strong>Biurokracja:</strong> Nieoczywiste informacje odnośnie dokumentacji niezbędnej do
-                            złożenia wniosku.
+                        <li> W
+                            sytuacji opóźnienia powyżej 3
+                            godzin, dowiedz sie czy nasi
+                            specjaliści uzyskają dla Ciebie
+                            odszkodowanie do 600 eur.
                         </li>
                     </ul>
                 </div>
@@ -317,10 +321,14 @@ const HomeContent = () => {
                     <div className="image-wrapper_3">
                         <img src="media/plane_swap.png" alt="plane clock" className="plane-image"/>
                     </div>
-                    <h5 className="font-weight-bold">DOCHODZENIE ODSZKODOWANIA LOTNICZEGO NA WŁASNĄ RĘKĘ</h5>
+                    <h5 className="font-weight-bold">Spóźnienie na lot przesiadkowy</h5>
                     <ul className="list-hidden">
-                        <li><strong>Biurokracja:</strong> Nieoczywiste informacje odnośnie dokumentacji niezbędnej do
-                            złożenia wniosku.
+                        <li>W
+                            przypadku wylądowania z
+                            3-godzinnym opóznieniem w
+                            miejscu docelowym równiez
+                            moze przysługiwać Tobie
+                            odszkodowanie.
                         </li>
                     </ul>
                 </div>
@@ -328,10 +336,16 @@ const HomeContent = () => {
                     <div className="image-wrapper_3">
                         <img src="media/plane_swap.png" alt="plane clock" className="plane-image"/>
                     </div>
-                    <h5 className="font-weight-bold">DOCHODZENIE ODSZKODOWANIA LOTNICZEGO NA WŁASNĄ RĘKĘ</h5>
+                    <h5 className="font-weight-bold">Ciężka komunikacja z linią</h5>
                     <ul className="list-hidden">
-                        <li><strong>Biurokracja:</strong> Nieoczywiste informacje odnośnie dokumentacji niezbędnej do
-                            złożenia wniosku.
+                        <li>Twój
+                            wniosek o odszkodowanie został
+                            odrzucony badź zignorowany?
+                            Sprawdzimy zasadność wniosku
+                            oraz wywrzemy nacisk na linie
+                            lotniczą, aby poczuła sie do
+                            odpowiedzialności.
+
                         </li>
                     </ul>
                 </div>
@@ -339,10 +353,12 @@ const HomeContent = () => {
             <div className="row bg-white">
                 <div className="container mt-5  flex flex-col md:flex-row">
                     <div className="card mt-5">
-                        <h2 className="darkGreenText">Pobierzemy nasze wynagrodzenie jedynie, gdy otrzymasz należne
+                        <h2 className="darkGreenText">Rozliczamy nasze
+                            wynagrodzenie jedynie, gdy
+                            otrzymasz należne
                             odszkodowanie</h2>
                         <div className="greenText">Nasze wynagrodzenie liczymy od kwoty odszkodowania, które dla Ciebie
-                            uzyskamy , tym samym nie ponosisz ryzyka. Nasz opłata wynosi 20%
+                            uzyskamy, tym samym nie ponosisz ryzyka. Nasz opłata wynosi 20%
                         </div>
 
                     </div>
@@ -374,12 +390,12 @@ const HomeContent = () => {
                                 <div className="greenText font-weight-bold">Odwołanych lotów lotniczych</div>
                                 <br/>
                                 <br/>
-                                <h3 className="greenText font-weight-bold">30 000</h3>
+                                <h3 className="greenText font-weight-bold">2 000</h3>
                                 <div className="greenText font-weight-bold">Międzynarodowych lotnisk</div>
                             </div>
                             <div className="column">
-                                <h3 className="greenText font-weight-bold">2 000</h3>
-                                <div className="greenText font-weight-bold">Międzynarodowych lotnisk</div>
+                                <h3 className="greenText font-weight-bold">30 000</h3>
+                                <div className="greenText font-weight-bold">Opóźnionych lotów dziennie</div>
                                 <br/>
                                 <br/>
                                 <div className="font-weight-bold">Jedynie co 2 uprawiony pasażer stara się o uzyskanie

@@ -7,13 +7,14 @@ import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
 import SignatureCanvas from "react-signature-canvas/src";
 import ApplicationLogo from "@/Components/ApplicationLogo.jsx";
-import {Link, useForm} from "@inertiajs/react";
+import {Link, useForm, usePage} from "@inertiajs/react";
 import { format } from 'date-fns';
 import SignaturePad from 'react-signature-canvas'; // Assuming you're using this library
 
 
 import airlinesData from './airlinesData'; // Importing the airlines data
 import airportsData from './airports.js';
+import {useLocation} from "react-router-dom";
 
 const Step1 = ({ formData, handleInputChange, checkboxes, handleCheckboxChange }) => {
     const [airportData, setAirportData] = useState([]); // State to store airport data
@@ -329,7 +330,7 @@ const Step2 = ({ formData, handleInputChange, flights }) => {
 
 
 
-const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, flights, setData}) => {
+const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, flights, setData, setSelectedFlight, flight}) => {
     const [allFlights, setAllFlights] = useState([]);
     const [arrivalCode, setArrivalCode] = useState('');
     const [airportCode, setAirportCode] = useState('');
@@ -349,14 +350,14 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
 
 
     const searchFlights = async () => {
-        const airportCodeValue = airportCode.trim().toUpperCase();
+        const airportCodeValue = departureIata.trim().toUpperCase();
         if (!airportCodeValue) {
-            alert('Please enter an airport code.');
+            alert('Podaj kod lotniska.');
             return;
         }
 
         if (!fromLocal) {
-            alert('Please enter a valid From Local time.');
+            alert('Podaj właściwą date.');
             return;
         }
 
@@ -392,9 +393,9 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
     };
 
     const filterArrivals = () => {
-        const arrivalCodeValue = arrivalCode.trim().toUpperCase();
+        const arrivalCodeValue = arrivalIata.trim().toUpperCase();
         if (!arrivalCodeValue) {
-            alert('Please enter an arrival IATA code.');
+            alert('Podaj kod lotniska.');
             return;
         }
 
@@ -408,7 +409,7 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
         setIsFiltered(filteredFlights.length === 0 || filteredFlights.length === undefined);
     };
 
-    const handleCheckboxChangeDynamic = (group, inputName, index) => {
+    const handleCheckboxChangeDynamic = (group, inputName, index, flight) => {
         setData((prevState) => {
             const newState = { ...prevState };
             // Toggle the state of the clicked checkbox
@@ -427,6 +428,16 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
                     newState[name] = false;
                 }
             });
+
+            // Set the flight information to the corresponding input in the form data
+            // Check if flight is available and has the necessary properties
+            if (flight && flight.departure && flight.departure.scheduledTime) {
+                // Set the flight information to the corresponding input in the form data
+                newState.input4 = flight.airline.name;
+                newState.input4a = flight.number;
+                newState.input4b = flight.departure.scheduledTime.local;
+            }
+
             return newState;
         });
     };
@@ -475,20 +486,48 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
 
     const handleSuggestionClick = (suggestion, type) => {
         if (type === 'departure') {
-            setAirportCode(suggestion.iata_code);
+            setDepartureIata(suggestion.iata_code);
             setData((prevState) => ({ ...prevState, input1: suggestion.iata_code })); // Update formData.input1
 
             setDepartureSuggestions([]);
             const event = { target: { name: 'departureIata', value: suggestion.iata_code } };
             handleInputChange(event);
         } else if (type === 'arrival') {
-            setArrivalCode(suggestion.iata_code);
+            setArrivalIata(suggestion.iata_code);
             setData((prevState) => ({ ...prevState, input1a: suggestion.iata_code })); // Update formData.input1a
 
             setArrivalSuggestions([]);
             const event = { target: { name: 'arrivalIata', value: suggestion.iata_code } };
             handleInputChange(event);
         }
+    };
+
+    const { props } = usePage();
+    const { input1, input1a } = props;
+
+    const [departureIata, setDepartureIata] = useState(input1 || '');
+    const [arrivalIata, setArrivalIata] = useState(input1a || '');
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        if (name === 'departureIata') {
+            setDepartureIata(value);
+        } else if (name === 'arrivalIata') {
+            setArrivalIata(value);
+        }
+        handleAirportCodeChange(e); // This updates the parent state if needed
+    };
+
+    useEffect(() => {
+        console.log('Received props:', { input1, input1a });
+        setDepartureIata(input1 || '');
+        setArrivalIata(input1a || '');
+    }, [input1, input1a]);
+
+
+    const handleFlightSelection = async () => {
+        setSelectedFlight(flight); // Update the selected flight in the parent component
+        await searchFlights(); // Trigger the flight search function
     };
 
     return (
@@ -506,7 +545,9 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
                             type="text"
                             id="input1"
                             name="departureIata"
-                            value={airportCode}                            onChange={handleAirportCodeChange}
+                            // value={input1}
+                            value={departureIata}
+                            onChange={handleChange}
                             className="flex-1 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         />
                         {departureSuggestions.length > 0 && (
@@ -531,7 +572,7 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
 
                     </div>
 
-                    <button onClick={searchFlights} className="mt-4 bg-blue-500 text-white py-2 px-4 rounded">Wyślij żądanie</button>
+                    <button onClick={handleFlightSelection} className="mt-4 bg-blue-500 text-white py-2 px-4 rounded">Wyślij żądanie</button>
                 </div>
             </div>
 
@@ -585,7 +626,7 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
             <div className="container mt-5">
                 <div className="card p-5" style={{backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"}}>
                     <label htmlFor="input2" className="block text-gray-700 text-sm font-bold mb-2">
-                        Podaj date wylotu
+                        Podaj miejsce lądowania
                     </label>
                     <div className="flex">
 
@@ -595,8 +636,10 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
                             type="text"
                             id="input1a"
                             name="arrivalIata"
-                            value={arrivalCode}
-                            onChange={handleAirportCodeChange}
+                            // value={input1a}
+                            // value={arrivalCode}
+                            value={arrivalIata}
+                            onChange={handleChange}
                             className="flex-1 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         />
                         {arrivalSuggestions.length > 0 && (
@@ -650,7 +693,7 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
                                                 id={`checkbox-${index}`}
                                                 type="checkbox"
                                                 checked={formData.input3 === flightDetails} // Check if the current flight details match the value in formData.input3
-                                                onChange={() => handleCheckboxChangeDynamic('group2', 'input3', flightDetails, true)}
+                                                onChange={() => handleCheckboxChangeDynamic('group2', 'input3', flightDetails, flight)}
                                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                             />
                                             <div
@@ -1016,12 +1059,11 @@ const Step4 = ({ formData, handleInputChange }) => {
     };
 
 
-
     return (
 
     <div>
         <div className="container">
-            <div className="card p-5" style={{
+            <div className="card p-5  w-100" style={{
                 backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"
             }}>
                 <label htmlFor="input3" className="block text-gray-700 text-sm font-bold mb-2">W porządku. Potrzebuję
@@ -1522,23 +1564,25 @@ const Step7 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                     </ul>
                 </div>
             </div>
-            <div className="container mt-5">
-            <div className="card p-5" style={{
-                backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"
-            }}>
-                <label htmlFor="input7c" className="block text-gray-700 text-sm font-bold mb-2">Pełne imiona pozostałych pasażerów</label>
-                <textarea id="input7c" placeholder="Imię Nazwisko, ..." name="input7c" value={formData.input7c}
-                       onChange={handleInputChange}
-                       className="mb-2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
-                {/*<input type="text" id="input7d" placeholder="Nazwisko" name="input7d" value={formData.input7d}*/}
-                {/*       onChange={handleInputChange}*/}
-                {/*       className="mb-2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>*/}
-                {/*<input type="text" id="input7e" placeholder="Adres Email" name="input7e" value={formData.input7e}*/}
-                {/*       onChange={handleInputChange}*/}
-                {/*       className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>*/}
+            {formData.input7a && (
+                <div className="container mt-5">
+                    <div className="card p-5" style={{
+                        backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"
+                    }}>
+                        <label htmlFor="input7c" className="block text-gray-700 text-sm font-bold mb-2">Pełne imiona pozostałych pasażerów</label>
+                        <textarea id="input7c" placeholder="Imię Nazwisko, ..." name="input7c" value={formData.input7c}
+                                  onChange={handleInputChange}
+                                  className="mb-2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+                        {/*<input type="text" id="input7d" placeholder="Nazwisko" name="input7d" value={formData.input7d}*/}
+                        {/*       onChange={handleInputChange}*/}
+                        {/*       className="mb-2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>*/}
+                        {/*<input type="text" id="input7e" placeholder="Adres Email" name="input7e" value={formData.input7e}*/}
+                        {/*       onChange={handleInputChange}*/}
+                        {/*       className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>*/}
 
-            </div>
-        </div>
+                    </div>
+                </div>
+            )}
     </div>
 
 );
@@ -1692,6 +1736,9 @@ const Step10 = ({ formData, handleInputChange, setData }) => {
                         </div>
                         <button className="bg-white rounded-sm mr-2" onClick={clearSignature}>Od nowa</button>
                         <button className="bg-white rounded-sm mr-2" onClick={saveSignature}>Zapisz</button>
+                        <p className="text-yellow-500">
+                            Podpisz się, zapisz swój podpis i wyślij formularz :)
+                        </p>
                     </div>
                     {/*/!* Display the saved signature *!/*/}
                     {/*{signature && (*/}
@@ -1761,7 +1808,10 @@ const MultiStepForm = () => {
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setData(name, value);
+        setData((prevState) => ({
+            ...prevState,
+            [name]: value
+        }));
 
     };
 
@@ -1813,8 +1863,15 @@ const MultiStepForm = () => {
     //     });
     // };
 
+    const [error, setError] = useState('');
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (!data.signature) {
+            setError('Signature is required.');
+            return;
+        }
         post(route('form.submit'), {
             onSuccess: () => {
                 console.log('Form submitted successfully!');
@@ -1835,7 +1892,12 @@ const MultiStepForm = () => {
 
     const prevStep = () => setStep(step - 1);
 
+    const [errorMessage, setErrorMessage] = useState('');
+
     const validateStep = (stepNumber) => {
+        setErrorMessage(''); // Clear previous error messages
+
+    // const validateStep = (stepNumber) => {
         // Implement validation logic for each step
         switch (stepNumber) {
             case 1:
@@ -1847,13 +1909,15 @@ const MultiStepForm = () => {
             //
                 // Check if either input1b or input1c is selected, but not both
                 if ((data.input1b && data.input1c) || (!data.input1b && !data.input1c)) {
-                    console.log("Please select either input1b or input1c");
-                    setStep1Valid(false); // Set Step 1 validation status to false
+                    console.log("Zaznacz swój lot i zaznacz czy pzesiadka też miała miejsce");
+                    setErrorMessage("Zaznacz czy przesiadka miała miejsce"); // Clear previous error messages                    setStep1Valid(false); // Set Step 1 validation status to false
+                    setStep1Valid(false);
                     return false;
                 }
 
                 // if (!data.input2) {
                 //     console.log("Please fill out input2");
+                //     <p className="text-red-500">Zaznacz swój lot i zaznacz czy pzesiadka też miała miejsce </p>
                 //     setStep1Valid(false); // Set Step 1 validation status to false
                 //     return false;
                 // }
@@ -1861,6 +1925,7 @@ const MultiStepForm = () => {
                 // Check if either input1b or input1c is selected, but not both
                 if ((data.input3 && data.input3a) || (!data.input3a && !data.input3)) {
                     console.log("Please select either input1b or input1c");
+                    setErrorMessage("Zaznacz swój lot"); // Clear previous error messages
                     setStep1Valid(false); // Set Step 1 validation status to false
                     return false;
                 } else {
@@ -1869,29 +1934,32 @@ const MultiStepForm = () => {
                 break;
             // Add validation for other steps as needed
             case 2:
-                // if (!data.input2) {
-                //     console.log("Please fill out input2");
-                //     setStep1Valid(false); // Set Step 1 validation status to false
-                //     return false;
-                // } else {
-                //     setStep1Valid(true); // Set Step 1 validation status to true if validation passes
-                // }
-                // break;
-
-                // Check if either input1b or input1c is selected, but not both
-                if (!data.input4 || !data.input4a || !data.input4b) {
-                    console.log("Please fill out input1 and input1a");
-                    setStep1Valid(false); // Set Step 1 validation status to false
+                if (!data.input4) {
+                    setErrorMessage('Wpisz nazwe lini');
+                    setStep1Valid(false);
                     return false;
-                } else {
-                    setStep1Valid(true); // Set Step 1 validation status to true if validation passes
                 }
+
+                if (!data.input4a) {
+                    setErrorMessage('Wpisz nr lotu');
+                    setStep1Valid(false);
+                    return false;
+                }
+
+                if (!data.input4b) {
+                    setErrorMessage('Wpisz date');
+                    setStep1Valid(false);
+                    return false;
+                }
+
+                setStep1Valid(true);
                 break;
             // Add validation for other steps as needed
             case 3:
                 // Check if either input1b or input1c is selected, but not both
                 if ((data.input5 && data.input5a && data.input5b) || (!data.input5 && !data.input5a && !data.input5b)) {
                     console.log("Please select either input1b or input1c");
+                    setErrorMessage('Odpowiedz na 1 pytanie');
                     setStep1Valid(false); // Set Step 1 validation status to false
                     return false;
                 }
@@ -1899,12 +1967,14 @@ const MultiStepForm = () => {
                 // Check if either input1b or input1c is selected, but not both
                 if ((data.input5c && data.input5d && data.input5e && data.input5f && data.input5g && data.input5h) || (!data.input5c && !data.input5d && !data.input5e && !data.input5f && !data.input5g && !data.input5h))  {
                     console.log("Please select either input1b or input1c");
+                    setErrorMessage('Odpowiedz na 2 pytanie');
                     setStep1Valid(false); // Set Step 1 validation status to false
                     return false;
                 }
 
                 // Check if either input1b or input1c is selected, but not both
                 if ((data.input5i && data.input5j) || (!data.input5i && !data.input5j)) {
+                    setErrorMessage('Odpowiedz na 3 pytanie');
                     console.log("Please select either input1b or input1c");
                     setStep1Valid(false); // Set Step 1 validation status to false
                     return false;
@@ -1914,16 +1984,35 @@ const MultiStepForm = () => {
                 break;
             // Add validation for other steps as needed
             case 4:
-                // Check if either input1b or input1c is selected, but not both
-                if (!data.input6 || !data.input6a || !data.input6b) {
-                    console.log("Please fill out input1 and input1a");
-                    setStep1Valid(false); // Set Step 1 validation status to false
+                if (!data.input6) {
+                    setErrorMessage('Wpisz imię');
+                    setStep1Valid(false);
                     return false;
                 }
+
+                if (!data.input6a) {
+                    setErrorMessage('Wpisz nazwisko');
+                    setStep1Valid(false);
+                    return false;
+                }
+
+                if (!data.input6b) {
+                    setErrorMessage('Wpisz email');
+                    setStep1Valid(false);
+                    return false;
+                }
+
+                // // Check if either input1b or input1c is selected, but not both
+                // if (!data.input6 || !data.input6a || !data.input6b) {
+                //     console.log("Please fill out input1 and input1a");
+                //     setStep1Valid(false); // Set Step 1 validation status to false
+                //     return false;
+                // }
 
                 // Check if either input1b or input1c is selected, but not both
                 if ((data.input6c && data.input6d && data.input6e) || (!data.input6c && !data.input6d && !data.input6e)) {
                     console.log("Please select either input1b or input1c");
+                    setErrorMessage('Wpisz zgode');
                     setStep1Valid(false); // Set Step 1 validation status to false
                     return false;
                 }
@@ -1934,6 +2023,7 @@ const MultiStepForm = () => {
                 // Check if either input1b or input1c is selected, but not both
                 if ((data.input7a && data.input7b) || (!data.input7a && !data.input7b)) {
                     console.log("Please select either input1b or input1c");
+                    setErrorMessage('Odpowiedz na pytanie nr 1');
                     setStep1Valid(false); // Set Step 1 validation status to false
                     return false;
                 }
@@ -1948,10 +2038,45 @@ const MultiStepForm = () => {
                 setStep1Valid(true); // Set Step 1 validation status to true if validation passes
                 break;
             case 6:
-                // Check if either input1b or input1c is selected, but not both
-                if (!data.input8 || !data.input8a || !data.input8b || !data.input8c || !data.input8d || !data.input8e || !data.input8f ) {
-                    console.log("Please fill out input1 and input1a");
-                    setStep1Valid(false); // Set Step 1 validation status to false
+                if (!data.input8) {
+                    setErrorMessage('Wpisz adres');
+                    setStep1Valid(false);
+                    return false;
+                }
+
+                if (!data.input8a) {
+                    setErrorMessage('Wpisz nr lokalu');
+                    setStep1Valid(false);
+                    return false;
+                }
+
+                if (!data.input8b) {
+                    setErrorMessage('Wpisz miasto');
+                    setStep1Valid(false);
+                    return false;
+                }
+
+                if (!data.input8c) {
+                    setErrorMessage('Wpisz kod pocztowy');
+                    setStep1Valid(false);
+                    return false;
+                }
+
+                if (!data.input8d) {
+                    setErrorMessage('Wpisz województwo');
+                    setStep1Valid(false);
+                    return false;
+                }
+
+                if (!data.input8e) {
+                    setErrorMessage('Wpisz kraj');
+                    setStep1Valid(false);
+                    return false;
+                }
+
+                if (!data.input8f) {
+                    setErrorMessage('Wpisz nr telefonu');
+                    setStep1Valid(false);
                     return false;
                 } else {
                     setStep1Valid(true); // Set Step 1 validation status to true if validation passes
@@ -1962,7 +2087,7 @@ const MultiStepForm = () => {
             case 7:
                 // Check if either input1b or input1c is selected, but not both
                 if (!data.input9 ) {
-                    console.log("Please fill out input1 and input1a");
+                    setErrorMessage('Wpisz nr rezerwacji');
                     setStep1Valid(false); // Set Step 1 validation status to false
                     return false;
                 } else {
@@ -1970,6 +2095,13 @@ const MultiStepForm = () => {
                 }
                 break;
             case 8:
+                if ((!data.signature)) {
+                    setErrorMessage('Wpisz podpis');
+                    setStep1Valid(false);
+                    return false;
+                } else {
+                    setStep1Valid(true); // Set Step 1 validation status to true if validation passes
+                }
 
             case 9:
 
@@ -1980,47 +2112,51 @@ const MultiStepForm = () => {
         return true;
     };
 
+    const [selectedFlight, setSelectedFlight] = useState(null); // State to store the selected flight
+
     const renderStep = (stepNumber) => {
         const CurrentStepComponent = steps[stepNumber - 1];
         return (
             <div className="container" style={{flexWrap: "wrap"}}>
-                <CurrentStepComponent formData={data} handleInputChange={handleInputChange} handleCheckboxChange={handleCheckboxChange} setData={setData} />
+                <CurrentStepComponent formData={data} handleInputChange={handleInputChange} handleCheckboxChange={handleCheckboxChange} setData={setData}  setSelectedFlight={setSelectedFlight} selectedFlight={selectedFlight}/>
                 {stepNumber === 1 && !step1Valid && (
-                    <p className="text-red-500">Wypełnij brakujące pola</p>
+                    <p className="text-red-500">{errorMessage}</p>
                 )}
                 {stepNumber === 2 && !step1Valid && (
                     <p className="text-red-500">
-                        Wypełnij brakujące pola
+                        {errorMessage}
                     </p>
                 )}
                 {stepNumber === 3 && !step1Valid && (
                     <p className="text-red-500">
-                        Wypełnij brakujące pola
+                        {errorMessage}
                     </p>
                 )}
                 {stepNumber === 4 && !step1Valid && (
-                    <p className="text-red-500">
-                        Wypełnij brakujące pola
-                    </p>
+                    <div className="container">
+                        <p className="text-red-500">
+                            {errorMessage}
+                        </p>
+                    </div>
                 )}
                 {stepNumber === 5 && !step1Valid && (
                     <p className="text-red-500">
-                        Wypełnij brakujące pola
+                        {errorMessage}
                     </p>
                 )}
                 {stepNumber === 6 && !step1Valid && (
                     <p className="text-red-500">
-                        Wypełnij brakujące pola
+                        {errorMessage}
                     </p>
                 )}
                 {stepNumber === 7 && !step1Valid && (
                     <p className="text-red-500">
-                        Wypełnij brakujące pola
+                        {errorMessage}
                     </p>
                 )}
                 {stepNumber === 8 && !step1Valid && (
                     <p className="text-red-500">
-                        Wypełnij brakujące pola
+                        {errorMessage}
                     </p>
                 )}
                 {stepNumber === 9 && !step1Valid && (
@@ -2040,21 +2176,27 @@ const MultiStepForm = () => {
     return (
         <div>
             <div className="bg-neutral-100">
-                <div className="outer min-h-screen" style={{ backgroundImage: "url('media/side-img-crpd.png')", backgroundPosition: "left bottom", backgroundRepeat: "no-repeat", backgroundSize: "100%" }}>
-                    <div className="mt-5 ml-5" style={{ width: "200px" }}>
+                <div className="outer min-h-screen" style={{
+                    backgroundImage: "url('media/side-img-crpd.png')",
+                    backgroundPosition: "left bottom",
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "100%"
+                }}>
+                    <div className="logo-multi mt-5 ml-5" style={{width: "200px"}}>
                         <Link href="/">
-                            <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800" />
+                            <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800"/>
                         </Link>
                     </div>
                     <div className="progress">
                         <div className="left">
-                            {Array.from({ length: totalSteps }).map((_, index) => (
+                            {Array.from({length: totalSteps}).map((_, index) => (
                                 <div key={index}>{index === 0 ? 'Start' : ''}</div>
                             ))}
                         </div>
                         <div className="right">
-                            {Array.from({ length: totalSteps }).map((_, index) => (
-                                <div key={index} className={step === index + 1 ? 'current' : step > index + 1 ? 'done' : ''}>{index + 1}</div>
+                            {Array.from({length: totalSteps}).map((_, index) => (
+                                <div key={index}
+                                     className={step === index + 1 ? 'current' : step > index + 1 ? 'done' : ''}>{index + 1}</div>
                             ))}
                             <div>Koniec</div>
                         </div>

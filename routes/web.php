@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Foundation\Application;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -23,6 +24,12 @@ Route::get('/', function () {
 
 // Define route to render the page with the multi-step form
 Route::get('/multi-step-form', [MultiStepFormController::class, 'index'])->name('multistep.index');
+//Route::get('/multi-step-form', function (Request $request) {
+//    return Inertia::render('MultiStepForm', [
+//        'input1' => $request->input('input1'),
+//        'input1a' => $request->input('input1a'),
+//    ]);
+//})->name('multistep.iatas');
 Route::post('/multi-step-form/validate-discount', [DiscountController::class, 'validateDiscount'])->name('multistep.validateDiscount');
 
 Route::get('/form-data', [FormController::class, 'index'])->name('form-data.index');

@@ -31,7 +31,7 @@ footer {
 }
 
 .card:hover .list-hidden {
-    max-height: 100px;
+    max-height: 200px;
 }
 
 .image-container {
@@ -625,4 +625,14 @@ footer {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: -1;
+}
+
+canvas {
+    height: 200px;
+}
+
+@media (max-width: 768px) {
+    .logo-multi {
+        display: none;
+    }
 }

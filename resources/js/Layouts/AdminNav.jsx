@@ -66,6 +66,25 @@ export default function AdminNav({ user, header, children }) {
                                     Strona główna
                                 </NavLink>
                             </div>
+
+                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <NavLink href={route('multistep.index')} active={route().current('multistep')}>
+                                    Sprawdź odszkodowanie
+                                </NavLink>
+                            </div>
+
+                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <NavLink href="/" active={route().current('prawa')}>
+                                    Poznaj swoje prawa
+                                </NavLink>
+                            </div>
+
+                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <NavLink href="/" active={route().current('o-nas')}>
+                                    O nas
+                                </NavLink>
+                            </div>
+
                             {user.role_id === 1 && ( // Render only if user is admin
                                 <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                     <NavLink href={route('admin.dashboard')}
@@ -144,6 +163,26 @@ export default function AdminNav({ user, header, children }) {
                     <div className="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink href={route('home')} active={route().current('home')}>
                             Strona główna
+                        </ResponsiveNavLink>
+                    </div>
+
+                    <div className="pt-2 pb-3 space-y-1">
+                        <ResponsiveNavLink href={route('multistep.index')} active={route().current('multistep')}>
+                            Sprawdź odszkodowanie
+                        </ResponsiveNavLink>
+                    </div>
+
+                    <div className="pt-2 pb-3 space-y-1">
+
+                        <ResponsiveNavLink href='/' active={route().current('prawa')}>
+                            Poznaj swoje prawa
+                        </ResponsiveNavLink>
+                    </div>
+
+                    <div className="pt-2 pb-3 space-y-1">
+
+                        <ResponsiveNavLink href='/' active={route().current('o-nas')}>
+                            O nas
                         </ResponsiveNavLink>
                     </div>
 

@@ -11,10 +11,21 @@ use Inertia\Inertia;
 
 class MultiStepFormController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return Inertia::render('MultiStepForm');
+        return Inertia::render('MultiStepForm', [
+            'input1' => $request->query('input1'),
+            'input1a' => $request->query('input1a'),
+        ]);
     }
+
+//    public function showStep3(Request $request)
+//    {
+//        return Inertia::render('Step3', [
+//            'input1' => $request->query('input1'),
+//            'input1a' => $request->query('input1a'),
+//        ]);
+//    }
 
     public function submit(Request $request)
     {
@@ -60,7 +71,7 @@ class MultiStepFormController extends Controller
             'input8e' => 'required|string|max:255',
             'input8f' => 'required|string|max:255',
             'input9' => 'required|string|max:255',
-            'input10' => 'string|max:255',
+            'input10' => 'max:255',
             'signature' => 'required|string', // Add validation for signature
         ]);
 
