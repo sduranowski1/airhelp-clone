@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import react from '@vitejs/plugin-react';
 // import ziggy from 'ziggy-js'
+import { transformWithEsbuild } from '@esbuild-plugins/react';
 
 export default defineConfig({
     plugins: [
@@ -10,23 +11,23 @@ export default defineConfig({
             refresh: true,
         }),
         react(),
-        // Workaround
-        {
-            name: 'load+transform-js-files-as-jsx',
-            async transform(code, id) {
-                if (!id.match(/src\/.*\.js$/)) {
-                    return null;
-                }
-
-                // Use the exposed transform from vite, instead of directly
-                // transforming with esbuild
-                return transformWithEsbuild(code, id, {
-                    loader: 'jsx',
-                    jsx: 'automatic', // 👈 this is important
-                });
-            },
-        },
-        // End workaround
+        // // Workaround
+        // {
+        //     name: 'load+transform-js-files-as-jsx',
+        //     async transform(code, id) {
+        //         if (!id.match(/src\/.*\.js$/)) {
+        //             return null;
+        //         }
+        //
+        //         // Use the exposed transform from vite, instead of directly
+        //         // transforming with esbuild
+        //         return transformWithEsbuild(code, id, {
+        //             loader: 'jsx',
+        //             jsx: 'automatic', // 👈 this is important
+        //         });
+        //     },
+        // },
+        // // End workaround
 
     ],
 
