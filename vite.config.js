@@ -3,9 +3,7 @@ import laravel from 'laravel-vite-plugin';
 import react from '@vitejs/plugin-react';
 // import ziggy from 'ziggy-js'
 import { createRequire } from 'module';
-
-const require = createRequire(import.meta.url);
-const path = require('path');
+import path from 'path';
 
 export default defineConfig({
     plugins: [
