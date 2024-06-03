@@ -5,7 +5,6 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCalendarDays, faPencil, faPlaneArrival, faPlaneDeparture, faWallet} from '@fortawesome/free-solid-svg-icons';
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
-import SignatureCanvas from "react-signature-canvas/src";
 import ApplicationLogo from "@/Components/ApplicationLogo.jsx";
 import {Link, useForm, usePage} from "@inertiajs/react";
 import { format } from 'date-fns';
