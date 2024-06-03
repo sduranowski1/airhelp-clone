@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite';
+import {defineConfig, transformWithEsbuild} from 'vite';
 import laravel from 'laravel-vite-plugin';
 import react from '@vitejs/plugin-react';
 // import ziggy from 'ziggy-js'
