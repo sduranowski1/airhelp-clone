@@ -14,7 +14,6 @@ import SignaturePad from 'react-signature-canvas'; // Assuming you're using this
 
 import airlinesData from './airlinesData'; // Importing the airlines data
 import airportsData from './airports.js';
-import {useLocation} from "react-router-dom";
 
 const Step1 = ({ formData, handleInputChange, checkboxes, handleCheckboxChange }) => {
     const [airportData, setAirportData] = useState([]); // State to store airport data
