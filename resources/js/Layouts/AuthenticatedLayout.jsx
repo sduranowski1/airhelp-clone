@@ -71,11 +71,7 @@ export default function Authenticated({ user, header, children }) {
                                 </NavLink>
                             </div>
 
-                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink href={route('dashboard')} active={route().current('dashboard')}>
-                                    Panel klienta
-                                </NavLink>
-                            </div>
+
                             {user.role_id === 1 && ( // Render only if user is admin
                                 <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                     <NavLink href={route('admin.dashboard')}
