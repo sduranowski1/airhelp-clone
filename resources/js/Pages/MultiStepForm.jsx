@@ -1091,24 +1091,24 @@ const Step4 = ({ formData, handleInputChange }) => {
                         className="shadow appearance-none border rounded py-2 col-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     />
                     <FontAwesomeIcon icon={faCalendarDays} className="icon p-2"/>
-                    <DatePicker
-                        selected={formData.input4b}
-                        // onChange={date => handleInputChange({target: {name: 'input4b', value: date}})}
-                        onChange={handleInputChange}
-                        // dateFormat="yyyy/MM/dd" // You can customize the date format
-                        placeholderText="Wybierz date"
-                        className="date-picker flex-1 mr-2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    />
-                    {/*<input type="date"*/}
-                    {/*       id="input4b"*/}
-                    {/*       name="input4b"*/}
-                    {/*       value={formData.input4b}*/}
-                    {/*       // onChange={date => handleInputChange({target: {name: 'input4b', value: date}})}*/}
-                    {/*       onChange={handleInputChange}*/}
-                    {/*    // format="MM/dd/yyyy" // You can customize the date format*/}
-                    {/*       placeholder="DD/MM/RRRR, HH:MM"*/}
-                    {/*       className="flex-1 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"*/}
+                    {/*<DatePicker*/}
+                    {/*    selected={formData.input4b}*/}
+                    {/*    // onChange={date => handleInputChange({target: {name: 'input4b', value: date}})}*/}
+                    {/*    onChange={handleInputChange}*/}
+                    {/*    // dateFormat="yyyy/MM/dd" // You can customize the date format*/}
+                    {/*    placeholderText="Wybierz date"*/}
+                    {/*    className="date-picker flex-1 mr-2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"*/}
                     {/*/>*/}
+                    <input type="date"
+                           id="input4b"
+                           name="input4b"
+                           value={formData.input4b}
+                           // onChange={date => handleInputChange({target: {name: 'input4b', value: date}})}
+                           onChange={handleInputChange}
+                        // format="MM/dd/yyyy" // You can customize the date format
+                           placeholder="DD/MM/RRRR, HH:MM"
+                           className="flex-1 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    />
                 </div>
             </div>
         </div>
