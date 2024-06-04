@@ -434,13 +434,6 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
             // Check if flight is available and has the necessary properties
             if (flight && flight.departure && flight.departure.scheduledTime) {
                 // Set the flight information to the corresponding input in the form data
-                const scheduledDate = new Date(flight.departure.scheduledTime.local);
-
-                // Format the date in yyyy-MM-dd format using appropriate methods
-                const formattedLocalTime = scheduledDate.toISOString().slice(0, 10);
-
-                // Replace dashes with slashes in the formatted date string
-                const formattedLocalTimeWithSlashes = formattedLocalTime.replace(/-/g, '/');
 
                 newState.input4 = flight.airline.name;
                 newState.input4a = flight.number;
