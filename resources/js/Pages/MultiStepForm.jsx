@@ -444,7 +444,7 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
 
                 newState.input4 = flight.airline.name;
                 newState.input4a = flight.number;
-                newState.input4b = formattedLocalTimeWithSlashes;
+                newState.input4b = flight.departure.scheduledTime.local;
             }
 
             return newState;
@@ -1100,18 +1100,20 @@ const Step4 = ({ formData, handleInputChange }) => {
                     <FontAwesomeIcon icon={faCalendarDays} className="icon p-2"/>
                     <DatePicker
                         selected={formData.input4b}
-                        onChange={date => handleInputChange({target: {name: 'input4b', value: date}})}
-                        dateFormat="yyyy/MM/dd" // You can customize the date format
+                        // onChange={date => handleInputChange({target: {name: 'input4b', value: date}})}
+                        onChange={handleInputChange}
+                        // dateFormat="yyyy/MM/dd" // You can customize the date format
                         placeholderText="Wybierz date"
                         className="date-picker flex-1 mr-2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     />
-                    {/*<input type="text"*/}
+                    {/*<input type="date"*/}
                     {/*       id="input4b"*/}
                     {/*       name="input4b"*/}
                     {/*       value={formData.input4b}*/}
-                    {/*       onChange={date => handleInputChange({target: {name: 'input4b', value: date}})}*/}
-                    {/*       // format="MM/dd/yyyy" // You can customize the date format*/}
-                    {/*       placeholder="Napisz date w formacie DD/MM/RRRR"*/}
+                    {/*       // onChange={date => handleInputChange({target: {name: 'input4b', value: date}})}*/}
+                    {/*       onChange={handleInputChange}*/}
+                    {/*    // format="MM/dd/yyyy" // You can customize the date format*/}
+                    {/*       placeholder="DD/MM/RRRR, HH:MM"*/}
                     {/*       className="flex-1 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"*/}
                     {/*/>*/}
                 </div>
