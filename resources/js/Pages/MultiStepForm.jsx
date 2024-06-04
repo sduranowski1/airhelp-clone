@@ -14,6 +14,7 @@ import SignaturePad from 'react-signature-canvas'; // Assuming you're using this
 
 import airlinesData from './airlinesData'; // Importing the airlines data
 import airportsData from './airports.js';
+import rapidApi from "../../../rapid-api.js";
 
 const Step1 = ({ formData, handleInputChange, checkboxes, handleCheckboxChange }) => {
     const [airportData, setAirportData] = useState([]); // State to store airport data
@@ -28,7 +29,7 @@ const Step1 = ({ formData, handleInputChange, checkboxes, handleCheckboxChange }
                 method: 'GET',
                 url: 'https://flight-radar1.p.rapidapi.com/airports/list',
                 headers: {
-                    // 'X-RapidAPI-Key': '95f3c48580mshc872ed236159d39p1d474ejsn14aa0564e966',
+                    // 'X-RapidAPI-Key': '',
                     'X-RapidAPI-Host': 'flight-radar1.p.rapidapi.com'
                 }
             };
@@ -375,7 +376,7 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
                 withLocation: 'false'
             },
             headers: {
-                'X-RapidAPI-Key': import.meta.env.VITE_API_KEY,
+                'X-RapidAPI-Key': rapidApi.apiKey,
                 'X-RapidAPI-Host': 'aerodatabox.p.rapidapi.com'
             }
         };
