@@ -436,7 +436,7 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
                 // Set the flight information to the corresponding input in the form data
                 newState.input4 = flight.airline.name;
                 newState.input4a = flight.number;
-                // newState.input4b = flight.departure.scheduledTime.local;
+                newState.input4b = flight.departure.scheduledTime.local;
             }
 
             return newState;
@@ -1080,7 +1080,7 @@ const Step4 = ({ formData, handleInputChange }) => {
                     ))}
                 </ul>
                 <div className="flex items-center">
-                <input
+                    <input
                         type="text"
                         id="input4a"
                         name="input4a"
@@ -1090,18 +1090,25 @@ const Step4 = ({ formData, handleInputChange }) => {
                         className="shadow appearance-none border rounded py-2 col-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     />
                     <FontAwesomeIcon icon={faCalendarDays} className="icon p-2"/>
-                    <DatePicker
-                        selected={formData.input4b}
-                        onChange={date => handleInputChange({target: {name: 'input4b', value: date}})}
-                        dateFormat="MM/dd/yyyy" // You can customize the date format
-                        placeholderText="Wybierz date"
-                        className="date-picker flex-1 mr-2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    {/*<DatePicker*/}
+                    {/*    selected={formData.input4b}*/}
+                    {/*    onChange={date => handleInputChange({target: {name: 'input4b', value: date}})}*/}
+                    {/*    dateFormat="MM/dd/yyyy" // You can customize the date format*/}
+                    {/*    placeholderText="Wybierz date"*/}
+                    {/*    className="date-picker flex-1 mr-2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"*/}
+                    {/*/>*/}
+                    <input type="datetime-local"
+                           value={formData.input4b}
+                           onChange={date => handleInputChange({target: {name: 'input4b', value: date}})}
+                           placeholder="Wybierz date"
+                           className="flex-1 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     />
                 </div>
             </div>
         </div>
     </div>
-);};
+    );
+};
 
 const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, setData}) => {
     const [input5, setInput5] = useState(false);
