@@ -1090,19 +1090,20 @@ const Step4 = ({ formData, handleInputChange }) => {
                         className="shadow appearance-none border rounded py-2 col-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     />
                     <FontAwesomeIcon icon={faCalendarDays} className="icon p-2"/>
-                    {/*<DatePicker*/}
-                    {/*    selected={formData.input4b}*/}
-                    {/*    onChange={date => handleInputChange({target: {name: 'input4b', value: date}})}*/}
-                    {/*    dateFormat="MM/dd/yyyy" // You can customize the date format*/}
-                    {/*    placeholderText="Wybierz date"*/}
-                    {/*    className="date-picker flex-1 mr-2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"*/}
-                    {/*/>*/}
-                    <input type="datetime-local"
-                           value={formData.input4b}
-                           onChange={date => handleInputChange({target: {name: 'input4b', value: date}})}
-                           placeholder="Wybierz date"
-                           className="flex-1 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    <DatePicker
+                        selected={formData.input4b}
+                        onChange={date => handleInputChange({target: {name: 'input4b', value: date}})}
+                        // dateFormat="MM/dd/yyyy" // You can customize the date format
+                        placeholderText="Wybierz date"
+                        className="date-picker flex-1 mr-2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     />
+                    {/*<input type="date"*/}
+                    {/*       value={formData.input4b}*/}
+                    {/*       onChange={date => handleInputChange({target: {name: 'input4b', value: date}})}*/}
+                    {/*       // format="MM/dd/yyyy" // You can customize the date format*/}
+                    {/*       placeholder="Wybierz date"*/}
+                    {/*       className="flex-1 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"*/}
+                    {/*/>*/}
                 </div>
             </div>
         </div>
