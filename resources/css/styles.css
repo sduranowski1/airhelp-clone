@@ -2,6 +2,16 @@ html, body {
     overflow-x: hidden;
 }
 
+
+.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999; /* Ensure navbar stays on top of content */
+    background-color: white; /* Optional: maintain background color */
+}
+
 footer {
     background: #F4FFF199;
 }

@@ -10,9 +10,22 @@ export default function Authenticated({ user, header, children }) {
     const { auth } = useAuth();
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
+    const [isSticky, setIsSticky] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrolled = window.scrollY > 100; // Adjust the threshold as needed
+            setIsSticky(scrolled);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
     return (
         <div className="min-h-screen bg-gray-100">
-            <nav className="bg-white border-b border-gray-100">
+            <nav className={`bg-white border-b border-gray-100 ${isSticky ? 'sticky' : ''}`}>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
                         <div className="flex">
@@ -43,6 +56,18 @@ export default function Authenticated({ user, header, children }) {
                             <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                 <NavLink href="/" active={route().current('o-nas')}>
                                     O nas
+                                </NavLink>
+                            </div>
+
+                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <NavLink href="/" active={route().current('blog')}>
+                                    Blog
+                                </NavLink>
+                            </div>
+
+                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <NavLink href={route('dashboard')} active={route().current('dashboard')}>
+                                    Panel klienta
                                 </NavLink>
                             </div>
 
@@ -152,40 +177,46 @@ export default function Authenticated({ user, header, children }) {
                         </ResponsiveNavLink>
                     </div>
 
+                    <div className="pt-2 pb-3 space-y-1">
+                        <ResponsiveNavLink href="/" active={route().current('blog')}>
+                            Blog
+                        </ResponsiveNavLink>
+                    </div>
+
 
                     <div className="pt-2 pb-3 space-y-1">
-                            <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
-                                Panel klienta
+                        <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
+                            Panel klienta
+                        </ResponsiveNavLink>
+                    </div>
+                    {user.role_id === 1 && ( // Render only if user is admin
+                        <div className="pt-2 pb-3 space-y-1">
+                            <ResponsiveNavLink href={route('admin.dashboard')}
+                                               active={route().current('admin.dashboard')}>
+                                Panel CRM
                             </ResponsiveNavLink>
                         </div>
-                        {user.role_id === 1 && ( // Render only if user is admin
-                            <div className="pt-2 pb-3 space-y-1">
-                                <ResponsiveNavLink href={route('admin.dashboard')}
-                                                   active={route().current('admin.dashboard')}>
-                                    Panel CRM
-                                </ResponsiveNavLink>
-                            </div>
-                        )}
+                    )}
 
-                        <div className="pt-4 pb-1 border-t border-gray-200">
-                            <div className="px-4">
-                                <div className="font-medium text-base text-gray-800">{user.name}</div>
-                                <div className="font-medium text-sm text-gray-500">{user.email}</div>
-                            </div>
+                    <div className="pt-4 pb-1 border-t border-gray-200">
+                        <div className="px-4">
+                            <div className="font-medium text-base text-gray-800">{user.name}</div>
+                            <div className="font-medium text-sm text-gray-500">{user.email}</div>
+                        </div>
 
-                            <div className="mt-3 space-y-1">
-                                <ResponsiveNavLink href={route('profile.edit')}>Profil</ResponsiveNavLink>
-                                <ResponsiveNavLink method="post" href={route('logout')} as="button">
-                                    Wyloguj
-                                </ResponsiveNavLink>
-                            </div>
+                        <div className="mt-3 space-y-1">
+                            <ResponsiveNavLink href={route('profile.edit')}>Profil</ResponsiveNavLink>
+                            <ResponsiveNavLink method="post" href={route('logout')} as="button">
+                                Wyloguj
+                            </ResponsiveNavLink>
                         </div>
                     </div>
+                </div>
             </nav>
 
             {header && (
                 <header className="bg-white shadow">
-                    <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">{header}</div>
+                <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">{header}</div>
                 </header>
             )}
 

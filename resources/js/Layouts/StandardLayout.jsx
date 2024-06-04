@@ -10,9 +10,22 @@ export default function Standard({ user, header, children }) {
     const { auth } = useAuth();
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
+    const [isSticky, setIsSticky] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrolled = window.scrollY > 100; // Adjust the threshold as needed
+            setIsSticky(scrolled);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
     return (
         <div className="min-h-screen bg-gray-100">
-            <nav className="bg-white border-b border-gray-100">
+            <nav className={`bg-white border-b border-gray-100 ${isSticky ? 'sticky' : ''}`}>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
                         <div className="flex">
@@ -43,6 +56,12 @@ export default function Standard({ user, header, children }) {
                             <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                 <NavLink href="/" active={route().current('o-nas')}>
                                     O nas
+                                </NavLink>
+                            </div>
+
+                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <NavLink href="/" active={route().current('blog')}>
+                                    Blog
                                 </NavLink>
                             </div>
 
@@ -158,6 +177,12 @@ export default function Standard({ user, header, children }) {
                         <ResponsiveNavLink href='/' active={route().current('o-nas')}>
                             O nas
                         </ResponsiveNavLink>
+                    </div>
+
+                    <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <NavLink href="/" active={route().current('o-nas')}>
+                            Blog
+                        </NavLink>
                     </div>
 
                     <div className="pt-4 pb-1 border-t border-gray-200">

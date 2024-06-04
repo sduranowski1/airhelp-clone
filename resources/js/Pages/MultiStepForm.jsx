@@ -362,6 +362,7 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
 
         const toLocalDate = new Date(new Date(fromLocal).getTime() + 12 * 60 * 60 * 1000).toISOString().replace("T", " ");
 
+
         const options = {
             method: 'GET',
             url: `https://aerodatabox.p.rapidapi.com/flights/airports/iata/${airportCodeValue}/${fromLocal}/${toLocalDate}`,
@@ -374,7 +375,7 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
                 withLocation: 'false'
             },
             headers: {
-                'X-RapidAPI-Key': 'c770c27e49msh2b1fbc013e048b6p1d2e15jsn4ce13446ed89',
+                'X-RapidAPI-Key': import.meta.env.VITE_API_KEY,
                 'X-RapidAPI-Host': 'aerodatabox.p.rapidapi.com'
             }
         };
@@ -476,8 +477,8 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
 
             const filteredAirports = airportsData.filter((airport) =>
                 airport.name.toLowerCase().includes(value.toLowerCase()) ||
-                airport.city.toLowerCase().includes(value.toLowerCase()) ||
-                airport.iata_code.toLowerCase().includes(value.toLowerCase())
+                airport.city.toLowerCase().includes(value.toLowerCase())
+                // airport.iata_code.toLowerCase().includes(value.toLowerCase())
             );
             setArrivalSuggestions(filteredAirports.slice(0, 5));
         }
