@@ -436,7 +436,7 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
                 // Set the flight information to the corresponding input in the form data
                 newState.input4 = flight.airline.name;
                 newState.input4a = flight.number;
-                newState.input4b = flight.departure.scheduledTime.local;
+                // newState.input4b = flight.departure.scheduledTime.local;
             }
 
             return newState;
@@ -478,8 +478,8 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
 
             const filteredAirports = airportsData.filter((airport) =>
                 airport.name.toLowerCase().includes(value.toLowerCase()) ||
-                airport.city.toLowerCase().includes(value.toLowerCase())
-                // airport.iata_code.toLowerCase().includes(value.toLowerCase())
+                airport.city.toLowerCase().includes(value.toLowerCase()) ||
+                airport.iata_code.toLowerCase().includes(value.toLowerCase())
             );
             setArrivalSuggestions(filteredAirports.slice(0, 5));
         }
