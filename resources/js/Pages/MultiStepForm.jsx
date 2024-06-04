@@ -434,9 +434,12 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
             // Check if flight is available and has the necessary properties
             if (flight && flight.departure && flight.departure.scheduledTime) {
                 // Set the flight information to the corresponding input in the form data
+                const formattedLocalTime = flight.departure.scheduledTime.local.toString(); // Or use other formatting methods like moment.js
+
+
                 newState.input4 = flight.airline.name;
                 newState.input4a = flight.number;
-                newState.input4b = flight.departure.scheduledTime.local;
+                newState.input4b = formattedLocalTime;
             }
 
             return newState;
