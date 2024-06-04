@@ -1099,7 +1099,7 @@ const Step4 = ({ formData, handleInputChange }) => {
                     {/*    placeholderText="Wybierz date"*/}
                     {/*    className="date-picker flex-1 mr-2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"*/}
                     {/*/>*/}
-                    <input type="date"
+                    <input type="text"
                            id="input4b"
                            name="input4b"
                            value={formData.input4b}
