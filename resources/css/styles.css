@@ -645,4 +645,10 @@ canvas {
     .logo-multi {
         display: none;
     }
+
+    canvas {
+        height: 150px;
+
+        width: 250px;
+    }
 }

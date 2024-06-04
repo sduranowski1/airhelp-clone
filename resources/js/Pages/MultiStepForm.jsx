@@ -434,12 +434,17 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
             // Check if flight is available and has the necessary properties
             if (flight && flight.departure && flight.departure.scheduledTime) {
                 // Set the flight information to the corresponding input in the form data
-                const formattedLocalTime = flight.departure.scheduledTime.local.toString(); // Or use other formatting methods like moment.js
+                const scheduledDate = new Date(flight.departure.scheduledTime.local);
 
+                // Format the date in yyyy-MM-dd format using appropriate methods
+                const formattedLocalTime = scheduledDate.toISOString().slice(0, 10);
+
+                // Replace dashes with slashes in the formatted date string
+                const formattedLocalTimeWithSlashes = formattedLocalTime.replace(/-/g, '/');
 
                 newState.input4 = flight.airline.name;
                 newState.input4a = flight.number;
-                newState.input4b = formattedLocalTime;
+                newState.input4b = formattedLocalTimeWithSlashes;
             }
 
             return newState;
@@ -683,8 +688,8 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
                         <ul className="w-full">
                             {filteredFlights.map((flight, index) => {
                                 const flightDetails = `
-            Wylot: ${airportCode},
-            Przylot: ${arrivalCode},
+            Wylot: ${departureIata},
+            Przylot: ${arrivalIata},
             Czas wylotu: ${flight.departure.scheduledTime.local},
             Linia lotnicza: ${flight.airline.name},
             Numer lotu: ${flight.number}
@@ -1093,22 +1098,22 @@ const Step4 = ({ formData, handleInputChange }) => {
                         className="shadow appearance-none border rounded py-2 col-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     />
                     <FontAwesomeIcon icon={faCalendarDays} className="icon p-2"/>
-                    {/*<DatePicker*/}
-                    {/*    selected={formData.input4b}*/}
-                    {/*    onChange={date => handleInputChange({target: {name: 'input4b', value: date}})}*/}
-                    {/*    // dateFormat="MM/dd/yyyy" // You can customize the date format*/}
-                    {/*    placeholderText="Wybierz date"*/}
-                    {/*    className="date-picker flex-1 mr-2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"*/}
-                    {/*/>*/}
-                    <input type="text"
-                           id="input4b"
-                           name="input4a"
-                           value={formData.input4b}
-                           onChange={date => handleInputChange({target: {name: 'input4b', value: date}})}
-                           // format="MM/dd/yyyy" // You can customize the date format
-                           placeholder="Wybierz date"
-                           className="flex-1 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    <DatePicker
+                        selected={formData.input4b}
+                        onChange={date => handleInputChange({target: {name: 'input4b', value: date}})}
+                        dateFormat="yyyy/MM/dd" // You can customize the date format
+                        placeholderText="Wybierz date"
+                        className="date-picker flex-1 mr-2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     />
+                    {/*<input type="text"*/}
+                    {/*       id="input4b"*/}
+                    {/*       name="input4b"*/}
+                    {/*       value={formData.input4b}*/}
+                    {/*       onChange={date => handleInputChange({target: {name: 'input4b', value: date}})}*/}
+                    {/*       // format="MM/dd/yyyy" // You can customize the date format*/}
+                    {/*       placeholder="Napisz date w formacie DD/MM/RRRR"*/}
+                    {/*       className="flex-1 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"*/}
+                    {/*/>*/}
                 </div>
             </div>
         </div>
