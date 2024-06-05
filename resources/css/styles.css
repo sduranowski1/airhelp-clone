@@ -643,12 +643,7 @@ canvas {
 
 
 
-.home-hero {
-    background-image: url("media/home_hero.png");
-    background-repeat: no-repeat;
-    background-position: bottom right;
-    background-size: 50%;
-}
+
 
 
 @media (max-width: 768px) {

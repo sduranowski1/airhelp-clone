@@ -54,3 +54,10 @@
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
 }
+
+.home-hero {
+    background-image: url("http://138.68.158.146/media/home_hero.png");
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-size: 50%;
+}
