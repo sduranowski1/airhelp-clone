@@ -641,6 +641,16 @@ canvas {
     height: 200px;
 }
 
+
+
+.home-hero {
+    background-image: url("media/home_hero.png");
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-size: 50%;
+}
+
+
 @media (max-width: 768px) {
     .logo-multi {
         display: none;
@@ -650,5 +660,9 @@ canvas {
         height: 150px;
 
         width: 250px;
+    }
+
+    .home-hero {
+        background-position: right 25%;
     }
 }

@@ -537,8 +537,7 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
             <div className="container">
                 <div className="card p-5" style={{backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"}}>
                     <label htmlFor="input1" className="block text-gray-700 text-sm font-bold mb-2">
-                        Dzień dobry! Sprawdźmy, czy linia lotnicza jest Ci winna odszkodowanie. Podaj miejsce docelowe
-                        podróży.
+                        Dzień dobry! Sprawdźmy, czy linia lotnicza jest Ci winna odszkodowanie. Podaj miejsce i date wylotu.
                     </label>
                     <div className="flex flex-col md:flex-row">
                         <FontAwesomeIcon icon={faPlaneDeparture} className="icon p-2"/>
