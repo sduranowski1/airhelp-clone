@@ -644,7 +644,9 @@ canvas {
 
 
 
-
+.mobile-inputs {
+    margin-bottom: 3rem;
+}
 
 
 @media (max-width: 768px) {
@@ -656,5 +658,22 @@ canvas {
         height: 150px;
 
         width: 250px;
+    }
+
+    .h-screen2 {
+        height: 70vh;
+    }
+
+    .heading-custom {
+        margin-left: 0rem;
+        line-height: 75px;
+    }
+
+    .info-text-custom {
+        margin-top: 7rem;
+    }
+
+    .mobile-inputs {
+        margin-bottom: 1rem;
     }
 }

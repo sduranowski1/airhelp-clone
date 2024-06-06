@@ -139,7 +139,7 @@ const HomeContent = () => {
 
                     <form onSubmit={handleSubmit}
                           className="p-6 text-gray-900 flex flex-col md:flex-row items-center md:items-start relative z-20">
-                        <div className="relative mb-5 md:mb-0 md:mr-4 w-full md:w-80">
+                        <div className="relative mobile-inputs md:mb-0 md:mr-4 w-full md:w-80">
                             <input
                                 type="text"
                                 id="input1"
@@ -166,7 +166,7 @@ const HomeContent = () => {
                                 </ul>
                             )}
                         </div>
-                        <div className="relative mb-5 md:mb-0 md:mr-4 w-full md:w-80">
+                        <div className="relative mobile-inputs md:mb-0 md:mr-4 w-full md:w-80">
                             <input
                                 type="text"
                                 id="input1a"
