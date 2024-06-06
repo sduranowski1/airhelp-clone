@@ -661,16 +661,17 @@ canvas {
     }
 
     .h-screen2 {
-        height: 60vh;
+        height: 55vh;
     }
 
     .heading-custom {
         margin-left: 0rem;
-        line-height: 75px;
+        line-height: 65px;
     }
 
     .info-text-custom {
-        margin-top: 7rem;
+        margin-top: 6rem;
+        line-height: 25px;
     }
 
     .mobile-inputs {
