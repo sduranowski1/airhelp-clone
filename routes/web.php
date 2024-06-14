@@ -38,7 +38,7 @@ Route::get('/success', function () {
     return Inertia::render('Success');
 })->name('form.success');
 
-Route::get('/blog', [BlogPostController::class, 'index']);
+Route::get('/blog', [BlogPostController::class, 'index'])->name('blog');
 Route::get('/blog/{post}', [BlogPostController::class, 'show'])->where('post', '[0-9]+');
 
 Route::get('/dashboard',  [DashboardController::class, 'index'])
@@ -64,6 +64,12 @@ Route::middleware(['auth', AdminMiddleware::class])->prefix('admin')->group(func
     // Add update route for discounts
     Route::put('/discounts/{id}', [AdminController::class, 'updateDiscount'])->name('admin.discounts.update');
     Route::delete('/discounts/{id}', [AdminController::class, 'deleteDiscount'])->name('admin.discounts.delete');
+
+    Route::get('/blog/create', [BlogPostController::class, 'create'])->name('admin.blog.create');
+    Route::post('/blog', [BlogPostController::class, 'store']);
+    Route::get('/blog/{post}/edit', [BlogPostController::class, 'edit'])->name('blog.edit');
+    Route::post('/blog/{post}', [BlogPostController::class, 'update'])->name('blog.update');
+    Route::delete('/blog/{post}', [BlogPostController::class, 'destroy'])->name('blog.destroy');
 
 });
 

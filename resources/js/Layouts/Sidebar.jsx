@@ -73,6 +73,13 @@ function AdminDashboard({ pageTitle, children}) {
                         Zniżki
                     </Link>
                 </div>
+
+                <div className="m-3 text-white">
+                    <Link className="text-white" href={route('admin.blog.create')}
+                          active={route().current('admin.blog.create')}>
+                        Kreator Bloga
+                    </Link>
+                </div>
                 {/* Replace your nav items here */}
             </ul>
             {/* End of Sidebar */}

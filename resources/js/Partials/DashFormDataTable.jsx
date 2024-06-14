@@ -1,13 +1,7 @@
-// resources/js/Partials/FormDataTable.jsx
 import React, {useState} from 'react';
 import Modal from "@/Components/Modal.jsx";
 
 const DashFormDataTable = ({ dashFormData }) => {
-    // console.log('formData in FormDataTable:', formData); // Add this line for debugging
-    //
-    // if (!Array.isArray(formData) || formData.length === 0) {
-    //     return <div>No data available</div>;
-    // }
     const sortedFormData = [...dashFormData].sort((a, b) => b.id - a.id);
 
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,7 +17,6 @@ const DashFormDataTable = ({ dashFormData }) => {
         setSelectedImage('');
     };
 
-
     return (
         <div className="p-6 text-gray-900 overflow-x-auto">
             <h2>Formularze</h2>
@@ -33,11 +26,8 @@ const DashFormDataTable = ({ dashFormData }) => {
                     <th className="py-2 px-4 border-b border-gray-300">ID</th>
                     <th className="py-2 px-4 border-b border-gray-300">Status</th>
                     <th className="py-2 px-4 border-b border-gray-300">Podpis</th>
-                    {/*<th className="py-2 px-4 border-b border-gray-300">Odlot</th>*/}
-                    {/*<th className="py-2 px-4 border-b border-gray-300">Przylot</th>*/}
                     <th className="py-2 px-4 border-b border-gray-300">Czy Twój lot obejmował przesiadkę?</th>
                     <th className="py-2 px-4 border-b border-gray-300"></th>
-                    {/*<th className="py-2 px-4 border-b border-gray-300">Input2</th>*/}
                     <th className="py-2 px-4 border-b border-gray-300">Dane lotu</th>
                     <th className="py-2 px-4 border-b border-gray-300"></th>
                     <th className="py-2 px-4 border-b border-gray-300">Linia lotnicza</th>
@@ -83,7 +73,6 @@ const DashFormDataTable = ({ dashFormData }) => {
                     <th className="py-2 px-4 border-b border-gray-300">Nr rezerwacji</th>
                     <th className="py-2 px-4 border-b border-gray-300">Kod rabatowy</th>
                     <th className="py-2 px-4 border-b border-gray-300">Zaaplikowano</th>
-                    {/*<th className="py-2 px-4 border-b border-gray-300">Updated At</th>*/}
                 </tr>
                 </thead>
                 <tbody>
@@ -96,47 +85,115 @@ const DashFormDataTable = ({ dashFormData }) => {
                                  onClick={() => openModal(`/${dash.signature}`)}
                             />
                         </td>
-                        {/*<td className="py-2 px-4 border-b border-gray-300">{dash.input1}</td>*/}
-                        {/*<td className="py-2 px-4 border-b border-gray-300">{dash.input1a}</td>*/}
-                        <td className="py-2 px-4 border-b border-gray-300">{dash.input1b}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{dash.input1c}</td>
-                        {/*<td className="py-2 px-4 border-b border-gray-300">{dash.input2}</td>*/}
-                        <td className="py-2 px-4 border-b border-gray-300">{dash.input3}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{dash.input3a}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{dash.input4}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{dash.input4a}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{dash.input4b}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{dash.input5}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{dash.input5a}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{dash.input5b}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{dash.input5c}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{dash.input5d}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{dash.input5e}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{dash.input5f}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{dash.input5g}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{dash.input5h}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{dash.input5i}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{dash.input5j}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{dash.input6}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{dash.input6a}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{dash.input6b}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{dash.input6c}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{dash.input6d}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{dash.input6e}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{dash.input7a}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{dash.input7b}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{dash.input7c}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{dash.input8}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{dash.input8a}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{dash.input8b}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{dash.input8c}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{dash.input8d}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{dash.input8e}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{dash.input8f}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{dash.input9}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{dash.input10}</td>
+                        {dash.input1b !== 0 && (
+                            <td className="py-2 px-4 border-b border-gray-300">{dash.input1b}</td>
+                        )}
+                        {dash.input1c !== 0 && (
+                            <td className="py-2 px-4 border-b border-gray-300">{dash.input1c}</td>
+                        )}
+                        {dash.input3 !== 0 && (
+                            <td className="py-2 px-4 border-b border-gray-300">{dash.input3}</td>
+                        )}
+                        {dash.input3a !== 0 && (
+                            <td className="py-2 px-4 border-b border-gray-300">{dash.input3a}</td>
+                        )}
+                        {dash.input4 !== 0 && (
+                            <td className="py-2 px-4 border-b border-gray-300">{dash.input4}</td>
+                        )}
+                        {dash.input4a !== 0 && (
+                            <td className="py-2 px-4 border-b border-gray-300">{dash.input4a}</td>
+                        )}
+                        {dash.input4b !== 0 && (
+                            <td className="py-2 px-4 border-b border-gray-300">{dash.input4b}</td>
+                        )}
+                        {dash.input5 !== 0 && (
+                            <td className="py-2 px-4 border-b border-gray-300">{dash.input5}</td>
+                        )}
+                        {dash.input5a !== 0 && (
+                            <td className="py-2 px-4 border-b border-gray-300">{dash.input5a}</td>
+                        )}
+                        {dash.input5b !== 0 && (
+                            <td className="py-2 px-4 border-b border-gray-300">{dash.input5b}</td>
+                        )}
+                        {dash.input5c !== 0 && (
+                            <td className="py-2 px-4 border-b border-gray-300">{dash.input5c}</td>
+                        )}
+                        {dash.input5d !== 0 && (
+                            <td className="py-2 px-4 border-b border-gray-300">{dash.input5d}</td>
+                        )}
+                        {dash.input5e !== 0 && (
+                            <td className="py-2 px-4 border-b border-gray-300">{dash.input5e}</td>
+                        )}
+                        {dash.input5f !== 0 && (
+                            <td className="py-2 px-4 border-b border-gray-300">{dash.input5f}</td>
+                        )}
+                        {dash.input5g !== 0 && (
+                            <td className="py-2 px-4 border-b border-gray-300">{dash.input5g}</td>
+                        )}
+                        {dash.input5h !== 0 && (
+                            <td className="py-2 px-4 border-b border-gray-300">{dash.input5h}</td>
+                        )}
+                        {dash.input5i !== 0 && (
+                            <td className="py-2 px-4 border-b border-gray-300">{dash.input5i}</td>
+                        )}
+                        {dash.input5j !== 0 && (
+                            <td className="py-2 px-4 border-b border-gray-300">{dash.input5j}</td>
+                        )}
+                        {dash.input6 !== 0 && (
+                            <td className="py-2 px-4 border-b border-gray-300">{dash.input6}</td>
+                        )}
+                        {dash.input6a !== 0 && (
+                            <td className="py-2 px-4 border-b border-gray-300">{dash.input6a}</td>
+                        )}
+                        {dash.input6b !== 0 && (
+                            <td className="py-2 px-4 border-b border-gray-300">{dash.input6b}</td>
+                        )}
+                        {dash.input6c !== 0 && (
+                            <td className="py-2 px-4 border-b border-gray-300">{dash.input6c}</td>
+                        )}
+                        {dash.input6d !== 0 && (
+                            <td className="py-2 px-4 border-b border-gray-300">{dash.input6d}</td>
+                        )}
+                        {dash.input6e !== 0 && (
+                            <td className="py-2 px-4 border-b border-gray-300">{dash.input6e}</td>
+                        )}
+                        {dash.input7a !== 0 && (
+                            <td className="py-2 px-4 border-b border-gray-300">{dash.input7a}</td>
+                        )}
+                        {dash.input7b !== 0 && (
+                            <td className="py-2 px-4 border-b border-gray-300">{dash.input7b}</td>
+                        )}
+                        {dash.input7c !== 0 && (
+                            <td className="py-2 px-4 border-b border-gray-300">{dash.input7c}</td>
+                        )}
+                        {dash.input8 !== 0 && (
+                            <td className="py-2 px-4 border-b border-gray-300">{dash.input8}</td>
+                        )}
+                        {dash.input8a !== 0 && (
+                            <td className="py-2 px-4 border-b border-gray-300">{dash.input8a}</td>
+                        )}
+                        {dash.input8b !== 0 && (
+                            <td className="py-2 px-4 border-b border-gray-300">{dash.input8b}</td>
+                        )}
+                        {dash.input8c !== 0 && (
+                            <td className="py-2 px-4 border-b border-gray-300">{dash.input8c}</td>
+                        )}
+                        {dash.input8d !== 0 && (
+                            <td className="py-2 px-4 border-b border-gray-300">{dash.input8d}</td>
+                        )}
+                        {dash.input8e !== 0 && (
+                            <td className="py-2 px-4 border-b border-gray-300">{dash.input8e}</td>
+                        )}
+                        {dash.input8f !== 0 && (
+                            <td className="py-2 px-4 border-b border-gray-300">{dash.input8f}</td>
+                        )}
+                        {dash.input9 !== 0 && (
+                            <td className="py-2 px-4 border-b border-gray-300">{dash.input9}</td>
+                        )}
+                        {dash.input10 !== 0 && (
+                            <td className="py-2 px-4 border-b border-gray-300">{dash.input10}</td>
+                        )}
                         <td className="py-2 px-4 border-b border-gray-300">{dash.created_at}</td>
-                        {/*<td className="py-2 px-4 border-b border-gray-300">{dash.updated_at}</td>*/}
                     </tr>
                 ))}
                 </tbody>
