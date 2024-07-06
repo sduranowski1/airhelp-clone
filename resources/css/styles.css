@@ -99,7 +99,7 @@ footer {
 
 .image-wrapper_3::after {
     content: '';
-    background-image: url('media/18.png'); /* Hover image */
+    background-image: url('media/17 (1).png'); /* Hover image */
     background-size: cover;
     background-position: center;
     position: absolute;
