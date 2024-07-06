@@ -13,6 +13,11 @@
     display: inline-block; /* Ensure it only wraps the image */
 }
 
+.image-wrapper_4 {
+    position: relative;
+    display: inline-block; /* Ensure it only wraps the image */
+}
+
 .image-wrapper::after {
     content: '';
     background-image: url('http://138.68.158.146/media/plane_clock_white.png'); /* Hover image */

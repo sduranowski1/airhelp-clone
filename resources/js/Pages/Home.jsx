@@ -117,20 +117,20 @@ const HomeContent = () => {
                     {/*    backgroundPosition: 'bottom right',*/}
                     {/*    backgroundSize: '50%',*/}
                     {/*}}>*/}
-                    <div className="row">
-                        <div className="container">
-                            <div className="flex flex-col  items-start h-screen2">
+                    {/*<div className="row">*/}
+                    {/*    <div className="container">*/}
+                    {/*        <div className="flex flex-col  items-start h-screen2">*/}
 
-                                <div className="heading-custom">
-                                    Masz odwołany bądź opóźniony lot ?
-                                </div>
 
-                                <div className="info-text-custom">
-                                    Bez względu na cenę biletu nawet do 600eur odszkodowania przysługuje za każdego
-                                    pasażera!
-                                </div>
-                            </div>
-                        </div>
+                    {/*        </div>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
+                    <div className="heading-custom">
+                        Masz odwołany bądź opóźniony lot ?
+                    </div>
+                    <div className="info-text-custom">
+                        Bez względu na cenę biletu nawet do 600eur odszkodowania przysługuje za każdego
+                        pasażera!
                     </div>
 
                     <div className="image-container absolute top-0 right-0 w-1/2 h-full z-10">
@@ -209,7 +209,7 @@ const HomeContent = () => {
             </div>
             <div className="flex justify-center p-4">
                 <div className="container lapping">
-                    <div className="overlapping">
+                <div className="overlapping">
                         <div className="card overlap_shadow p-4">
                             <div className="we_do mb-4">BeSmartAir DBA O PRAWA PASAŻERÓW LOTNICZYCH</div>
                             <ul className="flex flex-col md:flex-row justify-between uppercase space-y-4 md:space-y-0">

@@ -63,6 +63,11 @@ footer {
     display: inline-block; /* Ensure it only wraps the image */
 }
 
+.image-wrapper_4 {
+    position: relative;
+    display: inline-block; /* Ensure it only wraps the image */
+}
+
 .plane-image {
     display: block;
     width: 100%; /* Ensure the image scales properly */
@@ -138,6 +143,10 @@ footer {
 }
 
 .image-container:hover .image-wrapper_3::after {
+    opacity: 1;
+}
+
+.image-container:hover .image-wrapper_4::after {
     opacity: 1;
 }
 
