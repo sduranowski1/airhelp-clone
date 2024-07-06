@@ -293,8 +293,8 @@ const HomeContent = () => {
             </div>
             <div className="container mb-5 flex flex-col md:flex-row">
                 <div className="card p-4 hoverix image-container m-2">
-                    <div className="image-wrapper">
-                        <img src="media/plane_clock.png" alt="plane clock" className="plane-image"/>
+                    <div className="image-wrapper_2">
+                        <img src="media/canceled_plane.png" alt="plane clock" className="plane-image"/>
                     </div>
                     <h5 className="font-weight-bold">Odwołany lot</h5>
                     <ul className="list-hidden">
@@ -305,8 +305,8 @@ const HomeContent = () => {
                     </ul>
                 </div>
                 <div className="card p-4 hoverix image-container  m-2">
-                    <div className="image-wrapper_2">
-                        <img src="media/canceled_plane.png" alt="plane clock" className="plane-image"/>
+                    <div className="image-wrapper">
+                        <img src="media/plane_clock.png" alt="plane clock" className="plane-image"/>
                     </div>
                     <h5 className="font-weight-bold">Opóźniony lot</h5>
                     <ul className="list-hidden">
@@ -320,7 +320,7 @@ const HomeContent = () => {
                 </div>
                 <div className="card p-4 hoverix image-container  m-2">
                     <div className="image-wrapper_3">
-                        <img src="media/plane_swap.png" alt="plane clock" className="plane-image"/>
+                        <img src="media/18.png" alt="plane clock" className="plane-image"/>
                     </div>
                     <h5 className="font-weight-bold">Spóźnienie na lot przesiadkowy</h5>
                     <ul className="list-hidden">
@@ -334,7 +334,7 @@ const HomeContent = () => {
                     </ul>
                 </div>
                 <div className="card p-4 hoverix image-container m-2">
-                    <div className="image-wrapper_3">
+                    <div className="image-wrapper_4">
                         <img src="media/plane_swap.png" alt="plane clock" className="plane-image"/>
                     </div>
                     <h5 className="font-weight-bold">Ciężka komunikacja z linią</h5>
