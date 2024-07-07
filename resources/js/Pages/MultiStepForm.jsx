@@ -1247,7 +1247,7 @@ const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                                 id="input5d"
                                 type="checkbox"
                                 checked={formData.input5c === '1-2 godz'}
-                                onChange={() => handleCheckboxChangeDynamic('group2', 'input5d', '1-2 godz')}
+                                onChange={() => handleCheckboxChangeDynamic('group2', 'input5c', '1-2 godz')}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
                             <label
@@ -1264,7 +1264,7 @@ const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                                 id="input5e"
                                 type="checkbox"
                                 checked={formData.input5c === '2-3 godz'}
-                                onChange={() => handleCheckboxChangeDynamic('group2', 'input5e','2-3 godz')}
+                                onChange={() => handleCheckboxChangeDynamic('group2', 'input5c','2-3 godz')}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
                             <label
@@ -1281,7 +1281,7 @@ const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                                 id="input5f"
                                 type="checkbox"
                                 checked={formData.input5c === '3-4 godz'}
-                                onChange={() => handleCheckboxChangeDynamic('group2', 'input5f','3-4 godz')}
+                                onChange={() => handleCheckboxChangeDynamic('group2', 'input5c','3-4 godz')}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
                             <label
