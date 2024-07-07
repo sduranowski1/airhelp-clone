@@ -62,42 +62,42 @@ const FormDataTable = ({ formData }) => {
                     {/*<th className="py-2 px-4 border-b border-gray-300">Odlot</th>*/}
                     {/*<th className="py-2 px-4 border-b border-gray-300">Przylot</th>*/}
                     <th className="py-2 px-4 border-b border-gray-300">Czy Twój lot obejmował przesiadkę?</th>
-                    <th className="py-2 px-4 border-b border-gray-300"></th>
+                    {/*<th className="py-2 px-4 border-b border-gray-300"></th>*/}
                     {/*<th className="py-2 px-4 border-b border-gray-300">Input2</th>*/}
                     <th className="py-2 px-4 border-b border-gray-300">Dane lotu</th>
-                    <th className="py-2 px-4 border-b border-gray-300"></th>
+                    {/*<th className="py-2 px-4 border-b border-gray-300"></th>*/}
                     <th className="py-2 px-4 border-b border-gray-300">Linia lotnicza</th>
                     <th className="py-2 px-4 border-b border-gray-300">Nr lotu</th>
                     <th className="py-2 px-4 border-b border-gray-300">Dzień odlotu</th>
                     <th className="py-2 px-4 border-b border-gray-300">Teraz przejdźmy do samego zakłócenia. Co
                         dokładnie się wydarzyło?
                     </th>
-                    <th className="py-2 px-4 border-b border-gray-300"></th>
-                    <th className="py-2 px-4 border-b border-gray-300"></th>
+                    {/*<th className="py-2 px-4 border-b border-gray-300"></th>*/}
+                    {/*<th className="py-2 px-4 border-b border-gray-300"></th>*/}
                     <th className="py-2 px-4 border-b border-gray-300">Bardzo nam przykro. Ile wynosiło opóźnienie
                         Twojego lotu do miasta Seoul (ICN)?
                     </th>
-                    <th className="py-2 px-4 border-b border-gray-300"></th>
-                    <th className="py-2 px-4 border-b border-gray-300"></th>
-                    <th className="py-2 px-4 border-b border-gray-300"></th>
-                    <th className="py-2 px-4 border-b border-gray-300"></th>
-                    <th className="py-2 px-4 border-b border-gray-300"></th>
+                    {/*<th className="py-2 px-4 border-b border-gray-300"></th>*/}
+                    {/*<th className="py-2 px-4 border-b border-gray-300"></th>*/}
+                    {/*<th className="py-2 px-4 border-b border-gray-300"></th>*/}
+                    {/*<th className="py-2 px-4 border-b border-gray-300"></th>*/}
+                    {/*<th className="py-2 px-4 border-b border-gray-300"></th>*/}
                     <th className="py-2 px-4 border-b border-gray-300">Czy dobrowolnie zrzekłeś(-aś) się miejsca na
                         pokładzie w zamian za inne korzyści oferowane przez linię lotniczą?
                     </th>
-                    <th className="py-2 px-4 border-b border-gray-300"></th>
+                    {/*<th className="py-2 px-4 border-b border-gray-300"></th>*/}
                     <th className="py-2 px-4 border-b border-gray-300">Imię pasażera</th>
                     <th className="py-2 px-4 border-b border-gray-300">Nazwisko</th>
                     <th className="py-2 px-4 border-b border-gray-300">Email</th>
                     <th className="py-2 px-4 border-b border-gray-300">Aby ruszyć z Twoją sprawą, potrzebuję kilku
                         informacji.
                     </th>
-                    <td className="py-2 px-4 border-b border-gray-300"></td>
-                    <td className="py-2 px-4 border-b border-gray-300"></td>
+                    {/*<td className="py-2 px-4 border-b border-gray-300"></td>*/}
+                    {/*<td className="py-2 px-4 border-b border-gray-300"></td>*/}
                     <th className="py-2 px-4 border-b border-gray-300">Możesz złożyć wniosek w imieniu wszystkich osób
                         wymienionych w Twojej rezerwacji. Czy ktoś z Tobą podróżował?
                     </th>
-                    <td className="py-2 px-4 border-b border-gray-300"></td>
+                    {/*<td className="py-2 px-4 border-b border-gray-300"></td>*/}
                     <th className="py-2 px-4 border-b border-gray-300">Pozostali pasażerowie</th>
                     <th className="py-2 px-4 border-b border-gray-300">Adres</th>
                     <th className="py-2 px-4 border-b border-gray-300">Numer mieszkania</th>
@@ -144,32 +144,32 @@ const FormDataTable = ({ formData }) => {
                         {/*<td className="py-2 px-4 border-b border-gray-300">{row.input1}</td>*/}
                         {/*<td className="py-2 px-4 border-b border-gray-300">{row.input1a}</td>*/}
                         <td className="py-2 px-4 border-b border-gray-300">{row.input1b}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{row.input1c}</td>
+                        {/*<td className="py-2 px-4 border-b border-gray-300">{row.input1c}</td>*/}
                         {/*<td className="py-2 px-4 border-b border-gray-300">{row.input2}</td>*/}
                         <td className="py-2 px-4 border-b border-gray-300">{row.input3}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{row.input3a}</td>
+                        {/*<td className="py-2 px-4 border-b border-gray-300">{row.input3a}</td>*/}
                         <td className="py-2 px-4 border-b border-gray-300">{row.input4}</td>
                         <td className="py-2 px-4 border-b border-gray-300">{row.input4a}</td>
                         <td className="py-2 px-4 border-b border-gray-300">{row.input4b}</td>
                         <td className="py-2 px-4 border-b border-gray-300">{row.input5}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{row.input5a}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{row.input5b}</td>
+                        {/*<td className="py-2 px-4 border-b border-gray-300">{row.input5a}</td>*/}
+                        {/*<td className="py-2 px-4 border-b border-gray-300">{row.input5b}</td>*/}
                         <td className="py-2 px-4 border-b border-gray-300">{row.input5c}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{row.input5d}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{row.input5e}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{row.input5f}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{row.input5g}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{row.input5h}</td>
+                        {/*<td className="py-2 px-4 border-b border-gray-300">{row.input5d}</td>*/}
+                        {/*<td className="py-2 px-4 border-b border-gray-300">{row.input5e}</td>*/}
+                        {/*<td className="py-2 px-4 border-b border-gray-300">{row.input5f}</td>*/}
+                        {/*<td className="py-2 px-4 border-b border-gray-300">{row.input5g}</td>*/}
+                        {/*<td className="py-2 px-4 border-b border-gray-300">{row.input5h}</td>*/}
                         <td className="py-2 px-4 border-b border-gray-300">{row.input5i}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{row.input5j}</td>
+                        {/*<td className="py-2 px-4 border-b border-gray-300">{row.input5j}</td>*/}
                         <td className="py-2 px-4 border-b border-gray-300">{row.input6}</td>
                         <td className="py-2 px-4 border-b border-gray-300">{row.input6a}</td>
                         <td className="py-2 px-4 border-b border-gray-300">{row.input6b}</td>
                         <td className="py-2 px-4 border-b border-gray-300">{row.input6c}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{row.input6d}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{row.input6e}</td>
+                        {/*<td className="py-2 px-4 border-b border-gray-300">{row.input6d}</td>*/}
+                        {/*<td className="py-2 px-4 border-b border-gray-300">{row.input6e}</td>*/}
                         <td className="py-2 px-4 border-b border-gray-300">{row.input7a}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{row.input7b}</td>
+                        {/*<td className="py-2 px-4 border-b border-gray-300">{row.input7b}</td>*/}
                         <td className="py-2 px-4 border-b border-gray-300">{row.input7c}</td>
                         <td className="py-2 px-4 border-b border-gray-300">{row.input8}</td>
                         <td className="py-2 px-4 border-b border-gray-300">{row.input8a}</td>

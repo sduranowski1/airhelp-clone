@@ -594,7 +594,7 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
                                 <input
                                     id="yes-checkbox"
                                     type="checkbox"
-                                    checked={formData.input1b}
+                                    checked={formData.input1b === "Tak"}
                                     onChange={() => handleCheckboxChangeDynamic('group1', 'input1b', 'Tak')}
                                     className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                 />
@@ -609,8 +609,8 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
                                 <input
                                     id="no-checkbox"
                                     type="checkbox"
-                                    checked={formData.input1c}
-                                    onChange={() => handleCheckboxChangeDynamic('group1',  'input1c','Nie')}
+                                    checked={formData.input1b === "Nie"}
+                                    onChange={() => handleCheckboxChangeDynamic('group1',  'input1b','Nie')}
                                     className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                 />
                                 <label htmlFor="no-checkbox"
@@ -716,10 +716,12 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
                                 <input
                                     id="no-checkbox"
                                     type="checkbox"
-                                    checked={formData.input3a}
+                                    value="Nie mogę znaleźć swojego lotu"
+
+                                    checked={formData.input3  === "Nie mogę znaleźć swojego lotu"}
                                     // onChange={() => handleCheckboxChangeDynamic('group2', 'input3', 'Nie mogę znaleźć swojego lotu')}
 
-                                    onChange={() => handleCheckboxChangeDynamic('group2', 'input3a', 'Nie mogę znaleźć swojego lotu')}
+                                    onChange={() => handleCheckboxChangeDynamic('group2', 'input3', 'Nie mogę znaleźć swojego lotu')}
                                     className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                 />
                                 <label htmlFor="no-checkbox"
@@ -1166,7 +1168,7 @@ const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                             <input
                                 id="input5"
                                 type="checkbox"
-                                checked={formData.input5}
+                                checked={formData.input5 === 'Mój lot został opóźniony'}
                                 onChange={() => handleCheckboxChangeDynamic('group1', 'input5','Mój lot został opóźniony')}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
@@ -1183,8 +1185,8 @@ const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                             <input
                                 id="input5a"
                                 type="checkbox"
-                                checked={formData.input5a}
-                                onChange={() => handleCheckboxChangeDynamic('group1', 'input5a', 'Mój lot został odwołany')}
+                                checked={formData.input5 === 'Mój lot został odwołany'}
+                                onChange={() => handleCheckboxChangeDynamic('group1', 'input5', 'Mój lot został odwołany')}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
                             <label
@@ -1200,8 +1202,8 @@ const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                             <input
                                 id="input5b"
                                 type="checkbox"
-                                checked={formData.input5b}
-                                onChange={() => handleCheckboxChangeDynamic('group1', 'input5b','Odmówiono mi wejścia na pokład')}
+                                checked={formData.input5 === "Odmówiono mi wejścia na pokład"}
+                                onChange={() => handleCheckboxChangeDynamic('group1', 'input5','Odmówiono mi wejścia na pokład')}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
                             <label
@@ -1227,7 +1229,7 @@ const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                             <input
                                 id="input5b"
                                 type="checkbox"
-                                checked={formData.input5c}
+                                checked={formData.input5c === '0-1 godz'}
                                 onChange={() => handleCheckboxChangeDynamic('group2', 'input5c','0-1 godz')}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
@@ -1244,7 +1246,7 @@ const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                             <input
                                 id="input5d"
                                 type="checkbox"
-                                checked={formData.input5d}
+                                checked={formData.input5c === '1-2 godz'}
                                 onChange={() => handleCheckboxChangeDynamic('group2', 'input5d', '1-2 godz')}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
@@ -1261,7 +1263,7 @@ const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                             <input
                                 id="input5e"
                                 type="checkbox"
-                                checked={formData.input5e}
+                                checked={formData.input5c === '2-3 godz'}
                                 onChange={() => handleCheckboxChangeDynamic('group2', 'input5e','2-3 godz')}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
@@ -1278,7 +1280,7 @@ const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                             <input
                                 id="input5f"
                                 type="checkbox"
-                                checked={formData.input5f}
+                                checked={formData.input5c === '3-4 godz'}
                                 onChange={() => handleCheckboxChangeDynamic('group2', 'input5f','3-4 godz')}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
@@ -1295,8 +1297,8 @@ const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                             <input
                                 id="input5g"
                                 type="checkbox"
-                                checked={formData.input5g}
-                                onChange={() => handleCheckboxChangeDynamic('group2', 'input5g','Ponad 4 godziny')}
+                                checked={formData.input5c === 'Ponad 4 godziny'}
+                                onChange={() => handleCheckboxChangeDynamic('group2', 'input5c','Ponad 4 godziny')}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
                             <label
@@ -1312,8 +1314,8 @@ const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                             <input
                                 id="input5h"
                                 type="checkbox"
-                                checked={formData.input5h}
-                                onChange={() => handleCheckboxChangeDynamic('group2', 'input5h','Nie dotarłem (-am) na miejsce')}
+                                checked={formData.input5c === 'Nie dotarłem (-am) na miejsce'}
+                                onChange={() => handleCheckboxChangeDynamic('group2', 'input5c','Nie dotarłem (-am) na miejsce')}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
                             <label
@@ -1341,7 +1343,7 @@ const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                                 id="yes-checkbox"
                                 type="checkbox"
 
-                                checked={formData.input5i}
+                                checked={formData.input5i === "Tak"}
                                 onChange={() => handleCheckboxChangeDynamic('group3', 'input5i','Tak')}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
@@ -1358,8 +1360,8 @@ const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                             <input
                                 id="no-checkbox"
                                 type="checkbox"
-                                checked={formData.input5j}
-                                onChange={() => handleCheckboxChangeDynamic('group3', 'input5j','Nie')}
+                                checked={formData.input5i === 'Nie'}
+                                onChange={() => handleCheckboxChangeDynamic('group3', 'input5i','Nie')}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
                             <label
@@ -1440,7 +1442,7 @@ const Step6 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                                 <input
                                     id="input6c"
                                     type="checkbox"
-                                    checked={formData.input6c}
+                                    checked={formData.input6c === 'Zaznacz wszystkie zgody'}
                                     onChange={() => handleCheckboxChangeDynamic('group1', 'input6c', 'Zaznacz wszystkie zgody')}
                                     className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                 />
@@ -1457,8 +1459,8 @@ const Step6 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                                 <input
                                     id="input6d"
                                     type="checkbox"
-                                    checked={formData.input6d}
-                                    onChange={() => handleCheckboxChangeDynamic('group1', 'input6d','Zgoda 1')}
+                                    checked={formData.input6c === 'Zgoda 1'}
+                                    onChange={() => handleCheckboxChangeDynamic('group1', 'input6c','Zgoda 1')}
                                     className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                 />
                                 <label
@@ -1474,8 +1476,8 @@ const Step6 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                                 <input
                                     id="input6e"
                                     type="checkbox"
-                                    checked={formData.input6e}
-                                    onChange={() => handleCheckboxChangeDynamic('group1', 'input6e','Zgoda 2')}
+                                    checked={formData.input6c === 'Zgoda 2'}
+                                    onChange={() => handleCheckboxChangeDynamic('group1', 'input6c','Zgoda 2')}
                                     className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                 />
                                 <label
@@ -1545,7 +1547,7 @@ const Step7 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                                     id="yes-checkbox"
                                     type="checkbox"
 
-                                    checked={formData.input7a}
+                                    checked={formData.input7a === 'Tak, ktoś ze mną podróżował'}
                                     onChange={() => handleCheckboxChangeDynamic('group1', 'input7a','Tak, ktoś ze mną podróżował')}
                                     className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                 />
@@ -1562,8 +1564,8 @@ const Step7 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                                 <input
                                     id="no-checkbox"
                                     type="checkbox"
-                                    checked={formData.input7b}
-                                    onChange={() => handleCheckboxChangeDynamic('group1', 'input7b','Nie, nikt ze mną nie podróżował')}
+                                    checked={formData.input7a === 'Nie, nikt ze mną nie podróżował'}
+                                    onChange={() => handleCheckboxChangeDynamic('group1', 'input7a','Nie, nikt ze mną nie podróżował')}
                                     className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                 />
                                 <label

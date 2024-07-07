@@ -41,6 +41,13 @@ Route::get('/success', function () {
 Route::get('/blog', [BlogPostController::class, 'index'])->name('blog');
 Route::get('/blog/{post}', [BlogPostController::class, 'show'])->where('post', '[0-9]+');
 
+Route::get('/privacy-policy', function () {
+    return Inertia::render('PrivacyPolicy');
+})->name('privacy-policy');
+Route::get('/about-us', function () {
+    return Inertia::render('About');
+})->name('about-us');
+
 Route::get('/dashboard',  [DashboardController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');

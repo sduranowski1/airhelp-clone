@@ -9,6 +9,7 @@ import Footer from "@/Layouts/Footer.jsx";
 import "/resources/css/build-issue.css"
 import airportsData from "@/Pages/airports.js";
 import { Inertia } from '@inertiajs/inertia';
+import CookieConsent from "@/Components/CookieConsent.jsx";
 // import route from 'ziggy-js';
 
 
@@ -430,6 +431,7 @@ export default function Home({auth}) {
                 {/*<AuthenticatedLayout user={auth.user} header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Home</h2>}>*/}
                     <Head title="Home"/>
                     <HomeContent/>
+                    <CookieConsent />
                     <Footer/>
                 </AuthenticatedLayout>
             ) : (
@@ -437,6 +439,7 @@ export default function Home({auth}) {
                     {/*<Standard header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Home</h2>}>*/}
                     <Head title="Home"/>
                     <HomeContent/>
+                    <CookieConsent />
                     <Footer/>
                 </Standard>
             )}

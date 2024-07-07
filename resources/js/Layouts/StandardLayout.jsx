@@ -48,14 +48,14 @@ export default function Standard({ user, header, children }) {
                             </div>
 
                             <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink href="/" active={route().current('prawa')}>
+                                <NavLink href={route('privacy-policy')} active={route().current('privacy-policy')}>
                                     Poznaj swoje prawa
                                 </NavLink>
                             </div>
 
                             <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink href="/" active={route().current('o-nas')}>
-                                    O nas
+                                <NavLink href={route('about-us')} active={route().current('about-us')}>
+                                    O Nas
                                 </NavLink>
                             </div>
 
@@ -167,15 +167,15 @@ export default function Standard({ user, header, children }) {
 
                     <div className="pt-2 pb-3 space-y-1">
 
-                        <ResponsiveNavLink href='/' active={route().current('prawa')}>
+                        <ResponsiveNavLink  href={route('privacy-policy')} active={route().current('privacy-policy')}>
                             Poznaj swoje prawa
                         </ResponsiveNavLink>
                     </div>
 
                     <div className="pt-2 pb-3 space-y-1">
 
-                        <ResponsiveNavLink href='/' active={route().current('o-nas')}>
-                            O nas
+                        <ResponsiveNavLink  href={route('about-us')} active={route().current('about-us')}>
+                            O Nas
                         </ResponsiveNavLink>
                     </div>
 

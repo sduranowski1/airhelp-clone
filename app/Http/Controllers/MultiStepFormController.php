@@ -33,8 +33,8 @@ class MultiStepFormController extends Controller
         $validatedData = $request->validate([
             'input1' => 'max:255',
             'input1a' => 'max:255',
-            'input1b' => 'required|max:255',
-            'input1c' => 'required|max:255',
+            'input1b' => 'max:255',
+            'input1c' => 'max:255',
 //            'input2' => 'required|string|max:255',
             'input3' => 'max:255',
             'input3a' => 'max:255',

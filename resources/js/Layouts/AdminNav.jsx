@@ -68,7 +68,7 @@ export default function AdminNav({ user, header, children }) {
                             {/*    /!*    <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800"/>*!/*/}
                             {/*    /!*</Link>*!/*/}
                             {/*</div>*/}
-                            <div className="container nav-compass">
+                            <div className="nav-compass">
                                 <button className="btn btn-primary " id="sidebarToggle" onClick={toggleSidebar}>
                                     <i className="fa-solid fa-compass"></i>
                                 </button>
@@ -86,17 +86,17 @@ export default function AdminNav({ user, header, children }) {
                                 </NavLink>
                             </div>
 
-                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink href="/" active={route().current('prawa')}>
-                                    Poznaj swoje prawa
-                                </NavLink>
-                            </div>
+                            {/*<div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">*/}
+                            {/*    <NavLink href="/" active={route().current('prawa')}>*/}
+                            {/*        Poznaj swoje prawa*/}
+                            {/*    </NavLink>*/}
+                            {/*</div>*/}
 
-                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink href="/" active={route().current('o-nas')}>
-                                    O nas
-                                </NavLink>
-                            </div>
+                            {/*<div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">*/}
+                            {/*    <NavLink href="/" active={route().current('o-nas')}>*/}
+                            {/*        O Nas*/}
+                            {/*    </NavLink>*/}
+                            {/*</div>*/}
 
                             {user.role_id === 1 && ( // Render only if user is admin
                                 <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
@@ -185,25 +185,25 @@ export default function AdminNav({ user, header, children }) {
                         </ResponsiveNavLink>
                     </div>
 
-                    <div className="pt-2 pb-3 space-y-1">
+                    {/*<div className="pt-2 pb-3 space-y-1">*/}
 
-                        <ResponsiveNavLink href='/' active={route().current('prawa')}>
-                            Poznaj swoje prawa
-                        </ResponsiveNavLink>
-                    </div>
+                    {/*    <ResponsiveNavLink href='/' active={route().current('prawa')}>*/}
+                    {/*        Poznaj swoje prawa*/}
+                    {/*    </ResponsiveNavLink>*/}
+                    {/*</div>*/}
 
-                    <div className="pt-2 pb-3 space-y-1">
+                    {/*<div className="pt-2 pb-3 space-y-1">*/}
 
-                        <ResponsiveNavLink href='/' active={route().current('o-nas')}>
-                            O nas
-                        </ResponsiveNavLink>
-                    </div>
+                    {/*    <ResponsiveNavLink href='/' active={route().current('o-nas')}>*/}
+                    {/*        O Nas*/}
+                    {/*    </ResponsiveNavLink>*/}
+                    {/*</div>*/}
 
-                    <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                        <NavLink href="/" active={route().current('o-nas')}>
-                            Blog
-                        </NavLink>
-                    </div>
+                    {/*<div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">*/}
+                    {/*    <NavLink href="/" active={route().current('o-nas')}>*/}
+                    {/*        Blog*/}
+                    {/*    </NavLink>*/}
+                    {/*</div>*/}
 
                     <div className="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>

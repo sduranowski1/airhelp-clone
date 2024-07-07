@@ -27,41 +27,41 @@ const DashFormDataTable = ({ dashFormData }) => {
                     <th className="py-2 px-4 border-b border-gray-300">Status</th>
                     <th className="py-2 px-4 border-b border-gray-300">Podpis</th>
                     <th className="py-2 px-4 border-b border-gray-300">Czy Twój lot obejmował przesiadkę?</th>
-                    <th className="py-2 px-4 border-b border-gray-300"></th>
+                    {/*<th className="py-2 px-4 border-b border-gray-300"></th>*/}
                     <th className="py-2 px-4 border-b border-gray-300">Dane lotu</th>
-                    <th className="py-2 px-4 border-b border-gray-300"></th>
+                    {/*<th className="py-2 px-4 border-b border-gray-300"></th>*/}
                     <th className="py-2 px-4 border-b border-gray-300">Linia lotnicza</th>
                     <th className="py-2 px-4 border-b border-gray-300">Nr lotu</th>
                     <th className="py-2 px-4 border-b border-gray-300">Dzień odlotu</th>
                     <th className="py-2 px-4 border-b border-gray-300">Teraz przejdźmy do samego zakłócenia. Co
                         dokładnie się wydarzyło?
                     </th>
-                    <th className="py-2 px-4 border-b border-gray-300"></th>
-                    <th className="py-2 px-4 border-b border-gray-300"></th>
+                    {/*<th className="py-2 px-4 border-b border-gray-300"></th>*/}
+                    {/*<th className="py-2 px-4 border-b border-gray-300"></th>*/}
                     <th className="py-2 px-4 border-b border-gray-300">Bardzo nam przykro. Ile wynosiło opóźnienie
                         Twojego lotu do miasta Seoul (ICN)?
                     </th>
-                    <th className="py-2 px-4 border-b border-gray-300"></th>
-                    <th className="py-2 px-4 border-b border-gray-300"></th>
-                    <th className="py-2 px-4 border-b border-gray-300"></th>
-                    <th className="py-2 px-4 border-b border-gray-300"></th>
-                    <th className="py-2 px-4 border-b border-gray-300"></th>
+                    {/*<th className="py-2 px-4 border-b border-gray-300"></th>*/}
+                    {/*<th className="py-2 px-4 border-b border-gray-300"></th>*/}
+                    {/*<th className="py-2 px-4 border-b border-gray-300"></th>*/}
+                    {/*<th className="py-2 px-4 border-b border-gray-300"></th>*/}
+                    {/*<th className="py-2 px-4 border-b border-gray-300"></th>*/}
                     <th className="py-2 px-4 border-b border-gray-300">Czy dobrowolnie zrzekłeś(-aś) się miejsca na
                         pokładzie w zamian za inne korzyści oferowane przez linię lotniczą?
                     </th>
-                    <th className="py-2 px-4 border-b border-gray-300"></th>
+                    {/*<th className="py-2 px-4 border-b border-gray-300"></th>*/}
                     <th className="py-2 px-4 border-b border-gray-300">Imię pasażera</th>
                     <th className="py-2 px-4 border-b border-gray-300">Nazwisko</th>
                     <th className="py-2 px-4 border-b border-gray-300">Email</th>
                     <th className="py-2 px-4 border-b border-gray-300">Aby ruszyć z Twoją sprawą, potrzebuję kilku
                         informacji.
                     </th>
-                    <td className="py-2 px-4 border-b border-gray-300"></td>
-                    <td className="py-2 px-4 border-b border-gray-300"></td>
+                    {/*<td className="py-2 px-4 border-b border-gray-300"></td>*/}
+                    {/*<td className="py-2 px-4 border-b border-gray-300"></td>*/}
                     <th className="py-2 px-4 border-b border-gray-300">Możesz złożyć wniosek w imieniu wszystkich osób
                         wymienionych w Twojej rezerwacji. Czy ktoś z Tobą podróżował?
                     </th>
-                    <td className="py-2 px-4 border-b border-gray-300"></td>
+                    {/*<td className="py-2 px-4 border-b border-gray-300"></td>*/}
                     <th className="py-2 px-4 border-b border-gray-300">Pozostali pasażerowie</th>
                     <th className="py-2 px-4 border-b border-gray-300">Adres</th>
                     <th className="py-2 px-4 border-b border-gray-300">Numer mieszkania</th>
@@ -88,15 +88,15 @@ const DashFormDataTable = ({ dashFormData }) => {
                         {dash.input1b !== 0 && (
                             <td className="py-2 px-4 border-b border-gray-300">{dash.input1b}</td>
                         )}
-                        {dash.input1c !== 0 && (
-                            <td className="py-2 px-4 border-b border-gray-300">{dash.input1c}</td>
-                        )}
+                        {/*{dash.input1c !== 0 && (*/}
+                        {/*    <td className="py-2 px-4 border-b border-gray-300">{dash.input1c}</td>*/}
+                        {/*)}*/}
                         {dash.input3 !== 0 && (
                             <td className="py-2 px-4 border-b border-gray-300">{dash.input3}</td>
                         )}
-                        {dash.input3a !== 0 && (
-                            <td className="py-2 px-4 border-b border-gray-300">{dash.input3a}</td>
-                        )}
+                        {/*{dash.input3a !== 0 && (*/}
+                        {/*    <td className="py-2 px-4 border-b border-gray-300">{dash.input3a}</td>*/}
+                        {/*)}*/}
                         {dash.input4 !== 0 && (
                             <td className="py-2 px-4 border-b border-gray-300">{dash.input4}</td>
                         )}
@@ -109,36 +109,36 @@ const DashFormDataTable = ({ dashFormData }) => {
                         {dash.input5 !== 0 && (
                             <td className="py-2 px-4 border-b border-gray-300">{dash.input5}</td>
                         )}
-                        {dash.input5a !== 0 && (
-                            <td className="py-2 px-4 border-b border-gray-300">{dash.input5a}</td>
-                        )}
-                        {dash.input5b !== 0 && (
-                            <td className="py-2 px-4 border-b border-gray-300">{dash.input5b}</td>
-                        )}
+                        {/*{dash.input5a !== 0 && (*/}
+                        {/*    <td className="py-2 px-4 border-b border-gray-300">{dash.input5a}</td>*/}
+                        {/*)}*/}
+                        {/*{dash.input5b !== 0 && (*/}
+                        {/*    <td className="py-2 px-4 border-b border-gray-300">{dash.input5b}</td>*/}
+                        {/*)}*/}
                         {dash.input5c !== 0 && (
                             <td className="py-2 px-4 border-b border-gray-300">{dash.input5c}</td>
                         )}
-                        {dash.input5d !== 0 && (
-                            <td className="py-2 px-4 border-b border-gray-300">{dash.input5d}</td>
-                        )}
-                        {dash.input5e !== 0 && (
-                            <td className="py-2 px-4 border-b border-gray-300">{dash.input5e}</td>
-                        )}
-                        {dash.input5f !== 0 && (
-                            <td className="py-2 px-4 border-b border-gray-300">{dash.input5f}</td>
-                        )}
-                        {dash.input5g !== 0 && (
-                            <td className="py-2 px-4 border-b border-gray-300">{dash.input5g}</td>
-                        )}
-                        {dash.input5h !== 0 && (
-                            <td className="py-2 px-4 border-b border-gray-300">{dash.input5h}</td>
-                        )}
+                        {/*{dash.input5d !== 0 && (*/}
+                        {/*    <td className="py-2 px-4 border-b border-gray-300">{dash.input5d}</td>*/}
+                        {/*)}*/}
+                        {/*{dash.input5e !== 0 && (*/}
+                        {/*    <td className="py-2 px-4 border-b border-gray-300">{dash.input5e}</td>*/}
+                        {/*)}*/}
+                        {/*{dash.input5f !== 0 && (*/}
+                        {/*    <td className="py-2 px-4 border-b border-gray-300">{dash.input5f}</td>*/}
+                        {/*)}*/}
+                        {/*{dash.input5g !== 0 && (*/}
+                        {/*    <td className="py-2 px-4 border-b border-gray-300">{dash.input5g}</td>*/}
+                        {/*)}*/}
+                        {/*{dash.input5h !== 0 && (*/}
+                        {/*    <td className="py-2 px-4 border-b border-gray-300">{dash.input5h}</td>*/}
+                        {/*)}*/}
                         {dash.input5i !== 0 && (
                             <td className="py-2 px-4 border-b border-gray-300">{dash.input5i}</td>
                         )}
-                        {dash.input5j !== 0 && (
-                            <td className="py-2 px-4 border-b border-gray-300">{dash.input5j}</td>
-                        )}
+                        {/*{dash.input5j !== 0 && (*/}
+                        {/*    <td className="py-2 px-4 border-b border-gray-300">{dash.input5j}</td>*/}
+                        {/*)}*/}
                         {dash.input6 !== 0 && (
                             <td className="py-2 px-4 border-b border-gray-300">{dash.input6}</td>
                         )}
@@ -151,18 +151,18 @@ const DashFormDataTable = ({ dashFormData }) => {
                         {dash.input6c !== 0 && (
                             <td className="py-2 px-4 border-b border-gray-300">{dash.input6c}</td>
                         )}
-                        {dash.input6d !== 0 && (
-                            <td className="py-2 px-4 border-b border-gray-300">{dash.input6d}</td>
-                        )}
-                        {dash.input6e !== 0 && (
-                            <td className="py-2 px-4 border-b border-gray-300">{dash.input6e}</td>
-                        )}
+                        {/*{dash.input6d !== 0 && (*/}
+                        {/*    <td className="py-2 px-4 border-b border-gray-300">{dash.input6d}</td>*/}
+                        {/*)}*/}
+                        {/*{dash.input6e !== 0 && (*/}
+                        {/*    <td className="py-2 px-4 border-b border-gray-300">{dash.input6e}</td>*/}
+                        {/*)}*/}
                         {dash.input7a !== 0 && (
                             <td className="py-2 px-4 border-b border-gray-300">{dash.input7a}</td>
                         )}
-                        {dash.input7b !== 0 && (
-                            <td className="py-2 px-4 border-b border-gray-300">{dash.input7b}</td>
-                        )}
+                        {/*{dash.input7b !== 0 && (*/}
+                        {/*    <td className="py-2 px-4 border-b border-gray-300">{dash.input7b}</td>*/}
+                        {/*)}*/}
                         {dash.input7c !== 0 && (
                             <td className="py-2 px-4 border-b border-gray-300">{dash.input7c}</td>
                         )}
