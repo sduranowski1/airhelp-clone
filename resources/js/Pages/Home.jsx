@@ -321,7 +321,7 @@ const HomeContent = () => {
                 </div>
                 <div className="card p-4 hoverix image-container  m-2">
                     <div className="image-wrapper_3">
-                        <img src="media/18.png" alt="plane clock" className="plane-image"/>
+                        <img src="media/1.png" alt="plane clock" className="plane-image"/>
                     </div>
                     <h5 className="font-weight-bold">Spóźnienie na lot przesiadkowy</h5>
                     <ul className="list-hidden">

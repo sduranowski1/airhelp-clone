@@ -48,7 +48,7 @@
 
 .image-wrapper_3::after {
     content: '';
-    background-image: url('http://138.68.158.146/media/17 (1).png'); /* Hover image */
+    background-image: url('http://138.68.158.146/media/2 (1).png'); /* Hover image */
     background-size: cover;
     background-position: center;
     position: absolute;
@@ -75,7 +75,7 @@
 }
 
 .home-hero {
-    background-image: url("http://138.68.158.146/media/home_hero.png");
+    background-image: url("http://138.68.158.146/media/Component_1.png");
     background-repeat: no-repeat;
     background-position: bottom right;
     background-size: 50%;
