@@ -77,12 +77,12 @@
 .home-hero {
     background-image: url("http://138.68.158.146/media/Component_1.png");
     background-repeat: no-repeat;
-    background-position: bottom right;
-    background-size: 50%;
+    background-position: right;
+    background-size: 40%;
 }
 
 @media (max-width: 768px) {
     .home-hero {
-        background-position: right 25%;
+        background-position: right 30%;
     }
 }

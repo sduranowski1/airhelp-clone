@@ -1579,7 +1579,7 @@ const Step7 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                     </ul>
                 </div>
             </div>
-            {formData.input7a && (
+            {formData.input7a === 'Tak, ktoś ze mną podróżował' && (
                 <div className="container mt-5">
                     <div className="card p-5" style={{
                         backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"
@@ -2192,7 +2192,7 @@ const MultiStepForm = () => {
         <div>
             <div className="bg-neutral-100">
                 <div className="outer min-h-screen" style={{
-                    backgroundImage: "url('media/side-img-crpd.png')",
+                    backgroundImage: "url('media/Component_2.png')",
                     backgroundPosition: "left bottom",
                     backgroundRepeat: "no-repeat",
                     backgroundSize: "100%"
