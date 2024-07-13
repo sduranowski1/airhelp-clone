@@ -366,7 +366,7 @@ const HomeContent = () => {
                     </div>
                     <div className="card mt-5 mb-5">
                         <img
-                            src={"media/wallet.png"}/>
+                            src={"media/pixelcut-export.png"}/>
                     </div>
                 </div>
                 <div className="container custom-hr mt-5 mb-5"/>
