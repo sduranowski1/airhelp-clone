@@ -160,6 +160,7 @@ footer {
 .container-custom {
     text-align: left;
     background: #F4FFF199;
+    padding: 100px;
 }
 
 .heading-custom {
@@ -198,6 +199,7 @@ footer {
     .heading-custom {
         font-size: 3rem;
         margin-left: 1rem;
+        line-height: 65px;
     }
 
     .info-text-custom {
@@ -206,9 +208,9 @@ footer {
     }
 }
 
-.container {
-    display: flex;
-}
+/*.container {*/
+/*    display: flex;*/
+/*}*/
 
 .card {
     flex: 1;
@@ -663,6 +665,7 @@ footer {
 
 canvas {
     height: 200px;
+    width: 100%
 }
 
 
@@ -673,6 +676,10 @@ canvas {
 
 
 @media (max-width: 768px) {
+    .container-custom {
+        padding: 0px;
+    }
+
     .logo-multi {
         display: none;
     }
@@ -689,7 +696,6 @@ canvas {
 
     .heading-custom {
         margin-left: 0rem;
-        line-height: 65px;
     }
 
     .info-text-custom {

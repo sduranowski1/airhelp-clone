@@ -2220,7 +2220,7 @@ const MultiStepForm = () => {
                 <div className="bg-white min-h-screen h-full rounded-b-xl multi-form">
                     <div className="d-flex align-items-center">
                         <div className="container justify-content-end  m-5 mb-4 mr-5">
-                            <label htmlFor="input9" className="block text-gray-700 text-sm font-bold mr-5 mb-2 hide-help ">Pomagamy w egzekwowaniu praw konsumenta</label>
+                            <label htmlFor="input9" className="block text-gray-700 text-sm font-bold mr-5 mb-2 hide-help text-right">Pomagamy w egzekwowaniu praw konsumenta</label>
                         </div>
                     </div>
                     <div className="d-flex align-items-center mb-4 ml-5">

@@ -23,7 +23,7 @@ function TestimonialsSlider() {
     ];
 
     return (
-        <div className="container mb-5">
+        <div className="container mb-5" style={{display: "flex"}}>
         <Swiper
             // install Swiper modules
             modules={[Navigation, Pagination, Scrollbar, A11y]}
