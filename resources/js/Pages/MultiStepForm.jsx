@@ -2194,7 +2194,10 @@ const MultiStepForm = () => {
     return (
         <div>
             <div className="p-3 form-logo">
-                <ApplicationLogo/>
+                <Link href="/">
+                    <ApplicationLogo/>
+                </Link>
+
             </div>
             <div className="bg-neutral-100">
                 <div className="outer min-h-screen" style={{
