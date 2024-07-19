@@ -539,7 +539,7 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
                     <label htmlFor="input1" className="block text-gray-700 text-sm font-bold mb-2">
                         Dzień dobry! Sprawdźmy, czy linia lotnicza jest Ci winna odszkodowanie. Podaj miejsce i date wylotu.
                     </label>
-                    <div className="flex flex-col md:flex-row">
+                    <div className="flex flex-col md-flex-row">
                         <FontAwesomeIcon icon={faPlaneDeparture} className="icon p-2"/>
                         <input
                             placeholder="e.g. New York or JFK"
@@ -573,7 +573,7 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
 
                     </div>
 
-                    <button onClick={handleFlightSelection} className="mt-4 bg-blue-500 text-white py-2 px-4 rounded">Wyślij żądanie</button>
+                    <button onClick={handleFlightSelection} className="mt-4 bg-blue-500 text-white py-2 px-4 rounded" style={{backgroundColor: "#4f914a"}}>Wyślij żądanie</button>
                 </div>
             </div>
 
@@ -629,7 +629,7 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
                     <label htmlFor="input2" className="block text-gray-700 text-sm font-bold mb-2">
                         Podaj miejsce lądowania
                     </label>
-                    <div className="flex">
+                    <div className="flex flex-col md-flex-row">
 
                         <FontAwesomeIcon icon={faPlaneArrival} className="icon p-2"/>
                         <input
@@ -670,7 +670,7 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
                         Następnie wybierz swój lot z listy:
                     </label>
 
-                    <button onClick={filterArrivals} className="mt-4 bg-blue-500 text-white py-2 px-4 rounded">
+                    <button onClick={filterArrivals} className="mt-4 bg-blue-500 text-white py-2 px-4 rounded" style={{backgroundColor: "#4f914a"}}>
                         Filtruj
                     </button>
 
@@ -1081,7 +1081,7 @@ const Step4 = ({ formData, handleInputChange }) => {
                         <li key={airline.id} onClick={() => handleSuggestionClick(airline)}>{airline.name}</li>
                     ))}
                 </ul>
-                <div className="flex items-center">
+                <div className="flex flex-col md-flex-row items-center">
                     <input
                         type="text"
                         id="input4a"
@@ -1108,7 +1108,7 @@ const Step4 = ({ formData, handleInputChange }) => {
                            onChange={handleInputChange}
                         // format="MM/dd/yyyy" // You can customize the date format
                            placeholder="DD/MM/RRRR, HH:MM"
-                           className="flex-1 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                           className="flex-1 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus: w-100"
                     />
                 </div>
             </div>
@@ -1749,8 +1749,11 @@ const Step10 = ({ formData, handleInputChange, setData }) => {
                                 <FontAwesomeIcon icon={faPencil}/>
                             </div>
                         </div>
-                        <button className="bg-white rounded-sm mr-2" onClick={clearSignature}>Od nowa</button>
-                        <button className="bg-white rounded-sm mr-2" onClick={saveSignature}>Zapisz</button>
+                        <div className="p-3">
+                            <button className="bg-gray-700 text-white rounded-sm mr-2 shadow p-1" onClick={clearSignature} style={{backgroundColor: "#FE9898"}}>Od nowa</button>
+                            <button className="bg-gray-700 text-white rounded-sm mr-2 shadow p-1" onClick={saveSignature}>Zapisz</button>
+                        </div>
+
                         <p className="text-yellow-500">
                             Podpisz się, zapisz swój podpis i wyślij formularz :)
                         </p>
@@ -2190,6 +2193,9 @@ const MultiStepForm = () => {
 
     return (
         <div>
+            <div className="p-3 form-logo">
+                <ApplicationLogo/>
+            </div>
             <div className="bg-neutral-100">
                 <div className="outer min-h-screen" style={{
                     backgroundImage: "url('media/Component_2.png')",

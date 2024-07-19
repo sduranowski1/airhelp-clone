@@ -16,6 +16,8 @@ const Popup = styled.div`
   justify-content: space-between;
   align-items: center;
   z-index: 1000;
+  flex-direction: column;
+  opacity: 95%;
 `;
 
 const Button = styled.button`
@@ -54,6 +56,7 @@ const CookieConsent = () => {
     return (
         <Popup>
             <div>Używamy plików cookie, aby poprawić komfort użytkowania. Korzystając z naszej witryny, zgadzasz się z naszą polityką dotyczącą plików cookie.</div>
+            <br/>
             <Button onClick={handleAccept}>Akceptuj</Button>
         </Popup>
     );
