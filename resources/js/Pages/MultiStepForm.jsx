@@ -534,7 +534,7 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
 
     return (
         <div>
-            <div className="container">
+            <div className="container container-padding">
                 <div className="card p-5" style={{backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"}}>
                     <label htmlFor="input1" className="block text-gray-700 text-sm font-bold mb-2">
                         Dzień dobry! Sprawdźmy, czy linia lotnicza jest Ci winna odszkodowanie. Podaj miejsce i date wylotu.
@@ -583,7 +583,7 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
             {/*<button onClick={searchFlights}>Search</button>*/}
             {/*<br /><br />*/}
             {isVisible && (
-            <div className="container mt-5">
+            <div className="container container-padding mt-5">
                 <div className="card p-5" style={{backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"}}>
                     <label htmlFor="input12" className="block text-gray-700 text-sm font-bold mb-2">
                         Czy Twój lot obejmował przesiadkę?:
@@ -624,7 +624,7 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
             </div>
             )}
             {isVisible && (
-            <div className="container mt-5">
+            <div className="container container-padding mt-5">
                 <div className="card p-5" style={{backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"}}>
                     <label htmlFor="input2" className="block text-gray-700 text-sm font-bold mb-2">
                         Podaj miejsce lądowania
@@ -664,7 +664,7 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
             </div>
                 )}
             {isVisible && (
-            <div className="container mt-5">
+            <div className="container container-padding mt-5">
                 <div className="card p-5" style={{backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"}}>
                     <label htmlFor="input12" className="block text-gray-700 text-sm font-bold mb-2">
                         Następnie wybierz swój lot z listy:
@@ -1065,7 +1065,7 @@ const Step4 = ({ formData, handleInputChange }) => {
     return (
 
     <div>
-        <div className="container">
+        <div className="container container-padding">
             <div className="card p-5  w-100" style={{
                 backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"
             }}>
@@ -1156,7 +1156,7 @@ const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
 
     return (
         <div>
-            <div className="container">
+            <div className="container container-padding">
                 <div className="card p-5" style={{
                     backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"
                 }}>
@@ -1217,7 +1217,7 @@ const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                 </ul>
             </div>
         </div>
-        <div className="container  mt-5">
+        <div className="container  container-padding mt-5">
             <div className="card p-5" style={{
                 backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"
             }}>
@@ -1329,7 +1329,7 @@ const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                 </ul>
             </div>
         </div>
-        <div className="container  mt-5">
+        <div className="container  container-padding mt-5">
             <div className="card p-5" style={{
                 backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"
             }}>
@@ -1409,7 +1409,7 @@ const Step6 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
 
     return (
         <div>
-            <div className="container">
+            <div className="container container-padding">
                 <div className="card p-5" style={{
                     backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"
                 }}>
@@ -1428,7 +1428,7 @@ const Step6 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
 
                 </div>
             </div>
-            <div className="container mt-5">
+            <div className="container container-padding mt-5">
                 <div className="card p-5" style={{
                     backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"
                 }}>
@@ -1524,7 +1524,7 @@ const Step7 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
 
     return (
         <div>
-            <div className="container">
+            <div className="container container-padding">
                 <div className="card p-5" style={{
                     backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"
                 }}>
@@ -1533,7 +1533,7 @@ const Step7 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                         Twojej rezerwacji może przysługiwać odszkodowanie w wysokości do 600 €</label>
                 </div>
             </div>
-            <div className="container  mt-5">
+            <div className="container  container-padding mt-5">
                 <div className="card p-5" style={{
                     backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"
                 }}>
@@ -1580,7 +1580,7 @@ const Step7 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                 </div>
             </div>
             {formData.input7a === 'Tak, ktoś ze mną podróżował' && (
-                <div className="container mt-5">
+                <div className="container container-padding mt-5">
                     <div className="card p-5" style={{
                         backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"
                     }}>
@@ -1605,7 +1605,7 @@ const Step7 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
 
 const Step8 = ({formData, handleInputChange}) => (
     <div>
-        <div className="container">
+        <div className="container container-padding">
             <div className="card p-5" style={{
                 backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"
             }}>
@@ -1639,7 +1639,7 @@ const Step8 = ({formData, handleInputChange}) => (
 
 const Step9 = ({formData, handleInputChange}) => (
     <div>
-        <div className="container">
+        <div className="container container-padding">
             <div className="card p-5" style={{
                 backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"
             }}>
@@ -1648,7 +1648,7 @@ const Step9 = ({formData, handleInputChange}) => (
                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
             </div>
         </div>
-        <div className="container mt-5">
+        <div className="container container-padding mt-5">
             <div className="card p-5" style={{
                 backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"
             }}>
@@ -1716,7 +1716,7 @@ const Step10 = ({ formData, handleInputChange, setData }) => {
 
     return (
         <div>
-            <div className="container">
+            <div className="container container-padding">
                 <div className="card p-5" style={{backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"}}>
                     <label htmlFor="input10" className="block text-gray-700 text-sm font-bold mb-2">Dobre wieści!
                         Wygląda na
@@ -2135,7 +2135,7 @@ const MultiStepForm = () => {
     const renderStep = (stepNumber) => {
         const CurrentStepComponent = steps[stepNumber - 1];
         return (
-            <div className="container" style={{flexWrap: "wrap"}}>
+            <div className="container container-padding" style={{flexWrap: "wrap"}}>
                 <CurrentStepComponent formData={data} handleInputChange={handleInputChange} handleCheckboxChange={handleCheckboxChange} setData={setData}  setSelectedFlight={setSelectedFlight} selectedFlight={selectedFlight}/>
                 {stepNumber === 1 && !step1Valid && (
                     <p className="text-red-500">{errorMessage}</p>

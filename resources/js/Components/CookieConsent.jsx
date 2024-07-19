@@ -18,7 +18,13 @@ const Popup = styled.div`
   z-index: 1000;
   flex-direction: column;
   opacity: 95%;
+
+  @media (max-width: 768px) {
+    width: 90%;
+  }
 `;
+
+
 
 const Button = styled.button`
   background-color: #4CAF50;

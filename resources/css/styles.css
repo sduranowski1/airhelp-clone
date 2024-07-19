@@ -194,6 +194,10 @@ footer {
         font-size: 1.25rem;
         width: 90%;
     }
+    .container-padding {
+        padding-left: 0rem;
+        padding-right: 0rem;
+    }
 }
 
 @media (min-width: 768px) {
@@ -706,7 +710,7 @@ canvas {
     canvas {
         height: 150px;
 
-        width: 250px;
+        max-width: 100%;
     }
 
     .h-screen2 {
