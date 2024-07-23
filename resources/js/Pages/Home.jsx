@@ -210,7 +210,7 @@ const HomeContent = () => {
             </div>
             <div className="flex justify-center p-4">
                 <div className="container lapping">
-                <div className="overlapping">
+                    <div className="overlapping">
                         <div className="card overlap_shadow p-4">
                             <div className="we_do mb-4">BeSmartAir DBA O PRAWA PASAŻERÓW LOTNICZYCH</div>
                             <ul className="flex flex-col md:flex-row justify-between uppercase space-y-4 md:space-y-0">
@@ -246,6 +246,7 @@ const HomeContent = () => {
             <div className="lapping-space text-center m-5">
                 <h2>‎ </h2>
             </div>
+
             <div className="header text-center m-5">
                 <h2>DLACZEGO WYBRAĆ POMOC BeSmartAir?</h2>
             </div>
@@ -253,15 +254,21 @@ const HomeContent = () => {
                 <div className="card bg-transparent pt-5 p-4">
                     <h5>WNIOSEK PRZY POMOCY BeSmartAir </h5>
                     <ul className="mt-3">
-                        <li><strong>Łatwa procedura:</strong> <p>Zajmujemy się Twoją sprawą od złożenia wniosku, aż do wypłaty odszkodowania. </p>
+                        <li><strong>Łatwa procedura:</strong> <p>Zajmujemy się Twoją sprawą od złożenia wniosku, aż do
+                            wypłaty odszkodowania. </p>
                         </li>
-                        <li><strong>Pełna obsługa:</strong> <p> W Twoim imieniu składamy wszelkie niezbędne dokumenty.</p>
+                        <li><strong>Pełna obsługa:</strong> <p> W Twoim imieniu składamy wszelkie niezbędne
+                            dokumenty.</p>
                         </li>
-                        <li><strong>Sprawne działanie:</strong> <p> Po przesłaniu nam dokumentów online zajmujemy się całą resztą.</p>
+                        <li><strong>Sprawne działanie:</strong> <p> Po przesłaniu nam dokumentów online zajmujemy się
+                            całą resztą.</p>
                         </li>
-                        <li><strong>Stałe monitorowanie statusu:</strong> <p>Cały czas jesteśmy w kontakcie i do Twojej dyspozycji informując o postępie sprawy. </p>
+                        <li><strong>Stałe monitorowanie statusu:</strong> <p>Cały czas jesteśmy w kontakcie i do Twojej
+                            dyspozycji informując o postępie sprawy. </p>
                         </li>
-                        <li><strong>Brak kosztów za złożenie wniosku:</strong> <p>Brak kosztów za złożenie wniosku Wszelkie koszty obsługi prawnej są po naszej stronie, pobieramy opłatę tylko, gdy odszkodowanie zostanie wypłacone.  </p>
+                        <li><strong>Brak kosztów za złożenie wniosku:</strong> <p>Brak kosztów za złożenie wniosku
+                            Wszelkie koszty obsługi prawnej są po naszej stronie, pobieramy opłatę tylko, gdy
+                            odszkodowanie zostanie wypłacone. </p>
                         </li>
 
                     </ul>
@@ -269,29 +276,38 @@ const HomeContent = () => {
                 <div className="card overlap_shadow pt-5 p-4">
                     <h5>DOCHODZENIE ODSZKODOWANIA LOTNICZEGO NA WŁASNĄ RĘKĘ</h5>
                     <ul className="mt-3">
-                        <li><strong>Biurokracja:</strong> <p>Nieoczywiste informacje odnośnie dokumentacji niezbędnej do złożenia wniosku.</p>
+                        <li><strong>Biurokracja:</strong> <p>Nieoczywiste informacje odnośnie dokumentacji niezbędnej do
+                            złożenia wniosku.</p>
                         </li>
-                        <li><strong>Czas:</strong> <p>Dochodzenie swoich praw wymaga dużej cierpliwości podczas kontaktu z biurami obsługi klienta linii lotniczych oraz cały proces może trwać miesiącami. </p>
+                        <li><strong>Czas:</strong> <p>Dochodzenie swoich praw wymaga dużej cierpliwości podczas kontaktu
+                            z biurami obsługi klienta linii lotniczych oraz cały proces może trwać miesiącami. </p>
                         </li>
-                        <li><strong>Stres:</strong> <p>Samodzielne przeprowadzenie całego procesu łącznie z negocjacjami z liniami lotniczymi.</p>
+                        <li><strong>Stres:</strong> <p>Samodzielne przeprowadzenie całego procesu łącznie z negocjacjami
+                            z liniami lotniczymi.</p>
                         </li>
-                        <li><strong>Ryzyko:</strong> <p>W sytuacji skierowania Twojego wniosku na drogę sądową musisz liczyć się kosztami bez względu na ostateczny wynik sprawy.</p>
+                        <li><strong>Ryzyko:</strong> <p>W sytuacji skierowania Twojego wniosku na drogę sądową musisz
+                            liczyć się kosztami bez względu na ostateczny wynik sprawy.</p>
                         </li>
-                        <li><strong>Utrudniony kontakt z liniami lotniczymi:</strong> <p>Nie zawsze a wręcz bardzo rzadko linie lotnicze informują klientów o przebiegu spray i jej statusie. </p>
+                        <li><strong>Utrudniony kontakt z liniami lotniczymi:</strong> <p>Nie zawsze a wręcz bardzo
+                            rzadko linie lotnicze informują klientów o przebiegu spray i jej statusie. </p>
                         </li>
                     </ul>
                 </div>
             </div>
-            <div className="header text-center pt-5 m-5">
-                <div className="why">DLACZEGO BEMSARTAIR?</div>
-                <div className="we_do">Zajmujemy się profesjonalnym rozwiązywaniem problemów związanych z lotami
-                    samolotowymi
-                </div>
-                <div className="our_com">Nasza firma specjalizuje się w uzyskiwaniu odszkodowań dla naszych klientów z
-                    całego świata. Nie boimy się nawet trudnych i skomplikowanych przypadków. Zadowolenie klientów z
-                    realizacji naszych usług jest dla nas priorytetem.
+            <div className="container">
+                <div className="header text-center pt-5 m-5">
+                    <div className="why">DLACZEGO BEMSARTAIR?</div>
+                    <div className="we_do">Zajmujemy się profesjonalnym rozwiązywaniem problemów związanych z lotami
+                        samolotowymi
+                    </div>
+                    <div className="our_com">Nasza firma specjalizuje się w uzyskiwaniu odszkodowań dla naszych klientów
+                        z
+                        całego świata. Nie boimy się nawet trudnych i skomplikowanych przypadków. Zadowolenie klientów z
+                        realizacji naszych usług jest dla nas priorytetem.
+                    </div>
                 </div>
             </div>
+
             <div className="container mb-5 flex flex-col md:flex-row">
                 <div className="card p-4 hoverix image-container m-2">
                     <div className="image-wrapper_2">
