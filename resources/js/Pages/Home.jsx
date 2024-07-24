@@ -113,7 +113,7 @@ const HomeContent = () => {
             <div>
                 {/*<div className="home-hero sm:px-6 lg:px-8 container-custom  relative">*/}
                     <div className="home-hero sm:px-6 lg:px-8 container-custom relative" style={{
-                        backgroundImage: 'url("media/home_hero.png")',
+                        backgroundImage: 'url("media/hero_improved.png")',
                         backgroundRepeat: 'no-repeat',
                         backgroundPosition: 'bottom right',
                         backgroundSize: '40%',
