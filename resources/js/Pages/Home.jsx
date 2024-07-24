@@ -371,10 +371,9 @@ const HomeContent = () => {
             {/*        </div>*/}
             {/*    </div>*/}
             {/*</div>*/}
-            <div className="container m-5 ml-auto mr-auto">
-                <div className="row">
+            <div className="container m-5 ml-auto mr-auto row">
 
-                <div className="card-hover hoverix image-container m-2 col-xl-3 col-lg-4 col-md-6 col-sm-12"><div className="image-wrapper_2">
+                <div className="card-hover hoverix image-container m-4 col-xl-3 col-lg-4 col-md-6 col-sm-12"><div className="image-wrapper_2">
                             <img src="media/canceled_plane.png" alt="plane clock" className="plane-image"/>
                         </div>
                         <h5 className="font-weight-bold">Odwołany lot</h5>
@@ -385,7 +384,7 @@ const HomeContent = () => {
 
                             </li>
                         </ul></div>
-                <div className="card-hover hoverix image-container m-2 col-xl-3 col-lg-4 col-md-6 col-sm-12"><div className="image-wrapper">
+                <div className="card-hover hoverix image-container m-4 col-xl-3 col-lg-4 col-md-6 col-sm-12"><div className="image-wrapper">
                             <img src="media/plane_clock.png" alt="plane clock" className="plane-image"/>
                         </div>
                         <h5 className="font-weight-bold">Opóźniony lot</h5>
@@ -397,7 +396,7 @@ const HomeContent = () => {
                                 odszkodowanie do 600 eur.
                             </li>
                         </ul></div>
-                <div className="card-hover hoverix image-container m-2 col-xl-3 col-lg-4 col-md-6 col-sm-12"><div className="image-wrapper_3">
+                <div className="card-hover hoverix image-container m-4 col-xl-3 col-lg-4 col-md-6 col-sm-12"><div className="image-wrapper_3">
                             <img src="media/1.png" alt="plane clock" className="plane-image"/>
                         </div>
                         <h5 className="font-weight-bold">Spóźnienie na lot przesiadkowy</h5>
@@ -410,7 +409,7 @@ const HomeContent = () => {
                                 odszkodowanie.
                             </li>
                         </ul></div>
-                <div className="card-hover hoverix image-container m-2 col-xl-3 col-lg-4 col-md-6 col-sm-12"><div className="image-wrapper_4">
+                <div className="card-hover hoverix image-container m-4 col-xl-3 col-lg-4 col-md-6 col-sm-12"><div className="image-wrapper_4">
                             <img src="media/plane_swap.png" alt="plane clock" className="plane-image"/>
                         </div>
                         <h5 className="font-weight-bold">Ciężka komunikacja z linią</h5>
@@ -426,7 +425,6 @@ const HomeContent = () => {
                             </li>
                         </ul></div>
 
-                </div>
             </div>
             <div className="row bg-white">
                 <div className="container mt-5  flex flex-col md:flex-row">
