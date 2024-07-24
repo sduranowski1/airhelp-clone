@@ -111,13 +111,13 @@ const HomeContent = () => {
     return (
         <div>
             <div>
-                <div className="home-hero sm:px-6 lg:px-8 container-custom  relative">
-                    {/*<div className="home-hero sm:px-6 lg:px-8 container-custom relative" style={{*/}
-                    {/*    backgroundImage: 'url("media/home_hero.png")',*/}
-                    {/*    backgroundRepeat: 'no-repeat',*/}
-                    {/*    backgroundPosition: 'bottom right',*/}
-                    {/*    backgroundSize: '50%',*/}
-                    {/*}}>*/}
+                {/*<div className="home-hero sm:px-6 lg:px-8 container-custom  relative">*/}
+                    <div className="home-hero sm:px-6 lg:px-8 container-custom relative" style={{
+                        backgroundImage: 'url("media/home_hero.png")',
+                        backgroundRepeat: 'no-repeat',
+                        backgroundPosition: 'bottom right',
+                        backgroundSize: '40%',
+                    }}>
                     {/*<div className="row">*/}
                     {/*    <div className="container">*/}
                     {/*        <div className="flex flex-col  items-start h-screen2">*/}
