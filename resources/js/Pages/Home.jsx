@@ -115,7 +115,7 @@ const HomeContent = () => {
                     <div className="home-hero sm:px-6 lg:px-8 container-custom relative" style={{
                         backgroundImage: 'url("media/hero-improved.png")',
                         backgroundRepeat: 'no-repeat',
-                        backgroundPosition: 'bottom right',
+                        backgroundPosition: 'right',
                         backgroundSize: '40%',
                     }}>
                     {/*<div className="row">*/}
