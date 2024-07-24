@@ -74,15 +74,4 @@
     transition: opacity 0.3s ease-in-out;
 }
 
-.home-hero {
-    background-image: url("http://138.68.158.146/media/hero-improved.png");
-    background-repeat: no-repeat;
-    background-position: right;
-    background-size: 40%;
-}
 
-@media (max-width: 768px) {
-    .home-hero {
-        background-position: right 30%;
-    }
-}
