@@ -308,64 +308,124 @@ const HomeContent = () => {
                 </div>
             </div>
 
-            <div className="container mb-5 flex flex-col md:flex-row">
-                <div className="card p-4 hoverix image-container m-2">
-                    <div className="image-wrapper_2">
-                        <img src="media/canceled_plane.png" alt="plane clock" className="plane-image"/>
-                    </div>
-                    <h5 className="font-weight-bold">Odwołany lot</h5>
-                    <ul className="list-hidden">
-                        <li>Twój lot został odwołany z krótkim wyprzedzeniem? Poza zwrotem pieniedzy przysługuje Tobie
-                            odszkodowanie w wysokosci do 600 eur.
+            {/*<div className="container mb-5">*/}
+            {/*    <div className="row">*/}
+            {/*        <div className="card p-4 hoverix image-container m-2 col-xl-3 col-lg-4 col-md-6 col-sm-12">*/}
+            {/*            <div className="image-wrapper_2">*/}
+            {/*                <img src="media/canceled_plane.png" alt="plane clock" className="plane-image"/>*/}
+            {/*            </div>*/}
+            {/*            <h5 className="font-weight-bold">Odwołany lot</h5>*/}
+            {/*            <ul className="list-hidden">*/}
+            {/*                <li>Twój lot został odwołany z krótkim wyprzedzeniem? Poza zwrotem pieniedzy przysługuje*/}
+            {/*                    Tobie*/}
+            {/*                    odszkodowanie w wysokosci do 600 eur.*/}
 
-                        </li>
-                    </ul>
-                </div>
-                <div className="card p-4 hoverix image-container  m-2">
-                    <div className="image-wrapper">
-                        <img src="media/plane_clock.png" alt="plane clock" className="plane-image"/>
-                    </div>
-                    <h5 className="font-weight-bold">Opóźniony lot</h5>
-                    <ul className="list-hidden">
-                        <li> W
-                            sytuacji opóźnienia powyżej 3
-                            godzin, dowiedz sie czy nasi
-                            specjaliści uzyskają dla Ciebie
-                            odszkodowanie do 600 eur.
-                        </li>
-                    </ul>
-                </div>
-                <div className="card p-4 hoverix image-container  m-2">
-                    <div className="image-wrapper_3">
-                        <img src="media/1.png" alt="plane clock" className="plane-image"/>
-                    </div>
-                    <h5 className="font-weight-bold">Spóźnienie na lot przesiadkowy</h5>
-                    <ul className="list-hidden">
-                        <li>W
-                            przypadku wylądowania z
-                            3-godzinnym opóznieniem w
-                            miejscu docelowym równiez
-                            moze przysługiwać Tobie
-                            odszkodowanie.
-                        </li>
-                    </ul>
-                </div>
-                <div className="card p-4 hoverix image-container m-2">
-                    <div className="image-wrapper_4">
-                        <img src="media/plane_swap.png" alt="plane clock" className="plane-image"/>
-                    </div>
-                    <h5 className="font-weight-bold">Ciężka komunikacja z linią</h5>
-                    <ul className="list-hidden">
-                        <li>Twój
-                            wniosek o odszkodowanie został
-                            odrzucony badź zignorowany?
-                            Sprawdzimy zasadność wniosku
-                            oraz wywrzemy nacisk na linie
-                            lotniczą, aby poczuła sie do
-                            odpowiedzialności.
+            {/*                </li>*/}
+            {/*            </ul>*/}
+            {/*        </div>*/}
+            {/*        <div className="card p-4 hoverix image-container  m-2 col-xl-3 col-lg-4 col-md-6 col-sm-12">*/}
+            {/*            <div className="image-wrapper">*/}
+            {/*                <img src="media/plane_clock.png" alt="plane clock" className="plane-image"/>*/}
+            {/*            </div>*/}
+            {/*            <h5 className="font-weight-bold">Opóźniony lot</h5>*/}
+            {/*            <ul className="list-hidden">*/}
+            {/*                <li> W*/}
+            {/*                    sytuacji opóźnienia powyżej 3*/}
+            {/*                    godzin, dowiedz sie czy nasi*/}
+            {/*                    specjaliści uzyskają dla Ciebie*/}
+            {/*                    odszkodowanie do 600 eur.*/}
+            {/*                </li>*/}
+            {/*            </ul>*/}
+            {/*        </div>*/}
+            {/*        <div className="card p-4 hoverix image-container  m-2 col-xl-3 col-lg-4 col-md-6 col-sm-12">*/}
+            {/*            <div className="image-wrapper_3">*/}
+            {/*                <img src="media/1.png" alt="plane clock" className="plane-image"/>*/}
+            {/*            </div>*/}
+            {/*            <h5 className="font-weight-bold">Spóźnienie na lot przesiadkowy</h5>*/}
+            {/*            <ul className="list-hidden">*/}
+            {/*                <li>W*/}
+            {/*                    przypadku wylądowania z*/}
+            {/*                    3-godzinnym opóznieniem w*/}
+            {/*                    miejscu docelowym równiez*/}
+            {/*                    moze przysługiwać Tobie*/}
+            {/*                    odszkodowanie.*/}
+            {/*                </li>*/}
+            {/*            </ul>*/}
+            {/*        </div>*/}
+            {/*        <div className="card p-4 hoverix image-container m-2 col-xl-3 col-lg-4 col-md-6 col-sm-12">*/}
+            {/*            <div className="image-wrapper_4">*/}
+            {/*                <img src="media/plane_swap.png" alt="plane clock" className="plane-image"/>*/}
+            {/*            </div>*/}
+            {/*            <h5 className="font-weight-bold">Ciężka komunikacja z linią</h5>*/}
+            {/*            <ul className="list-hidden">*/}
+            {/*                <li>Twój*/}
+            {/*                    wniosek o odszkodowanie został*/}
+            {/*                    odrzucony badź zignorowany?*/}
+            {/*                    Sprawdzimy zasadność wniosku*/}
+            {/*                    oraz wywrzemy nacisk na linie*/}
+            {/*                    lotniczą, aby poczuła sie do*/}
+            {/*                    odpowiedzialności.*/}
 
-                        </li>
-                    </ul>
+            {/*                </li>*/}
+            {/*            </ul>*/}
+            {/*        </div>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
+            <div className="container m-5 ml-auto mr-auto">
+                <div className="row">
+
+                <div className="card-hover hoverix image-container m-2 col-xl-3 col-lg-4 col-md-6 col-sm-12"><div className="image-wrapper_2">
+                            <img src="media/canceled_plane.png" alt="plane clock" className="plane-image"/>
+                        </div>
+                        <h5 className="font-weight-bold">Odwołany lot</h5>
+                        <ul className="list-hidden">
+                            <li>Twój lot został odwołany z krótkim wyprzedzeniem? Poza zwrotem pieniedzy przysługuje
+                                Tobie
+                                odszkodowanie w wysokosci do 600 eur.
+
+                            </li>
+                        </ul></div>
+                <div className="card-hover hoverix image-container m-2 col-xl-3 col-lg-4 col-md-6 col-sm-12"><div className="image-wrapper">
+                            <img src="media/plane_clock.png" alt="plane clock" className="plane-image"/>
+                        </div>
+                        <h5 className="font-weight-bold">Opóźniony lot</h5>
+                        <ul className="list-hidden">
+                            <li> W
+                                sytuacji opóźnienia powyżej 3
+                                godzin, dowiedz sie czy nasi
+                                specjaliści uzyskają dla Ciebie
+                                odszkodowanie do 600 eur.
+                            </li>
+                        </ul></div>
+                <div className="card-hover hoverix image-container m-2 col-xl-3 col-lg-4 col-md-6 col-sm-12"><div className="image-wrapper_3">
+                            <img src="media/1.png" alt="plane clock" className="plane-image"/>
+                        </div>
+                        <h5 className="font-weight-bold">Spóźnienie na lot przesiadkowy</h5>
+                        <ul className="list-hidden">
+                            <li>W
+                                przypadku wylądowania z
+                                3-godzinnym opóznieniem w
+                                miejscu docelowym równiez
+                                moze przysługiwać Tobie
+                                odszkodowanie.
+                            </li>
+                        </ul></div>
+                <div className="card-hover hoverix image-container m-2 col-xl-3 col-lg-4 col-md-6 col-sm-12"><div className="image-wrapper_4">
+                            <img src="media/plane_swap.png" alt="plane clock" className="plane-image"/>
+                        </div>
+                        <h5 className="font-weight-bold">Ciężka komunikacja z linią</h5>
+                        <ul className="list-hidden">
+                            <li>Twój
+                                wniosek o odszkodowanie został
+                                odrzucony badź zignorowany?
+                                Sprawdzimy zasadność wniosku
+                                oraz wywrzemy nacisk na linie
+                                lotniczą, aby poczuła sie do
+                                odpowiedzialności.
+
+                            </li>
+                        </ul></div>
+
                 </div>
             </div>
             <div className="row bg-white">
@@ -388,9 +448,9 @@ const HomeContent = () => {
                 <div className="container custom-hr mt-5 mb-5"/>
                 <div className="container  flex flex-col md:flex-row mt-5 mb-5">
                     <div className="card">
-                        <h2 className="darkGreenText">Pasażerowie nie są świadomi jak dużym problemem są opóźnione i
+                        <h3 className="darkGreenText">Pasażerowie nie są świadomi jak dużym problemem są opóźnione i
                             odwołane loty w globalnej skali. BeSmartAir zadba o Twoje prawa dążąc do uzyskania
-                            odszkodowania lotniczego na Twoja prośbę.</h2>
+                            odszkodowania lotniczego na Twoja prośbę.</h3>
                         <div
                             className="mb-5 mt-3 w-80 bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                             style={{backgroundColor: "#4F914A"}}
@@ -444,7 +504,7 @@ export default function Home({auth}) {
         <>
             {auth.user ? (
                 <AuthenticatedLayout user={auth.user}>
-                {/*<AuthenticatedLayout user={auth.user} header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Home</h2>}>*/}
+                    {/*<AuthenticatedLayout user={auth.user} header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Home</h2>}>*/}
                     <Head title="Home"/>
                     <HomeContent/>
                     <CookieConsent />

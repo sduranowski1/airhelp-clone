@@ -46,6 +46,10 @@ footer {
 
 .image-container {
     position: relative;
+                display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
 }
 
 .image-wrapper {
@@ -238,6 +242,16 @@ footer {
 .card {
     flex: 1;
     /*margin-right: 20px; !* Adjust as needed for spacing between cards *!*/
+}
+
+.card-hover {
+    flex: 1;
+    background: white;
+    border-radius: 0.35rem;
+}
+
+.card-hover:hover .list-hidden {
+    max-height: 200px;
 }
 
 .lapping {
@@ -691,7 +705,38 @@ canvas {
     width: 100%
 }
 
+#disqus_thread {
 
+}
+
+/* Style the Disqus iframe */
+iframe {
+}
+
+/* Style individual Disqus comments */
+#disqus_thread .post-message {
+    background-color: #ffffff; /* Change this to your desired comment background color */
+    color: #333; /* Change this to your desired comment text color */
+}
+
+/* Style the Disqus comment author */
+#disqus_thread .author {
+    color: #4F914A; /* Change this to your desired author text color */
+}
+
+/* Additional styling for Disqus elements */
+#disqus_thread a {
+    color: #4F914A; /* Change this to your desired link color */
+}
+
+#disqus_thread .post-content {
+    border: 1px solid #ddd; /* Change this to your desired border color */
+}
+
+style attribute {
+    --publisher-color: none;
+    --publisher-color-safe: none;
+}
 
 .mobile-inputs {
     margin-bottom: 3rem;
