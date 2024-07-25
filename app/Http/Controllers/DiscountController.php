@@ -14,9 +14,9 @@ class DiscountController extends Controller
         $discount = Discount::where('code', $code)->first();
 
         if ($discount) {
-            return response()->json(['valid' => true, 'message' => 'Valid discount code']);
+            return response()->json(['valid' => true, 'message' => 'Poprawny kod rabatowy']);
         } else {
-            return response()->json(['valid' => false, 'message' => 'Invalid discount code']);
+            return response()->json(['valid' => false, 'message' => 'Niepoprawny kod rabatowy lub jego brak']);
         }
     }
 }

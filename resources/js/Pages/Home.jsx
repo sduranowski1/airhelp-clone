@@ -431,9 +431,8 @@ const HomeContent = () => {
             </div>
             <div className="row bg-white">
                 <div className="container mt-5  flex flex-col md:flex-row">
-                    <div className="container">
                     <div className="card mt-5">
-
+                        <div className="container">
                         <h2 className="darkGreenText">Rozliczamy nasze
                             wynagrodzenie jedynie, gdy
                             otrzymasz należne
@@ -441,9 +440,9 @@ const HomeContent = () => {
                         <div className="greenText">Nasze wynagrodzenie liczymy od kwoty odszkodowania, które dla Ciebie
                             uzyskamy, tym samym nie ponosisz ryzyka. Nasz opłata wynosi 20%
                         </div>
+                    </div>
+                    </div>
 
-                    </div>
-                    </div>
                     <div className="card mt-5 mb-5">
                         <img
                             src={"media/walett.png"}/>
@@ -458,7 +457,7 @@ const HomeContent = () => {
                                 odwołane loty w globalnej skali. BeSmartAir zadba o Twoje prawa dążąc do uzyskania
                                 odszkodowania lotniczego na Twoja prośbę.
                             </h4>
-                            <div className="pt-2">
+                            <div className="p-2">
                             <div
                                 className="container mb-5 mt-3 w-80 bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                                 style={{backgroundColor: "#4F914A"}}
