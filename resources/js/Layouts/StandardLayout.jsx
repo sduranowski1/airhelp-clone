@@ -35,31 +35,31 @@ export default function Standard({ user, header, children }) {
                                 </Link>
                             </div>
 
-                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 md:flex">
                                 <NavLink href={route('home')} active={route().current('home')}>
                                     Strona główna
                                 </NavLink>
                             </div>
 
-                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 md:flex">
                                 <NavLink href={route('multistep.index')} active={route().current('multistep')}>
                                     Sprawdź odszkodowanie
                                 </NavLink>
                             </div>
 
-                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 md:flex">
                                 <NavLink href={route('privacy-policy')} active={route().current('privacy-policy')}>
                                     Poznaj swoje prawa
                                 </NavLink>
                             </div>
 
-                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 md:flex">
                                 <NavLink href={route('about-us')} active={route().current('about-us')}>
                                     O Nas
                                 </NavLink>
                             </div>
 
-                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 md:flex">
                                 <NavLink href={route('blog')} active={route().current('blog')}>
                                     Blog
                                 </NavLink>
@@ -83,7 +83,7 @@ export default function Standard({ user, header, children }) {
                             {/*)}*/}
                         </div>
 
-                        <div className="hidden sm:flex sm:items-center sm:ms-6">
+                        <div className="hidden md:flex sm:items-center sm:ms-6">
                             <div className="ms-3 relative">
                                 <Dropdown>
                                     <Dropdown.Trigger>
@@ -121,7 +121,7 @@ export default function Standard({ user, header, children }) {
                             </div>
                         </div>
 
-                        <div className="-me-2 flex items-center sm:hidden">
+                        <div className="-me-2 flex items-center md:hidden">
                             <button
                                 onClick={() => setShowingNavigationDropdown((previousState) => !previousState)}
                                 className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"

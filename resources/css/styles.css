@@ -16,12 +16,12 @@ footer {
     background: #F4FFF199;
 }
 
-/*.home-hero {*/
-/*    background-image: url("http://138.68.158.146/media/hero-improved.png");*/
-/*    background-repeat: no-repeat;*/
-/*    background-position: right;*/
-/*    background-size: 40%;*/
-/*}*/
+.home-hero {
+    background-image: url("media/hero-improved.png");
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-size: 40%;
+}
 
 @media (max-width: 768px) {
     .home-hero {
@@ -174,19 +174,19 @@ footer {
     height: 80vh;
 }
 
-.container-custom {
-    text-align: left;
-    background: #F4FFF199;
-    padding: 100px;
-}
+/*.container-custom {*/
+/*    text-align: left;*/
+/*    background: #F4FFF199;*/
+/*    padding: 100px;*/
+/*}*/
 
 .heading-custom {
-    font-size: 100px;
+    font-size: 80px;
     font-weight: 500;
-    line-height: 110px;
+    line-height: 90px;
     text-align: left;
     color: #4F914A;
-    width: 50%;
+    width: 100%;
 }
 
 .info-text-custom {
@@ -202,9 +202,10 @@ footer {
 
 @media (max-width: 768px) {
     .heading-custom {
-        font-size: 2rem;
+        font-size: 3rem;
         width: 100%;
-        padding: 1rem;
+        padding: 1.5rem;
+        line-height: 50px;
     }
 
     .info-text-custom {
@@ -232,19 +233,27 @@ footer {
 }
 
 @media (max-width: 1024px) {
-    .heading-custom {
-        font-size: 3rem;
-        margin-left: 1rem;
-        line-height: 65px;
-    }
+    /*.heading-custom {*/
+    /*    font-size: 3rem;*/
 
-    .info-text-custom {
-        margin-left: 1rem;
-        margin-top: 2rem;
-    }
+    /*    line-height: 65px;*/
+    /*}*/
+
+    /*.info-text-custom {*/
+
+    /*    margin-top: 2rem;*/
+    /*}*/
 
     .col-3 {
         max-width: 100%
+    }
+
+
+}
+
+@media (max-width: 992px) {
+    .home-hero {
+        background-position: right;
     }
 }
 

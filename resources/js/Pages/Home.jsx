@@ -110,13 +110,15 @@ const HomeContent = () => {
 
     return (
         <div>
-            <div>
+            <div style={{background: "#F4FFF199"}}>
+            <div className="container">
+
                 {/*<div className="home-hero sm:px-6 lg:px-8 container-custom  relative">*/}
-                    <div className="home-hero sm:px-6 lg:px-8 container-custom relative" style={{
-                        backgroundImage: 'url("media/hero-improved.png")',
-                        backgroundRepeat: 'no-repeat',
-                        backgroundPosition: 'right',
-                        backgroundSize: '40%',
+                    <div className="home-hero" style={{
+                        // backgroundImage: 'url("media/hero-improved.png")',
+                        // backgroundRepeat: 'no-repeat',
+                        // backgroundPosition: 'bottom right',
+                        // backgroundSize: '40%',
                     }}>
                     {/*<div className="row">*/}
                     {/*    <div className="container">*/}
@@ -126,10 +128,10 @@ const HomeContent = () => {
                     {/*        </div>*/}
                     {/*    </div>*/}
                     {/*</div>*/}
-                    <div className="heading-custom">
-                        Masz odwołany bądź opóźniony lot ?
+                    <div className="p-6 heading-custom">
+                        Masz odwołany bądź opóźniony lot?
                     </div>
-                    <div className="info-text-custom">
+                    <div className="p-6 info-text-custom">
                         Bez względu na cenę biletu nawet do 600eur odszkodowania przysługuje za każdego
                         pasażera!
                     </div>
@@ -208,12 +210,13 @@ const HomeContent = () => {
                     </form>
                 </div>
             </div>
+        </div>
             <div className="flex justify-center p-4">
                 <div className="container lapping">
                     <div className="overlapping">
                         <div className="card overlap_shadow p-4">
                             <div className="we_do mb-4">BeSmartAir DBA O PRAWA PASAŻERÓW LOTNICZYCH</div>
-                            <ul className="flex flex-col md:flex-row justify-between uppercase space-y-4 md:space-y-0">
+                            <ul className="flex flex-col md:flex-row justify-between uppercase space-y-4 md:space-y-0 text-sm	">
                                 <li className="flex items-center">
                                     <img className="w-10" src="media/flags/euro.png"/>
                                     <strong className="ml-2">Europejskie Rozporządzenie we261</strong>
