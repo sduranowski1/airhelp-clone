@@ -10,17 +10,17 @@ import 'swiper/css/scrollbar';
 
 function TestimonialsSlider() {
     // Array of testimonials
-    const testimonials = [
-        {
-            name: "Piotr Nowakowski",
-            feedback: "Consistently excellent! Every interaction leaves me impressed. From their meticulous attention to detail to their exceptional customer service, this team delivers nothing short of excellence. I wholeheartedly recommend their service to anyone seeking top-tier quality."
-        },
-        {
-            name: "Andrzej Wiśniewski",
-            feedback: "This company has consistently delivered outstanding service. Their dedication to customer satisfaction is evident in every interaction. I've been a loyal customer for years, and I have no plans of going elsewhere. Highly recommended!"
-        },
-        // Add more testimonials here...
-    ];
+    // const testimonials = [
+    //     {
+    //         name: "Piotr Nowakowski",
+    //         feedback: "Consistently excellent! Every interaction leaves me impressed. From their meticulous attention to detail to their exceptional customer service, this team delivers nothing short of excellence. I wholeheartedly recommend their service to anyone seeking top-tier quality."
+    //     },
+    //     {
+    //         name: "Andrzej Wiśniewski",
+    //         feedback: "This company has consistently delivered outstanding service. Their dedication to customer satisfaction is evident in every interaction. I've been a loyal customer for years, and I have no plans of going elsewhere. Highly recommended!"
+    //     },
+    //     // Add more testimonials here...
+    // ];
 
     return (
         <div className="container mb-5" style={{display: "flex"}}>
@@ -38,7 +38,11 @@ function TestimonialsSlider() {
                     // width: 768,
                     slidesPerView: 1,
                 },
-                768: {
+                458: {
+                    // width: 768,
+                    slidesPerView: 2,
+                },
+                1024: {
                     // width: 768,
                     slidesPerView: 4,
                 },
