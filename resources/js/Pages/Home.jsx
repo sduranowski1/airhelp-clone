@@ -431,7 +431,9 @@ const HomeContent = () => {
             </div>
             <div className="row bg-white">
                 <div className="container mt-5  flex flex-col md:flex-row">
+                    <div className="container">
                     <div className="card mt-5">
+
                         <h2 className="darkGreenText">Rozliczamy nasze
                             wynagrodzenie jedynie, gdy
                             otrzymasz należne
@@ -441,6 +443,7 @@ const HomeContent = () => {
                         </div>
 
                     </div>
+                    </div>
                     <div className="card mt-5 mb-5">
                         <img
                             src={"media/walett.png"}/>
@@ -449,44 +452,51 @@ const HomeContent = () => {
                 <div className="container custom-hr mt-5 mb-5"/>
                 <div className="container  flex flex-col md:flex-row mt-5 mb-5">
                     <div className="card">
-                        <h3 className="darkGreenText">Pasażerowie nie są świadomi jak dużym problemem są opóźnione i
-                            odwołane loty w globalnej skali. BeSmartAir zadba o Twoje prawa dążąc do uzyskania
-                            odszkodowania lotniczego na Twoja prośbę.</h3>
-                        <div
-                            className="mb-5 mt-3 w-80 bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                            style={{backgroundColor: "#4F914A"}}
-                        >
-                            <Link href={route('multistep.index')} className="text-white">
-                                Sprawdź odszkodowanie
-                            </Link>
+                        <div className="container mt-5 mb-5">
+                            <h4 className="darkGreenText">Pasażerowie nie są świadomi jak dużym problemem są opóźnione
+                                i
+                                odwołane loty w globalnej skali. BeSmartAir zadba o Twoje prawa dążąc do uzyskania
+                                odszkodowania lotniczego na Twoja prośbę.
+                            </h4>
+                            <div className="pt-2">
+                            <div
+                                className="container mb-5 mt-3 w-80 bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                style={{backgroundColor: "#4F914A"}}
+                            >
+                                <Link href={route('multistep.index')} className="text-white">
+                                    Sprawdź odszkodowanie
+                                </Link>
+                            </div>
+                            </div>
                         </div>
                     </div>
-                    <div className="vert-hr m-5"/>
-                    <div className="card">
-                        <div className="container mt-5 mb-5">
-                            <div className="column">
-                                <h3 className="greenText font-weight-bold">195 000</h3>
-                                <div className="greenText font-weight-bold">Odwołanych lotów lotniczych</div>
-                                <br/>
-                                <br/>
-                                <h3 className="greenText font-weight-bold">2 000</h3>
-                                <div className="greenText font-weight-bold">Międzynarodowych lotnisk</div>
-                            </div>
-                            <div className="column">
-                                <h3 className="greenText font-weight-bold">30 000</h3>
-                                <div className="greenText font-weight-bold">Opóźnionych lotów dziennie</div>
-                                <br/>
-                                <br/>
-                                <div className="font-weight-bold">Jedynie co 2 uprawiony pasażer stara się o uzyskanie
-                                    odszkodowania lotniczego
+                        <div className="vert-hr m-5"/>
+                        <div className="card">
+                            <div className="container mt-5 mb-5">
+                                <div className="column">
+                                    <h3 className="greenText font-weight-bold">195 000</h3>
+                                    <div className="greenText font-weight-bold">Odwołanych lotów lotniczych</div>
+                                    <br/>
+                                    <br/>
+                                    <h3 className="greenText font-weight-bold">2 000</h3>
+                                    <div className="greenText font-weight-bold">Międzynarodowych lotnisk</div>
+                                </div>
+                                <div className="column">
+                                    <h3 className="greenText font-weight-bold">30 000</h3>
+                                    <div className="greenText font-weight-bold">Opóźnionych lotów dziennie</div>
+                                    <br/>
+                                    <br/>
+                                    <div className="font-weight-bold">Jedynie co 2 uprawiony pasażer stara się o
+                                        uzyskanie
+                                        odszkodowania lotniczego
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
-            </div>
-            <div className="header text-center m-5">
+                <div className="header text-center m-5">
                 <h2>Co mówią o nas klienci</h2>
             </div>
             <TestimonialsSlider/>
