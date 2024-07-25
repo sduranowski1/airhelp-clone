@@ -111,7 +111,7 @@ const HomeContent = () => {
     return (
         <div>
             <div style={{background: "#F4FFF199"}}>
-            <div className="container">
+            <div className="container hero-section">
 
                 {/*<div className="home-hero sm:px-6 lg:px-8 container-custom  relative">*/}
                     <div className="home-hero" style={{

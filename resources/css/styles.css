@@ -23,9 +23,15 @@ footer {
     background-size: 40%;
 }
 
+
+
 @media (max-width: 768px) {
     .home-hero {
         background-position: right 30%;
+    }
+    .hero-section {
+        padding-left: 0rem;
+        padding-right: 0rem
     }
 }
 
