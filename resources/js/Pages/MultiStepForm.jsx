@@ -1384,6 +1384,8 @@ const Step6 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
     const [input6c, setInput6c] = useState(false);
     const [input6d, setInput6d] = useState(false);
     const [input6e, setInput6e] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isModalOpen2, setIsModalOpen2] = useState(false);
 
     const handleCheckboxChangeDynamic = (group, inputName, index) => {
         setData((prevState) => {
@@ -1405,6 +1407,22 @@ const Step6 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
             });
             return newState;
         });
+    };
+
+    const handleOpenModal1 = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleCloseModal1 = () => {
+        setIsModalOpen(false);
+    };
+
+    const handleOpenModal2 = () => {
+        setIsModalOpen2(true);
+    };
+
+    const handleCloseModal2 = () => {
+        setIsModalOpen2(false);
     };
 
     return (
@@ -1463,12 +1481,39 @@ const Step6 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                                     onChange={() => handleCheckboxChangeDynamic('group1', 'input6c','Zgoda 1')}
                                     className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                 />
+                                {/* Clickable label */}
                                 <label
                                     htmlFor="input6d"
                                     className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                                 >
-                                    Zgoda 1
+                                    <button onClick={handleOpenModal1} className="text-blue-500 hover:underline">
+                                        Zgoda 1
+                                    </button>
                                 </label>
+                                {/* Modal Popup */}
+                                {isModalOpen && (
+                                    <div className="fixed inset-0 bg-black/50 flex justify-center items-center">
+                                        <div className="bg-white p-4 rounded shadow-lg max-w-lg w-full">
+                                            <h2 className="text-xl font-semibold mb-2">Zgoda 1</h2>
+
+                                            {/* PDF iframe */}
+                                            <iframe
+                                                src="media/pdf/1.pdf" // Replace with the path to your PDF
+                                                width="100%"
+                                                height="400px"
+                                                className="border-none"
+                                                title="Zgoda nr 1"
+                                            ></iframe>
+
+                                            <button
+                                                onClick={handleCloseModal1}
+                                                className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                                            >
+                                                Zamknij
+                                            </button>
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                         </li>
                         <li className="w-full border-gray-200 rounded-t-lg dark:border-gray-600">
@@ -1477,15 +1522,41 @@ const Step6 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                                     id="input6e"
                                     type="checkbox"
                                     checked={formData.input6c === 'Zgoda 2'}
-                                    onChange={() => handleCheckboxChangeDynamic('group1', 'input6c','Zgoda 2')}
+                                    onChange={() => handleCheckboxChangeDynamic('group1', 'input6c', 'Zgoda 2')}
                                     className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                 />
                                 <label
                                     htmlFor="input6e"
                                     className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                                 >
-                                    Zgoda 2
+                                    <button onClick={handleOpenModal2} className="text-blue-500 hover:underline">
+                                        Zgoda 2
+                                    </button>
                                 </label>
+                                {/* Modal Popup */}
+                                {isModalOpen2 && (
+                                    <div className="fixed inset-0 bg-black/50 flex justify-center items-center">
+                                        <div className="bg-white p-4 rounded shadow-lg max-w-lg w-full">
+                                            <h2 className="text-xl font-semibold mb-2">Zgoda 2</h2>
+
+                                            {/* PDF iframe */}
+                                            <iframe
+                                                src="media/pdf/2.pdf" // Replace with the path to your PDF
+                                                width="100%"
+                                                height="400px"
+                                                className="border-none"
+                                                title="Zgoda nr 2"
+                                            ></iframe>
+
+                                            <button
+                                                onClick={handleCloseModal2}
+                                                className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                                            >
+                                                Zamknij
+                                            </button>
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                         </li>
                     </ul>
@@ -1816,6 +1887,7 @@ const MultiStepForm = () => {
         input9: '',
         input10: '',
         signature: '', // Add the signature field
+        uuid: '',
         // Define other form fields here
     });
 

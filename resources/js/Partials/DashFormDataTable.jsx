@@ -24,6 +24,7 @@ const DashFormDataTable = ({ dashFormData }) => {
                 <thead>
                 <tr>
                     <th className="py-2 px-4 border-b border-gray-300">ID</th>
+                    <th className="py-2 px-4 border-b border-gray-300">Nr zgłoszenia</th>
                     <th className="py-2 px-4 border-b border-gray-300">Status</th>
                     <th className="py-2 px-4 border-b border-gray-300">Podpis</th>
                     <th className="py-2 px-4 border-b border-gray-300">Czy Twój lot obejmował przesiadkę?</th>
@@ -79,6 +80,7 @@ const DashFormDataTable = ({ dashFormData }) => {
                 {sortedFormData.map((dash) => (
                     <tr key={dash.id} className="hover:bg-gray-100">
                         <td className="py-2 px-4 border-b border-gray-300">{dash.id}</td>
+                        <td className="py-2 px-4 border-b border-gray-300">{dash.uuid}</td>
                         <td className="py-2 px-4 border-b border-gray-300">{dash.status}</td>
                         <td className="py-2 px-4 border-b border-gray-300 cursor-pointer">
                             <img src={`/${dash.signature}`} alt="Signature" className="w-16 h-auto"
@@ -193,7 +195,29 @@ const DashFormDataTable = ({ dashFormData }) => {
                         {dash.input10 !== 0 && (
                             <td className="py-2 px-4 border-b border-gray-300">{dash.input10}</td>
                         )}
-                        <td className="py-2 px-4 border-b border-gray-300">{dash.created_at}</td>
+                        <td className="py-2 px-4 border-b border-gray-300">
+                            {(() => {
+                                const date = new Date(dash.created_at);
+                                const options = {
+                                    year: "numeric",
+                                    month: "long",
+                                    day: "numeric",
+                                    hour: "2-digit",
+                                    minute: "2-digit",
+                                    second: "2-digit"
+                                };
+
+                                // Format the date and split it
+                                const formattedDate = date.toLocaleString("pl-PL", options);
+                                const [day, month, year, time] = formattedDate.split(" ");
+
+                                // Capitalize the first letter of the month
+                                const monthCapitalized = month.charAt(0).toUpperCase() + month.slice(1);
+
+                                return `${day} ${monthCapitalized} ${year}, ${time}`;
+                            })()}
+                        </td>
+
                     </tr>
                 ))}
                 </tbody>

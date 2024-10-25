@@ -179,8 +179,50 @@ const FormDataTable = ({ formData }) => {
                         <td className="py-2 px-4 border-b border-gray-300">{row.input8e}</td>
                         <td className="py-2 px-4 border-b border-gray-300">{row.input8f}</td>
                         <td className="py-2 px-4 border-b border-gray-300">{row.input9}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{row.created_at}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{row.updated_at}</td>
+                        <td className="py-2 px-4 border-b border-gray-300">
+                            {(() => {
+                                const date = new Date(row.created_at);
+                                const options = {
+                                    year: "numeric",
+                                    month: "long",
+                                    day: "numeric",
+                                    hour: "2-digit",
+                                    minute: "2-digit",
+                                    second: "2-digit"
+                                };
+
+                                // Format the date and split it
+                                const formattedDate = date.toLocaleString("pl-PL", options);
+                                const [day, month, year, time] = formattedDate.split(" ");
+
+                                // Capitalize the first letter of the month
+                                const monthCapitalized = month.charAt(0).toUpperCase() + month.slice(1);
+
+                                return `${day} ${monthCapitalized} ${year}, ${time}`;
+                            })()}
+                        </td>
+                        <td className="py-2 px-4 border-b border-gray-300">
+                            {(() => {
+                                const date = new Date(row.updated_at);
+                                const options = {
+                                    year: "numeric",
+                                    month: "long",
+                                    day: "numeric",
+                                    hour: "2-digit",
+                                    minute: "2-digit",
+                                    second: "2-digit"
+                                };
+
+                                // Format the date and split it
+                                const formattedDate = date.toLocaleString("pl-PL", options);
+                                const [day, month, year, time] = formattedDate.split(" ");
+
+                                // Capitalize the first letter of the month
+                                const monthCapitalized = month.charAt(0).toUpperCase() + month.slice(1);
+
+                                return `${day} ${monthCapitalized} ${year}, ${time}`;
+                            })()}
+                        </td>
                     </tr>
                 ))}
                 </tbody>

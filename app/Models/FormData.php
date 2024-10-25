@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class FormData extends Model
 {
@@ -42,6 +43,16 @@ class FormData extends Model
         'input9',
         // Add other fields as needed
     ];
+
+    // Automatically generate a UUID for new records
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->uuid = (string) Str::uuid();
+        });
+    }
 
     // Define the relationship with the User model
     public function user()
