@@ -1684,7 +1684,8 @@ const Step8 = ({formData, handleInputChange}) => (
                 <input type="text" id="input8" placeholder="Adres" name="input8" value={formData.input8}
                        onChange={handleInputChange}
                        className="mb-2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
-                <input type="text" id="input8a" placeholder="Numer Lokalu (opcjonalnie)" name="input8a" value={formData.input8a}
+                <input type="text" id="input8a" placeholder="Numer Lokalu (opcjonalnie)" name="input8a"
+                       value={formData.input8a}
                        onChange={handleInputChange}
                        className="mb-2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
                 <input type="text" id="input8b" placeholder="Miasto" name="input8b" value={formData.input8b}
@@ -1701,8 +1702,10 @@ const Step8 = ({formData, handleInputChange}) => (
                        className="mb-2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
                 <input type="text" id="input8f" placeholder="Numer telefonu" name="input8f" value={formData.input8f}
                        onChange={handleInputChange}
-                       className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
-
+                       className="mb-2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+                <input type="text" id="input8g" placeholder="Numer PESEL" name="input8g" value={formData.input8g}
+                       onChange={handleInputChange}
+                        className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
             </div>
         </div>
     </div>
@@ -1714,7 +1717,7 @@ const Step9 = ({formData, handleInputChange}) => (
             <div className="card p-5" style={{
                 backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"
             }}>
-        <label htmlFor="input9" className="block text-gray-700 text-sm font-bold mb-2">Podaj numer rezerwacji.</label>
+                <label htmlFor="input9" className="block text-gray-700 text-sm font-bold mb-2">Podaj numer rezerwacji.</label>
         <input type="text" id="input9" placeholder="np DXG 786 albo FHU 674" name="input9" value={formData.input9} onChange={handleInputChange}
                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
             </div>
@@ -1884,10 +1887,12 @@ const MultiStepForm = () => {
         input8d: '',
         input8e: '',
         input8f: '',
+        input8g: '',
         input9: '',
         input10: '',
         signature: '', // Add the signature field
         uuid: '',
+        pdf_path: '',
         // Define other form fields here
     });
 
@@ -2160,6 +2165,12 @@ const MultiStepForm = () => {
 
                 if (!data.input8e) {
                     setErrorMessage('Wpisz kraj');
+                    setStep1Valid(false);
+                    return false;
+                }
+
+                if (!data.input8g) {
+                    setErrorMessage('Wpisz PESEL');
                     setStep1Valid(false);
                     return false;
                 }

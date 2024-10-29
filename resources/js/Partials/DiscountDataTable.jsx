@@ -24,7 +24,7 @@ const DiscountDataTable = ({ discountData }) => {
     };
 
     return (
-        <div className="p-6 text-gray-900 overflow-x-auto">
+        <div className="p-6 text-gray-900 overflow-x-auto  overflow-y-auto max-h-[770px]">
             <div className="p-3">
             <InertiaLink
                 href={route('admin.discounts.create')}

@@ -7,7 +7,7 @@ const UserDataTable = ({ userData }) => {
     }
 
     return (
-        <div className="p-6 text-gray-900 overflow-x-auto">
+        <div className="p-6 text-gray-900 overflow-x-auto  overflow-y-auto max-h-[770px]">
             <table className="min-w-full bg-white border border-gray-300">
                 <thead>
                 <tr>

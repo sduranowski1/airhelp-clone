@@ -5,30 +5,34 @@ import {Inertia} from "@inertiajs/inertia";
 
 
 const FormDataTable = ({ formData }) => {
-    // console.log('formData in FormDataTable:', formData); // Add this line for debugging
-    //
-    // if (!Array.isArray(formData) || formData.length === 0) {
-    //     return <div>No data available</div>;
-    // }
     const sortedFormData = [...formData].sort((a, b) => b.id - a.id);
-
     const [statusMap, setStatusMap] = useState({});
-
-
-
+    const [pdfUrl, setPdfUrl] = useState(null);
+    const [selectedPdfPath, setSelectedPdfPath] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [selectedImage, setSelectedImage] = useState('');
+    // const [selectedImage, setSelectedImage] = useState('');
     const [selectedStatus, setSelectedStatus] = useState('');
 
 
-    const openModal = (imageSrc) => {
-        setSelectedImage(imageSrc);
-        setIsModalOpen(true);
+    const openModal = async (path) => {
+        try {
+            const response = await fetch(path);
+            const blob = await response.blob();
+            const blobUrl = URL.createObjectURL(blob);
+            setPdfUrl(blobUrl);
+            setIsModalOpen(true);
+        } catch (error) {
+            console.error("Error loading PDF:", error);
+        }
     };
 
-    const closeModal = () => {
+    const handleCloseModal1 = () => {
         setIsModalOpen(false);
-        setSelectedImage('');
+        if (pdfUrl) {
+            URL.revokeObjectURL(pdfUrl); // Cleanup object URL to free memory
+            setPdfUrl(null);
+        }
+
     };
 
     const handleStatusChange = (e, id) => {
@@ -49,15 +53,19 @@ const FormDataTable = ({ formData }) => {
             });
     };
 
+    console.log(sortedFormData); // Log the path to check
+
+
 
     return (
-        <div className="p-6 text-gray-900 overflow-x-auto">
+        <div className="p-6 text-gray-900 overflow-x-auto overflow-y-auto max-h-[770px]">
             <table className="min-w-full bg-white border border-gray-300">
                 <thead>
                 <tr>
                     <th className="py-2 px-4 border-b border-gray-300">ID</th>
+                    <th className="py-2 px-4 border-b border-gray-300">Nr zgłoszenia</th>
                     <th className="py-2 px-4 border-b border-gray-300">Status</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Podpis</th>
+                    <th className="py-2 px-4 border-b border-gray-300">Umowa</th>
                     <th className="py-2 px-4 border-b border-gray-300">Kod rabatowy</th>
                     {/*<th className="py-2 px-4 border-b border-gray-300">Odlot</th>*/}
                     {/*<th className="py-2 px-4 border-b border-gray-300">Przylot</th>*/}
@@ -115,6 +123,8 @@ const FormDataTable = ({ formData }) => {
                 {sortedFormData.map((row) => (
                     <tr key={row.id} className="hover:bg-gray-100">
                         <td className="py-2 px-4 border-b border-gray-300">{row.id}</td>
+                        <td className="py-2 px-4 border-b border-gray-300">{row.uuid}</td>
+
                         {/*<td className="py-2 px-4 border-b border-gray-300">{row.status}</td>*/}
                         {/*<td className="py-2 px-4 border-b border-gray-300">*/}
                         {/*    <select value={row.status} onChange={(e) => handleStatusChange(e, row.id)}>*/}
@@ -134,9 +144,42 @@ const FormDataTable = ({ formData }) => {
                             </select>
                         </td>
                         <td className="py-2 px-4 border-b border-gray-300 cursor-pointer">
-                            <img src={`/${row.signature}`} alt="Signature" className="w-16 h-auto"
-                                 onClick={() => openModal(`/${row.signature}`)}
-                            />
+                            {/* Check if the PDF path exists before rendering the iframe */}
+                            {/*{row.pdf_path && (*/}
+                            {/*    <iframe*/}
+                            {/*        src={`/${row.pdf_path}`} // Replace with the path to your PDF*/}
+                            {/*        width="100%"*/}
+                            {/*        height="400px"*/}
+                            {/*        className="border-none"*/}
+                            {/*        title="Umowa"*/}
+                            {/*        onClick={openModal} // Open modal on click*/}
+                            {/*    ></iframe>*/}
+                            {/*)}*/}
+                            {/* Clickable link to open modal */}
+                            <button onClick={() => openModal(row.pdf_path)} className="text-blue-600 hover:underline">
+                                Otwórz PDF
+                            </button>
+                            {isModalOpen && (
+                                <div className="fixed inset-0 bg-black/50 flex justify-center items-center">
+                                    <div className="bg-white p-4 rounded shadow-lg max-w-lg w-full">
+                                        <h2 className="text-xl font-semibold mb-2">Umowa</h2>
+                                        {/* PDF iframe in modal */}
+                                        <iframe
+                                            src={pdfUrl} // Same path for modal
+                                            width="100%"
+                                            height="400px"
+                                            className="border-none"
+                                            title="Umowa"
+                                        ></iframe>
+                                        <button
+                                            onClick={handleCloseModal1}
+                                            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                                        >
+                                            Zamknij
+                                        </button>
+                                    </div>
+                                </div>
+                            )}
                         </td>
                         <td className="py-2 px-4 border-b border-gray-300">{row.input10}</td>
 
@@ -227,11 +270,11 @@ const FormDataTable = ({ formData }) => {
                 ))}
                 </tbody>
             </table>
-            <Modal show={isModalOpen} onClose={closeModal} maxWidth="2xl" closeable>
-                <div className="p-4">
-                    <img src={selectedImage} alt="Signature" className="max-w-full h-auto"/>
-                </div>
-            </Modal>
+            {/*<Modal show={isModalOpen} onClose={closeModal} maxWidth="2xl" closeable>*/}
+            {/*    <div className="p-4">*/}
+            {/*        <img src={selectedImage} alt="Signature" className="max-w-full h-auto"/>*/}
+            {/*    </div>*/}
+            {/*</Modal>*/}
         </div>
     );
 };

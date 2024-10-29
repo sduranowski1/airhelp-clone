@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
+use setasign\Fpdi\Fpdi;
 
 class MultiStepFormController extends Controller
 {
@@ -70,9 +71,11 @@ class MultiStepFormController extends Controller
             'input8d' => 'required|string|max:255',
             'input8e' => 'required|string|max:255',
             'input8f' => 'required|string|max:255',
+            'input8g' => 'required|string|max:255',
             'input9' => 'required|string|max:255',
             'input10' => 'max:255',
             'signature' => 'required|string', // Add validation for signature
+            'pdf_file' => 'max:255'
         ]);
 
         // Decode the base64 signature image
@@ -92,6 +95,59 @@ class MultiStepFormController extends Controller
 
         // Save the signature image to the public/media/signatures directory
         file_put_contents($fullSignaturePath, $data);
+
+
+        // Generate PDF with FPDI
+        $pdf = new Fpdi();
+        $pdfFilePath = 'media/pdf/1.pdf';
+        $pageCount = $pdf->setSourceFile($pdfFilePath);
+
+        // Concatenate with a dash
+        $combinedName = $validatedData['input6'] . ' ' . $validatedData['input6a'];
+        $combinedAddress = $validatedData['input8b'] . ', ' . $validatedData['input8'] . ', ' . $validatedData['input8a'] . ', ' . $validatedData['input8e'];
+        $combinedValue = $validatedData['input1'] . '-' . $validatedData['input1a'];
+
+        for ($pageNo = 1; $pageNo <= $pageCount; $pageNo++) {
+            $templateId = $pdf->importPage($pageNo);
+            $pdf->AddPage();
+            $pdf->useTemplate($templateId);
+            $pdf->SetFont('Helvetica', '', 12);
+            $pdf->SetTextColor(0, 0, 0);
+
+            if ($pageNo == 1) {
+                // Set fields with $validatedData values
+                $pdf->SetXY(30, 42);
+                $pdf->Write(0, $combinedName);
+
+                $pdf->SetXY(30, 52);
+                $pdf->Write(0, $validatedData['input8g']);
+
+                $pdf->SetXY(30, 60);
+                $pdf->Write(0, $validatedData['input9']);
+
+                $pdf->SetXY(30, 70);
+                $pdf->Write(0, $combinedAddress);
+
+                $pdf->SetXY(55, 97);
+                $pdf->Write(0, $validatedData['input4']);
+
+                $pdf->SetXY(135, 133);
+                $pdf->Write(0, $combinedValue);
+
+                $pdf->SetXY(70, 138);
+                $pdf->Write(0, $validatedData['input9']);
+            }
+
+            if ($pageNo == 2) {
+                // Add the signature image
+                $pdf->Image($fullSignaturePath, 150, 200, 50, 30);
+            }
+        }
+
+        // Save the filled PDF
+        $outputFilePath = 'media/pdf/' . uniqid() . '-filled.pdf';
+        $pdf->Output('F', public_path($outputFilePath));
+
 
         // Create a new FormData instance and save it to the database
         $formData = new FormData();
@@ -134,11 +190,13 @@ class MultiStepFormController extends Controller
         $formData->input8d = $validatedData['input8d'];
         $formData->input8e = $validatedData['input8e'];
         $formData->input8f = $validatedData['input8f'];
+        $formData->input8g = $validatedData['input8g'];
         $formData->input9 = $validatedData['input9'];
         $formData->input10 = $validatedData['input10'];
         // Save the signature path in the database
         $formData->signature = $signaturePath;
         // Assign other form fields as needed
+        $formData->pdf_path = $outputFilePath; // Save PDF path if needed
         $formData->save();
 
         // Redirect to the success page

@@ -5,20 +5,42 @@ const DashFormDataTable = ({ dashFormData }) => {
     const sortedFormData = [...dashFormData].sort((a, b) => b.id - a.id);
 
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [selectedImage, setSelectedImage] = useState('');
+    // const [selectedImage, setSelectedImage] = useState('');
+    const [pdfUrl, setPdfUrl] = useState(null);
 
-    const openModal = (imageSrc) => {
-        setSelectedImage(imageSrc);
-        setIsModalOpen(true);
+
+    // const openModal = (imageSrc) => {
+    //     setSelectedImage(imageSrc);
+    //     setIsModalOpen(true);
+    // };
+
+    // const closeModal = () => {
+    //     setIsModalOpen(false);
+    //     setSelectedImage('');
+    // };
+
+    const openModal = async (path) => {
+        try {
+            const response = await fetch(path);
+            const blob = await response.blob();
+            const blobUrl = URL.createObjectURL(blob);
+            setPdfUrl(blobUrl);
+            setIsModalOpen(true);
+        } catch (error) {
+            console.error("Error loading PDF:", error);
+        }
     };
 
-    const closeModal = () => {
+    const handleCloseModal1 = () => {
         setIsModalOpen(false);
-        setSelectedImage('');
+        if (pdfUrl) {
+            URL.revokeObjectURL(pdfUrl); // Cleanup object URL to free memory
+            setPdfUrl(null);
+        }
     };
 
-    return (
-        <div className="p-6 text-gray-900 overflow-x-auto">
+        return (
+        <div className="p-6 text-gray-900 overflow-x-auto  overflow-y-auto max-h-[700px]">
             <h2>Formularze</h2>
             <table className="min-w-full bg-white border border-gray-300">
                 <thead>
@@ -26,7 +48,7 @@ const DashFormDataTable = ({ dashFormData }) => {
                     <th className="py-2 px-4 border-b border-gray-300">ID</th>
                     <th className="py-2 px-4 border-b border-gray-300">Nr zgłoszenia</th>
                     <th className="py-2 px-4 border-b border-gray-300">Status</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Podpis</th>
+                    <th className="py-2 px-4 border-b border-gray-300">Umowa</th>
                     <th className="py-2 px-4 border-b border-gray-300">Czy Twój lot obejmował przesiadkę?</th>
                     {/*<th className="py-2 px-4 border-b border-gray-300"></th>*/}
                     <th className="py-2 px-4 border-b border-gray-300">Dane lotu</th>
@@ -83,9 +105,42 @@ const DashFormDataTable = ({ dashFormData }) => {
                         <td className="py-2 px-4 border-b border-gray-300">{dash.uuid}</td>
                         <td className="py-2 px-4 border-b border-gray-300">{dash.status}</td>
                         <td className="py-2 px-4 border-b border-gray-300 cursor-pointer">
-                            <img src={`/${dash.signature}`} alt="Signature" className="w-16 h-auto"
-                                 onClick={() => openModal(`/${dash.signature}`)}
-                            />
+                            {/* Check if the PDF path exists before rendering the iframe */}
+                            {/*{row.pdf_path && (*/}
+                            {/*    <iframe*/}
+                            {/*        src={`/${row.pdf_path}`} // Replace with the path to your PDF*/}
+                            {/*        width="100%"*/}
+                            {/*        height="400px"*/}
+                            {/*        className="border-none"*/}
+                            {/*        title="Umowa"*/}
+                            {/*        onClick={openModal} // Open modal on click*/}
+                            {/*    ></iframe>*/}
+                            {/*)}*/}
+                            {/* Clickable link to open modal */}
+                            <button onClick={() => openModal(dash.pdf_path)} className="text-blue-600 hover:underline">
+                                Otwórz PDF
+                            </button>
+                            {isModalOpen && (
+                                <div className="fixed inset-0 bg-black/50 flex justify-center items-center">
+                                    <div className="bg-white p-4 rounded shadow-lg max-w-lg w-full">
+                                        <h2 className="text-xl font-semibold mb-2">Umowa</h2>
+                                        {/* PDF iframe in modal */}
+                                        <iframe
+                                            src={pdfUrl} // Same path for modal
+                                            width="100%"
+                                            height="400px"
+                                            className="border-none"
+                                            title="Umowa"
+                                        ></iframe>
+                                        <button
+                                            onClick={handleCloseModal1}
+                                            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                                        >
+                                            Zamknij
+                                        </button>
+                                    </div>
+                                </div>
+                            )}
                         </td>
                         {dash.input1b !== 0 && (
                             <td className="py-2 px-4 border-b border-gray-300">{dash.input1b}</td>
@@ -222,11 +277,11 @@ const DashFormDataTable = ({ dashFormData }) => {
                 ))}
                 </tbody>
             </table>
-            <Modal show={isModalOpen} onClose={closeModal} maxWidth="2xl" closeable>
-                <div className="p-4">
-                    <img src={selectedImage} alt="Signature" className="max-w-full h-auto"/>
-                </div>
-            </Modal>
+            {/*<Modal show={isModalOpen} onClose={closeModal} maxWidth="2xl" closeable>*/}
+            {/*    <div className="p-4">*/}
+            {/*        <img src={selectedImage} alt="Signature" className="max-w-full h-auto"/>*/}
+            {/*    </div>*/}
+            {/*</Modal>*/}
         </div>
     );
 };
