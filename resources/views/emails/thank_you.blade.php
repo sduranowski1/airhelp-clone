@@ -1,10 +1,9 @@
-<!-- resources/views/emails/reset-password.blade.php -->
 <!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resetowanie Hasła</title>
+    <title>Dziękujemy za przesłanie formularza</title>
     <style>
         /* Podstawowe style dla e-maila */
         body {
@@ -52,11 +51,12 @@
 <body>
 <div class="container">
     <img src="http://138.68.158.146/media/logo/besmartaircropped-trans.png" alt="Logo" class="logo">
-    <h1>{{ $subject }}</h1>
-    <p>Otrzymujesz tę wiadomość, ponieważ złożono prośbę o zresetowanie hasła do Twojego konta.</p>
-    <p><a href="{{ $url }}" class="button">Zresetuj swoje hasło</a></p>
-    <p>Ten link wygaśnie za {{ $expireTime }} minut.</p>
-    <p>Jeśli nie prosiłeś o zresetowanie hasła, zignoruj ten e-mail.</p>
+    <h1>Dziękujemy za przesłanie formularza!</h1>
+    <p>Hej {{ $formData['input6'] }},</p>
+    <p>Dziękujemy za wypełnienie formularza. Twoje dane zostały pomyślnie zapisane.</p>
+    <p>W razie jakichkolwiek pytań, prosimy o kontakt.</p>
+    <p>Pozdrawiamy,</p>
+    <p>BeSmartAir</p>
     <div class="footer">
         <p>&copy; {{ date('Y') }} BeSmartAir. Wszelkie prawa zastrzeżone.</p>
     </div>

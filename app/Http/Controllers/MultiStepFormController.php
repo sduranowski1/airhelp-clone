@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\FormData;
+use App\Notifications\ThankYouEmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use setasign\Fpdi\Fpdi;
@@ -198,6 +200,9 @@ class MultiStepFormController extends Controller
         // Assign other form fields as needed
         $formData->pdf_path = $outputFilePath; // Save PDF path if needed
         $formData->save();
+
+        // Wyślij e-mail z podziękowaniem
+        Mail::to($validatedData['input6b'])->send(new ThankYouEmail($validatedData));
 
         // Redirect to the success page
         return redirect()->route('form.success')->with('success', 'Form submitted successfully.');

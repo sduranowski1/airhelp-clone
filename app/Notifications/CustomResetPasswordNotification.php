@@ -34,12 +34,13 @@ class CustomResetPasswordNotification extends Notification
         $name = $notifiable->name; // Assuming you have a 'name' field in your User model
 
         return (new Mailable)
+            ->from('szymon@grupalucrum.pl', 'BeSmartAir') // Change these values
             ->to($email) // Specify the recipient's email and name
-            ->subject('Custom Subject Here')
+            ->subject('Reset Hasła')
             ->view('emails.reset-password')
             ->with([
                 'url' => $url,
-                'subject' => 'Custom Subject Here',
+                'subject' => 'Reset Hasła',
                 'message' => 'This is a custom message informing you about the password reset request.',
                 'expireTime' => config('auth.passwords.' . config('auth.defaults.passwords') . '.expire'),
             ]);
