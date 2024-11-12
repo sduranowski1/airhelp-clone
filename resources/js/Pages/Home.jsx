@@ -132,7 +132,7 @@ const HomeContent = () => {
                         Masz odwołany bądź opóźniony lot?
                     </div>
                     <div className="p-6 info-text-custom">
-                        Bez względu na cenę biletu nawet do 600eur odszkodowania przysługuje za każdego
+                        Bez względu na cenę biletu nawet do 600€ odszkodowania przysługuje za każdego
                         pasażera!
                     </div>
 
@@ -383,7 +383,7 @@ const HomeContent = () => {
                         <ul className="list-hidden">
                             <li>Twój lot został odwołany z krótkim wyprzedzeniem? Poza zwrotem pieniedzy przysługuje
                                 Tobie
-                                odszkodowanie w wysokosci do 600 eur.
+                                odszkodowanie w wysokosci do 600€.
 
                             </li>
                         </ul></div>
@@ -396,11 +396,11 @@ const HomeContent = () => {
                                 sytuacji opóźnienia powyżej 3
                                 godzin, dowiedz sie czy nasi
                                 specjaliści uzyskają dla Ciebie
-                                odszkodowanie do 600 eur.
+                                odszkodowanie do 600€.
                             </li>
                         </ul></div>
-                <div className="card-landing card-hover hoverix image-container"><div className="image-wrapper_3">
-                            <img src="media/1.png" alt="plane clock" className="plane-image"/>
+                <div className="card-landing card-hover hoverix image-container"><div className="image-wrapper_4">
+                            <img src="media/plane_swap.png" alt="plane clock" className="plane-image"/>
                         </div>
                         <h5 className="font-weight-bold">Spóźnienie na lot przesiadkowy</h5>
                         <ul className="list-hidden">
@@ -412,8 +412,8 @@ const HomeContent = () => {
                                 odszkodowanie.
                             </li>
                         </ul></div>
-                <div className="card-landing card-hover hoverix image-container"><div className="image-wrapper_4">
-                            <img src="media/plane_swap.png" alt="plane clock" className="plane-image"/>
+                <div className="card-landing card-hover hoverix image-container"><div className="image-wrapper_3">
+                            <img src="media/1.png" alt="plane clock" className="plane-image"/>
                         </div>
                         <h5 className="font-weight-bold">Ciężka komunikacja z linią</h5>
                         <ul className="list-hidden">
