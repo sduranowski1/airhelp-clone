@@ -12,6 +12,7 @@ import { Inertia } from '@inertiajs/inertia';
 import CookieConsent from "@/Components/CookieConsent.jsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCircleCheck, faCircleXmark, faPlaneArrival, faPlaneDeparture} from "@fortawesome/free-solid-svg-icons";
+import NumberAnimate from "@/Components/NumberAnimate/NumberAnimate.jsx";
 // import route from 'ziggy-js';
 
 
@@ -142,83 +143,91 @@ const HomeContent = () => {
                         {/* Content */}
                     </div>
 
-                    <form onSubmit={handleSubmit}
-                          className="p-6 text-gray-900 flex flex-col md:flex-row items-center md:items-start relative z-20">
-                        <div className="relative mobile-inputs md:mb-0 md:mr-4 w-full md:w-80">
-                            <div className="flex md:flex-row">
-                                <FontAwesomeIcon icon={faPlaneDeparture} className="icon p-2"/>
-                                <input
-                                    type="text"
-                                    id="input1"
-                                    placeholder="Lotnisko wylotu"
-                                    name="departureIata"
-                                    value={airportCode}
-                                    onChange={handleAirportCodeChange}
-                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                />
-                                {errors.departureIata && (
-                                    <p className="text-red-500 text-xs italic">{errors.departureIata}</p>
-                                )}
-                                {departureSuggestions.length > 0 && (
-                                    <ul className="absolute bg-white border border-gray-300 w-full mt-1 max-h-40 overflow-y-auto z-10">
-                                        {departureSuggestions.map((airport) => (
-                                            <li
-                                                key={airport.iata_code}
-                                                onClick={() => handleSuggestionClick(airport, 'departure')}
-                                                className="p-2 hover:bg-gray-200 cursor-pointer"
-                                            >
-                                                {airport.name} ({airport.iata_code})
-                                            </li>
-                                        ))}
-                                    </ul>
-                                )}
-                            </div>
-                        </div>
-                        <div className="relative mobile-inputs md:mb-0 md:mr-4 w-full md:w-80">
-                            <div className="flex md:flex-row">
-                                <FontAwesomeIcon icon={faPlaneArrival} className="icon p-2" />
-                                <input
-                                    type="text"
-                                    id="input1a"
-                                    placeholder="Lotnisko przylotu"
-                                    name="arrivalIata"
-                                    value={arrivalCode}
-                                    onChange={handleAirportCodeChange}
-                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                />
-                                {errors.arrivalIata && (
-                                    <p className="text-red-500 text-xs italic">{errors.arrivalIata}</p>
-                                )}
-                                {arrivalSuggestions.length > 0 && (
-                                    <ul className="absolute bg-white border border-gray-300 w-full mt-1 max-h-40 overflow-y-auto z-10">
-                                        {arrivalSuggestions.map((airport) => (
-                                            <li
-                                                key={airport.iata_code}
-                                                onClick={() => handleSuggestionClick(airport, 'arrival')}
-                                                className="p-2 hover:bg-gray-200 cursor-pointer"
-                                            >
-                                                {airport.name} ({airport.iata_code})
-                                            </li>
-                                        ))}
-                                    </ul>
-                                )}
-                            </div>
-                        </div>
+                        <form onSubmit={handleSubmit}
+                              className="p-6 text-gray-900 flex flex-col md:flex-row items-center md:items-start relative z-20">
+                            <div className="relative mobile-inputs md:mb-0 md:mr-4 w-full md:w-80">
+                                <div className="flex md:flex-row items-center">
+                                    {/* Icon inside input */}
+                                    <FontAwesomeIcon
+                                        icon={faPlaneDeparture}
+                                        className="absolute left-3 text-gray-500"
+                                    />
 
-                        <div className="w-full md:w-80 mb-5">
-                            <button
-                                type="submit"
-                                className="bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-100"
-                                style={{backgroundColor: "#4F914A"}}>
+                                    <input
+                                        type="text"
+                                        id="input1"
+                                        placeholder="Lotnisko wylotu"
+                                        name="departureIata"
+                                        value={airportCode}
+                                        onChange={handleAirportCodeChange}
+                                        className="shadow appearance-none border rounded w-full py-2 pl-10 pr-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    />
+
+                                    {errors.departureIata && (
+                                        <p className="text-red-500 text-xs italic">{errors.departureIata}</p>
+                                    )}
+
+                                    {departureSuggestions.length > 0 && (
+                                        <ul className="absolute bg-white border border-gray-300 w-full mt-1 max-h-40 overflow-y-auto z-10">
+                                            {departureSuggestions.map((airport) => (
+                                                <li
+                                                    key={airport.iata_code}
+                                                    onClick={() => handleSuggestionClick(airport, 'departure')}
+                                                    className="p-2 hover:bg-gray-200 cursor-pointer"
+                                                >
+                                                    {airport.name} ({airport.iata_code})
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    )}
+                                </div>
+                            </div>
+
+                            <div className="relative mobile-inputs md:mb-0 md:mr-4 w-full md:w-80">
+                                <div className="flex md:flex-row items-center">
+                                    <FontAwesomeIcon icon={faPlaneArrival} className="absolute left-3 text-gray-500" />
+                                    <input
+                                        type="text"
+                                        id="input1a"
+                                        placeholder="Lotnisko przylotu"
+                                        name="arrivalIata"
+                                        value={arrivalCode}
+                                        onChange={handleAirportCodeChange}
+                                        className="shadow appearance-none border rounded w-full py-2 pl-10 pr-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    />
+                                    {errors.arrivalIata && (
+                                        <p className="text-red-500 text-xs italic">{errors.arrivalIata}</p>
+                                    )}
+                                    {arrivalSuggestions.length > 0 && (
+                                        <ul className="absolute bg-white border border-gray-300 w-full mt-1 max-h-40 overflow-y-auto z-10">
+                                            {arrivalSuggestions.map((airport) => (
+                                                <li
+                                                    key={airport.iata_code}
+                                                    onClick={() => handleSuggestionClick(airport, 'arrival')}
+                                                    className="p-2 hover:bg-gray-200 cursor-pointer"
+                                                >
+                                                    {airport.name} ({airport.iata_code})
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    )}
+                                </div>
+                            </div>
+
+                            <div className="w-full md:w-80 mb-5">
+                                <button
+                                    type="submit"
+                                    className="bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-100"
+                                    style={{backgroundColor: "#4F914A"}}>
                             <span className="text-white text-center block">
                                 Sprawdź odszkodowanie
                             </span>
-                            </button>
-                        </div>
-                    </form>
-                </div>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
             </div>
-        </div>
+            </div>
             <div className="flex justify-center p-4">
                 <div className="container lapping">
                     <div className="overlapping">
@@ -538,15 +547,16 @@ const HomeContent = () => {
                         <div className="card">
                             <div className="container mt-5 mb-5">
                                 <div className="column">
-                                    <h3 className="greenText font-weight-bold">195 000</h3>
-                                    <div className="greenText font-weight-bold">Odwołanych lotów lotniczych</div>
+                                    {/*<h3 className="greenText font-weight-bold">195 000</h3>*/}
+                                    <NumberAnimate targetNumber={195000} duration={3} />
+                                    <div className="greenText font-weight-bold">Odwołanych lotów lotniczych rocznie</div>
                                     <br/>
                                     <br/>
-                                    <h3 className="greenText font-weight-bold">2 000</h3>
+                                    <NumberAnimate targetNumber={2000} duration={3} />
                                     <div className="greenText font-weight-bold">Międzynarodowych lotnisk</div>
                                 </div>
                                 <div className="column">
-                                    <h3 className="greenText font-weight-bold">30 000</h3>
+                                    <NumberAnimate targetNumber={30000} duration={3} />
                                     <div className="greenText font-weight-bold">Opóźnionych lotów dziennie</div>
                                     <br/>
                                     <br/>
