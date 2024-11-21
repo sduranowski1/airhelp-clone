@@ -10,6 +10,8 @@ import "/resources/css/build-issue.css"
 import airportsData from "@/Pages/airports.js";
 import { Inertia } from '@inertiajs/inertia';
 import CookieConsent from "@/Components/CookieConsent.jsx";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faCircleCheck, faCircleXmark, faPlaneArrival, faPlaneDeparture} from "@fortawesome/free-solid-svg-icons";
 // import route from 'ziggy-js';
 
 
@@ -143,58 +145,64 @@ const HomeContent = () => {
                     <form onSubmit={handleSubmit}
                           className="p-6 text-gray-900 flex flex-col md:flex-row items-center md:items-start relative z-20">
                         <div className="relative mobile-inputs md:mb-0 md:mr-4 w-full md:w-80">
-                            <input
-                                type="text"
-                                id="input1"
-                                placeholder="Lotnisko wylotu"
-                                name="departureIata"
-                                value={airportCode}
-                                onChange={handleAirportCodeChange}
-                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            />
-                            {errors.departureIata && (
-                                <p className="text-red-500 text-xs italic">{errors.departureIata}</p>
-                            )}
-                            {departureSuggestions.length > 0 && (
-                                <ul className="absolute bg-white border border-gray-300 w-full mt-1 max-h-40 overflow-y-auto z-10">
-                                    {departureSuggestions.map((airport) => (
-                                        <li
-                                            key={airport.iata_code}
-                                            onClick={() => handleSuggestionClick(airport, 'departure')}
-                                            className="p-2 hover:bg-gray-200 cursor-pointer"
-                                        >
-                                            {airport.name} ({airport.iata_code})
-                                        </li>
-                                    ))}
-                                </ul>
-                            )}
+                            <div className="flex md:flex-row">
+                                <FontAwesomeIcon icon={faPlaneDeparture} className="icon p-2"/>
+                                <input
+                                    type="text"
+                                    id="input1"
+                                    placeholder="Lotnisko wylotu"
+                                    name="departureIata"
+                                    value={airportCode}
+                                    onChange={handleAirportCodeChange}
+                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                />
+                                {errors.departureIata && (
+                                    <p className="text-red-500 text-xs italic">{errors.departureIata}</p>
+                                )}
+                                {departureSuggestions.length > 0 && (
+                                    <ul className="absolute bg-white border border-gray-300 w-full mt-1 max-h-40 overflow-y-auto z-10">
+                                        {departureSuggestions.map((airport) => (
+                                            <li
+                                                key={airport.iata_code}
+                                                onClick={() => handleSuggestionClick(airport, 'departure')}
+                                                className="p-2 hover:bg-gray-200 cursor-pointer"
+                                            >
+                                                {airport.name} ({airport.iata_code})
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )}
+                            </div>
                         </div>
                         <div className="relative mobile-inputs md:mb-0 md:mr-4 w-full md:w-80">
-                            <input
-                                type="text"
-                                id="input1a"
-                                placeholder="Lotnisko przylotu"
-                                name="arrivalIata"
-                                value={arrivalCode}
-                                onChange={handleAirportCodeChange}
-                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            />
-                            {errors.arrivalIata && (
-                                <p className="text-red-500 text-xs italic">{errors.arrivalIata}</p>
-                            )}
-                            {arrivalSuggestions.length > 0 && (
-                                <ul className="absolute bg-white border border-gray-300 w-full mt-1 max-h-40 overflow-y-auto z-10">
-                                    {arrivalSuggestions.map((airport) => (
-                                        <li
-                                            key={airport.iata_code}
-                                            onClick={() => handleSuggestionClick(airport, 'arrival')}
-                                            className="p-2 hover:bg-gray-200 cursor-pointer"
-                                        >
-                                            {airport.name} ({airport.iata_code})
-                                        </li>
-                                    ))}
-                                </ul>
-                            )}
+                            <div className="flex md:flex-row">
+                                <FontAwesomeIcon icon={faPlaneArrival} className="icon p-2" />
+                                <input
+                                    type="text"
+                                    id="input1a"
+                                    placeholder="Lotnisko przylotu"
+                                    name="arrivalIata"
+                                    value={arrivalCode}
+                                    onChange={handleAirportCodeChange}
+                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                />
+                                {errors.arrivalIata && (
+                                    <p className="text-red-500 text-xs italic">{errors.arrivalIata}</p>
+                                )}
+                                {arrivalSuggestions.length > 0 && (
+                                    <ul className="absolute bg-white border border-gray-300 w-full mt-1 max-h-40 overflow-y-auto z-10">
+                                        {arrivalSuggestions.map((airport) => (
+                                            <li
+                                                key={airport.iata_code}
+                                                onClick={() => handleSuggestionClick(airport, 'arrival')}
+                                                className="p-2 hover:bg-gray-200 cursor-pointer"
+                                            >
+                                                {airport.name} ({airport.iata_code})
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )}
+                            </div>
                         </div>
 
                         <div className="w-full md:w-80 mb-5">
@@ -255,44 +263,101 @@ const HomeContent = () => {
             </div>
             <div className="container flex flex-col md:flex-row">
                 <div className="card bg-transparent pt-5 p-4">
-                    <h5>WNIOSEK PRZY POMOCY BeSmartAir </h5>
-                    <ul className="mt-3">
-                        <li><strong>Łatwa procedura:</strong> <p>Zajmujemy się Twoją sprawą od złożenia wniosku, aż do
-                            wypłaty odszkodowania. </p>
-                        </li>
-                        <li><strong>Pełna obsługa:</strong> <p> W Twoim imieniu składamy wszelkie niezbędne
-                            dokumenty.</p>
-                        </li>
-                        <li><strong>Sprawne działanie:</strong> <p> Po przesłaniu nam dokumentów online zajmujemy się
-                            całą resztą.</p>
-                        </li>
-                        <li><strong>Stałe monitorowanie statusu:</strong> <p>Cały czas jesteśmy w kontakcie i do Twojej
-                            dyspozycji informując o postępie sprawy. </p>
-                        </li>
-                        <li><strong>Brak kosztów za złożenie wniosku:</strong> <p>Brak kosztów za złożenie wniosku
-                            Wszelkie koszty obsługi prawnej są po naszej stronie, pobieramy opłatę tylko, gdy
-                            odszkodowanie zostanie wypłacone. </p>
-                        </li>
-
-                    </ul>
+                    <h5 className="font-weight-bold">WNIOSEK PRZY POMOCY BeSmartAir</h5>
+                        <ul className="mt-3 text-success">
+                            <li className="d-flex align-items-start mb-3">
+                                <FontAwesomeIcon icon={faCircleCheck} className="text-success me-3 mt-1"/>
+                                <div>
+                                    <strong>Łatwa procedura:</strong>
+                                    <p>Zajmujemy się Twoją sprawą od złożenia wniosku, aż do wypłaty odszkodowania.</p>
+                                </div>
+                            </li>
+                            <li className="d-flex align-items-start mb-3">
+                                <FontAwesomeIcon icon={faCircleCheck} className="text-success me-3 mt-1"/>
+                                <div>
+                                    <strong>Pełna obsługa:</strong>
+                                    <p>W Twoim imieniu składamy wszelkie niezbędne dokumenty.</p>
+                                </div>
+                            </li>
+                            <li className="d-flex align-items-start mb-3">
+                                <FontAwesomeIcon icon={faCircleCheck} className="text-success me-3 mt-1"/>
+                                <div>
+                                    <strong>Sprawne działanie:</strong>
+                                    <p>Po przesłaniu nam dokumentów online zajmujemy się całą resztą.</p>
+                                </div>
+                            </li>
+                            <li className="d-flex align-items-start mb-3">
+                                <FontAwesomeIcon icon={faCircleCheck} className="text-success me-3 mt-1"/>
+                                <div>
+                                    <strong>Stałe monitorowanie statusu:</strong>
+                                    <p>Cały czas jesteśmy w kontakcie i do Twojej dyspozycji informując o postępie
+                                        sprawy.</p>
+                                </div>
+                            </li>
+                            <li className="d-flex align-items-start">
+                                <FontAwesomeIcon icon={faCircleCheck} className="text-success me-3 mt-1"/>
+                                <div>
+                                    <strong>Brak kosztów za złożenie wniosku:</strong>
+                                    <p>
+                                        Brak kosztów za złożenie wniosku Wszelkie koszty obsługi prawnej są po naszej
+                                        stronie,
+                                        pobieramy opłatę tylko, gdy odszkodowanie zostanie wypłacone.
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
                 </div>
+
                 <div className="card overlap_shadow pt-5 p-4">
-                    <h5>DOCHODZENIE ODSZKODOWANIA LOTNICZEGO NA WŁASNĄ RĘKĘ</h5>
+                    <h5 className="font-weight-bold">DOCHODZENIE ODSZKODOWANIA LOTNICZEGO NA WŁASNĄ RĘKĘ</h5>
                     <ul className="mt-3">
-                        <li><strong>Biurokracja:</strong> <p>Nieoczywiste informacje odnośnie dokumentacji niezbędnej do
-                            złożenia wniosku.</p>
+                        <li className="d-flex align-items-start mb-3">
+                            <FontAwesomeIcon icon={faCircleXmark} className="text-danger me-3 mt-1"/>
+                            <div>
+                                <strong>Biurokracja:</strong>
+                                <p>Nieoczywiste informacje odnośnie dokumentacji niezbędnej do złożenia wniosku.</p>
+                            </div>
                         </li>
-                        <li><strong>Czas:</strong> <p>Dochodzenie swoich praw wymaga dużej cierpliwości podczas kontaktu
-                            z biurami obsługi klienta linii lotniczych oraz cały proces może trwać miesiącami. </p>
+                        <li className="d-flex align-items-start mb-3">
+                            <FontAwesomeIcon icon={faCircleXmark} className="text-danger me-3 mt-1"/>
+                            <div>
+                                <strong>Czas:</strong>
+                                <p>
+                                    Dochodzenie swoich praw wymaga dużej cierpliwości podczas kontaktu z biurami obsługi
+                                    klienta
+                                    linii lotniczych oraz cały proces może trwać miesiącami.
+                                </p>
+                            </div>
                         </li>
-                        <li><strong>Stres:</strong> <p>Samodzielne przeprowadzenie całego procesu łącznie z negocjacjami
-                            z liniami lotniczymi.</p>
+                        <li className="d-flex align-items-start mb-3">
+                            <FontAwesomeIcon icon={faCircleXmark} className="text-danger me-3 mt-1"/>
+                            <div>
+                                <strong>Stres:</strong>
+                                <p>Samodzielne przeprowadzenie całego procesu łącznie z negocjacjami z liniami
+                                    lotniczymi.</p>
+                            </div>
                         </li>
-                        <li><strong>Ryzyko:</strong> <p>W sytuacji skierowania Twojego wniosku na drogę sądową musisz
-                            liczyć się kosztami bez względu na ostateczny wynik sprawy.</p>
+                        <li className="d-flex align-items-start mb-3">
+                            <FontAwesomeIcon icon={faCircleXmark} className="text-danger me-3 mt-1"/>
+                            <div>
+                                <strong>Ryzyko:</strong>
+                                <p>
+                                    W sytuacji skierowania Twojego wniosku na drogę sądową musisz liczyć się kosztami
+                                    bez względu
+                                    na ostateczny wynik sprawy.
+                                </p>
+                            </div>
                         </li>
-                        <li><strong>Utrudniony kontakt z liniami lotniczymi:</strong> <p>Nie zawsze a wręcz bardzo
-                            rzadko linie lotnicze informują klientów o przebiegu spray i jej statusie. </p>
+                        <li className="d-flex align-items-start">
+                            <FontAwesomeIcon icon={faCircleXmark} className="text-danger me-3 mt-1"/>
+                            <div>
+                                <strong>Utrudniony kontakt z liniami lotniczymi:</strong>
+                                <p>
+                                    Nie zawsze a wręcz bardzo rzadko linie lotnicze informują klientów o przebiegu spray
+                                    i jej
+                                    statusie.
+                                </p>
+                            </div>
                         </li>
                     </ul>
                 </div>
