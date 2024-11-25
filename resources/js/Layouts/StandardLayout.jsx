@@ -1,10 +1,12 @@
-import {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import Dropdown from '@/Components/Dropdown';
 import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link } from '@inertiajs/react';
 import {useAuth} from "@/Contexts/AuthContext.jsx";
+import LanguageSwitcher from "@/Layouts/LanguageSwitcher.jsx";
+import {t} from "i18next";
 
 export default function Standard({ user, header, children }) {
     const { auth } = useAuth();
@@ -37,31 +39,31 @@ export default function Standard({ user, header, children }) {
 
                             <div className="hidden space-x-8 sm:-my-px sm:ms-10 md:flex">
                                 <NavLink href={route('home')} active={route().current('home')}>
-                                    Strona główna
+                                    {t('navigation.home')}
                                 </NavLink>
                             </div>
 
                             <div className="hidden space-x-8 sm:-my-px sm:ms-10 md:flex">
                                 <NavLink href={route('multistep.index')} active={route().current('multistep')}>
-                                    Sprawdź odszkodowanie
+                                    {t('navigation.checkCompensation')}
                                 </NavLink>
                             </div>
 
                             <div className="hidden space-x-8 sm:-my-px sm:ms-10 md:flex">
                                 <NavLink href={route('privacy-policy')} active={route().current('privacy-policy')}>
-                                    Poznaj swoje prawa
+                                    {t('navigation.knowYourRights')}
                                 </NavLink>
                             </div>
 
                             <div className="hidden space-x-8 sm:-my-px sm:ms-10 md:flex">
                                 <NavLink href={route('about-us')} active={route().current('about-us')}>
-                                    O Nas
+                                    {t('navigation.aboutUs')}
                                 </NavLink>
                             </div>
 
                             <div className="hidden space-x-8 sm:-my-px sm:ms-10 md:flex">
                                 <NavLink href={route('blog')} active={route().current('blog')}>
-                                    Blog
+                                    {t('navigation.blog')}
                                 </NavLink>
                             </div>
 
@@ -93,7 +95,7 @@ export default function Standard({ user, header, children }) {
                                                 className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
                                             >
                                                 {/*/!*{user.name}*!/Zaloguj / Rejestracja*/}
-                                                {/*{user.name}*/}Sprawdź odszkodowanie
+                                                {/*{user.name}*/}{t('navigation.checkCompensation')}
 
                                                 <svg
                                                     className="ms-2 -me-0.5 h-4 w-4"
@@ -112,8 +114,9 @@ export default function Standard({ user, header, children }) {
                                     </Dropdown.Trigger>
 
                                     <Dropdown.Content>
-                                        <Dropdown.Link href={route('login')}>Zaloguj</Dropdown.Link>
-                                        <Dropdown.Link href={route('register')}>Rejestracja</Dropdown.Link>
+                                        <Dropdown.Link href={route('login')}>{t('navigation.login')}</Dropdown.Link>
+                                        <Dropdown.Link href={route('register')}>{t('navigation.register')}</Dropdown.Link>
+                                        <LanguageSwitcher/>
                                         {/*<Dropdown.Link href={route('logout')} method="post" as="button">*/}
                                         {/*    Log Out*/}
                                         {/*</Dropdown.Link>*/}
@@ -155,48 +158,49 @@ export default function Standard({ user, header, children }) {
 
 
                         <ResponsiveNavLink href={route('home')} active={route().current('home')}>
-                            Strona główna
+                            {t('navigation.home')}
                         </ResponsiveNavLink>
                     </div>
 
 
                     <div className="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink href={route('multistep.index')} active={route().current('multistep')}>
-                            Sprawdź odszkodowanie
+                            {t('navigation.checkCompensation')}
                         </ResponsiveNavLink>
                     </div>
 
                     <div className="pt-2 pb-3 space-y-1">
 
                         <ResponsiveNavLink  href={route('privacy-policy')} active={route().current('privacy-policy')}>
-                            Poznaj swoje prawa
+                            {t('navigation.knowYourRights')}
                         </ResponsiveNavLink>
                     </div>
 
                     <div className="pt-2 pb-3 space-y-1">
 
                         <ResponsiveNavLink  href={route('about-us')} active={route().current('about-us')}>
-                            O Nas
+                            {t('navigation.aboutUs')}
                         </ResponsiveNavLink>
                     </div>
 
                     <div className="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink href={route('blog')} active={route().current('blog')}>
-                            Blog
+                            {t('navigation.blog')}
                         </ResponsiveNavLink>
                     </div>
 
                     <div className="pt-4 pb-1 border-t border-gray-200">
                         <div className="px-4">
-                            <div className="font-medium text-base text-gray-800">Gość</div>
+                            <div className="font-medium text-base text-gray-800">{t('navigation.guest')}</div>
                             {/*<div className="font-medium text-sm text-gray-500">{user.email}</div>*/}
                         </div>
 
                         <div className="mt-3 space-y-1">
-                            <ResponsiveNavLink href={route('login')}>Zaloguj</ResponsiveNavLink>
+                            <ResponsiveNavLink href={route('login')}>{t('navigation.login')}</ResponsiveNavLink>
                             <ResponsiveNavLink href={route('register')}>
-                                Rejestracja
+                                {t('navigation.register')}
                             </ResponsiveNavLink>
+                            <LanguageSwitcher/>
                         </div>
                     </div>
                 </div>

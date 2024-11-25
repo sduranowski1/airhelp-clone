@@ -15,6 +15,7 @@ import SignaturePad from 'react-signature-canvas'; // Assuming you're using this
 import airlinesData from './airlinesData'; // Importing the airlines data
 import airportsData from './airports.js';
 import rapidApi from "../../../rapid-api.js";
+import {t} from "i18next";
 
 const Step1 = ({ formData, handleInputChange, checkboxes, handleCheckboxChange }) => {
     const [airportData, setAirportData] = useState([]); // State to store airport data
@@ -99,11 +100,10 @@ const Step1 = ({ formData, handleInputChange, checkboxes, handleCheckboxChange }
         <div>
             <div className="container ">
                 <div className="card p-5" style={{ backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F" }}>
-                    <label htmlFor="input1" className="block text-gray-700 text-sm font-bold mb-2">Dzień dobry!
-                        Sprawdźmy, czy linia lotnicza jest Ci winna odszkodowanie. Podaj miejsce docelowe podróży.</label>
+                    <label htmlFor="input1" className="block text-gray-700 text-sm font-bold mb-2">{t('step1.greeting_message')}</label>
                     <div className="flex flex-col md:flex-row">
                             <FontAwesomeIcon icon={faPlaneDeparture} className="icon p-2" />
-                        <input placeholder="e.g. New York or JFK" type="text" id="input1" name="input1"
+                        <input placeholder={t('step1.departure_placeholder')} type="text" id="input1" name="input1"
                                value={formData.input1}
                                onChange={handleInputChange1}
                                className="flex-1 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
@@ -352,12 +352,13 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
     const searchFlights = async () => {
         const airportCodeValue = departureIata.trim().toUpperCase();
         if (!airportCodeValue) {
-            alert('Podaj kod lotniska.');
+            alert(t('step1.correctAirport'));
             return;
         }
 
         if (!fromLocal) {
-            alert('Podaj właściwą date.');
+            // alert('Podaj właściwą date.');
+            alert(t('step1.correctDate'));
             return;
         }
 
@@ -396,7 +397,7 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
     const filterArrivals = () => {
         const arrivalCodeValue = arrivalIata.trim().toUpperCase();
         if (!arrivalCodeValue) {
-            alert('Podaj kod lotniska.');
+            alert(t('step1.correctAirport'));
             return;
         }
 
@@ -537,12 +538,12 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
             <div className="container container-padding">
                 <div className="card p-5" style={{backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"}}>
                     <label htmlFor="input1" className="block text-gray-700 text-sm font-bold mb-2">
-                        Dzień dobry! Sprawdźmy, czy linia lotnicza jest Ci winna odszkodowanie. Podaj miejsce i date wylotu.
+                        {t('step1.greeting_message')}
                     </label>
                     <div className="flex flex-col md-flex-row">
                         <FontAwesomeIcon icon={faPlaneDeparture} className="icon p-2"/>
                         <input
-                            placeholder="e.g. New York or JFK"
+                            placeholder={t('step1.departure_placeholder')}
                             type="text"
                             id="input1"
                             name="departureIata"
@@ -573,7 +574,7 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
 
                     </div>
 
-                    <button onClick={handleFlightSelection} className="mt-4 bg-blue-500 text-white py-2 px-4 rounded" style={{backgroundColor: "#4f914a"}}>Wyślij żądanie</button>
+                    <button onClick={handleFlightSelection} className="mt-4 bg-blue-500 text-white py-2 px-4 rounded" style={{backgroundColor: "#4f914a"}}>{t('step1.submit_request')}</button>
                 </div>
             </div>
 
@@ -586,7 +587,7 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
             <div className="container container-padding mt-5">
                 <div className="card p-5" style={{backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"}}>
                     <label htmlFor="input12" className="block text-gray-700 text-sm font-bold mb-2">
-                        Czy Twój lot obejmował przesiadkę?:
+                        {t('step1.layover_question')}
                     </label>
                     <ul className="w-100 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                         <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
@@ -594,13 +595,13 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
                                 <input
                                     id="yes-checkbox"
                                     type="checkbox"
-                                    checked={formData.input1b === "Tak"}
-                                    onChange={() => handleCheckboxChangeDynamic('group1', 'input1b', 'Tak')}
+                                    checked={formData.input1b === t('step1.layover_yes')}
+                                    onChange={() => handleCheckboxChangeDynamic('group1', 'input1b', t('step1.layover_yes'))}
                                     className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                 />
                                 <label htmlFor="yes-checkbox"
                                        className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-                                    Tak
+                                    {t('step1.layover_yes')}
                                 </label>
                             </div>
                         </li>
@@ -609,13 +610,13 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
                                 <input
                                     id="no-checkbox"
                                     type="checkbox"
-                                    checked={formData.input1b === "Nie"}
-                                    onChange={() => handleCheckboxChangeDynamic('group1',  'input1b','Nie')}
+                                    checked={formData.input1b === t('step1.layover_no')}
+                                    onChange={() => handleCheckboxChangeDynamic('group1',  'input1b',t('step1.layover_no'))}
                                     className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                 />
                                 <label htmlFor="no-checkbox"
                                        className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-                                    Nie
+                                    {t('step1.layover_no')}
                                 </label>
                             </div>
                         </li>
@@ -627,13 +628,13 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
             <div className="container container-padding mt-5">
                 <div className="card p-5" style={{backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"}}>
                     <label htmlFor="input2" className="block text-gray-700 text-sm font-bold mb-2">
-                        Podaj miejsce lądowania
+                        {t('step1.arrival_place')}
                     </label>
                     <div className="flex flex-col md-flex-row">
 
                         <FontAwesomeIcon icon={faPlaneArrival} className="icon p-2"/>
                         <input
-                            placeholder="e.g. London or LHR"
+                            placeholder={t('step1.arrival_placeholder')}
                             type="text"
                             id="input1a"
                             name="arrivalIata"
@@ -667,25 +668,25 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
             <div className="container container-padding mt-5">
                 <div className="card p-5" style={{backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"}}>
                     <label htmlFor="input12" className="block text-gray-700 text-sm font-bold mb-2">
-                        Następnie wybierz swój lot z listy:
+                        {t('step1.select_flight')}:
                     </label>
 
                     <button onClick={filterArrivals} className="mt-4 bg-blue-500 text-white py-2 px-4 rounded" style={{backgroundColor: "#4f914a"}}>
-                        Filtruj
+                        {t('step1.filter')}
                     </button>
 
                     {isFiltered && filteredFlights.length === 0 ? (
-                        <p className="mt-4">No flights found</p>
+                        <p className="mt-4">{t('step1.no_flights')}</p>
                     ) : (
                         <ul className="w-full">
                             {filteredFlights.map((flight, index) => {
                                 const flightDetails = `
-            Wylot: ${departureIata},
-            Przylot: ${arrivalIata},
-            Czas wylotu: ${flight.departure.scheduledTime.local},
-            Linia lotnicza: ${flight.airline.name},
-            Numer lotu: ${flight.number}
-        `;
+                                    Wylot: ${departureIata},
+                                    Przylot: ${arrivalIata},
+                                    Czas wylotu: ${flight.departure.scheduledTime.local},
+                                    Linia lotnicza: ${flight.airline.name},
+                                    Numer lotu: ${flight.number}
+                                `;
                                 return (
                                     <li key={index}
                                         className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
@@ -699,9 +700,9 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
                                             />
                                             <div
                                                 className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-                                                <p><strong>Czas odlotu :</strong> {flight.departure.scheduledTime.local}</p>
-                                                <p><strong>Linia lotnicza:</strong> {flight.airline.name}</p>
-                                                <p><strong>Nr lotu:</strong> {flight.number}</p>
+                                                <p><strong>{t('step1.departure_time')}:</strong> {flight.departure.scheduledTime.local}</p>
+                                                <p><strong>{t('step1.airline')}:</strong> {flight.airline.name}</p>
+                                                <p><strong>{t('step1.flight_number')}:</strong> {flight.number}</p>
                                             </div>
                                         </div>
                                     </li>
@@ -718,15 +719,15 @@ const Step3 = ({ formData, checkboxes, handleInputChange, handleCheckboxChange, 
                                     type="checkbox"
                                     value="Nie mogę znaleźć swojego lotu"
 
-                                    checked={formData.input3  === "Nie mogę znaleźć swojego lotu"}
+                                    checked={formData.input3  === t('step1.cant_find')}
                                     // onChange={() => handleCheckboxChangeDynamic('group2', 'input3', 'Nie mogę znaleźć swojego lotu')}
 
-                                    onChange={() => handleCheckboxChangeDynamic('group2', 'input3', 'Nie mogę znaleźć swojego lotu')}
+                                    onChange={() => handleCheckboxChangeDynamic('group2', 'input3', t('step1.cant_find'))}
                                     className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                 />
                                 <label htmlFor="no-checkbox"
                                        className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-                                    Nie mogę znaleźć swojego lotu
+                                    {t('step1.cant_find')}
                                 </label>
                             </div>
                         </li>
@@ -1069,10 +1070,8 @@ const Step4 = ({ formData, handleInputChange }) => {
             <div className="card p-5  w-100" style={{
                 backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"
             }}>
-                <label htmlFor="input3" className="block text-gray-700 text-sm font-bold mb-2">W porządku. Potrzebuję
-                    jeszcze tylko kilku informacji dotyczących lotu, aby sprawdzić, czy kwalifikuje się on do
-                    odszkodowania.</label>
-                <input type="text" placeholder="Np. British Airways" id="input4" name="input4" value={formData.input4}
+                <label htmlFor="input3" className="block text-gray-700 text-sm font-bold mb-2">{t("step2.instruction")}</label>
+                <input type="text" placeholder={t("step2.airlinePlaceholder")} id="input4" name="input4" value={formData.input4}
                        onChange={handleLocalInputChange}
                        className="mb-3 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
                 {/* Display suggestions */}
@@ -1086,7 +1085,7 @@ const Step4 = ({ formData, handleInputChange }) => {
                         type="text"
                         id="input4a"
                         name="input4a"
-                        placeholder="Nr Lotu"
+                        placeholder={t("step2.flightNumberPlaceholder")}
                         value={formData.input4a}
                         onChange={handleInputChange}
                         className="shadow appearance-none border rounded py-2 col-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -1107,7 +1106,7 @@ const Step4 = ({ formData, handleInputChange }) => {
                            // onChange={date => handleInputChange({target: {name: 'input4b', value: date}})}
                            onChange={handleInputChange}
                         // format="MM/dd/yyyy" // You can customize the date format
-                           placeholder="DD/MM/RRRR, HH:MM"
+                           placeholder={t("step2.datePlaceholder")}
                            className="flex-1 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus: w-100"
                     />
                 </div>
@@ -1160,23 +1159,22 @@ const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                 <div className="card p-5" style={{
                     backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"
                 }}>
-                    <label htmlFor="input5" className="block text-gray-700 text-sm font-bold mb-2">Teraz przejdźmy do samego
-                    zakłócenia. Co dokładnie się wydarzyło?</label>
+                    <label htmlFor="input5" className="block text-gray-700 text-sm font-bold mb-2">{t("step3.disruption.label")}</label>
                 <ul className="w-100 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                     <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                         <div className="flex items-center ps-3">
                             <input
                                 id="input5"
                                 type="checkbox"
-                                checked={formData.input5 === 'Mój lot został opóźniony'}
-                                onChange={() => handleCheckboxChangeDynamic('group1', 'input5','Mój lot został opóźniony')}
+                                checked={formData.input5 === `${t("step3.disruption.options.delayed")}`}
+                                onChange={() => handleCheckboxChangeDynamic('group1', 'input5',`${t("step3.disruption.options.delayed")}`)}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
                             <label
                                 htmlFor="input5"
                                 className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                             >
-                                Mój lot został opóźniony
+                                {t("step3.disruption.options.delayed")}
                             </label>
                         </div>
                     </li>
@@ -1185,15 +1183,15 @@ const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                             <input
                                 id="input5a"
                                 type="checkbox"
-                                checked={formData.input5 === 'Mój lot został odwołany'}
-                                onChange={() => handleCheckboxChangeDynamic('group1', 'input5', 'Mój lot został odwołany')}
+                                checked={formData.input5 === `${t("step3.disruption.options.canceled")}`}
+                                onChange={() => handleCheckboxChangeDynamic('group1', 'input5', `${t("step3.disruption.options.canceled")}`)}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
                             <label
                                 htmlFor="input5a"
                                 className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                             >
-                                Mój lot został odwołany
+                                {t("step3.disruption.options.canceled")}
                             </label>
                         </div>
                     </li>
@@ -1202,15 +1200,15 @@ const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                             <input
                                 id="input5b"
                                 type="checkbox"
-                                checked={formData.input5 === "Odmówiono mi wejścia na pokład"}
-                                onChange={() => handleCheckboxChangeDynamic('group1', 'input5','Odmówiono mi wejścia na pokład')}
+                                checked={formData.input5 === `${t("step3.disruption.options.denied")}`}
+                                onChange={() => handleCheckboxChangeDynamic('group1', 'input5',`${t("step3.disruption.options.denied")}`)}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
                             <label
                                 htmlFor="input5b"
                                 className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                             >
-                                Odmówiono mi wejścia na pokład
+                                {t("step3.disruption.options.denied")}
                             </label>
                         </div>
                     </li>
@@ -1221,23 +1219,22 @@ const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
             <div className="card p-5" style={{
                 backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"
             }}>
-                <label htmlFor="input4c" className="block text-gray-700 text-sm font-bold mb-2">Bardzo nam przykro. Ile
-                    wynosiło opóźnienie Twojego lotu do miasta Seoul (ICN)?</label>
+                <label htmlFor="input4c" className="block text-gray-700 text-sm font-bold mb-2">{t("step3.delayDuration.label")}</label>
                 <ul className="w-100 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                     <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                         <div className="flex items-center ps-3">
                             <input
                                 id="input5b"
                                 type="checkbox"
-                                checked={formData.input5c === '0-1 godz'}
-                                onChange={() => handleCheckboxChangeDynamic('group2', 'input5c','0-1 godz')}
+                                checked={formData.input5c === `${t("step3.delayDuration.options.0-1")}`}
+                                onChange={() => handleCheckboxChangeDynamic('group2', 'input5c',`${t("step3.delayDuration.options.0-1")}`)}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
                             <label
                                 htmlFor="input5c"
                                 className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                             >
-                                0-1 godz
+                                {t("step3.delayDuration.options.0-1")}
                             </label>
                         </div>
                     </li>
@@ -1246,15 +1243,15 @@ const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                             <input
                                 id="input5d"
                                 type="checkbox"
-                                checked={formData.input5c === '1-2 godz'}
-                                onChange={() => handleCheckboxChangeDynamic('group2', 'input5c', '1-2 godz')}
+                                checked={formData.input5c === `${t("step3.delayDuration.options.1-2")}`}
+                                onChange={() => handleCheckboxChangeDynamic('group2', 'input5c', `${t("step3.delayDuration.options.1-2")}`)}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
                             <label
                                 htmlFor="input5d"
                                 className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                             >
-                                1-2 godz
+                                {t("step3.delayDuration.options.1-2")}
                             </label>
                         </div>
                     </li>
@@ -1263,15 +1260,15 @@ const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                             <input
                                 id="input5e"
                                 type="checkbox"
-                                checked={formData.input5c === '2-3 godz'}
-                                onChange={() => handleCheckboxChangeDynamic('group2', 'input5c','2-3 godz')}
+                                checked={formData.input5c === `${t("step3.delayDuration.options.2-3")}`}
+                                onChange={() => handleCheckboxChangeDynamic('group2', 'input5c',`${t("step3.delayDuration.options.2-3")}`)}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
                             <label
                                 htmlFor="input5e"
                                 className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                             >
-                                2-3 godz
+                                {t("step3.delayDuration.options.2-3")}
                             </label>
                         </div>
                     </li>
@@ -1280,15 +1277,15 @@ const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                             <input
                                 id="input5f"
                                 type="checkbox"
-                                checked={formData.input5c === '3-4 godz'}
-                                onChange={() => handleCheckboxChangeDynamic('group2', 'input5c','3-4 godz')}
+                                checked={formData.input5c === `${t("step3.delayDuration.options.3-4")}`}
+                                onChange={() => handleCheckboxChangeDynamic('group2', 'input5c',`${t("step3.delayDuration.options.3-4")}`)}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
                             <label
                                 htmlFor="input5f"
                                 className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                             >
-                                3-4 godz
+                                {t("step3.delayDuration.options.3-4")}
                             </label>
                         </div>
                     </li>
@@ -1297,15 +1294,15 @@ const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                             <input
                                 id="input5g"
                                 type="checkbox"
-                                checked={formData.input5c === 'Ponad 4 godziny'}
-                                onChange={() => handleCheckboxChangeDynamic('group2', 'input5c','Ponad 4 godziny')}
+                                checked={formData.input5c === `${t("step3.delayDuration.options.4+")}`}
+                                onChange={() => handleCheckboxChangeDynamic('group2', 'input5c',`${t("step3.delayDuration.options.4+")}`)}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
                             <label
                                 htmlFor="input5g"
                                 className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                             >
-                                Ponad 4 godziny
+                                {t("step3.delayDuration.options.4+")}
                             </label>
                         </div>
                     </li>
@@ -1314,15 +1311,15 @@ const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                             <input
                                 id="input5h"
                                 type="checkbox"
-                                checked={formData.input5c === 'Nie dotarłem (-am) na miejsce'}
-                                onChange={() => handleCheckboxChangeDynamic('group2', 'input5c','Nie dotarłem (-am) na miejsce')}
+                                checked={formData.input5c === `${t("step3.delayDuration.options.noArrival")}`}
+                                onChange={() => handleCheckboxChangeDynamic('group2', 'input5c',`${t("step3.delayDuration.options.noArrival")}`)}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
                             <label
                                 htmlFor="input5h"
                                 className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                             >
-                                Nie dotarłem (-am) na miejsce
+                                {t("step3.delayDuration.options.noArrival")}
                             </label>
                         </div>
                     </li>
@@ -1333,9 +1330,7 @@ const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
             <div className="card p-5" style={{
                 backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"
             }}>
-                <label htmlFor="input4i" className="block text-gray-700 text-sm font-bold mb-2">Czy dobrowolnie
-                    zrzekłeś(-aś) się miejsca na pokładzie w zamian za inne korzyści oferowane przez linię
-                    lotniczą?</label>
+                <label htmlFor="input4i" className="block text-gray-700 text-sm font-bold mb-2">{t("step3.voluntarySurrender.label")}</label>
                 <ul className="w-100 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                     <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                         <div className="flex items-center ps-3">
@@ -1343,15 +1338,15 @@ const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                                 id="yes-checkbox"
                                 type="checkbox"
 
-                                checked={formData.input5i === "Tak"}
-                                onChange={() => handleCheckboxChangeDynamic('group3', 'input5i','Tak')}
+                                checked={formData.input5i === `${t("step3.voluntarySurrender.options.yes")}`}
+                                onChange={() => handleCheckboxChangeDynamic('group3', 'input5i',`${t("step3.voluntarySurrender.options.yes")}`)}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
                             <label
                                 htmlFor="yes-checkbox"
                                 className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                             >
-                                Tak
+                                {t("step3.voluntarySurrender.options.yes")}
                             </label>
                         </div>
                     </li>
@@ -1360,15 +1355,15 @@ const Step5 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                             <input
                                 id="no-checkbox"
                                 type="checkbox"
-                                checked={formData.input5i === 'Nie'}
-                                onChange={() => handleCheckboxChangeDynamic('group3', 'input5i','Nie')}
+                                checked={formData.input5i === `${t("step3.voluntarySurrender.options.no")}`}
+                                onChange={() => handleCheckboxChangeDynamic('group3', 'input5i',`${t("step3.voluntarySurrender.options.no")}`)}
                                 className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
                             <label
                                 htmlFor="no-checkbox"
                                 className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                             >
-                                Nie
+                                {t("step3.voluntarySurrender.options.no")}
                             </label>
                         </div>
                     </li>
@@ -1425,34 +1420,38 @@ const Step6 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
         setIsModalOpen2(false);
     };
 
+    // Email validation function
+
     return (
         <div>
             <div className="container container-padding">
                 <div className="card p-5" style={{
                     backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"
                 }}>
-                    <label htmlFor="input6_label" className="block text-gray-700 text-sm font-bold mb-2">Aby ruszyć z
-                        Twoją
-                        sprawą, potrzebuję kilku informacji.</label>
-                    <input type="text" id="input6" placeholder="Imię" name="input6" value={formData.input6}
+                    <label htmlFor="input6_label" className="block text-gray-700 text-sm font-bold mb-2">{t("step4.title")}</label>
+                    <input type="text" id="input6" placeholder={t("step4.firstNamePlaceholder")} name="input6" value={formData.input6}
                            onChange={handleInputChange}
                            className="mb-2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
-                    <input type="text" id="input6a" placeholder="Nazwisko" name="input6a" value={formData.input6a}
+                    <input type="text" id="input6a" placeholder={t("step4.lastNamePlaceholder")} name="input6a" value={formData.input6a}
                            onChange={handleInputChange}
                            className="mb-2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
-                    <input type="text" id="input6b" placeholder="Adres Email" name="input6b" value={formData.input6b}
-                           onChange={handleInputChange}
-                           className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
-
+                    <input
+                        type="email"
+                        id="input6b"
+                        placeholder={t('step4.emailPlaceholder')}
+                        name="input6b"
+                        value={formData.input6b}
+                        onChange={handleInputChange} // Handle email change with validation
+                        className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    />
                 </div>
             </div>
             <div className="container container-padding mt-5">
                 <div className="card p-5" style={{
                     backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"
                 }}>
-                    <label htmlFor="input6a_label" className="block text-gray-700 text-sm font-bold mb-2">Aby ruszyć z
-                        Twoją
-                        sprawą, potrzebuję kilku informacji.</label>
+                    <label htmlFor="input6a_label"
+                           className="block text-gray-700 text-sm font-bold mb-2">{t("step4.title")}</label>
                     <br/>
                     <ul>
                         <li className="w-full border-gray-200 rounded-t-lg dark:border-gray-600">
@@ -1460,15 +1459,15 @@ const Step6 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                                 <input
                                     id="input6c"
                                     type="checkbox"
-                                    checked={formData.input6c === 'Zaznacz wszystkie zgody'}
-                                    onChange={() => handleCheckboxChangeDynamic('group1', 'input6c', 'Zaznacz wszystkie zgody')}
+                                    checked={formData.input6c === `${t("step4.consents.selectAll")}`}
+                                    onChange={() => handleCheckboxChangeDynamic('group1', 'input6c', `${t("step4.consents.selectAll")}`)}
                                     className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                 />
                                 <label
                                     htmlFor="input6c"
                                     className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                                 >
-                                    Zaznacz wszystkie zgody
+                                    {t('step4.consents.selectAll')}
                                 </label>
                             </div>
                         </li>
@@ -1477,8 +1476,8 @@ const Step6 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                                 <input
                                     id="input6d"
                                     type="checkbox"
-                                    checked={formData.input6c === 'Zgoda 1'}
-                                    onChange={() => handleCheckboxChangeDynamic('group1', 'input6c','Zgoda 1')}
+                                    checked={formData.input6c === `${t("step4.consents.consent1")}`}
+                                    onChange={() => handleCheckboxChangeDynamic('group1', 'input6c',`${t("step4.consents.consent1")}`)}
                                     className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                 />
                                 {/* Clickable label */}
@@ -1487,14 +1486,14 @@ const Step6 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                                     className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                                 >
                                     <button onClick={handleOpenModal1} className="text-blue-500 hover:underline">
-                                        Zgoda 1
+                                        {t('step4.consents.consent1')}
                                     </button>
                                 </label>
                                 {/* Modal Popup */}
                                 {isModalOpen && (
                                     <div className="fixed inset-0 bg-black/50 flex justify-center items-center">
                                         <div className="bg-white p-4 rounded shadow-lg max-w-lg w-full">
-                                            <h2 className="text-xl font-semibold mb-2">Zgoda 1</h2>
+                                            <h2 className="text-xl font-semibold mb-2">{t('step4.consents.consent1')}</h2>
 
                                             {/* PDF iframe */}
                                             <iframe
@@ -1509,7 +1508,7 @@ const Step6 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                                                 onClick={handleCloseModal1}
                                                 className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
                                             >
-                                                Zamknij
+                                                {t('step4.modal.closeButton')}
                                             </button>
                                         </div>
                                     </div>
@@ -1521,8 +1520,8 @@ const Step6 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                                 <input
                                     id="input6e"
                                     type="checkbox"
-                                    checked={formData.input6c === 'Zgoda 2'}
-                                    onChange={() => handleCheckboxChangeDynamic('group1', 'input6c', 'Zgoda 2')}
+                                    checked={formData.input6c === `${t("step4.consents.consent2")}`}
+                                    onChange={() => handleCheckboxChangeDynamic('group1', 'input6c', `${t("step4.consents.consent2")}`)}
                                     className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                 />
                                 <label
@@ -1530,14 +1529,14 @@ const Step6 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                                     className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                                 >
                                     <button onClick={handleOpenModal2} className="text-blue-500 hover:underline">
-                                        Zgoda 2
+                                        {t('step4.consents.consent2')}
                                     </button>
                                 </label>
                                 {/* Modal Popup */}
                                 {isModalOpen2 && (
                                     <div className="fixed inset-0 bg-black/50 flex justify-center items-center">
                                         <div className="bg-white p-4 rounded shadow-lg max-w-lg w-full">
-                                            <h2 className="text-xl font-semibold mb-2">Zgoda 2</h2>
+                                            <h2 className="text-xl font-semibold mb-2">{t('step4.consents.consent2')}</h2>
 
                                             {/* PDF iframe */}
                                             <iframe
@@ -1552,7 +1551,7 @@ const Step6 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                                                 onClick={handleCloseModal2}
                                                 className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
                                             >
-                                                Zamknij
+                                                {t('step4.modal.closeButton')}
                                             </button>
                                         </div>
                                     </div>
@@ -1599,18 +1598,14 @@ const Step7 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                 <div className="card p-5" style={{
                     backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"
                 }}>
-                    <label htmlFor="input7" className="block text-gray-700 text-sm font-bold mb-2">Każdemu
-                        współpasażerowi z
-                        Twojej rezerwacji może przysługiwać odszkodowanie w wysokości do 600 €</label>
+                    <label htmlFor="input7" className="block text-gray-700 text-sm font-bold mb-2">{t('step5.title1')}</label>
                 </div>
             </div>
             <div className="container  container-padding mt-5">
                 <div className="card p-5" style={{
                     backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"
                 }}>
-                    <label htmlFor="input7a" className="block text-gray-700 text-sm font-bold mb-2">Możesz złożyć
-                        wniosek w
-                        imieniu wszystkich osób wymienionych w Twojej rezerwacji. Czy ktoś z Tobą podróżował?</label>
+                    <label htmlFor="input7a" className="block text-gray-700 text-sm font-bold mb-2">{t('step5.title2')}</label>
                     <ul className="w-100 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                         <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                             <div className="flex items-center ps-3">
@@ -1618,15 +1613,15 @@ const Step7 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                                     id="yes-checkbox"
                                     type="checkbox"
 
-                                    checked={formData.input7a === 'Tak, ktoś ze mną podróżował'}
-                                    onChange={() => handleCheckboxChangeDynamic('group1', 'input7a','Tak, ktoś ze mną podróżował')}
+                                    checked={formData.input7a === `${t('step5.checkboxYes')}`}
+                                    onChange={() => handleCheckboxChangeDynamic('group1', 'input7a',`${t('step5.checkboxYes')}`)}
                                     className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                 />
                                 <label
                                     htmlFor="yes-checkbox"
                                     className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                                 >
-                                    Tak, ktoś ze mną podróżował
+                                    {t('step5.checkboxYes')}
                                 </label>
                             </div>
                         </li>
@@ -1635,28 +1630,28 @@ const Step7 = ({formData, handleInputChange, checkboxes, handleCheckboxChange, s
                                 <input
                                     id="no-checkbox"
                                     type="checkbox"
-                                    checked={formData.input7a === 'Nie, nikt ze mną nie podróżował'}
-                                    onChange={() => handleCheckboxChangeDynamic('group1', 'input7a','Nie, nikt ze mną nie podróżował')}
+                                    checked={formData.input7a === `${t('step5.checkboxNo')}`}
+                                    onChange={() => handleCheckboxChangeDynamic('group1', 'input7a',`${t('step5.checkboxNo')}`)}
                                     className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                 />
                                 <label
                                     htmlFor="no-checkbox"
                                     className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                                 >
-                                    Nie, nikt ze mną nie podróżował
+                                    {t('step5.checkboxNo')}
                                 </label>
                             </div>
                         </li>
                     </ul>
                 </div>
             </div>
-            {formData.input7a === 'Tak, ktoś ze mną podróżował' && (
+            {formData.input7a === `${t('step5.checkboxYes')}` && (
                 <div className="container container-padding mt-5">
                     <div className="card p-5" style={{
                         backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"
                     }}>
-                        <label htmlFor="input7c" className="block text-gray-700 text-sm font-bold mb-2">Pełne imiona pozostałych pasażerów</label>
-                        <textarea id="input7c" placeholder="Imię Nazwisko, ..." name="input7c" value={formData.input7c}
+                        <label htmlFor="input7c" className="block text-gray-700 text-sm font-bold mb-2">{t('step5.passengersLabel')}</label>
+                        <textarea id="input7c" placeholder={t('step5.passengersPlaceholder')} name="input7c" value={formData.input7c}
                                   onChange={handleInputChange}
                                   className="mb-2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
                         {/*<input type="text" id="input7d" placeholder="Nazwisko" name="input7d" value={formData.input7d}*/}
@@ -1680,30 +1675,30 @@ const Step8 = ({formData, handleInputChange}) => (
             <div className="card p-5" style={{
                 backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"
             }}>
-                <label htmlFor="input8" className="block text-gray-700 text-sm font-bold mb-2">Dodaj swój adres.</label>
-                <input type="text" id="input8" placeholder="Adres" name="input8" value={formData.input8}
+                <label htmlFor="input8" className="block text-gray-700 text-sm font-bold mb-2">{t('step6.title')}</label>
+                <input type="text" id="input8" placeholder={t('step6.addressPlaceholder')} name="input8" value={formData.input8}
                        onChange={handleInputChange}
                        className="mb-2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
-                <input type="text" id="input8a" placeholder="Numer Lokalu (opcjonalnie)" name="input8a"
+                <input type="text" id="input8a" placeholder={t('step6.apartmentPlaceholder')} name="input8a"
                        value={formData.input8a}
                        onChange={handleInputChange}
                        className="mb-2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
-                <input type="text" id="input8b" placeholder="Miasto" name="input8b" value={formData.input8b}
+                <input type="text" id="input8b" placeholder={t('step6.cityPlaceholder')} name="input8b" value={formData.input8b}
                        onChange={handleInputChange}
                        className=" mb-2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
-                <input type="text" id="input8c" placeholder="Kod pocztowy" name="input8c" value={formData.input8c}
+                <input type="text" id="input8c" placeholder={t('step6.postalCodePlaceholder')} name="input8c" value={formData.input8c}
                        onChange={handleInputChange}
                        className="mb-2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
-                <input type="text" id="input8d" placeholder="Województwo" name="input8d" value={formData.input8d}
+                <input type="text" id="input8d" placeholder={t('step6.provincePlaceholder')} name="input8d" value={formData.input8d}
                        onChange={handleInputChange}
                        className="mb-2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
-                <input type="text" id="input8e" placeholder="Kraj" name="input8e" value={formData.input8e}
+                <input type="text" id="input8e" placeholder={t('step6.countryPlaceholder')} name="input8e" value={formData.input8e}
                        onChange={handleInputChange}
                        className="mb-2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
-                <input type="text" id="input8f" placeholder="Numer telefonu" name="input8f" value={formData.input8f}
+                <input type="text" id="input8f" placeholder={t('step6.phonePlaceholder')} name="input8f" value={formData.input8f}
                        onChange={handleInputChange}
                        className="mb-2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
-                <input type="text" id="input8g" placeholder="Numer PESEL" name="input8g" value={formData.input8g}
+                <input type="text" id="input8g" placeholder={t('step6.peselPlaceholder')} name="input8g" value={formData.input8g}
                        onChange={handleInputChange}
                         className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
             </div>
@@ -1717,8 +1712,8 @@ const Step9 = ({formData, handleInputChange}) => (
             <div className="card p-5" style={{
                 backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"
             }}>
-                <label htmlFor="input9" className="block text-gray-700 text-sm font-bold mb-2">Podaj numer rezerwacji.</label>
-        <input type="text" id="input9" placeholder="np DXG 786 albo FHU 674" name="input9" value={formData.input9} onChange={handleInputChange}
+                <label htmlFor="input9" className="block text-gray-700 text-sm font-bold mb-2">{t('step7.title')}</label>
+        <input type="text" id="input9" placeholder={t('step7.reservationNumberPlaceholder')} name="input9" value={formData.input9} onChange={handleInputChange}
                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
             </div>
         </div>
@@ -1726,8 +1721,8 @@ const Step9 = ({formData, handleInputChange}) => (
             <div className="card p-5" style={{
                 backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"
             }}>
-                <label htmlFor="input9a" className="block text-gray-700 text-sm font-bold mb-2">Gdzie znajdę numer rezerwacji ?</label>
-                <p>Numer rezerwacji to oznaczenie danej rezerwacji wygenerowane przez linię lotniczą. Znajdziesz go na swoim bilecie elektronicznym, potwierdzeniu rezerwacji lub innym dokumencie otrzymanym po zakończeniu rezerwacji lotu. Zazwyczaj składa się z 6 znaków, w tym liter i cyfr (np. DF87G#, REDYYD, L5W4NW). Pamiętaj, żeby nie używać spacji.</p>
+                <label htmlFor="input9a" className="block text-gray-700 text-sm font-bold mb-2">{t('step7.reservationNumberInfoTitle')}</label>
+                <p>{t('step7.reservationNumberInfo')}</p>
                 <p></p>
             </div>
         </div>
@@ -1777,8 +1772,8 @@ const Step10 = ({ formData, handleInputChange, setData }) => {
                 }
             })
             .catch(error => {
-                console.error('Error validating discount code:', error);
-                setDiscountValidation({ valid: false, message: 'Error validating discount code' });
+                console.error(t('step8.discountValidationMessage.invalid'), error);
+                setDiscountValidation({ valid: false, message: t('step8.discountValidationMessage.invalid') });
                 setData('input10', ''); // Clear the input if there is an error
             });
     };
@@ -1792,11 +1787,7 @@ const Step10 = ({ formData, handleInputChange, setData }) => {
         <div>
             <div className="container container-padding">
                 <div className="card p-5" style={{backgroundColor: "#f5f5f5", boxShadow: "2px 2px 20px 0px #0000001F"}}>
-                    <label htmlFor="input10" className="block text-gray-700 text-sm font-bold mb-2">Dobre wieści!
-                        Wygląda na
-                        to, że możliwe jest uzyskanie do 600 € na osobę na podstawie europejskiego rozporządzenia WE
-                        261.
-                        Aby uzyskać pieniądze, które Ci się należą, złóż podpis poniżej.</label>
+                    <label htmlFor="input10" className="block text-gray-700 text-sm font-bold mb-2">{t('step8.title')}</label>
                     {/* Signature Pad */}
                     <div>
                         {/*<SignatureCanvas*/}
@@ -1805,15 +1796,17 @@ const Step10 = ({ formData, handleInputChange, setData }) => {
                         {/*/>*/}
                     </div>
                     {/* End Signature Pad */}
-                    <input type="text" placeholder="Podaj kod rabatowy"
+                    <input type="text" placeholder={t('step8.discountCodePlaceholder')}
                            id="input10" name="input10" value={formData.input10} onChange={handleInputChange}
                            onBlur={handleDiscountCodeChange}
                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
-                    <button onClick={handleDiscountCodeChange} className="btn btn-primary mt-2">Sprawdź kod
+                    <button onClick={handleDiscountCodeChange} className="btn btn-primary mt-2">{t('step8.checkCodeButton')}
                     </button>
                     {discountValidation && (
                         <p className={discountValidation.valid ? 'text-green-500' : 'text-red-500'}>
-                            {discountValidation.message}
+                            {discountValidation.valid
+                                ? t('step8.discountValidationMessage.valid')
+                                : t('step8.discountValidationMessage.invalid')}
                         </p>
                     )}
                     <div>
@@ -1824,12 +1817,12 @@ const Step10 = ({ formData, handleInputChange, setData }) => {
                             </div>
                         </div>
                         <div className="p-3">
-                            <button className="bg-gray-700 text-white rounded-sm mr-2 shadow p-1" onClick={clearSignature} style={{backgroundColor: "#FE9898"}}>Od nowa</button>
-                            <button className="bg-gray-700 text-white rounded-sm mr-2 shadow p-1" onClick={saveSignature}>Zapisz</button>
+                            <button className="bg-gray-700 text-white rounded-sm mr-2 shadow p-1" onClick={clearSignature} style={{backgroundColor: "#FE9898"}}>{t('step8.resetButton')}</button>
+                            <button className="bg-gray-700 text-white rounded-sm mr-2 shadow p-1" onClick={saveSignature}>{t('step8.saveButton')}</button>
                         </div>
 
                         <p className="text-yellow-500">
-                            Podpisz się, zapisz swój podpis i wyślij formularz :)
+                            {t('step8.signaturePrompt')}
                         </p>
                     </div>
                     {/*/!* Display the saved signature *!/*/}
@@ -2005,7 +1998,7 @@ const MultiStepForm = () => {
                 // Check if either input1b or input1c is selected, but not both
                 if ((data.input1b && data.input1c) || (!data.input1b && !data.input1c)) {
                     console.log("Zaznacz swój lot i zaznacz czy pzesiadka też miała miejsce");
-                    setErrorMessage("Zaznacz czy przesiadka miała miejsce"); // Clear previous error messages                    setStep1Valid(false); // Set Step 1 validation status to false
+                    setErrorMessage(t('validation.input1bInput1cError')); // Clear previous error messages                    setStep1Valid(false); // Set Step 1 validation status to false
                     setStep1Valid(false);
                     return false;
                 }
@@ -2030,19 +2023,19 @@ const MultiStepForm = () => {
             // Add validation for other steps as needed
             case 2:
                 if (!data.input4) {
-                    setErrorMessage('Wpisz nazwe lini');
+                    setErrorMessage(t('validation.input4Error'));
                     setStep1Valid(false);
                     return false;
                 }
 
                 if (!data.input4a) {
-                    setErrorMessage('Wpisz nr lotu');
+                    setErrorMessage(t('validation.input4aError'));
                     setStep1Valid(false);
                     return false;
                 }
 
                 if (!data.input4b) {
-                    setErrorMessage('Wpisz date');
+                    setErrorMessage(t('validation.input4bError'));
                     setStep1Valid(false);
                     return false;
                 }
@@ -2054,7 +2047,7 @@ const MultiStepForm = () => {
                 // Check if either input1b or input1c is selected, but not both
                 if ((data.input5 && data.input5a && data.input5b) || (!data.input5 && !data.input5a && !data.input5b)) {
                     console.log("Please select either input1b or input1c");
-                    setErrorMessage('Odpowiedz na 1 pytanie');
+                    setErrorMessage(t('validation.input5input5ainput5bError'));
                     setStep1Valid(false); // Set Step 1 validation status to false
                     return false;
                 }
@@ -2062,14 +2055,14 @@ const MultiStepForm = () => {
                 // Check if either input1b or input1c is selected, but not both
                 if ((data.input5c && data.input5d && data.input5e && data.input5f && data.input5g && data.input5h) || (!data.input5c && !data.input5d && !data.input5e && !data.input5f && !data.input5g && !data.input5h))  {
                     console.log("Please select either input1b or input1c");
-                    setErrorMessage('Odpowiedz na 2 pytanie');
+                    setErrorMessage(t('validation.input5ctoinput5hError'));
                     setStep1Valid(false); // Set Step 1 validation status to false
                     return false;
                 }
 
                 // Check if either input1b or input1c is selected, but not both
                 if ((data.input5i && data.input5j) || (!data.input5i && !data.input5j)) {
-                    setErrorMessage('Odpowiedz na 3 pytanie');
+                    setErrorMessage(t('validation.input5iInput5cError'));
                     console.log("Please select either input1b or input1c");
                     setStep1Valid(false); // Set Step 1 validation status to false
                     return false;
@@ -2080,19 +2073,27 @@ const MultiStepForm = () => {
             // Add validation for other steps as needed
             case 4:
                 if (!data.input6) {
-                    setErrorMessage('Wpisz imię');
+                    setErrorMessage(t('validation.input6Error'));
                     setStep1Valid(false);
                     return false;
                 }
 
                 if (!data.input6a) {
-                    setErrorMessage('Wpisz nazwisko');
+                    setErrorMessage(t('validation.input6aError'));
                     setStep1Valid(false);
                     return false;
                 }
 
                 if (!data.input6b) {
-                    setErrorMessage('Wpisz email');
+                    setErrorMessage(t('validation.input6bError'));
+                    setStep1Valid(false);
+                    return false;
+                }
+
+                // Validate email format using a regular expression
+                const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                if (!emailPattern.test(data.input6b)) {
+                    setErrorMessage(t('validation.input6bbError'));
                     setStep1Valid(false);
                     return false;
                 }
@@ -2107,7 +2108,7 @@ const MultiStepForm = () => {
                 // Check if either input1b or input1c is selected, but not both
                 if ((data.input6c && data.input6d && data.input6e) || (!data.input6c && !data.input6d && !data.input6e)) {
                     console.log("Please select either input1b or input1c");
-                    setErrorMessage('Wpisz zgode');
+                    setErrorMessage(t('validation.input6cError'));
                     setStep1Valid(false); // Set Step 1 validation status to false
                     return false;
                 }
@@ -2118,7 +2119,7 @@ const MultiStepForm = () => {
                 // Check if either input1b or input1c is selected, but not both
                 if ((data.input7a && data.input7b) || (!data.input7a && !data.input7b)) {
                     console.log("Please select either input1b or input1c");
-                    setErrorMessage('Odpowiedz na pytanie nr 1');
+                    setErrorMessage(t('validation.input5input5ainput5bError'));
                     setStep1Valid(false); // Set Step 1 validation status to false
                     return false;
                 }
@@ -2134,49 +2135,49 @@ const MultiStepForm = () => {
                 break;
             case 6:
                 if (!data.input8) {
-                    setErrorMessage('Wpisz adres');
+                    setErrorMessage(t('validation.input8Error'));
                     setStep1Valid(false);
                     return false;
                 }
 
                 if (!data.input8a) {
-                    setErrorMessage('Wpisz nr lokalu');
+                    setErrorMessage(t('validation.input8aError'));
                     setStep1Valid(false);
                     return false;
                 }
 
                 if (!data.input8b) {
-                    setErrorMessage('Wpisz miasto');
+                    setErrorMessage(t('validation.input8bError'));
                     setStep1Valid(false);
                     return false;
                 }
 
                 if (!data.input8c) {
-                    setErrorMessage('Wpisz kod pocztowy');
+                    setErrorMessage(t('validation.input8cError'));
                     setStep1Valid(false);
                     return false;
                 }
 
                 if (!data.input8d) {
-                    setErrorMessage('Wpisz województwo');
+                    setErrorMessage(t('validation.input8dError'));
                     setStep1Valid(false);
                     return false;
                 }
 
                 if (!data.input8e) {
-                    setErrorMessage('Wpisz kraj');
-                    setStep1Valid(false);
-                    return false;
-                }
-
-                if (!data.input8g) {
-                    setErrorMessage('Wpisz PESEL');
+                    setErrorMessage(t('validation.input8eError'));
                     setStep1Valid(false);
                     return false;
                 }
 
                 if (!data.input8f) {
-                    setErrorMessage('Wpisz nr telefonu');
+                    setErrorMessage(t('validation.input8fError'));
+                    setStep1Valid(false);
+                    return false;
+                }
+
+                if (!data.input8g) {
+                    setErrorMessage(t('validation.input8gError'));
                     setStep1Valid(false);
                     return false;
                 } else {
@@ -2188,7 +2189,7 @@ const MultiStepForm = () => {
             case 7:
                 // Check if either input1b or input1c is selected, but not both
                 if (!data.input9 ) {
-                    setErrorMessage('Wpisz nr rezerwacji');
+                    setErrorMessage(t('validation.input9Error'));
                     setStep1Valid(false); // Set Step 1 validation status to false
                     return false;
                 } else {
@@ -2197,7 +2198,7 @@ const MultiStepForm = () => {
                 break;
             case 8:
                 if ((!data.signature)) {
-                    setErrorMessage('Wpisz podpis');
+                    setErrorMessage(t('validation.signatureError'));
                     setStep1Valid(false);
                     return false;
                 } else {
@@ -2297,7 +2298,7 @@ const MultiStepForm = () => {
                     <div className="progress">
                         <div className="left">
                             {Array.from({length: totalSteps}).map((_, index) => (
-                                <div key={index}>{index === 0 ? 'Start' : ''}</div>
+                                <div key={index}>{index === 0 ? t('multiStep.start') : ''}</div>
                             ))}
                         </div>
                         <div className="right">
@@ -2305,22 +2306,22 @@ const MultiStepForm = () => {
                                 <div key={index}
                                      className={step === index + 1 ? 'current' : step > index + 1 ? 'done' : ''}>{index + 1}</div>
                             ))}
-                            <div>Koniec</div>
+                            <div>{t('multiStep.end')}</div>
                         </div>
                     </div>
                 </div>
                 <div className="bg-white min-h-screen h-full rounded-b-xl multi-form">
                     <div className="d-flex align-items-center">
                         <div className="container justify-content-end  m-5 mb-4 mr-5">
-                            <label htmlFor="input9" className="block text-gray-700 text-sm font-bold mr-5 mb-2 hide-help text-right">Pomagamy w egzekwowaniu praw konsumenta</label>
+                            <label htmlFor="input9" className="block text-gray-700 text-sm font-bold mr-5 mb-2 hide-help text-right">{t('multiStep.help_text')}</label>
                         </div>
                     </div>
                     <div className="d-flex align-items-center mb-4 ml-5">
                         <img className="w-20 mr-3" src="media/employee.png" />
                         <div className="flex flex-col justify-center items-start mb-4">
                             <h5 htmlFor="input9" className="mb-2 ml-3">‎ </h5>
-                            <h5 htmlFor="input9" className="mb-2 ml-3">Albert Konrad</h5>
-                            <label htmlFor="input9" className="block text-gray-900 text-sm font-bold mb-2 ml-3">Asystenci BeSmart</label>
+                            <h5 htmlFor="input9" className="mb-2 ml-3">{t('multiStep.employee_name')}</h5>
+                            <label htmlFor="input9" className="block text-gray-900 text-sm font-bold mb-2 ml-3">{t('multiStep.employee_title')}</label>
                         </div>
                     </div>
                     <div className="p-6 text-gray-900">
@@ -2328,16 +2329,16 @@ const MultiStepForm = () => {
                         <div className="mt-4">
                             {step > 1 && (
                                 <button onClick={prevStep} className="mr-2 bg-transparent hover:bg-gray-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" style={{ color: "#4F914A" }}>
-                                    Poprzedni
+                                    {t('multiStep.previous')}
                                 </button>
                             )}
                             {step < totalSteps ? (
                                 <button onClick={nextStep} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" style={{ backgroundColor: "#4F914A" }}>
-                                    Następny
+                                    {t('multiStep.next')}
                                 </button>
                             ) : (
                                 <button onClick={handleSubmit} className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                                    Wyślij
+                                    {t('multiStep.submit')}
                                 </button>
                             )}
                         </div>

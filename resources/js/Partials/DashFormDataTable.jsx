@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import Modal from "@/Components/Modal.jsx";
+import {t} from "i18next";
 
 const DashFormDataTable = ({ dashFormData }) => {
     const sortedFormData = [...dashFormData].sort((a, b) => b.id - a.id);
@@ -41,61 +42,38 @@ const DashFormDataTable = ({ dashFormData }) => {
 
         return (
         <div className="p-6 text-gray-900 overflow-x-auto  overflow-y-auto max-h-[700px]">
-            <h2>Formularze</h2>
+            <h2>{t('dashboard.formTitle')}</h2>
             <table className="min-w-full bg-white border border-gray-300">
                 <thead>
                 <tr>
-                    <th className="py-2 px-4 border-b border-gray-300">ID</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Nr zgłoszenia</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Status</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Umowa</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Czy Twój lot obejmował przesiadkę?</th>
-                    {/*<th className="py-2 px-4 border-b border-gray-300"></th>*/}
-                    <th className="py-2 px-4 border-b border-gray-300">Dane lotu</th>
-                    {/*<th className="py-2 px-4 border-b border-gray-300"></th>*/}
-                    <th className="py-2 px-4 border-b border-gray-300">Linia lotnicza</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Nr lotu</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Dzień odlotu</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Teraz przejdźmy do samego zakłócenia. Co
-                        dokładnie się wydarzyło?
-                    </th>
-                    {/*<th className="py-2 px-4 border-b border-gray-300"></th>*/}
-                    {/*<th className="py-2 px-4 border-b border-gray-300"></th>*/}
-                    <th className="py-2 px-4 border-b border-gray-300">Bardzo nam przykro. Ile wynosiło opóźnienie
-                        Twojego lotu do miasta Seoul (ICN)?
-                    </th>
-                    {/*<th className="py-2 px-4 border-b border-gray-300"></th>*/}
-                    {/*<th className="py-2 px-4 border-b border-gray-300"></th>*/}
-                    {/*<th className="py-2 px-4 border-b border-gray-300"></th>*/}
-                    {/*<th className="py-2 px-4 border-b border-gray-300"></th>*/}
-                    {/*<th className="py-2 px-4 border-b border-gray-300"></th>*/}
-                    <th className="py-2 px-4 border-b border-gray-300">Czy dobrowolnie zrzekłeś(-aś) się miejsca na
-                        pokładzie w zamian za inne korzyści oferowane przez linię lotniczą?
-                    </th>
-                    {/*<th className="py-2 px-4 border-b border-gray-300"></th>*/}
-                    <th className="py-2 px-4 border-b border-gray-300">Imię pasażera</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Nazwisko</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Email</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Aby ruszyć z Twoją sprawą, potrzebuję kilku
-                        informacji.
-                    </th>
-                    {/*<td className="py-2 px-4 border-b border-gray-300"></td>*/}
-                    {/*<td className="py-2 px-4 border-b border-gray-300"></td>*/}
-                    <th className="py-2 px-4 border-b border-gray-300">Możesz złożyć wniosek w imieniu wszystkich osób
-                        wymienionych w Twojej rezerwacji. Czy ktoś z Tobą podróżował?
-                    </th>
-                    {/*<td className="py-2 px-4 border-b border-gray-300"></td>*/}
-                    <th className="py-2 px-4 border-b border-gray-300">Pozostali pasażerowie</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Adres</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Numer mieszkania</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Miasto</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Kod pocztowy</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Województwo</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Kraj</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Nr telefonu</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Nr rezerwacji</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Kod rabatowy</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Zaaplikowano</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.ID')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Nr zgłoszenia')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Status')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Umowa')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Czy Twój lot obejmował przesiadkę?')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Dane lotu')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Linia lotnicza')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Nr lotu')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Dzień odlotu')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Teraz przejdźmy do samego zakłócenia. Co dokładnie się wydarzyło?')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Bardzo nam przykro. Ile wynosiło opóźnienie Twojego lotu do miasta Seoul (ICN)?')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Czy dobrowolnie zrzekłeś(-aś) się miejsca na pokładzie w zamian za inne korzyści oferowane przez linię lotniczą?')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Imię pasażera')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Nazwisko')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Email')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Aby ruszyć z Twoją sprawą, potrzebuję kilku informacji.')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Możesz złożyć wniosek w imieniu wszystkich osób wymienionych w Twojej rezerwacji. Czy ktoś z Tobą podróżował?')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Pozostali pasażerowie')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Adres')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Numer mieszkania')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Miasto')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Kod pocztowy')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Województwo')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Kraj')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Nr telefonu')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Nr rezerwacji')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Kod rabatowy')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Zaaplikowano')}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -103,7 +81,7 @@ const DashFormDataTable = ({ dashFormData }) => {
                     <tr key={dash.id} className="hover:bg-gray-100">
                         <td className="py-2 px-4 border-b border-gray-300">{dash.id}</td>
                         <td className="py-2 px-4 border-b border-gray-300">{dash.uuid}</td>
-                        <td className="py-2 px-4 border-b border-gray-300">{dash.status}</td>
+                        <td className="py-2 px-4 border-b border-gray-300">{t(`table.${dash.status}`)} </td>
                         <td className="py-2 px-4 border-b border-gray-300 cursor-pointer">
                             {/* Check if the PDF path exists before rendering the iframe */}
                             {/*{row.pdf_path && (*/}
@@ -118,12 +96,12 @@ const DashFormDataTable = ({ dashFormData }) => {
                             {/*)}*/}
                             {/* Clickable link to open modal */}
                             <button onClick={() => openModal(dash.pdf_path)} className="text-blue-600 hover:underline">
-                                Otwórz PDF
+                                {t('dashboard.pdfButton')}
                             </button>
                             {isModalOpen && (
                                 <div className="fixed inset-0 bg-black/50 flex justify-center items-center">
                                     <div className="bg-white p-4 rounded shadow-lg max-w-lg w-full">
-                                        <h2 className="text-xl font-semibold mb-2">Umowa</h2>
+                                        <h2 className="text-xl font-semibold mb-2">{t('dashboard.modalTitle')}</h2>
                                         {/* PDF iframe in modal */}
                                         <iframe
                                             src={pdfUrl} // Same path for modal
@@ -136,7 +114,7 @@ const DashFormDataTable = ({ dashFormData }) => {
                                             onClick={handleCloseModal1}
                                             className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
                                         >
-                                            Zamknij
+                                            {t('dashboard.closeButton')}
                                         </button>
                                     </div>
                                 </div>
@@ -149,7 +127,13 @@ const DashFormDataTable = ({ dashFormData }) => {
                         {/*    <td className="py-2 px-4 border-b border-gray-300">{dash.input1c}</td>*/}
                         {/*)}*/}
                         {dash.input3 !== 0 && (
-                            <td className="py-2 px-4 border-b border-gray-300">{dash.input3}</td>
+                            <td className="py-2 px-4 border-b border-gray-300">    {/* Check if dash.input3 is neither null nor empty */}
+                                {dash.input3 && (dash.input3.includes(t('step1.cant_find')) || dash.input3 === '')
+                                    ? t('step1.cant_find') // This will handle the "flight not found" or empty case
+                                    : dash.input3
+                                        ? `${t('step1.Wylot')}: ${dash.input3.split(',')[0].split(':')[1].trim()},
+               ${t('step1.Przylot')}: ${dash.input3.split(',')[1].split(':')[1].trim()}`
+                                        : t('step1.cant_find')} {/* Show default "flight not found" message if input3 is null/undefined */}</td>
                         )}
                         {/*{dash.input3a !== 0 && (*/}
                         {/*    <td className="py-2 px-4 border-b border-gray-300">{dash.input3a}</td>*/}
@@ -262,12 +246,15 @@ const DashFormDataTable = ({ dashFormData }) => {
                                     second: "2-digit"
                                 };
 
-                                // Format the date and split it
+                                // Format the date to get the month in its full form (e.g., "Listopada")
                                 const formattedDate = date.toLocaleString("pl-PL", options);
                                 const [day, month, year, time] = formattedDate.split(" ");
 
-                                // Capitalize the first letter of the month
-                                const monthCapitalized = month.charAt(0).toUpperCase() + month.slice(1);
+                                // Translate the month using the translation keys (e.g., "listopada" -> "November")
+                                const translatedMonth = t(`table.${month}`);
+
+                                // Capitalize the first letter of the translated month if not already
+                                const monthCapitalized = translatedMonth.charAt(0).toUpperCase() + translatedMonth.slice(1);
 
                                 return `${day} ${monthCapitalized} ${year}, ${time}`;
                             })()}
@@ -283,7 +270,7 @@ const DashFormDataTable = ({ dashFormData }) => {
             {/*    </div>*/}
             {/*</Modal>*/}
         </div>
-    );
+        );
 };
 
 export default DashFormDataTable;

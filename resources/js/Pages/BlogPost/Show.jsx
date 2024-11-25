@@ -7,6 +7,7 @@ import Standard from "@/Layouts/StandardLayout.jsx";
 import { format } from 'date-fns';
 import { pl } from 'date-fns/locale';
 import "../../../css/styles.css"
+import {t} from "i18next";
 
 const BlogPostShow = ({ auth, post }) => {
     const imageUrl = `/media/blog/${post.image}`;
@@ -57,11 +58,11 @@ const BlogPostShow = ({ auth, post }) => {
                 <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
                 <p className="pb-2">{updatedDate}</p>
                 <div className="text-gray-700" dangerouslySetInnerHTML={{__html: post.content}}></div>
-                <Link href="/blog" className="text-green-500 hover:text-green-700 mt-4 block">Wróć do Artykułów</Link>
+                <Link href="/blog" className="text-green-500 hover:text-green-700 mt-4 block">{t("table.Wróć do Artykułów")}</Link>
                 {auth.user && (
                     <>
-                        <Link href={`/admin/blog/${post.id}/edit`} className="text-yellow-500 mt-4 block">Edycja</Link>
-                        <button onClick={handleDelete} className="text-red-500 mt-4 block">Usuń</button>
+                        <Link href={`/admin/blog/${post.id}/edit`} className="text-yellow-500 mt-4 block">{t("table.Edycja")}</Link>
+                        <button onClick={handleDelete} className="text-red-500 mt-4 block">{t("table.Usuń")}</button>
                     </>
                 )}
                 <div id="disqus_thread" className="mt-8"></div>

@@ -5,6 +5,7 @@ import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Head, Link, useForm } from '@inertiajs/react';
+import {t} from "i18next";
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -28,11 +29,11 @@ export default function Register() {
 
     return (
         <GuestLayout>
-            <Head title="Rejestracja" />
+            <Head title={t('register.register')} />
 
             <form onSubmit={submit}>
                 <div>
-                    <InputLabel htmlFor="name" value="Imię" />
+                    <InputLabel htmlFor="name" value={t('register.name')} />
 
                     <TextInput
                         id="name"
@@ -49,7 +50,7 @@ export default function Register() {
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="email" value="Email" />
+                    <InputLabel htmlFor="email" value={t('register.email')} />
 
                     <TextInput
                         id="email"
@@ -66,7 +67,7 @@ export default function Register() {
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Hasło" />
+                    <InputLabel htmlFor="password" value={t('register.password')} />
 
                     <TextInput
                         id="password"
@@ -83,7 +84,7 @@ export default function Register() {
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="password_confirmation" value="Potwierdź Hasło" />
+                    <InputLabel htmlFor="password_confirmation" value={t('register.confirm_password')} />
 
                     <TextInput
                         id="password_confirmation"
@@ -104,11 +105,11 @@ export default function Register() {
                         href={route('login')}
                         className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
                     >
-                        Masz już konto?
+                        {t('register.already_have_account')}
                     </Link>
 
                     <PrimaryButton className="ms-4" disabled={processing}>
-                        Zarejestruj
+                        {t('register.register')}
                     </PrimaryButton>
                 </div>
             </form>

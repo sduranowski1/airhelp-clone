@@ -3,7 +3,8 @@ import { useForm } from '@inertiajs/react';
 import { Head } from '@inertiajs/react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.jsx';
 import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css'; // Import ReactQuill CSS
+import 'react-quill/dist/quill.snow.css';
+import {t} from "i18next"; // Import ReactQuill CSS
 
 const BlogPostEdit = ({ auth, post }) => {
     const { data, setData, post: inertiaPost, errors } = useForm({
@@ -41,11 +42,11 @@ const BlogPostEdit = ({ auth, post }) => {
         <AuthenticatedLayout user={auth.user}>
             <Head title="Edit Blog Post" />
             <div className="container mx-auto p-4">
-                <h1 className="text-4xl font-bold mb-4">Edit Blog Post</h1>
+                <h1 className="text-4xl font-bold mb-4">{t("table.Edit Blog Post")}</h1>
                 <form onSubmit={handleSubmit}>
                     <div className="p-3 flex flex-col space-y-3">
                         <div>
-                            <label>Title</label>
+                            <label>{t("table.Tytuł")}</label>
                             <br />
                             <input
                                 type="text"
@@ -56,7 +57,7 @@ const BlogPostEdit = ({ auth, post }) => {
                             {errors.title && <div className="text-red-500">{errors.title}</div>}
                         </div>
                         <div>
-                            <label>Excerpt</label>
+                            <label>{t("table.Introtekst")}</label>
                             <br />
                             <textarea
                                 value={data.excerpt}
@@ -66,7 +67,7 @@ const BlogPostEdit = ({ auth, post }) => {
                             {errors.excerpt && <div className="text-red-500">{errors.excerpt}</div>}
                         </div>
                         <div>
-                            <label>Content</label>
+                            <label>{t("table.Treść")}</label>
                             <br />
                             <ReactQuill
                                 value={data.content}
@@ -92,12 +93,12 @@ const BlogPostEdit = ({ auth, post }) => {
                             {errors.content && <div className="text-red-500">{errors.content}</div>}
                         </div>
                         <div>
-                            <label>Featured Image</label>
+                            <label>{t("table.Obrazek przewodni")}</label>
                             <input type="file" onChange={e => setData('image', e.target.files[0])} />
                             {errors.image && <div className="text-red-500">{errors.image}</div>}
                         </div>
                         <div className="text-center">
-                            <button className="btn btn-primary w-25" type="submit">Update Post</button>
+                            <button className="btn btn-primary w-25" type="submit">{t("table.Update Post")}</button>
                         </div>
                     </div>
                 </form>

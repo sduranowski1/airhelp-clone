@@ -1,6 +1,7 @@
 import React from 'react';
 import ApplicationLogo from "@/Components/ApplicationLogo.jsx";
 import {Link} from "@inertiajs/react";
+import {t} from "i18next";
 
 function Footer() {
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
@@ -14,10 +15,10 @@ function Footer() {
                 </Link>
                 <div>
                     <Link href="/privacy-policy" className="ml-auto mr-0 text-gray-600">
-                        <a>Polityka prywatności</a>
+                        <a>{t('navigation.knowYourRights')}</a>
                     </Link>
                     <Link href="/about-us" className="ml-3 text-gray-600">
-                        <a>O Nas</a>
+                        <a>{t('navigation.aboutUs')}</a>
                     </Link>
                     <a className="ml-4">Copyright © 2024 BeSmartAir</a>
                 </div>

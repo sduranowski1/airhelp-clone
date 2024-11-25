@@ -3,6 +3,7 @@ import ReactDOMServer from 'react-dom/server';
 import Authenticated from "@/Layouts/AuthenticatedLayout.jsx";
 import NavLink from "@/Components/NavLink.jsx";
 import {Link} from "@inertiajs/react";
+import {t} from "i18next";
 
 
 function AdminDashboard({ pageTitle, children}) {
@@ -48,36 +49,25 @@ function AdminDashboard({ pageTitle, children}) {
                 <div className="m-3 text-white">
                     <Link className="text-white" href={route('admin.dashboard')}
                           active={route().current('admin.dashboard')}>
-                        Formularze
+                        {t('sidebar.forms')}
                     </Link>
                 </div>
-
-                {/*/!* Nav Items *!/*/}
-                {/*<div className="m-3 text-white">*/}
-                {/*    <Link className="text-white" href={route('admin.dashboard')}*/}
-                {/*          active={route().current('admin.dashboard')}>*/}
-                {/*        Dodatkowi Pasażerowie*/}
-                {/*    </Link>*/}
-                {/*</div>*/}
-
                 <div className="m-3 text-white">
                     <Link className="text-white" href={route('admin.users')}
-                          active={route().current('admin.dashboard')}>
-                        Użytkownicy
+                          active={route().current('admin.users')}>
+                        {t('sidebar.users')}
                     </Link>
                 </div>
-
                 <div className="m-3 text-white">
                     <Link className="text-white" href={route('admin.discounts')}
-                          active={route().current('admin.dashboard')}>
-                        Zniżki
+                          active={route().current('admin.discounts')}>
+                        {t('sidebar.discounts')}
                     </Link>
                 </div>
-
                 <div className="m-3 text-white">
                     <Link className="text-white" href={route('admin.blog.create')}
                           active={route().current('admin.blog.create')}>
-                        Kreator Bloga
+                        {t('sidebar.blogCreator')}
                     </Link>
                 </div>
                 {/* Replace your nav items here */}

@@ -7,6 +7,7 @@ import { createInertiaApp } from '@inertiajs/react';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import {AuthProvider} from "@/Contexts/AuthContext.jsx";
 import Authenticated from "@/Layouts/AuthenticatedLayout.jsx";
+import './i18n'; // Import the i18n setup
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 

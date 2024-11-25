@@ -1,13 +1,14 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 import DashFormDataTable from "@/Partials/DashFormDataTable.jsx";
+import {t} from "i18next";
 
 export default function Dashboard({ auth, dashFormData }) {
     console.log(dashFormData); // Add this line to inspect the data
     return (
         <AuthenticatedLayout
             user={auth.user}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Panel Klienta</h2>}
+            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">{t("navigation.dashboard")}</h2>}
         >
             <Head title="Dashboard" />
 

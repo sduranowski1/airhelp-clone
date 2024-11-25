@@ -1,0 +1,479 @@
+{
+    "layouts": "layouts",
+    "layouts1": "layouts1",
+    "layouts2": "layouts2",
+    "navigation": {
+        "home": "Home",
+        "checkCompensation": "Check Compensation",
+        "knowYourRights": "Know Your Rights",
+        "aboutUs": "About Us",
+        "blog": "Blog",
+        "login": "Login",
+        "register": "Register",
+        "guest": "Guest",
+        "dashboard": "Dashboard",
+        "admin": "Admin",
+        "profile": "Profile",
+        "logOut": "Log Out"
+    },
+    "sidebar": {
+        "forms": "Forms",
+        "users": "Users",
+        "discounts": "Discounts",
+        "blogCreator": "Blog Creator"
+    },
+    "layouts3": "layouts",
+    "layouts4": "layouts1",
+    "layouts5": "layouts2",
+    "heroSection": {
+        "heading": "Facing a delayed or \u200E \u200E \u200E canceled flight?",
+        "mobileHeading": "Facing a delayed or canceled flight?",
+        "infoText": "Regardless of the ticket price, compensation of up to €600 is due for each passenger!",
+        "form": {
+            "departurePlaceholder": "Departure airport",
+            "arrivalPlaceholder": "Arrival airport",
+            "checkCompensationButton": "Check compensation",
+            "departureError": "Enter a valid departure airport",
+            "arrivalError": "Enter a valid arrival airport"
+        }
+    },
+    "regulations": {
+        "title": "BeSmartAir TAKES CARE OF AIR PASSENGER'S RIGHTS",
+        "items": {
+            "europeRegulation": "European Regulation EC261",
+            "brazilRegulation": "Brazilian Regulations",
+            "montrealConvention": "Montreal Convention",
+            "turkeyRegulation": "Turkish Regulations"
+        }
+    },
+    "benefits": {
+        "header": "WHY CHOOSE BeSmartAir?",
+        "withUs": {
+            "title": "CLAIM WITH BeSmartAir",
+            "points": {
+                "1title": "Easy process:",
+                "1description": "We handle your case from the application submission to compensation payout.",
+                "2title": "Full service:",
+                "2description": "On your behalf, we submit all the necessary documents.",
+                "3title": "Efficient action:",
+                "3description": "Once you send us the documents online, we handle the rest.",
+                "4title": "Constant status monitoring:",
+                "4description": "We are always in contact and at your disposal, informing you about the progress of the case.",
+                "5title": "No costs for submitting the claim:",
+                "5description": "No costs for submitting the claim. All legal fees are on us, and we charge a fee only when compensation is paid."
+            }
+        },
+        "byYourself": {
+            "title": "CLAIMING AIRLINE COMPENSATION ON YOUR OWN",
+            "points": {
+                "1title": "Bureaucracy:",
+                "1description": "Unclear information about the documentation required to submit the claim.",
+                "2title": "Time:",
+                "2description": "Claiming your rights requires a lot of patience when dealing with airline customer service, and the entire process can take months.",
+                "3title": "Stress:",
+                "3description": "Managing the entire process yourself, including negotiations with the airlines.",
+                "4title": "Risk:",
+                "4description": "In case your claim is taken to court, you must count on costs regardless of the final outcome.",
+                "5title": "Difficult communication with airlines:",
+                "5description": "Airlines rarely, if ever, inform customers about the progress of their case and its status."
+            }
+        }
+    },
+    "whyUs": {
+        "header": "WHY BeSmartAir?",
+        "subheader": "We specialize in solving problems related to airline flights professionally",
+        "description": "Our company specializes in obtaining compensation for our clients worldwide. We are not afraid of even the most complex and difficult cases. Client satisfaction with our services is our priority."
+    },
+    "services": {
+        "1title": "Canceled flight",
+        "1description": "Your flight was canceled at short notice? In addition to a refund, you are entitled to compensation of up to €600.",
+        "2title": "Delayed flight",
+        "2description": "In the event of a delay of more than 3 hours, find out if our specialists can secure compensation for you of up to €600.",
+        "3title": "Missed connecting flight",
+        "3description": "If you land with a 3-hour delay at your destination, you may also be entitled to compensation.",
+        "4title": "Difficult communication with the airline",
+        "4description": "Was your compensation claim rejected or ignored? We will verify the validity of your claim and apply pressure on the airline to hold them accountable."
+    },
+    "gain": {
+        "compensation": {
+            "title": "We charge our fee only when you receive the compensation due to you",
+            "description": "We calculate our fee based on the compensation we secure for you, so you bear no risk. Our fee is 20%",
+            "check": "Check compensation"
+        },
+        "clients": {
+            "awareness": "Passengers are unaware of how big a problem delayed and canceled flights are on a global scale. BeSmartAir will take care of your rights and work to secure your compensation upon your request."
+        },
+        "statistics": {
+            "cancelledFlights": "Canceled flights annually",
+            "internationalAirports": "International airports",
+            "delayedFlights": "Delayed flights daily",
+            "passengerClaims": "Only 1 in 2 eligible passengers claims air compensation"
+        },
+        "clientFeedback": {
+            "title": "What our clients say about us"
+        }
+    },
+    "staticPages": "staticPages",
+    "staticPages1": "staticPages1",
+    "staticPages2": "staticPages2",
+    "privacy": {
+        "title": "Know Your Rights",
+        "header": "Passenger Rights Under EU Regulation 261/2004: Compensation for Delays and Cancellations",
+        "intro": "Regulation (EC) No 261/2004 of the European Parliament and of the Council, also known as EU Regulation 261, governs air passenger rights in cases of delays, cancellations, or denied boarding. This legislation aims to protect travelers and guarantee them appropriate compensation in situations that disrupt their travel plans.",
+        "discussion": "Below, we discuss how the regulation sets compensation rules, especially based on flight distance.",
+        "keyProvisions": "Key Provisions of EU Regulation 261/2004",
+        "provisionsIntro": "EU Regulation 261 grants passengers the right to compensation in cases of:",
+        "provisionCancellation": "Flight cancellation – when the carrier cancels the flight.",
+        "provisionDelay": "Flight delay – if the flight is delayed by more than 3 hours upon arrival at the destination.",
+        "provisionDeniedBoarding": "Denied boarding – if passengers cannot board due to overbooking.",
+        "factorsIntro": "These situations may entitle passengers to compensation. However, the amount depends on factors such as delay duration, flight distance, and specific circumstances of the incident.",
+        "compensationRates": "Compensation Rates Based on Distance",
+        "ratesIntro": "Under EU Regulation 261/2004, compensation for delayed, canceled, or denied flights is determined by the flight distance and length of delay. The compensation rates are:",
+        "examples": "Examples",
+        "additionalFactors": "Additional Factors Affecting Compensation",
+        "factors": "Passenger compensation may be reduced or not applicable if the airline proves that the delay or cancellation was caused by extraordinary circumstances, such as:",
+        "factorWeather": "Weather conditions (e.g., severe storms, fog).",
+        "factorStrikes": "Strikes (e.g., air traffic controller strikes).",
+        "factorSafety": "Safety issues (e.g., technical faults not caused by airline negligence).",
+        "claimProcess": "Compensation Claim Process",
+        "processSteps": "Passengers who experience delays, cancellations, or denied boarding may claim compensation if the conditions of the regulation are met. To claim compensation, passengers should:",
+        "processStep1": "Submit a complaint to the airline – as soon as possible after the incident.",
+        "processStep2": "Specify the relevant situation – e.g., delay over 3 hours, flight cancellation, etc.",
+        "processStep3": "Keep documents – such as tickets, boarding passes, and correspondence with the airline.",
+        "refusalNote": "If the airline refuses to compensate, passengers may contact the national consumer protection authority or seek assistance from organizations specializing in flight compensation claims.",
+        "conclusion": "Conclusion",
+        "summary": "EU Regulation 261/2004 provides air passengers with protection in cases of delays, cancellations, or denied boarding. Compensation amounts range from €250 to €600 based on flight distance. Passengers have the right to compensation if specific conditions are met, though airlines may reduce or avoid payments if extraordinary circumstances occur. This regulation ensures consumer rights protection while maintaining a balance between airlines and passengers, allowing claims in unforeseen situations."
+    },
+    "aboutUs": {
+        "title": "About Us",
+        "companyName": "BeSmartAir",
+        "intro": "Assistance in claiming compensation for delayed, canceled, or connecting flights",
+        "sections": {
+            "whoWeAre": {
+                "heading": "Who We Are?",
+                "image": "http://138.68.158.146/media/about/Canceled-Flights.jpg",
+                "description": "BeSmartAir is a leading company specializing in helping passengers claim compensation for delayed, canceled, or connecting flights. Our mission is to ensure that every passenger receives the compensation they deserve, no matter the situation."
+            },
+            "expertise": {
+                "heading": "Our Expertise",
+                "description": "Our team of aviation industry experts has many years of experience interpreting European legal regulations, including Regulation EC 261/2004, which protects passenger rights. This enables us to effectively represent our clients in negotiations with airlines."
+            },
+            "service": {
+                "heading": "Our Service",
+                "image": "http://138.68.158.146/media/about/jeshoots-com-mSESwdMZr-A-unsplash.jpg",
+                "description": "At BeSmartAir, we offer comprehensive service – from case analysis and gathering the necessary documents to representing clients in proceedings before airlines. Our process is simple and transparent: clients can submit their claims online, and we will handle the rest."
+            },
+            "whyUs": {
+                "heading": "Why Work With Us?",
+                "description": "By working with us, passengers can focus on their travels, confident that their rights are in good hands. Our company operates on a 'no win, no fee' basis, meaning you only pay if we succeed."
+            },
+            "joinUs": {
+                "heading": "Join Us!",
+                "image": "http://138.68.158.146/media/about/warsaw-transport-airport-AB-XL.jpg",
+                "description": "Join the ranks of satisfied BeSmartAir clients and get your money back for unpleasant airline experiences!"
+            }
+        }
+    },
+    "staticPages3": "staticPages3",
+    "staticPages4": "staticPages4",
+    "staticPages5": "staticPages5",
+    "profile": "profile",
+    "profile1": "profile1",
+    "profile2": "profile2",
+    "dashboard": {
+        "formTitle": "Forms",
+        "pdfButton": "Open PDF",
+        "modalTitle": "Agreement",
+        "closeButton": "Close",
+        "profile_data": "Profile Data",
+        "update_profile_info": "Update your profile information and email address.",
+        "name": "Name",
+        "email": "Email",
+        "email_unverified": "Your email address is unverified.",
+        "resend_verification_email": "Click here to resend the verification email.",
+        "verification_link_sent": "A new verification link has been sent to your email address.",
+        "save": "Save",
+        "saved": "Saved.",
+        "update_password": "Update Password",
+        "update_password_instruction": "To ensure your account is secure, use a long, random password.",
+        "current_password": "Current Password",
+        "new_password": "New Password",
+        "confirm_password": "Confirm Password",
+        "delete_account": "Delete Account",
+        "delete_account_description": "Once your account is deleted, all of its resources and data will be permanently deleted. Please download any data or information you wish to retain before deleting your account.",
+        "delete_account_button": "Delete Account",
+        "delete_account_confirmation_title": "Are you sure you want to delete your account?",
+        "delete_account_confirmation_description": "Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you want to permanently delete your account.",
+        "password": "Password",
+        "cancel": "Cancel"
+    },
+    "table": {
+        "ID": "ID",
+        "Nr zgłoszenia": "Case Number",
+        "Status": "Status",
+        "Umowa": "Agreement",
+        "Czy Twój lot obejmował przesiadkę?": "Did your flight involve a transfer?",
+        "Dane lotu": "Flight details",
+        "Linia lotnicza": "Airline",
+        "Nr lotu": "Flight number",
+        "Dzień odlotu": "Departure date",
+        "Teraz przejdźmy do samego zakłócenia. Co dokładnie się wydarzyło?": "Now let’s get to the disruption. What exactly happened?",
+        "Bardzo nam przykro. Ile wynosiło opóźnienie Twojego lotu?": "We’re very sorry. How long was your flight delayed?",
+        "Czy dobrowolnie zrzekłeś(-aś) się miejsca na pokładzie w zamian za inne korzyści oferowane przez linię lotniczą?": "Did you voluntarily give up your seat on board in exchange for other benefits offered by the airline?",
+        "Imię pasażera": "Passenger first name",
+        "Nazwisko": "Last name",
+        "Email": "Email",
+        "Aby ruszyć z Twoją sprawą, potrzebuję kilku informacji.": "To start your case, I need some information.",
+        "Możesz złożyć wniosek w imieniu wszystkich osób wymienionych w Twojej rezerwacji. Czy ktoś z Tobą podróżował?": "You can submit the request on behalf of everyone listed in your booking. Did anyone travel with you?",
+        "Pozostali pasażerowie": "Other passengers",
+        "Adres": "Address",
+        "Numer mieszkania": "Apartment number",
+        "Miasto": "City",
+        "Kod pocztowy": "Postal code",
+        "Województwo": "Province",
+        "Kraj": "Country",
+        "Nr telefonu": "Phone number",
+        "Nr rezerwacji": "Booking number",
+        "Kod rabatowy": "Discount code",
+        "Zaaplikowano": "Applied",
+        "Zaktualizowano": "Updated",
+        "Oczekuje": "Reviewing",
+        "Odrzucone": "Rejected",
+        "Zatwierdzone": "Approved",
+        "Imię": "Name",
+        "Utwórz": "Create",
+        "Opis": "Description",
+        "Koniec": "End",
+        "Akcje": "Action",
+        "Edycja": "Edit",
+        "Usuń": "Delete",
+        "Kod": "Code",
+        "Utworzone": "Created",
+        "Zaktualizowane": "Updated",
+        "Zapisz zmiany": "Save changes",
+        "Tytuł": "Title",
+        "Introtekst": "Introtext",
+        "Treść": "Content",
+        "Obrazek przewodni": "Image ",
+        "Edit Blog Post": "Edit Blog Post",
+        "Update Post": "Update Post",
+        "Wróć do Artykułów": "Back to Articles",
+        "stycznia": "January",
+        "lutego": "February",
+        "marca": "March",
+        "kwietnia": "April",
+        "maja": "May",
+        "czerwca": "June",
+        "lipca": "July",
+        "sierpnia": "August",
+        "września": "September",
+        "października": "October",
+        "listopada": "November",
+        "grudnia": "December"
+    },
+    "profile3": "profile3",
+    "profile4": "profile4",
+    "profile5": "profile5",
+    "auth": "auth",
+    "auth1": "auth1",
+    "auth2": "auth2",
+    "password": {
+        "confirm_password": "Confirm Password",
+        "confirm_password_description": "This is a secure area of the application. Please confirm your password before continuing.",
+        "password": "Password",
+        "confirm": "Confirm",
+        "forgot_password": "Forgot Password",
+        "forgot_password_description": "Forgot your password? No problem. Just let us know your email address, and we will email you a password reset link that will allow you to choose a new one.",
+        "send_reset_link": "Send Reset Link"
+    },
+    "login": {
+        "login": "Log In",
+        "email": "Email",
+        "password": "Password",
+        "remember_me": "Remember Me",
+        "forgot_password": "Forgot Password?"
+    },
+    "register": {
+        "register": "Register",
+        "name": "Name",
+        "email": "Email",
+        "password": "Password",
+        "confirm_password": "Confirm Password",
+        "already_have_account": "Already have an account?"
+    },
+    "reset": {
+        "reset_password": "Reset Password",
+        "email": "Email",
+        "password": "Password",
+        "confirm_password": "Confirm Password",
+        "reset_password_action": "Reset Password"
+    },
+    "verify": {
+        "verify_email": "Verify Email Address",
+        "email_verification_prompt": "Thank you for signing up! Before getting started, could you verify your email address by clicking the link we just emailed to you? If you didn’t receive the email, we will gladly send you another.",
+        "verification_link_resent": "A new verification link has been sent to the email address you provided during registration.",
+        "resend_verification_email": "Resend Verification Email",
+        "logout": "Log Out"
+    },
+    "auth3": "auth3",
+    "auth4": "auth4",
+    "auth5": "auth5",
+    "form": "form",
+    "form1": "form1",
+    "form2": "form2",
+    "multiStep": {
+        "start": "Start",
+        "end": "End",
+        "help_text": "We help enforce consumer rights",
+        "employee_name": "Albert Konrad",
+        "employee_title": "BeSmart Assistants",
+        "previous": "Previous",
+        "next": "Next",
+        "submit": "Submit"
+    },
+    "step1": {
+        "greeting_message": "Good day! Let's check if the airline owes you compensation. Please provide your travel destination.",
+        "departure_placeholder": "e.g. New York or JFK",
+        "arrival_placeholder": "e.g. London or LHR",
+        "submit_request": "Submit Request",
+        "layover_question": "Do you have a layover?",
+        "layover_yes": "Yes",
+        "layover_no": "No",
+        "arrival_place": "Arrival Airport",
+        "select_flight": "Select Your Flight",
+        "filter": "Filter Flights",
+        "no_flights": "No flights found for your criteria",
+        "departure_time": "Departure Time",
+        "airline": "Airline",
+        "flight_number": "Flight Number",
+        "cant_find": "I cannot find my flight",
+        "Wylot": "Departure",
+        "Przylot": "Arrival",
+        "correctAirport": "Please type the right airport code",
+        "correctDate": "Please type the right date"
+    },
+    "step2": {
+        "instruction": "Alright. I just need a few more details about the flight to check if it qualifies for compensation.",
+        "airlinePlaceholder": "E.g., British Airways",
+        "flightNumberPlaceholder": "Flight Number",
+        "datePlaceholder": "DD/MM/YYYY, HH:MM"
+    },
+    "step3": {
+        "disruption": {
+            "label": "Now let’s move on to the disruption itself. What exactly happened?",
+            "options": {
+                "delayed": "My flight was delayed",
+                "canceled": "My flight was canceled",
+                "denied": "I was denied boarding"
+            }
+        },
+        "delayDuration": {
+            "label": "We’re very sorry. How long was your flight delayed?",
+            "options": {
+                "0-1": "0-1 hours",
+                "1-2": "1-2 hours",
+                "2-3": "2-3 hours",
+                "3-4": "3-4 hours",
+                "4+": "Over 4 hours",
+                "noArrival": "I didn’t arrive at my destination"
+            }
+        },
+        "voluntarySurrender": {
+            "label": "Did you voluntarily give up your seat in exchange for other benefits offered by the airline?",
+            "options": {
+                "yes": "Yes",
+                "no": "No"
+            }
+        }
+    },
+    "step4": {
+        "title": "To proceed with your case, I need some information.",
+        "firstNamePlaceholder": "First Name",
+        "lastNamePlaceholder": "Last Name",
+        "emailPlaceholder": "Email Address",
+        "consents": {
+            "selectAll": "Select all consents",
+            "consent1": "Consent 1",
+            "consent2": "Consent 2"
+        },
+        "modal": {
+            "title": {
+                "consent1": "Consent 1",
+                "consent2": "Consent 2"
+            },
+            "pdfDescription": "Replace with the path to your PDF",
+            "closeButton": "Close"
+        }
+    },
+    "step5": {
+        "title1": "Each passenger in your reservation may be entitled to compensation of up to €600",
+        "title2": "You can submit a claim on behalf of all the people listed in your reservation. Did anyone travel with you?",
+        "checkboxYes": "Yes, someone traveled with me",
+        "checkboxNo": "No, no one traveled with me",
+        "passengersLabel": "Full names of other passengers",
+        "passengersPlaceholder": "First Name Last Name, ..."
+    },
+    "step6": {
+        "title": "Add your address.",
+        "addressPlaceholder": "Address",
+        "apartmentPlaceholder": "Apartment Number (optional)",
+        "cityPlaceholder": "City",
+        "postalCodePlaceholder": "Postal Code",
+        "provincePlaceholder": "Province",
+        "countryPlaceholder": "Country",
+        "phonePlaceholder": "Phone Number",
+        "peselPlaceholder": "PESEL Number"
+    },
+    "step7": {
+        "title": "Enter your reservation number.",
+        "reservationNumberPlaceholder": "e.g. DXG 786 or FHU 674",
+        "reservationNumberInfoTitle": "Where can I find my reservation number?",
+        "reservationNumberInfo": "The reservation number is an identifier for the booking generated by the airline. You can find it on your electronic ticket, booking confirmation, or any other document received after completing the flight reservation. It usually consists of 6 characters, including letters and numbers (e.g. DF87G#, REDYYD, L5W4NW). Be sure not to use spaces."
+    },
+    "step8": {
+        "title": "Good news! It looks like you can claim up to €600 per person based on European Regulation EC 261. To receive the money you're entitled to, please sign below.",
+        "discountCodePlaceholder": "Enter discount code",
+        "checkCodeButton": "Check code",
+        "discountValidationMessage": {
+            "valid": "The discount code is valid!",
+            "invalid": "The discount code is invalid. Please try again."
+        },
+        "signaturePrompt": "Sign, save your signature and submit the form :)",
+        "resetButton": "Start over",
+        "saveButton": "Save"
+    },
+    "success": {
+        "title": "Success",
+        "message": "Thanks, Your form has been sent!"
+    },
+    "validation": {
+        "input1bInput1cError": "Please select your flight and indicate if a transfer took place",
+        "input3Error": "Please select either input1b or input1c",
+        "input4Error": "Please enter the airline name",
+        "input4aError": "Please enter the flight number",
+        "input4bError": "Please enter the date",
+        "input5input5ainput5bError": "Please answer question 1",
+        "input5ctoinput5hError": "Please answer question 2",
+        "input5iInput5cError": "Please answer question 3",
+        "emailError": "Please provide a valid email address",
+        "input6Error": "Please enter your first name",
+        "input6aError": "Please enter your last name",
+        "input6bError": "Please enter your email",
+        "input6bbError": "Please provide a valid email address",
+        "input6cError": "Please enter consent",
+        "input7aInput7bError": "Please answer question 1",
+        "input8Error": "Please enter your address",
+        "input8aError": "Please enter the flat number",
+        "input8bError": "Please enter the city",
+        "input8cError": "Please enter the postal code",
+        "input8dError": "Please enter the province",
+        "input8eError": "Please enter the country",
+        "input8gError": "Please enter PESEL",
+        "input8fError": "Please enter your phone number",
+        "input9Error": "Please enter the reservation number",
+        "signatureError": "Please enter your signature"
+    },
+    "form3": "form3",
+    "form4": "form4",
+    "form5": "form5"
+}

@@ -13,10 +13,9 @@ import CookieConsent from "@/Components/CookieConsent.jsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCircleCheck, faCircleXmark, faPlaneArrival, faPlaneDeparture} from "@fortawesome/free-solid-svg-icons";
 import NumberAnimate from "@/Components/NumberAnimate/NumberAnimate.jsx";
-// import route from 'ziggy-js';
+import {useTranslation} from "react-i18next";
+import HeroHeader from "@/Components/TextResponsiveness/HeroHeader.jsx";
 
-
-// Common content component
 // Common content component
 const HomeContent = () => {
     const [input1, setInput1] = useState('');
@@ -86,13 +85,6 @@ const HomeContent = () => {
 
         setErrors(newErrors);
 
-        // if (valid) {
-        //     Inertia.visit(route('multistep.iatas', {
-        //         input1: airportCode,
-        //         input1a: arrivalCode,
-        //     }));
-        // }
-
         if (valid) {
             const url = route('multistep.index', {
                 input1: airportCode,
@@ -109,7 +101,7 @@ const HomeContent = () => {
 
     };
 
-
+    const { t } = useTranslation();
 
     return (
         <div>
@@ -131,12 +123,11 @@ const HomeContent = () => {
                     {/*        </div>*/}
                     {/*    </div>*/}
                     {/*</div>*/}
-                    <div className="p-6 heading-custom">
-                        Masz odwołany bądź opóźniony lot?
-                    </div>
+                    {/*<div className="p-6 heading-custom">*/}
+                    <HeroHeader/>
+                    {/*</div>*/}
                     <div className="p-6 info-text-custom">
-                        Bez względu na cenę biletu nawet do 600€ odszkodowania przysługuje za każdego
-                        pasażera!
+                        {t('heroSection.infoText')}
                     </div>
 
                     <div className="image-container absolute top-0 right-0 w-1/2 h-full z-10">
@@ -156,7 +147,7 @@ const HomeContent = () => {
                                     <input
                                         type="text"
                                         id="input1"
-                                        placeholder="Lotnisko wylotu"
+                                        placeholder={t('heroSection.form.departurePlaceholder')}
                                         name="departureIata"
                                         value={airportCode}
                                         onChange={handleAirportCodeChange}
@@ -189,7 +180,7 @@ const HomeContent = () => {
                                     <input
                                         type="text"
                                         id="input1a"
-                                        placeholder="Lotnisko przylotu"
+                                        placeholder={t('heroSection.form.arrivalPlaceholder')}
                                         name="arrivalIata"
                                         value={arrivalCode}
                                         onChange={handleAirportCodeChange}
@@ -220,7 +211,7 @@ const HomeContent = () => {
                                     className="bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-100"
                                     style={{backgroundColor: "#4F914A"}}>
                             <span className="text-white text-center block">
-                                Sprawdź odszkodowanie
+                                {t('heroSection.form.checkCompensationButton')}
                             </span>
                                 </button>
                             </div>
@@ -232,25 +223,25 @@ const HomeContent = () => {
                 <div className="container lapping">
                     <div className="overlapping">
                         <div className="card overlap_shadow p-4">
-                            <div className="we_do mb-4">BeSmartAir DBA O PRAWA PASAŻERÓW LOTNICZYCH</div>
+                            <div className="we_do mb-4">{t('regulations.title')}</div>
                             <ul className="flex flex-col md:flex-row justify-between uppercase space-y-4 md:space-y-0 text-sm	">
                                 <li className="flex items-center">
                                     <img className="w-10" src="media/flags/euro.png"/>
-                                    <strong className="ml-2">Europejskie Rozporządzenie we261</strong>
+                                    <strong className="ml-2">{t('regulations.items.europeRegulation')}</strong>
                                 </li>
 
 
                                 <li className="flex items-center">
                                     <img className="w-10" src="media/flags/brazil.png"/>
-                                    <strong className="ml-2">Przepisy Brazylijskie</strong>
+                                    <strong className="ml-2">{t('regulations.items.brazilRegulation')}</strong>
                                 </li>
                                 <li className="flex items-center">
                                     <img className="w-10" src="media/flags/convention.png"/>
-                                    <strong className="ml-2">Konwencja montrealska</strong>
+                                    <strong className="ml-2">{t('regulations.items.montrealConvention')}</strong>
                                 </li>
                                 <li className="flex items-center">
-                                    <img className="w-10" src="media/flags/tunisia.png"/>
-                                    <strong className="ml-2">Przepisy Tureckie</strong>
+                                    <img className="w-10" src="media/flags/turkey_flag.avif"/>
+                                    <strong className="ml-2">{t('regulations.items.turkeyRegulation')}</strong>
                                 </li>
                             </ul>
                         </div>
@@ -268,104 +259,85 @@ const HomeContent = () => {
             </div>
 
             <div className="header text-center m-5">
-                <h2>DLACZEGO WYBRAĆ POMOC BeSmartAir?</h2>
+                <h2>{t('benefits.header')}</h2>
             </div>
             <div className="container flex flex-col md:flex-row">
                 <div className="card bg-transparent pt-5 p-4">
-                    <h5 className="font-weight-bold">WNIOSEK PRZY POMOCY BeSmartAir</h5>
+                    <h5 className="font-weight-bold">{t('benefits.withUs.title')}</h5>
                         <ul className="mt-3 text-success">
                             <li className="d-flex align-items-start mb-3">
                                 <FontAwesomeIcon icon={faCircleCheck} className="text-success me-3 mt-1"/>
                                 <div>
-                                    <strong>Łatwa procedura:</strong>
-                                    <p>Zajmujemy się Twoją sprawą od złożenia wniosku, aż do wypłaty odszkodowania.</p>
+                                    <strong>{t('benefits.withUs.points.1title')}</strong>
+                                    <p>{t('benefits.withUs.points.1description')}</p>
                                 </div>
                             </li>
                             <li className="d-flex align-items-start mb-3">
                                 <FontAwesomeIcon icon={faCircleCheck} className="text-success me-3 mt-1"/>
                                 <div>
-                                    <strong>Pełna obsługa:</strong>
-                                    <p>W Twoim imieniu składamy wszelkie niezbędne dokumenty.</p>
+                                    <strong>{t('benefits.withUs.points.2title')}</strong>
+                                    <p>{t('benefits.withUs.points.2description')}</p>
                                 </div>
                             </li>
                             <li className="d-flex align-items-start mb-3">
                                 <FontAwesomeIcon icon={faCircleCheck} className="text-success me-3 mt-1"/>
                                 <div>
-                                    <strong>Sprawne działanie:</strong>
-                                    <p>Po przesłaniu nam dokumentów online zajmujemy się całą resztą.</p>
+                                    <strong>{t('benefits.withUs.points.3title')}</strong>
+                                    <p>{t('benefits.withUs.points.3description')}</p>
                                 </div>
                             </li>
                             <li className="d-flex align-items-start mb-3">
-                                <FontAwesomeIcon icon={faCircleCheck} className="text-success me-3 mt-1"/>
+                            <FontAwesomeIcon icon={faCircleCheck} className="text-success me-3 mt-1"/>
                                 <div>
-                                    <strong>Stałe monitorowanie statusu:</strong>
-                                    <p>Cały czas jesteśmy w kontakcie i do Twojej dyspozycji informując o postępie
-                                        sprawy.</p>
+                                    <strong>{t('benefits.withUs.points.4title')}</strong>
+                                    <p>{t('benefits.withUs.points.4description')}</p>
                                 </div>
                             </li>
                             <li className="d-flex align-items-start">
                                 <FontAwesomeIcon icon={faCircleCheck} className="text-success me-3 mt-1"/>
                                 <div>
-                                    <strong>Brak kosztów za złożenie wniosku:</strong>
-                                    <p>
-                                        Brak kosztów za złożenie wniosku Wszelkie koszty obsługi prawnej są po naszej
-                                        stronie,
-                                        pobieramy opłatę tylko, gdy odszkodowanie zostanie wypłacone.
-                                    </p>
+                                    <strong>{t('benefits.withUs.points.5title')}</strong>
+                                    <p>{t('benefits.withUs.points.5description')}</p>
                                 </div>
                             </li>
                         </ul>
                 </div>
-
                 <div className="card overlap_shadow pt-5 p-4">
-                    <h5 className="font-weight-bold">DOCHODZENIE ODSZKODOWANIA LOTNICZEGO NA WŁASNĄ RĘKĘ</h5>
+                    <h5 className="font-weight-bold">{t('benefits.byYourself.title')}</h5>
                     <ul className="mt-3">
                         <li className="d-flex align-items-start mb-3">
                             <FontAwesomeIcon icon={faCircleXmark} className="text-danger me-3 mt-1"/>
                             <div>
-                                <strong>Biurokracja:</strong>
-                                <p>Nieoczywiste informacje odnośnie dokumentacji niezbędnej do złożenia wniosku.</p>
+                                <strong>{t('benefits.byYourself.points.1title')}</strong>
+                                <p>{t('benefits.byYourself.points.1description')}</p>
                             </div>
                         </li>
                         <li className="d-flex align-items-start mb-3">
                             <FontAwesomeIcon icon={faCircleXmark} className="text-danger me-3 mt-1"/>
                             <div>
-                                <strong>Czas:</strong>
-                                <p>
-                                    Dochodzenie swoich praw wymaga dużej cierpliwości podczas kontaktu z biurami obsługi
-                                    klienta
-                                    linii lotniczych oraz cały proces może trwać miesiącami.
-                                </p>
+                                <strong>{t('benefits.byYourself.points.2title')}</strong>
+                                <p>{t('benefits.byYourself.points.2description')}</p>
                             </div>
                         </li>
                         <li className="d-flex align-items-start mb-3">
                             <FontAwesomeIcon icon={faCircleXmark} className="text-danger me-3 mt-1"/>
                             <div>
-                                <strong>Stres:</strong>
-                                <p>Samodzielne przeprowadzenie całego procesu łącznie z negocjacjami z liniami
-                                    lotniczymi.</p>
+                                <strong>{t('benefits.byYourself.points.3title')}</strong>
+                                <p>{t('benefits.byYourself.points.3description')}</p>
                             </div>
                         </li>
                         <li className="d-flex align-items-start mb-3">
                             <FontAwesomeIcon icon={faCircleXmark} className="text-danger me-3 mt-1"/>
                             <div>
-                                <strong>Ryzyko:</strong>
-                                <p>
-                                    W sytuacji skierowania Twojego wniosku na drogę sądową musisz liczyć się kosztami
-                                    bez względu
-                                    na ostateczny wynik sprawy.
-                                </p>
+                                <strong>{t('benefits.byYourself.points.4title')}</strong>
+                                <p>{t('benefits.byYourself.points.4description')}</p>
                             </div>
                         </li>
                         <li className="d-flex align-items-start">
                             <FontAwesomeIcon icon={faCircleXmark} className="text-danger me-3 mt-1"/>
                             <div>
-                                <strong>Utrudniony kontakt z liniami lotniczymi:</strong>
-                                <p>
-                                    Nie zawsze a wręcz bardzo rzadko linie lotnicze informują klientów o przebiegu spray
-                                    i jej
-                                    statusie.
-                                </p>
+                                <strong>{t('benefits.byYourself.points.5title')}</strong>
+                                <p>{t('benefits.byYourself.points.5description')}</p>
                             </div>
                         </li>
                     </ul>
@@ -373,214 +345,105 @@ const HomeContent = () => {
             </div>
             <div className="container">
                 <div className="header text-center pt-5 m-5">
-                    <div className="why">DLACZEGO BEMSARTAIR?</div>
-                    <div className="we_do">Zajmujemy się profesjonalnym rozwiązywaniem problemów związanych z lotami
-                        samolotowymi
-                    </div>
-                    <div className="our_com">Nasza firma specjalizuje się w uzyskiwaniu odszkodowań dla naszych klientów
-                        z
-                        całego świata. Nie boimy się nawet trudnych i skomplikowanych przypadków. Zadowolenie klientów z
-                        realizacji naszych usług jest dla nas priorytetem.
+                    <div className="why">{t('whyUs.header')}</div>
+                    <div className="we_do">{t('whyUs.subheader')}</div>
+                    <div className="our_com">{t('whyUs.description')}
                     </div>
                 </div>
             </div>
-
-            {/*<div className="container mb-5">*/}
-            {/*    <div className="row">*/}
-            {/*        <div className="card p-4 hoverix image-container m-2 col-xl-3 col-lg-4 col-md-6 col-sm-12">*/}
-            {/*            <div className="image-wrapper_2">*/}
-            {/*                <img src="media/canceled_plane.png" alt="plane clock" className="plane-image"/>*/}
-            {/*            </div>*/}
-            {/*            <h5 className="font-weight-bold">Odwołany lot</h5>*/}
-            {/*            <ul className="list-hidden">*/}
-            {/*                <li>Twój lot został odwołany z krótkim wyprzedzeniem? Poza zwrotem pieniedzy przysługuje*/}
-            {/*                    Tobie*/}
-            {/*                    odszkodowanie w wysokosci do 600 eur.*/}
-
-            {/*                </li>*/}
-            {/*            </ul>*/}
-            {/*        </div>*/}
-            {/*        <div className="card p-4 hoverix image-container  m-2 col-xl-3 col-lg-4 col-md-6 col-sm-12">*/}
-            {/*            <div className="image-wrapper">*/}
-            {/*                <img src="media/plane_clock.png" alt="plane clock" className="plane-image"/>*/}
-            {/*            </div>*/}
-            {/*            <h5 className="font-weight-bold">Opóźniony lot</h5>*/}
-            {/*            <ul className="list-hidden">*/}
-            {/*                <li> W*/}
-            {/*                    sytuacji opóźnienia powyżej 3*/}
-            {/*                    godzin, dowiedz sie czy nasi*/}
-            {/*                    specjaliści uzyskają dla Ciebie*/}
-            {/*                    odszkodowanie do 600 eur.*/}
-            {/*                </li>*/}
-            {/*            </ul>*/}
-            {/*        </div>*/}
-            {/*        <div className="card p-4 hoverix image-container  m-2 col-xl-3 col-lg-4 col-md-6 col-sm-12">*/}
-            {/*            <div className="image-wrapper_3">*/}
-            {/*                <img src="media/1.png" alt="plane clock" className="plane-image"/>*/}
-            {/*            </div>*/}
-            {/*            <h5 className="font-weight-bold">Spóźnienie na lot przesiadkowy</h5>*/}
-            {/*            <ul className="list-hidden">*/}
-            {/*                <li>W*/}
-            {/*                    przypadku wylądowania z*/}
-            {/*                    3-godzinnym opóznieniem w*/}
-            {/*                    miejscu docelowym równiez*/}
-            {/*                    moze przysługiwać Tobie*/}
-            {/*                    odszkodowanie.*/}
-            {/*                </li>*/}
-            {/*            </ul>*/}
-            {/*        </div>*/}
-            {/*        <div className="card p-4 hoverix image-container m-2 col-xl-3 col-lg-4 col-md-6 col-sm-12">*/}
-            {/*            <div className="image-wrapper_4">*/}
-            {/*                <img src="media/plane_swap.png" alt="plane clock" className="plane-image"/>*/}
-            {/*            </div>*/}
-            {/*            <h5 className="font-weight-bold">Ciężka komunikacja z linią</h5>*/}
-            {/*            <ul className="list-hidden">*/}
-            {/*                <li>Twój*/}
-            {/*                    wniosek o odszkodowanie został*/}
-            {/*                    odrzucony badź zignorowany?*/}
-            {/*                    Sprawdzimy zasadność wniosku*/}
-            {/*                    oraz wywrzemy nacisk na linie*/}
-            {/*                    lotniczą, aby poczuła sie do*/}
-            {/*                    odpowiedzialności.*/}
-
-            {/*                </li>*/}
-            {/*            </ul>*/}
-            {/*        </div>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
             <div className="container m-5 ml-auto mr-auto card-container">
 
                 <div className="card-landing card-hover hoverix image-container"><div className="image-wrapper_2">
                             <img src="media/canceled_plane.png" alt="plane clock" className="plane-image"/>
                         </div>
-                        <h5 className="font-weight-bold">Odwołany lot</h5>
+                        <h5 className="font-weight-bold">{t('services.1title')}</h5>
                         <ul className="list-hidden">
-                            <li>Twój lot został odwołany z krótkim wyprzedzeniem? Poza zwrotem pieniedzy przysługuje
-                                Tobie
-                                odszkodowanie w wysokosci do 600€.
-
-                            </li>
+                            <li>{t('services.1description')}</li>
                         </ul></div>
                 <div className="card-landing card-hover hoverix image-container"><div className="image-wrapper">
                             <img src="media/plane_clock.png" alt="plane clock" className="plane-image"/>
                         </div>
-                        <h5 className="font-weight-bold">Opóźniony lot</h5>
+                        <h5 className="font-weight-bold">{t('services.2title')}</h5>
                         <ul className="list-hidden">
-                            <li> W
-                                sytuacji opóźnienia powyżej 3
-                                godzin, dowiedz sie czy nasi
-                                specjaliści uzyskają dla Ciebie
-                                odszkodowanie do 600€.
+                            <li>{t('services.2description')}
                             </li>
                         </ul></div>
                 <div className="card-landing card-hover hoverix image-container"><div className="image-wrapper_4">
-                            <img src="media/plane_swap.png" alt="plane clock" className="plane-image"/>
-                        </div>
-                        <h5 className="font-weight-bold">Spóźnienie na lot przesiadkowy</h5>
-                        <ul className="list-hidden">
-                            <li>W
-                                przypadku wylądowania z
-                                3-godzinnym opóznieniem w
-                                miejscu docelowym równiez
-                                moze przysługiwać Tobie
-                                odszkodowanie.
-                            </li>
-                        </ul></div>
-                <div className="card-landing card-hover hoverix image-container"><div className="image-wrapper_3">
+                    <img src="media/plane_swap.png" alt="plane clock" className="plane-image"/>
+                </div>
+                    <h5 className="font-weight-bold">{t('services.3title')}</h5>
+                    <ul className="list-hidden">
+                        <li>{t('services.3description')}
+                        </li>
+                    </ul>
+                </div>
+                <div className="card-landing card-hover hoverix image-container">
+                    <div className="image-wrapper_3">
                             <img src="media/1.png" alt="plane clock" className="plane-image"/>
-                        </div>
-                        <h5 className="font-weight-bold">Ciężka komunikacja z linią</h5>
-                        <ul className="list-hidden">
-                            <li>Twój
-                                wniosek o odszkodowanie został
-                                odrzucony badź zignorowany?
-                                Sprawdzimy zasadność wniosku
-                                oraz wywrzemy nacisk na linie
-                                lotniczą, aby poczuła sie do
-                                odpowiedzialności.
-
-                            </li>
-                        </ul></div>
-
+                </div>
+                    <h5 className="font-weight-bold">{t('services.4title')}</h5>
+                    <ul className="list-hidden">
+                        <li>{t('services.4description')}</li>
+                    </ul>
+                </div>
             </div>
             <div className="row bg-white">
                 <div className="container mt-5  flex flex-col md:flex-row">
                     <div className="card mt-5">
                         <div className="container">
-                        <h2 className="darkGreenText">Rozliczamy nasze
-                            wynagrodzenie jedynie, gdy
-                            otrzymasz należne
-                            odszkodowanie</h2>
-                        <div className="greenText">Nasze wynagrodzenie liczymy od kwoty odszkodowania, które dla Ciebie
-                            uzyskamy, tym samym nie ponosisz ryzyka. Nasz opłata wynosi 20%
+                            <h2 className="darkGreenText">{t('gain.compensation.title')}</h2>
+                            <div className="greenText">{t('gain.compensation.description')}</div>
                         </div>
                     </div>
-                    </div>
-
                     <div className="card mt-5 mb-5">
-                        <img
-                            src={"media/walett.png"}/>
+                        <img src={"media/walett.png"}/>
                     </div>
                 </div>
                 <div className="container custom-hr mt-5 mb-5"/>
                 <div className="container  flex flex-col md:flex-row mt-5 mb-5">
                     <div className="card">
                         <div className="container mt-5 mb-5">
-                            <h4 className="darkGreenText">Pasażerowie nie są świadomi jak dużym problemem są opóźnione
-                                i
-                                odwołane loty w globalnej skali. BeSmartAir zadba o Twoje prawa dążąc do uzyskania
-                                odszkodowania lotniczego na Twoja prośbę.
-                            </h4>
+                            <h4 className="darkGreenText">{t('gain.clients.awareness')}</h4>
                             <div className="p-2">
-                            <div
-                                className="container mb-5 mt-3 w-80 bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                                style={{backgroundColor: "#4F914A"}}
-                            >
-                                <Link href={route('multistep.index')} className="text-white">
-                                    Sprawdź odszkodowanie
-                                </Link>
-                            </div>
+                                <div
+                                    className="container mb-5 mt-3 w-80 bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                    style={{backgroundColor: "#4F914A"}}
+                                >
+                                    <Link href={route('multistep.index')} className="text-white">
+                                        {t('gain.compensation.check')}
+                                    </Link>
+                                </div>
                             </div>
                         </div>
                     </div>
-                        <div className="vert-hr m-5"/>
-                        <div className="card">
-                            <div className="container mt-5 mb-5">
-                                <div className="column">
-                                    {/*<h3 className="greenText font-weight-bold">195 000</h3>*/}
-                                    <NumberAnimate targetNumber={195000} duration={3} />
-                                    <div className="greenText font-weight-bold">Odwołanych lotów lotniczych rocznie</div>
-                                    <br/>
-                                    <br/>
-                                    <NumberAnimate targetNumber={2000} duration={3} />
-                                    <div className="greenText font-weight-bold">Międzynarodowych lotnisk</div>
-                                </div>
-                                <div className="column">
-                                    <NumberAnimate targetNumber={30000} duration={3} />
-                                    <div className="greenText font-weight-bold">Opóźnionych lotów dziennie</div>
-                                    <br/>
-                                    <br/>
-                                    <div className="font-weight-bold">Jedynie co 2 uprawiony pasażer stara się o
-                                        uzyskanie
-                                        odszkodowania lotniczego
-                                    </div>
-                                </div>
+                    <div className="vert-hr m-5"/>
+                    <div className="card">
+                        <div className="container mt-5 mb-5">
+                            <div className="column">
+                                <NumberAnimate targetNumber={195000} duration={3}/>
+                                <div className="greenText font-weight-bold">{t('gain.statistics.cancelledFlights')}</div>
+                                <br/>
+                                <br/>
+                                <NumberAnimate targetNumber={2000} duration={3}/>
+                                <div
+                                    className="greenText font-weight-bold">{t('gain.statistics.internationalAirports')}</div>
+                            </div>
+                            <div className="column">
+                                <NumberAnimate targetNumber={30000} duration={3}/>
+                                <div className="greenText font-weight-bold">{t('gain.statistics.delayedFlights')}</div>
+                                <br/>
+                                <br/>
+                                <div className="font-weight-bold">{t('gain.statistics.passengerClaims')}</div>
                             </div>
                         </div>
-
                     </div>
                 </div>
-                <div className="header text-center m-5">
-                <h2>Co mówią o nas klienci</h2>
+            </div>
+            <div className="header text-center m-5">
+                <h2>{t('gain.clientFeedback.title')}</h2>
             </div>
             <TestimonialsSlider/>
-
         </div>
-
-
-        // </div>
-        // </div>
-
     );
 };
 
@@ -592,7 +455,7 @@ export default function Home({auth}) {
                     {/*<AuthenticatedLayout user={auth.user} header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Home</h2>}>*/}
                     <Head title="Home"/>
                     <HomeContent/>
-                    <CookieConsent />
+                    <CookieConsent/>
                     <Footer/>
                 </AuthenticatedLayout>
             ) : (
@@ -607,4 +470,3 @@ export default function Home({auth}) {
         </>
     );
 }
-

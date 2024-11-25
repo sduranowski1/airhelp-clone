@@ -6,6 +6,7 @@ import Modal from '@/Components/Modal';
 import SecondaryButton from '@/Components/SecondaryButton';
 import TextInput from '@/Components/TextInput';
 import { useForm } from '@inertiajs/react';
+import {t} from "i18next";
 
 export default function DeleteUserForm({ className = '' }) {
     const [confirmingUserDeletion, setConfirmingUserDeletion] = useState(false);
@@ -46,25 +47,23 @@ export default function DeleteUserForm({ className = '' }) {
     return (
         <section className={`space-y-6 ${className}`}>
             <header>
-                <h2 className="text-lg font-medium text-gray-900">Usuń konto</h2>
+                <h2 className="text-lg font-medium text-gray-900">{t('dashboard.delete_account')}</h2>
 
                 <p className="mt-1 text-sm text-gray-600">
-                    Po usunięciu Twojego konta wszystkie jego zasoby i dane zostaną trwale usunięte. Zanim
-                    usunięcia konta, pobierz wszelkie dane lub informacje, które chcesz zachować.
+                    {t('dashboard.delete_account_description')}
                 </p>
             </header>
 
-            <DangerButton onClick={confirmUserDeletion}>Usuń konto</DangerButton>
+            <DangerButton onClick={confirmUserDeletion}>{t('dashboard.delete_account_button')}</DangerButton>
 
             <Modal show={confirmingUserDeletion} onClose={closeModal}>
                 <form onSubmit={deleteUser} className="p-6">
                     <h2 className="text-lg font-medium text-gray-900">
-                        Czy na pewno chcesz usunąć swoje konto?
+                        {t('dashboard.delete_account_confirmation_title')}
                     </h2>
 
                     <p className="mt-1 text-sm text-gray-600">
-                        Po usunięciu Twojego konta wszystkie jego zasoby i dane zostaną trwale usunięte. Proszę
-                        wprowadź swoje hasło, aby potwierdzić, że chcesz trwale usunąć swoje konto.
+                        {t('dashboard.delete_account_confirmation_description')}
                     </p>
 
                     <div className="mt-6">
@@ -86,10 +85,10 @@ export default function DeleteUserForm({ className = '' }) {
                     </div>
 
                     <div className="mt-6 flex justify-end">
-                        <SecondaryButton onClick={closeModal}>Cancel</SecondaryButton>
+                        <SecondaryButton onClick={closeModal}>{t('dashboard.cancel')}</SecondaryButton>
 
                         <DangerButton className="ms-3" disabled={processing}>
-                            Usuń konto
+                            {t('dashboard.delete_account_button')}
                         </DangerButton>
                     </div>
                 </form>

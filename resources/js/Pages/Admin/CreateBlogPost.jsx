@@ -4,7 +4,8 @@ import { Head } from '@inertiajs/react';
 import AdminDashboard from "@/Layouts/Sidebar.jsx";
 import AdminNav from "@/Layouts/AdminNav.jsx";
 import ReactQuill from "react-quill";
-import 'react-quill/dist/quill.snow.css'; // Import Quill styles
+import 'react-quill/dist/quill.snow.css';
+import {t} from "i18next"; // Import Quill styles
 
 export default function CreateBlogPost({ auth }) {
     const { data, setData, post } = useForm({
@@ -61,7 +62,7 @@ export default function CreateBlogPost({ auth }) {
                             <form onSubmit={handleSubmit}>
                                 <div className="p-3 flex flex-col space-y-3">
                                     <div>
-                                        <label>Tytuł</label>
+                                        <label>{t("table.Tytuł")}</label>
                                         <br/>
                                         <input
                                             type="text"
@@ -71,7 +72,7 @@ export default function CreateBlogPost({ auth }) {
                                         />
                                     </div>
                                     <div>
-                                        <label>Introtekst</label>
+                                        <label>{t("table.Introtekst")}</label>
                                         <br/>
                                         <textarea
                                             value={data.excerpt}
@@ -80,7 +81,7 @@ export default function CreateBlogPost({ auth }) {
                                         ></textarea>
                                     </div>
                                     <div>
-                                        <label>Treść</label>
+                                        <label>{t("table.Treść")}</label>
                                         <br/>
                                         <ReactQuill
                                             value={data.content}
@@ -105,11 +106,11 @@ export default function CreateBlogPost({ auth }) {
                                         />
                                     </div>
                                     <div>
-                                        <label>Obrazek przewodni</label>
+                                        <label>{t("table.Obrazek przewodni")}</label>
                                         <input type="file" onChange={e => setData('image', e.target.files[0])}/>
                                     </div>
                                     <div className="text-center">
-                                        <button className="btn btn-primary w-25" type="submit">Utwórz Post</button>
+                                        <button className="btn btn-primary w-25" type="submit">{t("table.Utwórz")}</button>
                                     </div>
                                 </div>
                             </form>

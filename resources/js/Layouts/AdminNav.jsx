@@ -1,10 +1,12 @@
-import {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import Dropdown from '@/Components/Dropdown';
 import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link } from '@inertiajs/react';
 import {useAuth} from "@/Contexts/AuthContext.jsx";
+import LanguageSwitcher from "@/Layouts/LanguageSwitcher.jsx";
+import {t} from "i18next";
 
 export default function AdminNav({ user, header, children }) {
     const { auth } = useAuth();
@@ -76,13 +78,13 @@ export default function AdminNav({ user, header, children }) {
 
                             <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                 <NavLink href={route('home')} active={route().current('home')}>
-                                    Strona główna
+                                    {t('navigation.home')}
                                 </NavLink>
                             </div>
 
                             <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                 <NavLink href={route('multistep.index')} active={route().current('multistep')}>
-                                    Sprawdź odszkodowanie
+                                    {t('navigation.checkCompensation')}
                                 </NavLink>
                             </div>
 
@@ -102,7 +104,7 @@ export default function AdminNav({ user, header, children }) {
                                 <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                     <NavLink href={route('admin.dashboard')}
                                              active={route().current('admin.dashboard')}>
-                                        Panel CRM
+                                        {t('navigation.admin')}
                                     </NavLink>
                                 </div>
                             )}
@@ -136,10 +138,11 @@ export default function AdminNav({ user, header, children }) {
                                     </Dropdown.Trigger>
 
                                     <Dropdown.Content>
-                                        <Dropdown.Link href={route('profile.edit')}>Profil</Dropdown.Link>
+                                        <Dropdown.Link href={route('profile.edit')}>{t('navigation.profile')}</Dropdown.Link>
                                         <Dropdown.Link href={route('logout')} method="post" as="button">
-                                            Wyloguj
+                                            {t('navigation.logOut')}
                                         </Dropdown.Link>
+                                        <LanguageSwitcher/>
                                     </Dropdown.Content>
                                 </Dropdown>
                             </div>
@@ -175,13 +178,13 @@ export default function AdminNav({ user, header, children }) {
 
                     <div className="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink href={route('home')} active={route().current('home')}>
-                            Strona główna
+                            {t('navigation.home')}
                         </ResponsiveNavLink>
                     </div>
 
                     <div className="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink href={route('multistep.index')} active={route().current('multistep')}>
-                            Sprawdź odszkodowanie
+                            {t('navigation.checkCompensation')}
                         </ResponsiveNavLink>
                     </div>
 
@@ -207,14 +210,14 @@ export default function AdminNav({ user, header, children }) {
 
                     <div className="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
-                            Panel klienta
+                            {t('navigation.home')}
                         </ResponsiveNavLink>
                     </div>
 
                     <div className="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink href={route('admin.dashboard')}
                                            active={route().current('admin.dashboard')}>
-                            Panel CRM
+                            {t('navigation.admin')}
                         </ResponsiveNavLink>
                     </div>
 
@@ -225,10 +228,12 @@ export default function AdminNav({ user, header, children }) {
                         </div>
 
                         <div className="mt-3 space-y-1">
-                            <ResponsiveNavLink href={route('profile.edit')}>Profil</ResponsiveNavLink>
+                            <ResponsiveNavLink href={route('profile.edit')}>{t('navigation.profile')}</ResponsiveNavLink>
                             <ResponsiveNavLink method="post" href={route('logout')} as="button">
-                                Wyloguj
+                                {t('navigation.logOut')}
                             </ResponsiveNavLink>
+                            <LanguageSwitcher/>
+
                         </div>
                     </div>
                 </div>

@@ -5,6 +5,7 @@ import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Head, useForm } from '@inertiajs/react';
+import {t} from "i18next";
 
 export default function ResetPassword({ token, email }) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -28,11 +29,11 @@ export default function ResetPassword({ token, email }) {
 
     return (
         <GuestLayout>
-            <Head title="Resetowanie Hasła" />
+            <Head title={t('reset.reset_password')} />
 
             <form onSubmit={submit}>
                 <div>
-                    <InputLabel htmlFor="email" value="Email" />
+                    <InputLabel htmlFor="email" value={t('reset.email')} />
 
                     <TextInput
                         id="email"
@@ -48,7 +49,7 @@ export default function ResetPassword({ token, email }) {
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Hasło" />
+                    <InputLabel htmlFor="password" value={t('reset.password')} />
 
                     <TextInput
                         id="password"
@@ -65,7 +66,7 @@ export default function ResetPassword({ token, email }) {
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="password_confirmation" value="Potwierdź Hasło" />
+                    <InputLabel htmlFor="password_confirmation" value={t('reset.confirm_password')} />
 
                     <TextInput
                         type="password"
@@ -82,7 +83,7 @@ export default function ResetPassword({ token, email }) {
 
                 <div className="flex items-center justify-end mt-4">
                     <PrimaryButton className="ms-4" disabled={processing}>
-                        Zresetuj Hasło
+                        {t('reset.reset_password_action')}
                     </PrimaryButton>
                 </div>
             </form>

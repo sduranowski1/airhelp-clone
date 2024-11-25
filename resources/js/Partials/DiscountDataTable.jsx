@@ -2,6 +2,7 @@
 import React from 'react';
 import { InertiaLink } from '@inertiajs/inertia-react';
 import {Inertia} from "@inertiajs/inertia";
+import {t} from "i18next";
 
 const DiscountDataTable = ({ discountData }) => {
     if (!Array.isArray(discountData) || discountData.length === 0) {
@@ -30,19 +31,19 @@ const DiscountDataTable = ({ discountData }) => {
                 href={route('admin.discounts.create')}
                 className="text-white p-2 bg-green-600 rounded hover:bg-green-700 mr-2"
             >
-                Utwórz
+                {t("table.Utwórz")}
             </InertiaLink>
             </div>
             <table className="min-w-full bg-white border border-gray-300">
                 <thead>
                 <tr>
                     <th className="py-2 px-4 border-b border-gray-300">ID</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Kod</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Opis</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Koniec</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Utworzone</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Zaktualizowane</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Akcje</th> {/* Add Actions column */}
+                    <th className="py-2 px-4 border-b border-gray-300">{t("table.Kod")}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t("table.Opis")}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t("table.Koniec")}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t("table.Utworzone")}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t("table.Zaktualizowane")}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t("table.Akcje")}</th> {/* Add Actions column */}
                 </tr>
                 </thead>
                 <tbody>
@@ -59,12 +60,12 @@ const DiscountDataTable = ({ discountData }) => {
                                 href={route('admin.discounts.edit', discount.id)}
                                 className="text-blue-500 hover:text-blue-700 mr-2"
                             >
-                                Edycja
+                                {t("table.Edycja")}
                             </InertiaLink>
                             <td>
                                 <button onClick={() => handleDelete(discount.id)}
                                         className="text-red-500 hover:text-red-700 mr-2"
-                                >Usuń</button>
+                                >{t("table.Usuń")}</button>
                             </td>
                         </td>
                     </tr>

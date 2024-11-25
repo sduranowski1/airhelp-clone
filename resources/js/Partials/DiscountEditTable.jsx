@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useForm } from '@inertiajs/inertia-react';
+import {t} from "i18next";
 
 const DiscountEditTable = ({ discount }) => {
     const { data, setData, put } = useForm({
@@ -43,7 +44,7 @@ const DiscountEditTable = ({ discount }) => {
                 />
                 <div className="text-center">
 
-                    <button className="btn btn-primary w-25" type="submit">Zapisz zmiany</button>
+                    <button className="btn btn-primary w-25" type="submit">{t("table.Zapisz zmiany")}</button>
                 </div>
             </div>
         </form>

@@ -3,6 +3,7 @@ import InputError from '@/Components/InputError';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Head, useForm } from '@inertiajs/react';
+import {t} from "i18next";
 
 export default function ForgotPassword({ status }) {
     const { data, setData, post, processing, errors } = useForm({
@@ -17,13 +18,17 @@ export default function ForgotPassword({ status }) {
 
     return (
         <GuestLayout>
-            <Head title="Zapomniałeś Hasła" />
+            <Head title={t('password.forgot_password')} />
 
             <div className="mb-4 text-sm text-gray-600">
-                Zapomniałeś hasła? Nie ma problemu. Po prostu podaj nam swój adres e-mail, a wyślemy Ci link resetujący hasło, który umożliwi Ci wybranie nowego.
+                {t('password.forgot_password_description')}
             </div>
 
-            {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
+            {status && (
+                <div className="mb-4 font-medium text-sm text-green-600">
+                    {status}
+                </div>
+            )}
 
             <form onSubmit={submit}>
                 <TextInput
@@ -40,7 +45,7 @@ export default function ForgotPassword({ status }) {
 
                 <div className="flex items-center justify-end mt-4">
                     <PrimaryButton className="ms-4" disabled={processing}>
-                        Wyślij Link Resetujący Hasło
+                        {t('password.send_reset_link')}
                     </PrimaryButton>
                 </div>
             </form>

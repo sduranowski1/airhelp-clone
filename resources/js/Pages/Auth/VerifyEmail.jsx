@@ -1,6 +1,8 @@
 import GuestLayout from '@/Layouts/GuestLayout';
 import PrimaryButton from '@/Components/PrimaryButton';
 import { Head, Link, useForm } from '@inertiajs/react';
+import {t} from "i18next";
+
 
 export default function VerifyEmail({ status }) {
     const { post, processing } = useForm({});
@@ -13,21 +15,23 @@ export default function VerifyEmail({ status }) {
 
     return (
         <GuestLayout>
-            <Head title="Weryfikacja Adresu Email" />
+            <Head title={t('verify.verify_email')} />
 
             <div className="mb-4 text-sm text-gray-600">
-                Dziękujemy za rejestrację! Zanim zaczniesz korzystać, czy mógłbyś zweryfikować swój adres email, klikając na link, który właśnie wysłaliśmy na Twój adres email? Jeśli nie otrzymałeś wiadomości email, chętnie wyślemy Ci kolejną.
+                {t('verify.email_verification_prompt')}
             </div>
 
             {status === 'verification-link-sent' && (
                 <div className="mb-4 font-medium text-sm text-green-600">
-                    Na Twój adres email, który podałeś podczas rejestracji, został wysłany nowy link weryfikacyjny.
+                    {t('verify.verification_link_resent')}
                 </div>
             )}
 
             <form onSubmit={submit}>
                 <div className="mt-4 flex items-center justify-between">
-                    <PrimaryButton disabled={processing}>Wyślij Ponownie Email Weryfikacyjny</PrimaryButton>
+                    <PrimaryButton disabled={processing}>
+                        {t('verify.resend_verification_email')}
+                    </PrimaryButton>
 
                     <Link
                         href={route('logout')}
@@ -35,7 +39,7 @@ export default function VerifyEmail({ status }) {
                         as="button"
                         className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
                     >
-                        Wyloguj
+                        {t('verify.logout')}
                     </Link>
                 </div>
             </form>

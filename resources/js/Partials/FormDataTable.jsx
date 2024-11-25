@@ -2,6 +2,7 @@
 import React, {useState} from 'react';
 import Modal from "@/Components/Modal.jsx";
 import {Inertia} from "@inertiajs/inertia";
+import {t} from "i18next";
 
 
 const FormDataTable = ({ formData }) => {
@@ -62,61 +63,35 @@ const FormDataTable = ({ formData }) => {
             <table className="min-w-full bg-white border border-gray-300">
                 <thead>
                 <tr>
-                    <th className="py-2 px-4 border-b border-gray-300">ID</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Nr zgłoszenia</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Status</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Umowa</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Kod rabatowy</th>
-                    {/*<th className="py-2 px-4 border-b border-gray-300">Odlot</th>*/}
-                    {/*<th className="py-2 px-4 border-b border-gray-300">Przylot</th>*/}
-                    <th className="py-2 px-4 border-b border-gray-300">Czy Twój lot obejmował przesiadkę?</th>
-                    {/*<th className="py-2 px-4 border-b border-gray-300"></th>*/}
-                    {/*<th className="py-2 px-4 border-b border-gray-300">Input2</th>*/}
-                    <th className="py-2 px-4 border-b border-gray-300">Dane lotu</th>
-                    {/*<th className="py-2 px-4 border-b border-gray-300"></th>*/}
-                    <th className="py-2 px-4 border-b border-gray-300">Linia lotnicza</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Nr lotu</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Dzień odlotu</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Teraz przejdźmy do samego zakłócenia. Co
-                        dokładnie się wydarzyło?
-                    </th>
-                    {/*<th className="py-2 px-4 border-b border-gray-300"></th>*/}
-                    {/*<th className="py-2 px-4 border-b border-gray-300"></th>*/}
-                    <th className="py-2 px-4 border-b border-gray-300">Bardzo nam przykro. Ile wynosiło opóźnienie
-                        Twojego lotu do miasta Seoul (ICN)?
-                    </th>
-                    {/*<th className="py-2 px-4 border-b border-gray-300"></th>*/}
-                    {/*<th className="py-2 px-4 border-b border-gray-300"></th>*/}
-                    {/*<th className="py-2 px-4 border-b border-gray-300"></th>*/}
-                    {/*<th className="py-2 px-4 border-b border-gray-300"></th>*/}
-                    {/*<th className="py-2 px-4 border-b border-gray-300"></th>*/}
-                    <th className="py-2 px-4 border-b border-gray-300">Czy dobrowolnie zrzekłeś(-aś) się miejsca na
-                        pokładzie w zamian za inne korzyści oferowane przez linię lotniczą?
-                    </th>
-                    {/*<th className="py-2 px-4 border-b border-gray-300"></th>*/}
-                    <th className="py-2 px-4 border-b border-gray-300">Imię pasażera</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Nazwisko</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Email</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Aby ruszyć z Twoją sprawą, potrzebuję kilku
-                        informacji.
-                    </th>
-                    {/*<td className="py-2 px-4 border-b border-gray-300"></td>*/}
-                    {/*<td className="py-2 px-4 border-b border-gray-300"></td>*/}
-                    <th className="py-2 px-4 border-b border-gray-300">Możesz złożyć wniosek w imieniu wszystkich osób
-                        wymienionych w Twojej rezerwacji. Czy ktoś z Tobą podróżował?
-                    </th>
-                    {/*<td className="py-2 px-4 border-b border-gray-300"></td>*/}
-                    <th className="py-2 px-4 border-b border-gray-300">Pozostali pasażerowie</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Adres</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Numer mieszkania</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Miasto</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Kod pocztowy</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Województwo</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Kraj</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Nr telefonu</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Nr rezerwacji</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Zaaplikowano</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Zaktualizowano</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.ID')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Nr zgłoszenia')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Status')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Umowa')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Kod rabatowy')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Czy Twój lot obejmował przesiadkę?')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Dane lotu')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Linia lotnicza')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Nr lotu')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Dzień odlotu')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Teraz przejdźmy do samego zakłócenia. Co dokładnie się wydarzyło?')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Bardzo nam przykro. Ile wynosiło opóźnienie Twojego lotu?')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Czy dobrowolnie zrzekłeś(-aś) się miejsca na pokładzie w zamian za inne korzyści oferowane przez linię lotniczą?')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Imię pasażera')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Nazwisko')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Email')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Aby ruszyć z Twoją sprawą, potrzebuję kilku informacji.')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Możesz złożyć wniosek w imieniu wszystkich osób wymienionych w Twojej rezerwacji. Czy ktoś z Tobą podróżował?')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Pozostali pasażerowie')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Adres')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Numer mieszkania')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Miasto')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Kod pocztowy')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Województwo')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Kraj')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Nr telefonu')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Nr rezerwacji')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Zaaplikowano')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Zaktualizowano')}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -138,9 +113,9 @@ const FormDataTable = ({ formData }) => {
                                 value={statusMap[row.id] || row.status} // Use status from state if available
                                 onChange={(e) => handleStatusChange(e, row.id)}
                             >
-                                <option value="Oczekuje">Oczekuje</option>
-                                <option value="Odrzucone">Odrzucone</option>
-                                <option value="Zatwierdzone">Zatwierdzone</option>
+                                <option value="Oczekuje">{t("table.Oczekuje")}</option>
+                                <option value="Odrzucone">{t("table.Odrzucone")}</option>
+                                <option value="Zatwierdzone">{t("table.Zatwierdzone")}</option>
                             </select>
                         </td>
                         <td className="py-2 px-4 border-b border-gray-300 cursor-pointer">
@@ -157,12 +132,12 @@ const FormDataTable = ({ formData }) => {
                             {/*)}*/}
                             {/* Clickable link to open modal */}
                             <button onClick={() => openModal(row.pdf_path)} className="text-blue-600 hover:underline">
-                                Otwórz PDF
+                                {t("dashboard.pdfButton")}
                             </button>
                             {isModalOpen && (
                                 <div className="fixed inset-0 bg-black/50 flex justify-center items-center">
                                     <div className="bg-white p-4 rounded shadow-lg max-w-lg w-full">
-                                        <h2 className="text-xl font-semibold mb-2">Umowa</h2>
+                                        <h2 className="text-xl font-semibold mb-2">{t('table.Umowa')}</h2>
                                         {/* PDF iframe in modal */}
                                         <iframe
                                             src={pdfUrl} // Same path for modal
@@ -175,7 +150,7 @@ const FormDataTable = ({ formData }) => {
                                             onClick={handleCloseModal1}
                                             className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
                                         >
-                                            Zamknij
+                                            {t('dashboard.closeButton')}
                                         </button>
                                     </div>
                                 </div>
@@ -189,8 +164,17 @@ const FormDataTable = ({ formData }) => {
                         <td className="py-2 px-4 border-b border-gray-300">{row.input1b}</td>
                         {/*<td className="py-2 px-4 border-b border-gray-300">{row.input1c}</td>*/}
                         {/*<td className="py-2 px-4 border-b border-gray-300">{row.input2}</td>*/}
-                        <td className="py-2 px-4 border-b border-gray-300">{row.input3}</td>
-                        {/*<td className="py-2 px-4 border-b border-gray-300">{row.input3a}</td>*/}
+                        <td className="py-2 px-4 border-b border-gray-300">
+                            {/* Check if input3 exists and is not empty */}
+                            {row.input3
+                                ? (() => {
+                                    const parts = row.input3.split(',');
+                                    const wylot = parts[0]?.split(':')[1]?.trim() || t('step1.cant_find'); // Safe access with optional chaining
+                                    const przylot = parts[1]?.split(':')[1]?.trim() || t('step1.cant_find'); // Safe access with optional chaining
+                                    return `${t('step1.Wylot')}: ${wylot}, ${t('step1.Przylot')}: ${przylot}`;
+                                })()
+                                : t('step1.cant_find')}
+                        </td>
                         <td className="py-2 px-4 border-b border-gray-300">{row.input4}</td>
                         <td className="py-2 px-4 border-b border-gray-300">{row.input4a}</td>
                         <td className="py-2 px-4 border-b border-gray-300">{row.input4b}</td>
@@ -234,12 +218,15 @@ const FormDataTable = ({ formData }) => {
                                     second: "2-digit"
                                 };
 
-                                // Format the date and split it
+                                // Format the date to get the month in its full form (e.g., "Listopada")
                                 const formattedDate = date.toLocaleString("pl-PL", options);
                                 const [day, month, year, time] = formattedDate.split(" ");
 
-                                // Capitalize the first letter of the month
-                                const monthCapitalized = month.charAt(0).toUpperCase() + month.slice(1);
+                                // Translate the month using the translation keys (e.g., "listopada" -> "November")
+                                const translatedMonth = t(`table.${month}`);
+
+                                // Capitalize the first letter of the translated month if not already
+                                const monthCapitalized = translatedMonth.charAt(0).toUpperCase() + translatedMonth.slice(1);
 
                                 return `${day} ${monthCapitalized} ${year}, ${time}`;
                             })()}
@@ -260,8 +247,9 @@ const FormDataTable = ({ formData }) => {
                                 const formattedDate = date.toLocaleString("pl-PL", options);
                                 const [day, month, year, time] = formattedDate.split(" ");
 
+                                const translatedMonth = t(`table.${month}`);
                                 // Capitalize the first letter of the month
-                                const monthCapitalized = month.charAt(0).toUpperCase() + month.slice(1);
+                                const monthCapitalized = translatedMonth.charAt(0).toUpperCase() + translatedMonth.slice(1);
 
                                 return `${day} ${monthCapitalized} ${year}, ${time}`;
                             })()}

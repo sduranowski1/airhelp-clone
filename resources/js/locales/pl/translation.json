@@ -1,0 +1,483 @@
+{
+    "layouts": "layouts",
+    "layouts1": "layouts1",
+    "layouts2": "layouts2",
+    "navigation": {
+        "home": "Strona główna",
+        "checkCompensation": "Sprawdź odszkodowanie",
+        "knowYourRights": "Poznaj swoje prawa",
+        "aboutUs": "O Nas",
+        "blog": "Blog",
+        "login": "Zaloguj",
+        "register": "Rejestracja",
+        "guest": "Gość",
+        "dashboard": "Panel klienta",
+        "admin": "Panel CRM",
+        "profile": "Profil",
+        "logOut": "Wyloguj"
+    },
+    "sidebar": {
+        "forms": "Formularze",
+        "users": "Użytkownicy",
+        "discounts": "Zniżki",
+        "blogCreator": "Kreator Bloga"
+    },
+    "layouts3": "layouts",
+    "layouts4": "layouts1",
+    "layouts5": "layouts2",
+    "heroSection": {
+        "heading": "Masz odwołany bądź opóźniony lot?",
+        "mobileHeading": "Masz odwołany bądź opóźniony lot?",
+        "infoText": "Bez względu na cenę biletu nawet do 600€ odszkodowania przysługuje za każdego pasażera!",
+        "form": {
+            "departurePlaceholder": "Lotnisko wylotu",
+            "arrivalPlaceholder": "Lotnisko przylotu",
+            "checkCompensationButton": "Sprawdź odszkodowanie",
+            "departureError": "Wprowadź poprawne lotnisko wylotu",
+            "arrivalError": "Wprowadź poprawne lotnisko przylotu"
+        }
+    },
+    "regulations": {
+        "title": "BeSmartAir DBA O PRAWA PASAŻERÓW LOTNICZYCH",
+        "items":
+            {
+                "europeRegulation": "Europejskie Rozporządzenie we261",
+                "brazilRegulation": "Przepisy Brazylijskie",
+                "montrealConvention": "Konwencja montrealska",
+                "turkeyRegulation": "Przepisy Tureckie"
+            }
+    },
+    "benefits": {
+        "header": "DLACZEGO WYBRAĆ POMOC BeSmartAir?",
+        "withUs": {
+            "title": "WNIOSEK PRZY POMOCY BeSmartAir",
+            "points":
+                {
+                    "1title": "Łatwa procedura:",
+                    "1description": "Zajmujemy się Twoją sprawą od złożenia wniosku, aż do wypłaty odszkodowania.",
+                    "2title": "Pełna obsługa:",
+                    "2description": "W Twoim imieniu składamy wszelkie niezbędne dokumenty.",
+                    "3title": "Sprawne działanie:",
+                    "3description": "Po przesłaniu nam dokumentów online zajmujemy się całą resztą.",
+                    "4title": "Stałe monitorowanie statusu:",
+                    "4description": "Cały czas jesteśmy w kontakcie i do Twojej dyspozycji informując o postępie sprawy.",
+                    "5title": "Brak kosztów za złożenie wniosku:",
+                    "5description": "Brak kosztów za złożenie wniosku. Wszelkie koszty obsługi prawnej są po naszej stronie, pobieramy opłatę tylko, gdy odszkodowanie zostanie wypłacone."
+                }
+        },
+        "byYourself": {
+            "title": "DOCHODZENIE ODSZKODOWANIA LOTNICZEGO NA WŁASNĄ RĘKĘ",
+            "points":
+                {
+                    "1title": "Biurokracja:",
+                    "1description": "Nieoczywiste informacje odnośnie dokumentacji niezbędnej do złożenia wniosku.",
+                    "2title": "Czas:",
+                    "2description": "Dochodzenie swoich praw wymaga dużej cierpliwości podczas kontaktu z biurami obsługi klienta linii lotniczych oraz cały proces może trwać miesiącami.",
+                    "3title": "Stres:",
+                    "3description": "Samodzielne przeprowadzenie całego procesu łącznie z negocjacjami z liniami lotniczymi.",
+                    "4title": "Ryzyko:",
+                    "4description": "W sytuacji skierowania Twojego wniosku na drogę sądową musisz liczyć się kosztami bez względu na ostateczny wynik sprawy.",
+                    "5title": "Utrudniony kontakt z liniami lotniczymi:",
+                    "5description": "Nie zawsze a wręcz bardzo rzadko linie lotnicze informują klientów o przebiegu sprawy i jej statusie."
+                }
+        }
+    },
+    "whyUs": {
+        "header": "DLACZEGO BESMARTAIR?",
+        "subheader": "Zajmujemy się profesjonalnym rozwiązywaniem problemów związanych z lotami samolotowymi",
+        "description": "Nasza firma specjalizuje się w uzyskiwaniu odszkodowań dla naszych klientów z całego świata. Nie boimy się nawet trudnych i skomplikowanych przypadków. Zadowolenie klientów z realizacji naszych usług jest dla nas priorytetem."
+    },
+    "services":
+        {
+            "1title": "Odwołany lot",
+            "1description": "Twój lot został odwołany z krótkim wyprzedzeniem? Poza zwrotem pieniedzy przysługuje Tobie odszkodowanie w wysokosci do 600€.",
+            "2title": "Opóźniony lot",
+            "2description": "W sytuacji opóźnienia powyżej 3 godzin, dowiedz sie czy nasi specjaliści uzyskają dla Ciebie odszkodowanie do 600€.",
+            "3title": "Spóźnienie na lot przesiadkowy",
+            "3description": "W przypadku wylądowania z 3-godzinnym opóznieniem w miejscu docelowym równiez moze przysługiwać Tobie odszkodowanie.",
+            "4title": "Ciężka komunikacja z linią",
+            "4description": "Twój wniosek o odszkodowanie został odrzucony badź zignorowany? Sprawdzimy zasadność wniosku oraz wywrzemy nacisk na linie lotniczą, aby poczuła sie do odpowiedzialności."
+        },
+    "gain": {
+        "compensation": {
+            "title": "Rozliczamy nasze wynagrodzenie jedynie, gdy otrzymasz należne odszkodowanie",
+            "description": "Nasze wynagrodzenie liczymy od kwoty odszkodowania, które dla Ciebie uzyskamy, tym samym nie ponosisz ryzyka. Nasza opłata wynosi 20%",
+            "check": "Sprawdź odszkodowanie"
+        },
+        "clients": {
+            "awareness": "Pasażerowie nie są świadomi jak dużym problemem są opóźnione i odwołane loty w globalnej skali. BeSmartAir zadba o Twoje prawa dążąc do uzyskania odszkodowania lotniczego na Twoją prośbę."
+        },
+        "statistics": {
+            "cancelledFlights": "Odwołanych lotów lotniczych rocznie",
+            "internationalAirports": "Międzynarodowych lotnisk",
+            "delayedFlights": "Opóźnionych lotów dziennie",
+            "passengerClaims": "Jedynie co 2 uprawiony pasażer stara się o uzyskanie odszkodowania lotniczego"
+        },
+        "clientFeedback": {
+            "title": "Co mówią o nas klienci"
+        }
+    },
+    "staticPages": "staticPages",
+    "staticPages1": "staticPages1",
+    "staticPages2": "staticPages2",
+    "privacy": {
+        "title": "Poznaj Swoje Prawa",
+        "header": "Prawa Pasażerów na Mocy Rozporządzenia UE 261/2004: Odszkodowania za Opóźnienia i Odwołania Lotów",
+        "intro": "Rozporządzenie (WE) nr 261/2004 Parlamentu Europejskiego i Rady, znane również jako Rozporządzenie UE 261, reguluje prawa pasażerów lotniczych w przypadkach opóźnień, odwołań lub odmowy przyjęcia na pokład. To ustawodawstwo ma na celu ochronę podróżnych i zagwarantowanie im odpowiedniego odszkodowania w sytuacjach zakłócających ich plany podróży.",
+        "discussion": "Poniżej omawiamy, jak rozporządzenie określa zasady odszkodowań, zwłaszcza w zależności od odległości lotu.",
+        "keyProvisions": "Kluczowe Postanowienia Rozporządzenia UE 261/2004",
+        "provisionsIntro": "Rozporządzenie UE 261 gwarantuje pasażerom prawo do odszkodowania w przypadkach:",
+        "provisionCancellation": "Odwołania lotu – gdy przewoźnik odwoła lot.",
+        "provisionDelay": "Opóźnienia lotu – jeśli lot jest opóźniony o ponad 3 godziny przy przylocie na miejsce docelowe.",
+        "provisionDeniedBoarding": "Odmowy przyjęcia na pokład – jeśli pasażerowie nie mogą wejść na pokład z powodu przepełnienia.",
+        "factorsIntro": "W takich sytuacjach pasażerowie mogą mieć prawo do odszkodowania. Jednak jego wysokość zależy od czynników takich jak czas opóźnienia, odległość lotu i szczególne okoliczności zdarzenia.",
+        "compensationRates": "Stawki Odszkodowań w Zależności od Odległości",
+        "ratesIntro": "Zgodnie z Rozporządzeniem UE 261/2004, odszkodowanie za opóźnienia, odwołania lub odmowę przyjęcia na pokład jest określane na podstawie odległości lotu i czasu opóźnienia. Stawki odszkodowania wynoszą:",
+        "examples": "Przykłady",
+        "additionalFactors": "Dodatkowe Czynniki Wpływające na Odszkodowanie",
+        "factors": "Odszkodowanie może być zmniejszone lub nieprzyznane, jeśli linia lotnicza udowodni, że opóźnienie lub odwołanie było spowodowane nadzwyczajnymi okolicznościami, takimi jak:",
+        "factorWeather": "Warunki pogodowe (np. silne burze, mgła).",
+        "factorStrikes": "Strajki (np. strajki kontrolerów ruchu lotniczego).",
+        "factorSafety": "Kwestie bezpieczeństwa (np. usterki techniczne niezawinione przez przewoźnika).",
+        "claimProcess": "Proces Składania Wniosków o Odszkodowanie",
+        "processSteps": "Pasażerowie, którzy doświadczyli opóźnień, odwołań lub odmowy przyjęcia na pokład, mogą ubiegać się o odszkodowanie, jeśli spełnione są warunki rozporządzenia. Aby ubiegać się o odszkodowanie, pasażerowie powinni:",
+        "processStep1": "Złożyć reklamację do linii lotniczej – jak najszybciej po zdarzeniu.",
+        "processStep2": "Określić odpowiednią sytuację – np. opóźnienie powyżej 3 godzin, odwołanie lotu itp.",
+        "processStep3": "Zachować dokumenty – takie jak bilety, karty pokładowe i korespondencję z linią lotniczą.",
+        "refusalNote": "Jeśli linia lotnicza odmówi odszkodowania, pasażerowie mogą skontaktować się z krajowym organem ochrony konsumentów lub skorzystać z pomocy organizacji specjalizujących się w roszczeniach odszkodowawczych za loty.",
+        "conclusion": "Podsumowanie",
+        "summary": "Rozporządzenie UE 261/2004 zapewnia pasażerom lotniczym ochronę w przypadkach opóźnień, odwołań lub odmowy przyjęcia na pokład. Kwoty odszkodowań wahają się od 250 € do 600 € w zależności od odległości lotu. Pasażerowie mają prawo do odszkodowania, jeśli spełnione są określone warunki, chociaż linie lotnicze mogą zmniejszyć lub uniknąć płatności w przypadku wystąpienia nadzwyczajnych okoliczności. Rozporządzenie to zapewnia ochronę praw konsumentów, zachowując równowagę między liniami lotniczymi a pasażerami, umożliwiając zgłaszanie roszczeń w sytuacjach nieprzewidzianych."
+    },
+    "aboutUs": {
+        "title": "O Nas",
+        "companyName": "BeSmartAir",
+        "intro": "Pomoc w dochodzeniu odszkodowań za opóźnione, odwołane lub przesiadkowe loty",
+        "sections": {
+            "whoWeAre": {
+                "heading": "Kim jesteśmy?",
+                "image": "http://138.68.158.146/media/about/Canceled-Flights.jpg",
+                "description": "BeSmartAir to wiodąca firma specjalizująca się w pomocy pasażerom w dochodzeniu odszkodowań za opóźnione, odwołane lub przesiadkowe loty. Nasza misja to zapewnienie, że każdy pasażer ma prawo do rekompensaty, której jest wart, niezależnie od sytuacji."
+            },
+            "expertise": {
+                "heading": "Nasza Ekspertyza",
+                "description": "Zespół naszych ekspertów z branży lotniczej ma wieloletnie doświadczenie w interpretacji przepisów prawa europejskiego, w tym Rozporządzenia WE 261/2004, które chroni prawa pasażerów. Dzięki temu jesteśmy w stanie skutecznie reprezentować naszych klientów w negocjacjach z liniami lotniczymi."
+            },
+            "service": {
+                "heading": "Nasza Usługa",
+                "image": "http://138.68.158.146/media/about/jeshoots-com-mSESwdMZr-A-unsplash.jpg",
+                "description": "W BeSmartAir oferujemy kompleksową obsługę – od analizy przypadków, przez zbieranie niezbędnych dokumentów, aż po reprezentowanie klientów w postępowaniach przed liniami lotniczymi. Nasz proces jest prosty i przejrzysty: klienci mogą zgłosić swoje roszczenie online, a my zajmiemy się resztą."
+            },
+            "whyUs": {
+                "heading": "Dlaczego warto z nami współpracować?",
+                "description": "Dzięki współpracy z nami, pasażerowie mogą skupić się na swoich podróżach, mając pewność, że ich prawa są w dobrych rękach. Nasza firma działa na zasadzie \"no win, no fee\", co oznacza, że płacisz tylko w przypadku sukcesu."
+            },
+            "joinUs": {
+                "heading": "Dołącz do nas!",
+                "image": "http://138.68.158.146/media/about/warsaw-transport-airport-AB-XL.jpg",
+                "description": "Dołącz do grona zadowolonych klientów BeSmartAir i odzyskaj swoje pieniądze za nieprzyjemne doświadczenia lotnicze!"
+            }
+        }
+    },
+    "staticPages3": "staticPages3",
+    "staticPages4": "staticPages4",
+    "staticPages5": "staticPages5",
+    "profile": "profile",
+    "profile1": "profile1",
+    "profile2": "profile2",
+    "dashboard": {
+        "formTitle": "Formularze",
+        "pdfButton": "Otwórz PDF",
+        "modalTitle": "Umowa",
+        "closeButton": "Zamknij",
+        "profile_data": "Dane profilu",
+        "update_profile_info": "Zaktualizuj informacje profilowe i adres e-mail swojego konta.",
+        "name": "Imię",
+        "email": "Email",
+        "email_unverified": "Twój adres e-mail jest niezweryfikowany.",
+        "resend_verification_email": "Kliknij tutaj, aby ponownie wysłać e-mail weryfikacyjny.",
+        "verification_link_sent": "Nowy link weryfikacyjny został wysłany na Twój adres e-mail.",
+        "save": "Zapisz",
+        "saved": "Zapisane.",
+        "update_password": "Zaktualizuj hasło",
+        "update_password_instruction": "Aby zachować bezpieczeństwo, upewnij się, że Twoje konto używa długiego, losowego hasła.",
+        "current_password": "Obecne hasło",
+        "new_password": "Nowe hasło",
+        "confirm_password": "Potwierdź hasło",
+        "delete_account": "Usuń konto",
+        "delete_account_description": "Po usunięciu Twojego konta wszystkie jego zasoby i dane zostaną trwale usunięte. Zanim usuniesz konto, pobierz wszelkie dane lub informacje, które chcesz zachować.",
+        "delete_account_button": "Usuń konto",
+        "delete_account_confirmation_title": "Czy na pewno chcesz usunąć swoje konto?",
+        "delete_account_confirmation_description": "Po usunięciu Twojego konta wszystkie jego zasoby i dane zostaną trwale usunięte. Proszę wprowadź swoje hasło, aby potwierdzić, że chcesz trwale usunąć swoje konto.",
+        "password": "Hasło",
+        "cancel": "Anuluj"
+    },
+    "table": {
+        "ID": "ID",
+        "Nr zgłoszenia": "Nr zgłoszenia",
+        "Status": "Status",
+        "Umowa": "Umowa",
+        "Czy Twój lot obejmował przesiadkę?": "Czy Twój lot obejmował przesiadkę?",
+        "Dane lotu": "Dane lotu",
+        "Linia lotnicza": "Linia lotnicza",
+        "Nr lotu": "Nr lotu",
+        "Dzień odlotu": "Dzień odlotu",
+        "Teraz przejdźmy do samego zakłócenia. Co dokładnie się wydarzyło?": "Teraz przejdźmy do samego zakłócenia. Co dokładnie się wydarzyło?",
+        "Bardzo nam przykro. Ile wynosiło opóźnienie Twojego lotu?": "Bardzo nam przykro. Ile wynosiło opóźnienie Twojego lotu?",
+        "Czy dobrowolnie zrzekłeś(-aś) się miejsca na pokładzie w zamian za inne korzyści oferowane przez linię lotniczą?": "Czy dobrowolnie zrzekłeś(-aś) się miejsca na pokładzie w zamian za inne korzyści oferowane przez linię lotniczą?",
+        "Imię pasażera": "Imię pasażera",
+        "Nazwisko": "Nazwisko",
+        "Email": "Email",
+        "Aby ruszyć z Twoją sprawą, potrzebuję kilku informacji.": "Aby ruszyć z Twoją sprawą, potrzebuję kilku informacji.",
+        "Możesz złożyć wniosek w imieniu wszystkich osób wymienionych w Twojej rezerwacji. Czy ktoś z Tobą podróżował?": "Możesz złożyć wniosek w imieniu wszystkich osób wymienionych w Twojej rezerwacji. Czy ktoś z Tobą podróżował?",
+        "Pozostali pasażerowie": "Pozostali pasażerowie",
+        "Adres": "Adres",
+        "Numer mieszkania": "Numer mieszkania",
+        "Miasto": "Miasto",
+        "Kod pocztowy": "Kod pocztowy",
+        "Województwo": "Województwo",
+        "Kraj": "Kraj",
+        "Nr telefonu": "Nr telefonu",
+        "Nr rezerwacji": "Nr rezerwacji",
+        "Kod rabatowy": "Kod rabatowy",
+        "Zaaplikowano": "Zaaplikowano",
+        "Zaktualizowano": "Zaktualizowano",
+        "Oczekuje": "Oczekuje",
+        "Odrzucone": "Odrzucone",
+        "Zatwierdzone": "Zatwierdzone",
+        "Imię": "Imię",
+        "Utwórz": "Utwórz",
+        "Opis": "Opis",
+        "Koniec": "Koniec",
+        "Akcje": "Akcje",
+        "Edycja": "Edycja",
+        "Usuń": "Usuń",
+        "Kod": "Kod",
+        "Utworzone": "Utworzone",
+        "Zaktualizowane": "Zaktualizowane",
+        "Zapisz zmiany": "Zapisz zmiany",
+        "Tytuł": "Tytuł",
+        "Introtekst": "Introtekst",
+        "Treść": "Treść",
+        "Obrazek przewodni": "Obrazek przewodni ",
+        "Edit Blog Post": "Edycja Posta",
+        "Update Post": "Edytuj post",
+        "Wróć do Artykułów": "Wróć do Artykułów",
+        "stycznia": "Stycznia",
+        "lutego": "Lutego",
+        "marca": "Marca",
+        "kwietnia": "Kwietnia",
+        "maja": "Maja",
+        "czerwca": "Czerwca",
+        "lipca": "Lipca",
+        "sierpnia": "Sierpnia",
+        "września": "Września",
+        "października": "Października",
+        "listopada": "Listopada",
+        "grudnia": "Grudnia"
+    },
+    "profile3": "profile3",
+    "profile4": "profile4",
+    "profile5": "profile5",
+    "auth": "auth",
+    "auth1": "auth1",
+    "auth2": "auth2",
+    "password": {
+        "confirm_password": "Potwierdź hasło",
+        "confirm_password_description": "Jest to strzeżony obszar aplikacji. Przed kontynuowaniem potwierdź swoje hasło.",
+        "password": "Hasło",
+        "confirm": "Potwierdź",
+        "forgot_password": "Zapomniałeś Hasła",
+        "forgot_password_description": "Zapomniałeś hasła? Nie ma problemu. Po prostu podaj nam swój adres e-mail, a wyślemy Ci link resetujący hasło, który umożliwi Ci wybranie nowego.",
+        "send_reset_link": "Wyślij Link Resetujący Hasło"
+    },
+    "login": {
+        "login": "Zaloguj się",
+        "email": "Email",
+        "password": "Hasło",
+        "remember_me": "Zapamiętaj mnie",
+        "forgot_password": "Zapomniałeś hasła?"
+    },
+    "register": {
+        "register": "Rejestracja",
+        "name": "Imię",
+        "email": "Email",
+        "password": "Hasło",
+        "confirm_password": "Potwierdź Hasło",
+        "already_have_account": "Masz już konto?"
+    },
+    "reset": {
+        "reset_password": "Resetowanie Hasła",
+        "email": "Email",
+        "password": "Hasło",
+        "confirm_password": "Potwierdź Hasło",
+        "reset_password_action": "Zresetuj Hasło"
+    },
+    "verify": {
+        "verify_email": "Weryfikacja Adresu Email",
+        "email_verification_prompt": "Dziękujemy za rejestrację! Zanim zaczniesz korzystać, czy mógłbyś zweryfikować swój adres email, klikając na link, który właśnie wysłaliśmy na Twój adres email? Jeśli nie otrzymałeś wiadomości email, chętnie wyślemy Ci kolejną.",
+        "verification_link_resent": "Na Twój adres email, który podałeś podczas rejestracji, został wysłany nowy link weryfikacyjny.",
+        "resend_verification_email": "Wyślij Ponownie Email Weryfikacyjny",
+        "logout": "Wyloguj"
+    },
+    "auth3": "auth3",
+    "auth4": "auth4",
+    "auth5": "auth5",
+    "form": "form",
+    "form1": "form1",
+    "form2": "form2",
+    "multiStep": {
+        "start": "Początek",
+        "end": "Koniec",
+        "help_text": "Pomagamy w egzekwowaniu praw konsumenta",
+        "employee_name": "Albert Konrad",
+        "employee_title": "Asystenci BeSmart",
+        "previous": "Poprzedni",
+        "next": "Następny",
+        "submit": "Wyślij"
+    },
+    "step1": {
+        "greeting_message": "Dzień dobry! Sprawdźmy, czy linia lotnicza jest Ci winna odszkodowanie. Podaj miejsce docelowe podróży.",
+        "departure_placeholder": "np. Nowy Jork lub JFK",
+        "arrival_placeholder": "np. Londyn lub LHR",
+        "submit_request": "Wyślij zapytanie",
+        "layover_question": "Czy Twój lot obejmował przesiadkę?",
+        "layover_yes": "Tak",
+        "layover_no": "Nie",
+        "arrival_place": "Lotnisko przylotu",
+        "select_flight": "Wybierz lot",
+        "filter": "Filtruj loty",
+        "no_flights": "Brak lotów spełniających Twoje kryteria",
+        "departure_time": "Czas wylotu",
+        "airline": "Linia lotnicza",
+        "flight_number": "Numer lotu",
+        "cant_find": "Nie mogę znaleźć swojego lotu",
+        "Wylot": "Wylot",
+        "Przylot": "Przylot",
+        "correctAirport": "'Podaj kod lotniska",
+        "correctDate": "Podaj właściwą date"
+    },
+    "step2": {
+        "instruction": "W porządku. Potrzebuję jeszcze tylko kilku informacji dotyczących lotu, aby sprawdzić, czy kwalifikuje się on do odszkodowania.",
+        "airlinePlaceholder": "Np. British Airways",
+        "flightNumberPlaceholder": "Nr Lotu",
+        "datePlaceholder": "DD/MM/RRRR, HH:MM"
+    },
+    "step3": {
+        "disruption": {
+            "label": "Teraz przejdźmy do samego zakłócenia. Co dokładnie się wydarzyło?",
+            "options": {
+                "delayed": "Mój lot został opóźniony",
+                "canceled": "Mój lot został odwołany",
+                "denied": "Odmówiono mi wejścia na pokład"
+            }
+        },
+        "delayDuration": {
+            "label": "Bardzo nam przykro. Ile wynosiło opóźnienie Twojego lotu?",
+            "options": {
+                "0-1": "0-1 godz",
+                "1-2": "1-2 godz",
+                "2-3": "2-3 godz",
+                "3-4": "3-4 godz",
+                "4+": "Ponad 4 godziny",
+                "noArrival": "Nie dotarłem (-am) na miejsce"
+            }
+        },
+        "voluntarySurrender": {
+            "label": "Czy dobrowolnie zrzekłeś(-aś) się miejsca na pokładzie w zamian za inne korzyści oferowane przez linię lotniczą?",
+            "options": {
+                "yes": "Tak",
+                "no": "Nie"
+            }
+        }
+    },
+    "step4": {
+        "title": "Aby ruszyć z Twoją sprawą, potrzebuję kilku informacji.",
+        "firstNamePlaceholder": "Imię",
+        "lastNamePlaceholder": "Nazwisko",
+        "emailPlaceholder": "Adres Email",
+        "consents": {
+            "selectAll": "Zaznacz wszystkie zgody",
+            "consent1": "Zgoda 1",
+            "consent2": "Zgoda 2"
+        },
+        "modal": {
+            "title": {
+                "consent1": "Zgoda 1",
+                "consent2": "Zgoda 2"
+            },
+            "pdfDescription": "Replace with the path to your PDF",
+            "closeButton": "Zamknij"
+        }
+    },
+    "step5": {
+        "title1": "Każdemu współpasażerowi z Twojej rezerwacji może przysługiwać odszkodowanie w wysokości do 600 €",
+        "title2": "Możesz złożyć wniosek w imieniu wszystkich osób wymienionych w Twojej rezerwacji. Czy ktoś z Tobą podróżował?",
+        "checkboxYes": "Tak, ktoś ze mną podróżował",
+        "checkboxNo": "Nie, nikt ze mną nie podróżował",
+        "passengersLabel": "Pełne imiona pozostałych pasażerów",
+        "passengersPlaceholder": "Imię Nazwisko, ..."
+    },
+    "step6": {
+        "title": "Dodaj swój adres.",
+        "addressPlaceholder": "Adres",
+        "apartmentPlaceholder": "Numer Lokalu (opcjonalnie)",
+        "cityPlaceholder": "Miasto",
+        "postalCodePlaceholder": "Kod pocztowy",
+        "provincePlaceholder": "Województwo",
+        "countryPlaceholder": "Kraj",
+        "phonePlaceholder": "Numer telefonu",
+        "peselPlaceholder": "Numer PESEL"
+    },
+    "step7": {
+        "title": "Podaj numer rezerwacji.",
+        "reservationNumberPlaceholder": "np DXG 786 albo FHU 674",
+        "reservationNumberInfoTitle": "Gdzie znajdę numer rezerwacji ?",
+        "reservationNumberInfo": "Numer rezerwacji to oznaczenie danej rezerwacji wygenerowane przez linię lotniczą. Znajdziesz go na swoim bilecie elektronicznym, potwierdzeniu rezerwacji lub innym dokumencie otrzymanym po zakończeniu rezerwacji lotu. Zazwyczaj składa się z 6 znaków, w tym liter i cyfr (np. DF87G#, REDYYD, L5W4NW). Pamiętaj, żeby nie używać spacji."
+    },
+    "step8": {
+        "title": "Dobre wieści! Wygląda na to, że możliwe jest uzyskanie do 600 € na osobę na podstawie europejskiego rozporządzenia WE 261. Aby uzyskać pieniądze, które Ci się należą, złóż podpis poniżej.",
+        "discountCodePlaceholder": "Podaj kod rabatowy",
+        "checkCodeButton": "Sprawdź kod",
+        "discountValidationMessage": {
+            "valid": "Kod rabatowy jest poprawny!",
+            "invalid": "Kod rabatowy jest niepoprawny. Spróbuj ponownie."
+        },
+        "signaturePrompt": "Podpisz się, zapisz swój podpis i wyślij formularz :)",
+        "resetButton": "Od nowa",
+        "saveButton": "Zapisz"
+    },
+    "success": {
+        "title": "Sukces",
+        "message": "Dzięki, Twój formularz został przesłany!"
+    },
+    "validation": {
+        "input1bInput1cError": "Wybierz swój lot i zaznacz, czy przesiadka miała miejsce",
+        "input3Error": "Wybierz albo input1b, albo input1c",
+        "input4Error": "Wprowadź nazwę linii lotniczych",
+        "input4aError": "Wprowadź numer lotu",
+        "input4bError": "Wprowadź datę",
+        "input5input5ainput5bError": "Odpowiedz na 1 pytanie",
+        "input5ctoinput5hError": "Odpowiedz na 2 pytanie",
+        "input5iInput5cError": "Odpowiedz na 3 pytanie",
+        "emailError": "Podaj poprawny adres e-mail",
+        "input6Error": "Wprowadź swoje imię",
+        "input6aError": "Wprowadź swoje nazwisko",
+        "input6bError": "Wprowadź swój e-mail",
+        "input6bbError": "Podaj poprawny adres e-mail",
+        "input6cError": "Wprowadź zgodę",
+        "input7aInput7bError": "Odpowiedz na pytanie nr 1",
+        "input8Error": "Wprowadź swój adres",
+        "input8aError": "Wprowadź numer mieszkania",
+        "input8bError": "Wprowadź miasto",
+        "input8cError": "Wprowadź kod pocztowy",
+        "input8dError": "Wprowadź województwo",
+        "input8eError": "Wprowadź kraj",
+        "input8gError": "Wprowadź PESEL",
+        "input8fError": "Wprowadź swój numer telefonu",
+        "input9Error": "Wprowadź numer rezerwacji",
+        "signatureError": "Wprowadź podpis"
+    },
+    "form3": "form3",
+    "form4": "form4",
+    "form5": "form5"
+}

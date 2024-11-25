@@ -1,5 +1,6 @@
 // resources/js/Partials/FormDataTable.jsx
 import React from 'react';
+import {t} from "i18next";
 
 const UserDataTable = ({ userData }) => {
     if (!Array.isArray(userData) || userData.length === 0) {
@@ -12,10 +13,10 @@ const UserDataTable = ({ userData }) => {
                 <thead>
                 <tr>
                     <th className="py-2 px-4 border-b border-gray-300">ID</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Name</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Email</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Created At</th>
-                    <th className="py-2 px-4 border-b border-gray-300">Updated At</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t("table.Imię")}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Email')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Zaaplikowano')}</th>
+                    <th className="py-2 px-4 border-b border-gray-300">{t('table.Zaktualizowano')}</th>
                 </tr>
                 </thead>
                 <tbody>
