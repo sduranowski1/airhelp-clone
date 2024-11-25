@@ -113,6 +113,10 @@
             "title": "What our clients say about us"
         }
     },
+    "cookieModal": {
+        "message": "We use cookies to enhance your user experience. By using our website, you agree to our cookie policy.",
+        "button": "Accept"
+    },
     "staticPages": "staticPages",
     "staticPages1": "staticPages1",
     "staticPages2": "staticPages2",

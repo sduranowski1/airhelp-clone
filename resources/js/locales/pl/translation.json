@@ -117,6 +117,10 @@
             "title": "Co mówią o nas klienci"
         }
     },
+    "cookieModal": {
+        "message": "Używamy plików cookie, aby poprawić komfort użytkowania. Korzystając z naszej witryny, zgadzasz się z naszą polityką dotyczącą plików cookie.",
+        "button": "Akceptuj"
+    },
     "staticPages": "staticPages",
     "staticPages1": "staticPages1",
     "staticPages2": "staticPages2",

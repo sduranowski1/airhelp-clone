@@ -1,6 +1,7 @@
 // CookieConsent.jsx
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import {t} from "i18next";
 
 const Popup = styled.div`
   position: fixed;
@@ -61,9 +62,9 @@ const CookieConsent = () => {
 
     return (
         <Popup>
-            <div>Używamy plików cookie, aby poprawić komfort użytkowania. Korzystając z naszej witryny, zgadzasz się z naszą polityką dotyczącą plików cookie.</div>
+            <div>{t("cookieModal.message")}</div>
             <br/>
-            <Button onClick={handleAccept}>Akceptuj</Button>
+            <Button onClick={handleAccept}>{t("cookieModal.button")}</Button>
         </Popup>
     );
 };
